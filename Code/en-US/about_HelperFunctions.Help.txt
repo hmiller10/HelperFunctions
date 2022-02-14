@@ -1,0 +1,34 @@
+﻿TOPIC 
+	about_HelperFunctions
+	
+SHORT DESCRIPTION	
+	Common PowerShell cmdlets with wrappers
+	
+LONG DESCRIPTION
+	This module mainly serves as a convenient
+way of calling common PowerShell cmdlets formatted
+with parameters I commonly use.
+	
+NOTE
+	THIS CODE IS MADE AVAILABLE AS IS, 
+WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF 
+THE USE OR THE RESULTS FROM THE USE OF THIS CODE 
+REMAINS WITH THE USER.
+	
+TROUBLESHOOTING NOTE
+	For any questions during troubleshooting assign
+any of the functions to a variable. Next, type: $variable.GetType()
+	
+	
+EXAMPLES
+	See Function Built-In help.
+	
+KEYWORDS
+	'PowerShell', 'Function', 'Datatable', 'DateTime', 'FQDN', 
+	'DistinguishedName', 'CimSession', 'Create', 'Zip', 'Unzip', 
+	'Expand', 'Archive', 'PSCredential', 'Import', 'Export', 
+	'SID', 'SemVer', 'Translate', 'PSSession'
+	
+	
+SEE ALSO
+	Place related topics here.

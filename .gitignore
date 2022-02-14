@@ -1,0 +1,9 @@
+*.TempPoint.ps1
+*.Export.*
+*.psprojs
+*.psproj
+*.RestorePoint.ps1
+*.Run.ps1
+*.Package.ps1
+CustomMenu.inf
+nuget.exe
