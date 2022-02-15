@@ -20,7 +20,7 @@
 
 	Begin
 	{
-		$dt = $null
+		$null = $dt
 		$dt = New-Object System.Data.DataTable("$TableName")
 	}
 	Process
@@ -32,6 +32,6 @@
 	}
 	End
 	{
-		Return ,$dt
+		Write-Output @(,$dt)
 	}
 } #end function Add-DataTable

@@ -12,6 +12,7 @@ function global:Test-PathExists
 		[String]$Path,
 		[Parameter(Mandatory = $true,
 				 Position = 1)]
+		[ValidateSet("File","Folder")]
 		[Object]$PathType
 	)
 	
