@@ -2,7 +2,7 @@
 
 This module contains a collection of PowerShell functions I have found I use/reuse frequently. Consequently, I created this module to include those functions.
 
-## Getting Started
+## Getting Started for module publication in MS Azure
 
 # STEP 1
 ### Setup PowerShell to use TLS 1.2
