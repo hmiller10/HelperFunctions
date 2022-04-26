@@ -52,7 +52,7 @@
 			{
 				$uptimeTimespan = New-TimeSpan -Start $objOS.LastBootUpTime.ToUniversalTime() -End $objOS.LocalDateTime.ToUniversalTime()
 				$uptime = New-Object System.TimeSpan($uptimeTimespan.Days, $uptimeTimespan.Hours, $uptimeTimespan.Minutes, $uptimeTimespan.Seconds)
-			    $lastBootupTime = $objOS.LastBootUpTime.ToString($dtmFormatString)
+				$lastBootupTime = $objOS.LastBootUpTime.ToString($dtmFormatString)
 				$lastBootupTimeUTC = $objOS.LastBootUpTime.ToUniversalTime().ToString($dtmFormatString)
 			}
 		}
