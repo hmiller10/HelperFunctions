@@ -9,6 +9,7 @@
     <license type="expression">MIT</license>
     <description>Common every day PS functions used repeatedly in script writing.</description>
     <releaseNotes>Corrected formatting on Readme.md.</releaseNotes>
+    <releaseNotes>Add new 'Docs' folder to module. Corrected formatting on Readme.md.</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>PowerShell Function Datatable DateTime FQDN DistinguishedName CimSession Create Zip Unzip Expand Archive PSCredential Import Export SemVer</tags>
   </metadata>
