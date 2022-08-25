@@ -1,35 +1,53 @@
-﻿function global:Test-RegistryValue
+﻿function Test-RegistryValue
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+	#>
 	
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
 	(
 		[Parameter(Mandatory = $true,
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
 				 Position = 0)]
-		[ValidateNotNullOrEmpty()]
-		$Path,
+		[Alias('RegistryKey')]
+		[String]$Path,
 		[Parameter(Mandatory = $true,
 				 Position = 1)]
-		[ValidateNotNullOrEmpty()]
-		$Value
+		[String]$Name,
+		[Parameter(Mandatory = $false,
+				 Position = 2)]
+		[Switch]$PassThru
 	)
 	
-	begin{}
+	begin { }
 	process
 	{
-		try
+		if ((Test-Path -Path $Path -PathType Container) -eq $true)
 		{
-			Get-ItemProperty -Path $Path -Name $Value -ErrorAction Stop | Out-Null
-			return $true
+			$Key = Get-Item -LiteralPath $Path
+			if ($null -ne $Key.GetValue($Name, $null))
+			{
+				if ($PassThru)
+				{
+					Get-ItemProperty -Path $Path -Name $Name | Select-Object -ExpandProperty Name
+				}
+				else
+				{
+					$true
+				}
+			}
+			else
+			{
+				$false
+			}
 		}
-		catch
+		else
 		{
-			return $false
+			$false
 		}
 	}
-	end {}
+	end { }
 } #End function Test-RegistryValue

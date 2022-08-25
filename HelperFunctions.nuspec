@@ -2,14 +2,13 @@
 <package >
   <metadata>
     <id>HelperFunctions</id>
-    <version>2.2.19</version>
+    <version>2.2.20</version>
     <authors>Heather Miller, Thomas Ashworth</authors>
     <owners>Heather Miller</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <description>Common every day PS functions used repeatedly in script writing.</description>
-    <releaseNotes>Corrected formatting on Readme.md.</releaseNotes>
-    <releaseNotes>Add new 'Docs' folder to module. Corrected formatting on Readme.md.</releaseNotes>
+    <releaseNotes>Updated Test-RegistryValue function and Get-MyNewCimSession function to resolve errors and add flexibility.</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>PowerShell Function Datatable DateTime FQDN DistinguishedName CimSession Create Zip Unzip Expand Archive PSCredential Import Export SemVer</tags>
   </metadata>

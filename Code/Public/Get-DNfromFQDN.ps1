@@ -1,28 +1,7 @@
 ﻿Function Get-DNfromFQDN
 {
 	<#
-
-	.NOTES
-	#------------------------------------------------------------------------------
-	#
-	# THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE
-	# ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS
-	# WITH THE USER.
-	#
-	#------------------------------------------------------------------------------
-	.SYNOPSIS
-		Get object distinguishedName from DNS name
-		
-	.DESCRIPTION
-		This function translates an AD object FQDN to it's distinguishedName
-		
-	.OUTPUTS
-		System.String
-		
-	.EXAMPLE 
-	PS C:\>Get-DNfromFQDN -FQDN mycomputer.my.domain.com
-
-
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
 	#>
 
 	[CmdletBinding()]
