@@ -2,4 +2,4 @@
         uses: hmmiller10/publish-powershell-module-action@v20
         id: publish-module
         with:
-          NuGetApiKey: ${{ secrets.'HMGithub' }}
+          NuGetApiKey: ${{ secrets.'HM_RW_Secret' }}
