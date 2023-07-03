@@ -1,4 +1,4 @@
-﻿function Test-MyNetConnection
+﻿function global:Test-MyNetConnection
 {
 		<#
 			.EXTERNALHELP HelperFunctions.psm1-Help.xml		

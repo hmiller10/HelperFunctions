@@ -1,24 +1,33 @@
-﻿Function Get-DNfromFQDN
+﻿function global:Get-DNfromFQDN
 {
-	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-	#>
-
+<#
+	.EXTERNALHELP HelperFunctions.psm1-Help.xml
+#>
+	
 	[CmdletBinding()]
 	[OutputType([String])]
-	param (
-		[Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $false)]
-		[string]$FQDN
+	param
+	(
+	[Parameter(Mandatory = $true,
+			 ValueFromPipeline = $false,
+			 Position = 0,
+			 HelpMessage = 'Enter the fully qualified domain name to convert')]
+	[ValidateNotNullOrEmpty()]
+	[string]$FQDN,
+	[Parameter(Position = 1,
+			 HelpMessage = 'Enter the name of PS credential object')]
+	[ValidateNotNullOrEmpty()]
+	[pscredential]$Credential
 	)
 	
-	Begin
+	begin
 	{
 		$Error.Clear()
 		Import-Module -Name ActiveDirectory -Force -ErrorAction Stop
 	}
-	Process
+	process
 	{
-		ForEach ($index In $FQDN)
+		foreach ($index in $FQDN)
 		{
 			$Dot = $index.IndexOf('.')
 			$Object = [pscustomobject]@{
@@ -28,20 +37,38 @@
 			
 		}
 		
-		$DN = Get-ADObject -Identity $Object.HostName -Properties distinguishedName -Server $Object.Domain -ErrorAction Stop | Select-Object -ExpandProperty distinguishedName
+		if (($PSBoundParameters.ContainsKey("Credential")) -and ($null -ne $PSBoundParameters["Credential"]))
+		{
+			try
+			{
+				$DN = Get-ADObject -Identity $Object.HostName -Properties distinguishedName -Server $Object.Domain -Credential $Credential -ErrorAction Stop | Select-Object -ExpandProperty distinguishedName
+			}
+			catch
+			{
+				$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+				Write-Error $errorMessage -ErrorAction Continue
+			}
+		}
+		else
+		{
+			try
+			{
+				$DN = Get-ADObject -Identity $Object.HostName -Properties distinguishedName -Server $Object.Domain -ErrorAction Stop | Select-Object -ExpandProperty distinguishedName
+			}
+			catch
+			{
+				$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+				Write-Error $errorMessage -ErrorAction Continue
+			}
+		}
 		
 	}
-	End
+	end
 	{
-		If ($null -ne $DN)
+		if ($null -ne $DN)
 		{
-			Return $DN
+			return $DN
 		}
 	}
-	
+		
 } #End function Get-DNfromFQDN
-
-
-
-
-

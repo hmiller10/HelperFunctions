@@ -1,4 +1,4 @@
-function Get-MyNewCimSession
+function global:Get-MyNewCimSession
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
@@ -32,7 +32,7 @@ function Get-MyNewCimSession
 			ErrorVariable  = 'CIMSessionError'
 		}
 		
-		if ($PSBoundParameters.ContainsKey('Credential'))
+		if (($PSBoundParameters.ContainsKey('Credential')) -and ($null -ne ($PSBoundParameters["Credentail"])))
 		{
 			$Params.Add('Credential', $Credential)
 		}

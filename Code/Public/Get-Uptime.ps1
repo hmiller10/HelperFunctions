@@ -1,4 +1,4 @@
-﻿Function Get-Uptime
+﻿function global:Get-Uptime
 {
 		<#
 			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
@@ -30,7 +30,7 @@
 			ErrorAction  = 'Continue'
 		}
 		
-		If (($PSBoundParameters.ContainsKey('ComputerName') -eq $true) -and ($PSBoundParameters['ComputerName'] -ne $null))
+		If (($PSBoundParameters.ContainsKey('ComputerName') -eq $true) -and ($null -ne $PSBoundParameters['ComputerName']))
 		{
 			$params.Add('ComputerName', $ComputerName)
 		}
@@ -39,7 +39,7 @@
 			$ComputerName = [System.Net.Dns]::GetHostByName("LocalHost").HostName
 		}
 		
-		If (($PSBoundParameters.ContainsKey('Credential') -eq $true) -and ($PSBoundParameters['Credential'] -ne $null))
+		If (($PSBoundParameters.ContainsKey('Credential') -eq $true) -and ($null -ne $PSBoundParameters['Credential']))
 		{
 			$params.Add('Credential', $Credential)
 		}

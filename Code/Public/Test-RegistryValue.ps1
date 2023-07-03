@@ -1,4 +1,4 @@
-﻿function Test-RegistryValue
+﻿function global:Test-RegistryValue
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
@@ -8,18 +8,21 @@
 	[OutputType([System.Boolean])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				 ValueFromPipeline = $true,
-				 ValueFromPipelineByPropertyName = $true,
-				 Position = 0)]
-		[Alias('RegistryKey')]
-		[String]$Path,
-		[Parameter(Mandatory = $true,
-				 Position = 1)]
-		[String]$Name,
-		[Parameter(Mandatory = $false,
-				 Position = 2)]
-		[Switch]$PassThru
+	[Parameter(Mandatory = $true,
+			 ValueFromPipeline = $true,
+			 ValueFromPipelineByPropertyName = $true,
+			 Position = 0)]
+	[Alias('RegistryKey')]
+	[String]$Path,
+	[Parameter(Mandatory = $true,
+			 Position = 1)]
+	[String]$Name,
+	[Parameter(Mandatory = $false,
+			 Position = 2)]
+	[Switch]$PassThru,
+	[Parameter(Mandatory = $false,
+			 Position = 3)]
+	[System.Management.Automation.PSCredential]$Credential
 	)
 	
 	begin { }
@@ -27,12 +30,27 @@
 	{
 		if ((Test-Path -Path $Path -PathType Container) -eq $true)
 		{
-			$Key = Get-Item -LiteralPath $Path
-			if ($null -ne $Key.GetValue($Name, $null))
+			if ($PSBoundParameters.ContainsKey("Credential"))
 			{
-				if ($PassThru)
+				$Key = Get-Item -LiteralPath $Path -Credential $Credential
+			}
+			else
+			{
+				$Key = Get-Item -LiteralPath $Path
+			}
+			
+			if ($null -ne $Key.GetValue($Value, $null))
+			{
+				if ($PSBoundParameters.ContainsKey("PassThru"))
 				{
-					Get-ItemProperty -Path $Path -Name $Name | Select-Object -ExpandProperty Name
+					if ($PSBoundParameters.ContainsKey("Credential"))
+					{
+						Get-ItemProperty -Path $Path -Name $Value -Credential $Credential
+					}
+					else
+					{
+						Get-ItemProperty -Path $Path -Name $Value
+					}
 				}
 				else
 				{

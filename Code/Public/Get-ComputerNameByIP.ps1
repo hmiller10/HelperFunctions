@@ -1,8 +1,8 @@
 ﻿function global:Get-ComputerNameByIP
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+	#>
 	
 	[CmdletBinding()]
 	param

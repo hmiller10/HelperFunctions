@@ -1,4 +1,4 @@
-﻿function Get-DomainFromDN
+﻿function global:Get-DomainFromDN
 {
 		<#
 			.EXTERNALHELP HelperFunctions.psm1-Help.xml		

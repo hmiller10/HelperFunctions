@@ -1,4 +1,4 @@
-﻿function Remove-LoggedOnUsers
+﻿function global:Remove-LoggedOnUsers
 {
 		<#
 			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
@@ -30,7 +30,7 @@
 		"ComputerParameterSet" {
 			if ($pscmdlet.ShouldProcess($ComputerName))
 			{
-				$userinit = Invoke-Command -ComputerName $ComputerName -Credential $Credential -ScriptBlock { param ($ComputerName); ((quser /server $using:ComputerName) -replace '\s{2,}', ',' | ConvertFrom-Csv) } -ArgumentList $ComputerName
+				$userinit = Invoke-Command -ComputerName $ComputerName -Credential $Credential -ScriptBlock { param ($ComputerName); ((quser /server $ComputerName) -replace '\s{2,}', ',' | ConvertFrom-Csv) } -ArgumentList $ComputerName
 				$loggedonusers = @()
 				foreach ($session in $userinit)
 				{
@@ -41,7 +41,7 @@
 								$user = $_
 								Invoke-Command -ComputerName $ComputerName -Credential $Credential -ScriptBlock {
 									param ($session,
-										$ComputerName); logoff.exe $using:session.ID /server $using:ComputerName $user /V
+										$ComputerName); logoff.exe $session.ID /server $ComputerName $user /V
 								} -ArgumentList $session, $ComputerName
 							})
 					}
@@ -52,7 +52,7 @@
 		"SessionParameterSet" {
 			if ($pscmdlet.ShouldProcess($RemoteSession.ComputerName))
 			{
-				$userinit = Invoke-Command -Session $RemoteSession -ScriptBlock { param ($ComputerName); ((quser /server $using:ComputerName) -replace '\s{2,}', ',' | ConvertFrom-Csv) } -ArgumentList $ComputerName
+				$userinit = Invoke-Command -Session $RemoteSession -ScriptBlock { param ($ComputerName); ((quser /server $ComputerName) -replace '\s{2,}', ',' | ConvertFrom-Csv) } -ArgumentList $ComputerName
 				$loggedonusers = @()
 				foreach ($session in $userinit)
 				{
@@ -63,7 +63,7 @@
 								$user = $_
 								Invoke-Command -Session $RemoteSession -ScriptBlock {
 									param ($session,
-										$ComputerName); logoff.exe $using:session.ID /server $using:ComputerName $user /V
+										$ComputerName); logoff.exe $session.ID /server $ComputerName $user /V
 								} -ArgumentList $session, $ComputerName
 							})
 					}
