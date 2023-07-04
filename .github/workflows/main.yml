@@ -1,5 +1,0 @@
- name: Publish Module to PowerShell Gallery
-        uses: hmiller10/publish-powershell-module-action@main
-        id: publish-module
-        with:
-          NuGetApiKey: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,22 @@
+jobs:
+  build:
+    runs-on: windows-latest
+    name: Update NuGet 
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@master
+          
+      - name: Build solution and generate NuGet package
+        run: |  
+          cd c:\\temp2\\builds
+          dotnet pack -c Release -o out  
+
+      - name: Install NuGet client
+        uses: warrenbuckley/Setup-Nuget@v1
+        
+      - name: Add private GitHub registry to NuGet
+        run: nuget sources add -name "HMGithub" -Source https://nuget.pkg.github.com/hmiller10/index.json -Username hmiller10 -Password ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Push generated package to GitHub registry
+        run: nuget push .\c:\\temp2\builds\HelperFunctions\out\*.nupkg -Source "HMGithub" -SkipDuplicate
