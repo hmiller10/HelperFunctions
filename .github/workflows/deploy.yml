@@ -25,7 +25,7 @@ jobs:
           
       - name: Build solution and generate NuGet package
         run: |  
-          cd c:\\temp2\\builds
+          cd SOLUTION_FOLDER
           dotnet pack -c Release -o out  
 
       - name: Install NuGet client
@@ -35,4 +35,4 @@ jobs:
         run: nuget sources add -name "HMGithub" -Source https://nuget.pkg.github.com/hmiller10/index.json -Username hmiller10 -Password ${{ secrets.GITHUB_TOKEN }}
         
       - name: Push generated package to GitHub registry
-        run: nuget push .\c:\\temp2\builds\HelperFunctions\out\*.nupkg -Source "HMGithub" -SkipDuplicate
+        run: nuget push .\SOLUTION_FOLDER\HelperFunctions\out\*.nupkg -Source "HMGithub" -SkipDuplicate
