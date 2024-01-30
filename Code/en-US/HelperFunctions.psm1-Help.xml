@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <helpItems xmlns="http://msh" schema="maml">
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2023 v3.0.62-->
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.65-->
 	<!--
 		Module: 		HelperFunctions
 		Version:		2.2.21
@@ -3226,6 +3226,18 @@ System.Management.Automation.SwitchParameter
 				</dev:type>
 				<dev:defaultValue />
 			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>Force</maml:name>
+				<maml:description>
+					<maml:para>Force the creation of folder or file</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">Switch</command:parameterValue>
+				<dev:type>
+					<maml:name>Switch</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
 		</command:parameters>
 		<command:inputTypes>
 			<!--Inputs-->
@@ -3272,7 +3284,7 @@ System.Management.Automation.SwitchParameter
 				</dev:remarks>
 			</command:example>
 			<command:example>
-				<maml:title>PS C:\&gt;Test-PathExists -Path "C:\temp\test" -PathFype Folder</maml:title>
+				<maml:title>PS C:\&gt;Test-PathExists -Path "C:\temp\test" -PathFype Folder -Force -Confirm:$false</maml:title>
 				<maml:introduction>
 					<maml:para />
 				</maml:introduction>
@@ -4207,5 +4219,55 @@ THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH
 			<!--Links-->
 		</maml:relatedLinks>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2023 v3.0.62-->
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.65-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--TAG: HASCOMMONPARAMETERS-->
+		<!--Command-->
+		<command:details>
+			<command:name>Get-IISWebCertificates</command:name>
+			<maml:description>
+				<maml:para>Get list of SSL certificates bound to IIS on local or remote computer</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>Get</command:verb>
+			<command:noun>IISWebCertificates</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This function will connect to the local machine certificate store on either the computer that the function is run from or a remote computer</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>Get-IISWebCertificates</maml:name>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="ws,s,computers,cn">
+				<maml:name>WebServers</maml:name>
+				<maml:description>
+					<maml:para>List of web servers to query certificate store on</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">string</command:parameterValue>
+				<dev:type>
+					<maml:name>string</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<maml:name>Credential</maml:name>
+				<maml:description />
+				<dev:type>
+					<maml:name />
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.65-->
 </helpItems>

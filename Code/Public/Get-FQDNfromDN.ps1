@@ -1,8 +1,8 @@
 ﻿function global:Get-FQDNfromDN
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+	#>
 	
 	[CmdletBinding()]
 	[OutputType([String])]
@@ -11,42 +11,22 @@
 		[Parameter(Mandatory = $true)]
 		[ValidateNotNullOrEmpty()]
 		[string]$DistinguishedName
-    )
-
-    Begin { }
-    Process
-    {
-        
-        if ([string]::IsNullOrEmpty($DistinguishedName) -eq $true)
-        {
-            return $null
-        }
-        else
-        {
-            $colSplit = $DistinguishedName.Split(",")
-            $computerName = $colSplit[0].Trim("CN=")
-            
-            Try
-            {
-                $FQDN = [System.Net.Dns]::GetHostByName($computerName).HostName
-            }
-            Catch
-            {
-                $ErrorMessage = $Error[0].Exception.Message
-            }
-        }
-
-    }
-    End
-    {
-        if ($FQDN)
-        {
-            Return $FQDN
-        }
-        elseif ($Error[0].Exception.Message -match "No such host is known")
-        {
-            Return "Host is not registered in DNS"
-        } 
-    }
+	)
+	
+	begin { }
+	process
+	{
+		if ([string]::IsNullOrEmpty($DistinguishedName) -eq $true) { return $null }
+		$domainComponents = $DistinguishedName.ToString().ToLower().Substring($DistinguishedName.ToString().ToLower().IndexOf("dc=")).Split(",")
+		for ($i = 0; $i -lt $domainComponents.count; $i++)
+		{
+			$domainComponents[$i] = $domainComponents[$i].Substring($domainComponents[$i].IndexOf("=") + 1)
+		}
+		$fqdn = [string]::Join(".", $domainComponents)
+	}
+	end
+	{
+		return [string]$fqdn
+	}
 	
 } #End function Get-FQDNfromDN

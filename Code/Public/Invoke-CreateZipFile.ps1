@@ -1,20 +1,22 @@
 function global:Invoke-CreateZipFile
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
+<#
+	.EXTERNALHELP HelperFunctions.psm1-Help.xml
+		
+#>
 	
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true)]
-		[String]$CompressedFileName,
-		[Parameter(Mandatory = $false)]
-		[String]$FileToCompress,
-		[Parameter(Mandatory = $true)]
-		[String]$EntryName,
-		[Parameter(Mandatory = $true)]
-		[String]$ArchiveMode
+	[Parameter(Mandatory = $true)]
+	[String]$CompressedFileName,
+	[Parameter(Mandatory = $true)]
+	[String]$FileToCompress,
+	[Parameter(Mandatory = $true)]
+	[String]$EntryName,
+	[Parameter(Mandatory = $true)]
+	[ValidateSet('Create', 'Read', 'Update')]
+	[String]$ArchiveMode
 	)
 	
 	begin
@@ -45,5 +47,4 @@ function global:Invoke-CreateZipFile
 	{
 		$objCompressedFile.Dispose()
 	}
-	
 } #End function Invoke-CreateZipFile
