@@ -35,4 +35,4 @@ jobs:
         run: nuget sources add -name "HMGithub" -Source https://nuget.pkg.github.com/hmiller10/index.json -Username hmiller10 -Password ${{ secrets.GITHUB_TOKEN }}
         
       - name: Push generated package to GitHub registry
-        run: nuget push C:\\Scripts\\repos\\hmiller10\\HelperFunctions\out\*.nupkg -Source "HMGithub" -SkipDuplicate
+        run: nuget push C:\Scripts\repos\hmiller10\HelperFunctions\out\*.nupkg -Source "HMGithub" -SkipDuplicate

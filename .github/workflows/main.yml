@@ -2,4 +2,4 @@
         uses: hmiller10/publish-powershell-module-action@main
         id: publish-module
         with:
-          NuGetApiKey: ${{ secrets.PSGALLERY_KEY }}
+          NuGetApiKey: ${{ secrets.HMILLER10_Secret }}
