@@ -1,5 +1,5 @@
  name: Publish Module to PowerShell Gallery
-        uses: hmiller10/publish-powershell-module-action@main
+        uses: hmiller10/publish-powershell-module-action@v*
         id: publish-module
         with:
-          NuGetApiKey: ${{ secrets.HMILLER10_Secret }}
+          NuGetApiKey: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
