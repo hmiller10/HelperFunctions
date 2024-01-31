@@ -1,4 +1,4 @@
-name: Draft release
+name: HelperFunctions_Push
 on:
   push:
     branches:
@@ -8,31 +8,25 @@ permissions:
   contents: write
 
 jobs:
-  draft-release:
+  HelperFunctions_Push:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: release-drafter/release-drafter@v5
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PSGALLERY_SECRET }}
   build:
     runs-on: windows-latest
-    name: Update NuGet 
+    name: Update HelperFunctions Github 
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@master
+        uses: actions/checkout@main
           
       - name: Build solution and generate NuGet package
         run: |  
           cd C:\Scripts\repos\hmiller10\HelperFunctions
           dotnet pack -c Release -o out  
-
-      - name: Install NuGet client
-        uses: warrenbuckley/Setup-Nuget@v1
-        
-      - name: Add private GitHub registry to NuGet
-        run: nuget sources add -name "HMGithub" -Source https://nuget.pkg.github.com/hmiller10/index.json -Username hmiller10 -Password ${{ secrets.GITHUB_TOKEN }}
         
       - name: Push generated package to GitHub registry
         run: nuget push C:\Scripts\repos\hmiller10\HelperFunctions\out\*.nupkg -Source "HMGithub" -SkipDuplicate
