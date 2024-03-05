@@ -1,5 +1,21 @@
- name: Publish Module to PowerShell Gallery
-        uses: hmiller10/publish-powershell-module-action@v*
-        id: publish-module
-        with:
-          NuGetApiKey: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+name: Publish PowerShell Module
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Publish to PSGallery
+        env:
+          NUGET_API_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+        run: |
+          Install-Module -Name PowerShellGet -AllowPrerelease -Force
+          Publish-Module -Path ./hmiller10/HelperFunctions -NuGetApiKey $env:NUGET_API_KEY
