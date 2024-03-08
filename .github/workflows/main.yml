@@ -1,21 +1,29 @@
-name: Publish PowerShell Module
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches:
-      - main
+    branches: [ main ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  publish:
+  publish-to-gallery:
+    needs: build
     runs-on: windows-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Publish to PSGallery
+      - uses: actions/checkout@v2
+      - name: Build and publish
+      # API key generated in PSGallery
         env:
-          NUGET_API_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          BUILDVER: '2.2.28'
+        shell: pwsh
         run: |
-          Install-Module -Name PowerShellGet -AllowPrerelease -Force
-          Publish-Module -Path ./hmiller10/HelperFunctions -NuGetApiKey $env:NUGET_API_KEY
+          .\build_scripts\build.ps1
+          Publish-Module -path . -NuGetApiKey $env:NUGET_KEY -Verbose          
