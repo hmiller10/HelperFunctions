@@ -2,9 +2,9 @@ $Global:ErrorActionPreference = 'Stop'
 $Global:VerbosePreference = 'SilentlyContinue'
 
 $buildVersion = $env:BUILDDIR
-$manifestPath = "./code/HelperFunctions.psd1"
-$publicFuncFolderPath = './code/public'
-$privateFuncFolderPath = './code/private'
+$manifestPath = ".\code\HelperFunctions.psd1"
+$publicFuncFolderPath = '.\code\public'
+$privateFuncFolderPath = '.\code\private'
 
 
 if (!(Get-PackageProvider | Where-Object { $_.Name -eq 'NuGet' })) {
