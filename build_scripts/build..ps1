@@ -1,7 +1,7 @@
 $Global:ErrorActionPreference = 'Stop'
 $Global:VerbosePreference = 'SilentlyContinue'
 
-$buildVersion = '2.2.28'
+$buildVersion = $env:BUILDDIR
 $manifestPath = "./code/HelperFunctions.psd1"
 $publicFuncFolderPath = './code/public'
 $privateFuncFolderPath = './code/private'

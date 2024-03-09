@@ -14,7 +14,6 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   publish-to-gallery:
-    needs: build
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,4 +25,4 @@ jobs:
         shell: pwsh
         run: |
           .\build_scripts\build.ps1
-          Publish-Module -path ..\ -NuGetApiKey $env:NUGET_KEY -Verbose          
+          Publish-Module -path .\Code -NuGetApiKey $env:NUGET_KEY -Verbose          
