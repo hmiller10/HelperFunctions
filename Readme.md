@@ -54,7 +54,7 @@ Password should be your PAT token.
 2. If you have not already created an artifact repository in Azure DevOps, you will need to create that before proceeding. To register your PS repository in PowerShell, type:
 
 ```
-Register-PSRepository -Name 'Insert Repository Name Here' -SourceLocation 'Insert SourceLocation created when artifact repository was created' -InstallationPolicy Trusted -Credential $creds
+Register-PSRepository -Name HMMPackages -SourceLocation 'Insert SourceLocation created when artifact repository was created' -InstallationPolicy Trusted -Credential $creds
 ```
 
 3. Connect to Azure artifact package feed. (Only needs to be done once.)
