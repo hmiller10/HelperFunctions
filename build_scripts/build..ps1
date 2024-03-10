@@ -7,10 +7,10 @@ $publicFuncFolderPath = '.\code\public'
 $privateFuncFolderPath = '.\code\private'
 
 
-if (!(Get-PackageProvider | Where-Object { $_.Name -eq 'NuGet' })) {
-    Install-PackageProvider -Name NuGet -force | Out-Null
+if ($null -eq (Get-PackageProvider -ListAvailable -Name NuGet)) {
+    Install-PackageProvider -Name NuGet -Scope AllUsers -Force | Out-Null
 }
-Import-PackageProvider -Name NuGet -force | Out-Null
+Import-PackageProvider -Name NuGet -Force | Out-Null
 
 if ((Get-PSRepository -Name PSGallery).InstallationPolicy -ne 'Trusted') {
     Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
