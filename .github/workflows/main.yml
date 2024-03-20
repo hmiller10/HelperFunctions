@@ -16,12 +16,9 @@ jobs:
   publish-to-gallery:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build and publish
-      # API key generated in PSGallery
-        env:
-          NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
-          BUILDVER: '2.2.28'
-        shell: pwsh
-        run: |
-          Publish-Module -path "C:\Scripts\repos\hmiller10\HelperFunctions\Code\HelperFunctions.psd1" -NuGetApiKey $env:NUGET_KEY -Verbose          
+      - name: Publish PowerShell Module
+        uses: natescherer/update-powershell-metadata-action@v1
+        with:
+          token: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          target: gallery
+          path: code\HelperFunctions.psd1 
