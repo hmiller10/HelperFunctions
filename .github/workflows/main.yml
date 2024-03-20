@@ -16,8 +16,12 @@ jobs:
   publish-to-gallery:
     runs-on: windows-latest
     steps:
-      - name: Publish PowerShell Module
-        uses: natescherer/update-powershell-metadata-action@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Publish HelperFunctions PowerShell Module
+        uses: natescherer/update-powershell-metadata-action
         with:
           token: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           target: gallery
