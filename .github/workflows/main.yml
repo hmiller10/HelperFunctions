@@ -23,6 +23,6 @@ jobs:
       - name: Publish HelperFunctions PowerShell Module
         uses: natescherer/update-powershell-metadata-action
         with:
-          token: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
-          target: gallery
+          token: ${{ secrets.HMHelperFunc }}
+          target: psgallery
           path: code\HelperFunctions.psd1 
