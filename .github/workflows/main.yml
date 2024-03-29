@@ -20,9 +20,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Publish HelperFunctions PowerShell Module
-        uses: natescherer/update-powershell-metadata-action
+      - name: Publish Module to PowerShell Gallery
+        uses: pcgeek86/publish-powershell-module-action@v20
+        id: publish-module
         with:
-          token: ${{ secrets.HMHelperFunc }}
-          target: psgallery
-          path: code\HelperFunctions.psd1 
+         NuGetApiKey: ${{ secrets.HMHelperFunc }}
