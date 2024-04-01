@@ -1,6 +1,6 @@
 ﻿BeforeAll {
 	
-	Import-Module -Name (Join-Path -Path $PSScriptRoot -Path $PSScriptRoot\..\..\HelperFunctions.psd1) -Force
+	Import-Module -Name (Join-Path -Path $PSScriptRoot\..\..\HelperFunctions.psd1) -Force
 	
 	if ($Error)
 	{
