@@ -1,6 +1,6 @@
 ﻿BeforeAll {
 	
-	. ..\Code\Public\Get-ComputerNameByIP.ps1
+	..\Code\Public\Get-ComputerNameByIP.ps1
 	if ($Error)
 	{
 		$Error.Clear()
