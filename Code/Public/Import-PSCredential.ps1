@@ -1,9 +1,9 @@
 ﻿function global:Import-PSCredential
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				PositionalBinding = $true,
 				SupportsShouldProcess = $true)]
@@ -15,12 +15,12 @@
 		[ValidateScript({ Test-Path $_ })]
 		[string[]]$Path
 	)
-	
+
 	begin
 	{
 		try
 		{
-			$objCredential = Import-Clixml -Path $Path
+			$objCredential = Import-Clixml -Path $Path -ErrorAction 'Stop'
 		}
 		catch
 		{
@@ -40,4 +40,4 @@
 	{
 		return $Credential
 	}
-}
+}#end function Import-PSCredential

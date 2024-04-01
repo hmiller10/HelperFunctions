@@ -1,10 +1,9 @@
 ﻿function global:Remove-LoggedOnUsers
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding(DefaultParameterSetName = 'ComputerParameterSet',
 				ConfirmImpact = 'Medium',
 				SupportsShouldProcess = $true)]
@@ -24,7 +23,7 @@
 				 HelpMessage = 'Include PSSession variable.')]
 		[System.Management.Automation.Runspaces.PSSession]$RemoteSession
 	)
-	
+
 	switch ($PSCmdlet.ParameterSetName)
 	{
 		"ComputerParameterSet" {
@@ -39,13 +38,13 @@
 					{
 						$loggedonusers.foreach({
 								$user = $_
-								Invoke-Command -ComputerName $ComputerName -Credential $Credential -ScriptBlock {
+								Invoke-Command -ComputerName $using:ComputerName -Credential $using:Credential -ScriptBlock {
 									param ($session,
-										$ComputerName); logoff.exe $session.ID /server $ComputerName $user /V
+										$ComputerName); logoff.exe $session.ID /server $using:ComputerName $user /V
 								} -ArgumentList $session, $ComputerName
 							})
 					}
-					
+
 				}
 			}
 		}
@@ -67,7 +66,7 @@
 								} -ArgumentList $session, $ComputerName
 							})
 					}
-					
+
 				}
 			}
 		}

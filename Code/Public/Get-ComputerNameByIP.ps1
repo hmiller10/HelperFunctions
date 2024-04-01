@@ -1,19 +1,19 @@
 ﻿function global:Get-ComputerNameByIP
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $false,
 				 ValueFromPipeline = $true,
 				 ValueFromPipelineByPropertyName = $true,
 				 Position = 0)]
 		[IPAddress]$IPAddress
 	)
-	
+
 	BEGIN
 	{ }
 	PROCESS
@@ -40,6 +40,3 @@
 	END
 	{ }
 } #End function Get-ComputerNameByIP
-
-
-

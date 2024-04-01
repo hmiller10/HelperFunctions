@@ -1,10 +1,9 @@
 ﻿function global:Get-SIDforDomainUser
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -15,7 +14,7 @@
 				 Position = 1)]
 		[String]$UserName
 	)
-	
+
 	begin
 	{}
 	process
@@ -26,4 +25,4 @@
 	{
 		return $sid.Value
 	}
-}
+}#end function Get-SIDForDomainUser

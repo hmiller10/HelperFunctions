@@ -1,9 +1,9 @@
 ﻿function global:Get-DNfromFQDN
 {
-<#
-	.EXTERNALHELP HelperFunctions.psm1-Help.xml
-#>
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	[OutputType([String])]
 	param
@@ -19,11 +19,19 @@
 	[ValidateNotNullOrEmpty()]
 	[pscredential]$Credential
 	)
-	
+
 	begin
 	{
 		$Error.Clear()
-		Import-Module -Name ActiveDirectory -Force -ErrorAction Stop
+		try
+		{
+			Import-Module -Name ActiveDirectory -Force -ErrorAction Stop
+		}
+		catch
+		{
+			$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+			Write-Error $errorMessage -ErrorAction Continue
+		}
 	}
 	process
 	{
@@ -34,9 +42,9 @@
 				Hostname = $index.Substring(0, $Dot)
 				Domain   = $index.Substring($Dot + 1)
 			}
-			
+
 		}
-		
+
 		if (($PSBoundParameters.ContainsKey("Credential")) -and ($null -ne $PSBoundParameters["Credential"]))
 		{
 			try
@@ -61,7 +69,7 @@
 				Write-Error $errorMessage -ErrorAction Continue
 			}
 		}
-		
+
 	}
 	end
 	{
@@ -70,5 +78,5 @@
 			return $DN
 		}
 	}
-		
+
 } #End function Get-DNfromFQDN

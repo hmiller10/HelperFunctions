@@ -3,10 +3,10 @@ name: Publish HelperFunctions Module
 
 # Controls when the workflow will run
 on:
+  workflow_dispatch:
   push:
     branches:
       - main 
-
 
 jobs:
   publish:
@@ -30,6 +30,4 @@ jobs:
           HMILLER10_PSGALLERY_APIKEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           
         run: |
-          # Replace with your publish command
-          # Example:
           Publish-Module -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery

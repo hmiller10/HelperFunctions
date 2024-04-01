@@ -1,13 +1,13 @@
 ﻿Function global:Invoke-ZipDirectory
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	Param
 	(
-		
+
 		[Parameter(Mandatory = $true,
 				 Position = 0,
 				 ValueFromPipeline = $true,
@@ -18,9 +18,9 @@
 				 ValueFromPipeline = $true,
 				 HelpMessage = 'Name of directory containing files to zip.')]
 		[String]$SourceDirectory
-		
+
 	)
-	
+
 	Begin
 	{
 		$Net45Check = Get-ChildItem "HKLM:SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\" | Get-ItemPropertyValue -Name Release | ForEach-Object { $_ -ge 378389 }

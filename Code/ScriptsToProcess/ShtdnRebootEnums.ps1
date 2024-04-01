@@ -1,11 +1,11 @@
-﻿Add-Type @"
+﻿aAdd-Type @"
 public enum ShutdownType {
     LogOff = 0,
     Shutdown = 1,
     Reboot = 2,
     PowerOff = 8
 }
- 
+
 public enum ShutDown_MajorReason {
     APPLICATION = 0x00040000,
     HARDWARE = 0x00010000,
@@ -16,7 +16,7 @@ public enum ShutDown_MajorReason {
     SOFTWARE = 0x00030000,
     SYSTEM = 0x00050000
 }
- 
+
 public enum ShutDown_MinorReason {
     BLUESCREEN = 0x0000000F,
     CORDUNPLUGGED = 0x0000000b,

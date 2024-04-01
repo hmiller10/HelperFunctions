@@ -1,19 +1,27 @@
 ﻿BeforeAll {
-	Import-Module -Name HelperFunctions -Force -ErrorAction Stop
-    if ($Error) { $Error.Clear() }
-
-	$IPAddress = '10.0.0.1'
+	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
+	if ($Error)
+	{
+		$Error.Clear()
+		[string]$IP = '10.0.0.1'
+	}
 }
 
 
-Describe 'Test-IsValidIPAddress' {
+Describe "Test-IsValidIPAddress" {
 	
-	Context "IPAddress Validation" {
+	Context "Test IP address parameter to validate type" {
+		# Test-IsValidIPAddress Tests, all should pass
 		
-		It "Should be of type [bool]" {
-			$result = Test-IsValidIPAddress -IP $IPAddress
+		It "Should Have Parameter Path" {
+			Get-Command Test-IsValidIPAddress | Should -HaveParameter IP -Mandatory -Type System.String
+		}
+		
+		It "Should be of type [System.Boolean]" {
+			$result = Test-IsValidIPAddress -IP $IP
 			$result | Should -Not -BeNullOrEmpty
-			$result | Should -BeOfType [bool]
+			$result | Should -ExpectedType [bool]
 		}
 	}
 }

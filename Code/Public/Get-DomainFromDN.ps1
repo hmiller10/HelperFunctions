@@ -1,21 +1,21 @@
 ﻿function global:Get-DomainFromDN
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				 Position = 0)]
-		[string]$DistinguishedName
+	[Parameter(Mandatory = $true,
+			 Position = 0)]
+	[ValidateNotNullOrEmpty()]
+	[string]$DistinguishedName
 	)
-	
+
 	begin
-	{}
+	{ }
 	process
 	{
 		$Domain = $DistinguishedName -Split "," | Where-Object { $_ -like "DC=*" }
@@ -25,4 +25,4 @@
 	{
 		return $Domain
 	}
-}
+}#end function Get-DomainFromDN

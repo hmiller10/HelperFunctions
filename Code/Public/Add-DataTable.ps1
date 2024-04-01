@@ -1,9 +1,9 @@
 ﻿function global:Add-DataTable
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	[OutputType([System.Data.DataTable])]
 	param

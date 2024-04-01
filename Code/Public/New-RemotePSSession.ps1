@@ -1,10 +1,9 @@
 function global:New-RemotePSSession
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	[OutputType([System.Management.Automation.Runspaces.PSSession])]
 	param
@@ -33,10 +32,8 @@ function global:New-RemotePSSession
 				 HelpMessage = 'Session requires proxy access is true.')]
 		[Switch]$EnableNetworkAccess,
 		[Switch]$RequiresProxy
-	)
-	
-	#endParameterBlock
-	
+	)#endParameterBlock
+
 	begin
 	{
 		$Dot = $index.IndexOf('.')
@@ -45,24 +42,24 @@ function global:New-RemotePSSession
 			FQDN     = $ComputerName
 			Domain   = $ComputerName.Substring($Dot + 1)
 		}
-		
+
 		$params = @{
 			ComputerName = $ComputerName
 			Name	        = $Object.HostName
 			ErrorAction  = 'Stop'
 		}
-		
+
 		if ($PSBoundParameters.ContainsKey('Credential'))
 		{
 			$params.Add('Credential', $Credential)
 		}
-		
+
 		if ($PSBoundParameters.ContainsKey('RequiresProxy'))
 		{
 			$option = New-PSSessionOption -ProxyAccessType NoProxyServer
 			$params.Add('SessionOption', $Option)
 		}
-		
+
 		if ($PSBoundParameters.ContainsKey('EnableNetworkAccess'))
 		{
 			$params.Add('EnableNetworkAccess', $true)
@@ -72,10 +69,9 @@ function global:New-RemotePSSession
 	{
 		if ($PSCmdlet.ShouldProcess($ComputerName, "Creating new PS Session to $ComputerName"))
 		{
-			
+
 			try
 			{
-				
 				$s = New-PSSession @params
 			}
 			catch
@@ -94,9 +90,9 @@ function global:New-RemotePSSession
 				}
 				$s = $ErrorMessage
 			}
-			
+
 		}
-		
+
 	}
 	end
 	{

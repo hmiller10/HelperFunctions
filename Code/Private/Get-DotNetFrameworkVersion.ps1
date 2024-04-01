@@ -1,7 +1,7 @@
 ﻿function Get-DotNetFrameworkVersion
 {
 		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+			.EXTERNALHELP HelperFunctions.psm1-Help.xml
 		#>
 	[CmdletBinding()]
 	[OutputType([pscustomobject])]
@@ -17,9 +17,9 @@
 		$dotNetRegistry = 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP'
 		$dotNet4Registry = 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full'
 		[PSObject[]]$objVersions = @()
-		
+
 	}
-	process
+	Process
 	{
 		foreach ($Computer in $ComputerName)
 		{
@@ -33,7 +33,7 @@
 							NetFXVersion = $netVersion.Version
 						}) | Select-Object ComputerName, NetFXVersion
 				}
-				
+
 			}
 			else
 			{

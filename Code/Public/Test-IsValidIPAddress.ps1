@@ -1,10 +1,9 @@
-﻿function Test-IsValidIPAddress
+﻿function global:Test-IsValidIPAddress
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	[OutputType([boolean])]
 	param
@@ -32,4 +31,4 @@
 	{
 	}
 
-}
+}#end function Test-IsValidIPAddress

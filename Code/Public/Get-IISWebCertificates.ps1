@@ -1,9 +1,9 @@
 ﻿function global:Get-IISWebCertificates
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	[OutputType([pscustomobject])]
 	param
@@ -20,7 +20,7 @@
 		[System.Management.Automation.PSCredential][System.Management.Automation.Credential()]
 		$Credential
 	)
-	
+
 	begin
 	{
 		try
@@ -36,7 +36,7 @@
 		{
 			Write-Warning -Message 'Adding TLS 1.2 to supported security protocols was unsuccessful.'
 		}
-		
+
 		try
 		{
 			#https://docs.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=netcore-2.0#System_Net_SecurityProtocolType_SystemDefault
@@ -50,11 +50,11 @@
 		{
 			Write-Warning -Message 'Adding TLS 1.3 to supported security protocols was unsuccessful.'
 		}
-		
-		
+
+
 		$computer = Get-CimInstance -ClassName CIM_ComputerSystem -Namespace 'root\CIMv2' -Property *
 		$fqdn = "{0}.{1}" -f $computer.DnsHostName, $computer.Domain
-		
+
 		if ($WebServers.Count -gt 1)
 		{
 			$WebServers = $WebServers -split ','
@@ -64,19 +64,19 @@
 	{
 		foreach ($WebServer in $WebServers)
 		{
-			
+
 			if ($WebServer -ne $fqdn)
 			{
 				$Params = @{
 					ComputerName = $WebServer
 					ErrorAction  = 'Stop'
 				}
-				
+
 				if ($PSBoundParameters.ContainsKey('Credential') -and ($null -ne $PSBoundParameters["Credential"]))
 				{
 					$Params.Add('Credential', $Credential)
 				}
-				
+
 				try
 				{
 					Invoke-Command @Params -ScriptBlock {
@@ -94,9 +94,9 @@
 							{
 								throw "WebAdministration module could not be loaded. $($_.Exception.Message)"
 							}
-							
+
 						}
-						
+
 						try
 						{
 							$SSLBindings = Get-ChildItem IIS:SSLBindings | Sort-Object thumbprint -unique
@@ -106,7 +106,7 @@
 							$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 							Write-Error $errorMessage -ErrorAction Continue
 						}
-						
+
 						if ($SSLBindings.Count -ge 1)
 						{
 							try
@@ -162,7 +162,7 @@
 								Write-Error $errorMessage -ErrorAction Continue
 							}
 						}
-			
+
 					} #end scriptblock
 				}
 				catch
@@ -187,9 +187,9 @@
 					{
 						throw "WebAdministration module could not be loaded. $($_.Exception.Message)"
 					}
-					
+
 				}
-				
+
 				try
 				{
 					$SSLBindings = Get-ChildItem IIS:SSLBindings | Sort-Object thumbprint -unique
@@ -199,7 +199,7 @@
 					$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 					Write-Error $errorMessage -ErrorAction Continue
 				}
-				
+
 				if ($SSLBindings.Count -ge 1)
 				{
 					$SSLBindings | Foreach-Object {
@@ -241,10 +241,10 @@
 				}
 			}
 		} #end foreach webserver
-		
+
 	}
 	end
 	{
 
 	}
-}
+}#end function Get-IISWebCertificate

@@ -1,10 +1,10 @@
 ﻿function global:Test-IsAdmin
 {
 		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+			.EXTERNALHELP HelperFunctions.psm1-Help.xml
 		#>
-	
-	BEGIN 
+
+	BEGIN
 	{
 		$identity = [Security.Principal.WindowsIdentity]::GetCurrent()
 	}

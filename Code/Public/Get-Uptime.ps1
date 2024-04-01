@@ -1,10 +1,9 @@
 ﻿function global:Get-Uptime
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	[OutputType([pscustomobject])]
 	Param
@@ -14,12 +13,12 @@
 		[Parameter(Mandatory = $false)]
 		[System.Management.Automation.PsCredential]$Credential
 	)
-	
+
 	Begin
 	{
 		#Enable TLS 1.2
 		[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-		
+
 		[String]$dtmFormatString = "yyyy-MM-dd HH:mm:ss"
 		$ns = 'root\CIMv2'
 	}
@@ -29,7 +28,7 @@
 			NameSpace    = $ns
 			ErrorAction  = 'Continue'
 		}
-		
+
 		If (($PSBoundParameters.ContainsKey('ComputerName') -eq $true) -and ($null -ne $PSBoundParameters['ComputerName']))
 		{
 			$params.Add('ComputerName', $ComputerName)
@@ -38,16 +37,16 @@
 		{
 			$ComputerName = [System.Net.Dns]::GetHostByName("LocalHost").HostName
 		}
-		
+
 		If (($PSBoundParameters.ContainsKey('Credential') -eq $true) -and ($null -ne $PSBoundParameters['Credential']))
 		{
 			$params.Add('Credential', $Credential)
 		}
-		
+
 		Try
 		{
 			$objOS = Get-CimInstance -ClassName Win32_OperatingSystem @params
-			
+
 			If ($null -ne $objOS)
 			{
 				$uptimeTimespan = New-TimeSpan -Start $objOS.LastBootUpTime.ToUniversalTime() -End $objOS.LocalDateTime.ToUniversalTime()

@@ -1,9 +1,9 @@
 ﻿function global:Test-RegistryValue
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -24,7 +24,7 @@
 			 Position = 3)]
 	[System.Management.Automation.PSCredential]$Credential
 	)
-	
+
 	begin { }
 	process
 	{
@@ -38,7 +38,7 @@
 			{
 				$Key = Get-Item -LiteralPath $Path
 			}
-			
+
 			if ($null -ne $Key.GetValue($Value, $null))
 			{
 				if ($PSBoundParameters.ContainsKey("PassThru"))

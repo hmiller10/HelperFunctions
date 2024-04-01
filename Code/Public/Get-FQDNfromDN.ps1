@@ -1,9 +1,9 @@
 ﻿function global:Get-FQDNfromDN
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	[OutputType([String])]
 	param
@@ -12,7 +12,7 @@
 		[ValidateNotNullOrEmpty()]
 		[string]$DistinguishedName
 	)
-	
+
 	begin { }
 	process
 	{
@@ -28,5 +28,5 @@
 	{
 		return [string]$fqdn
 	}
-	
+
 } #End function Get-FQDNfromDN

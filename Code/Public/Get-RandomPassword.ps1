@@ -1,9 +1,9 @@
 ﻿function global:Get-RandomPassword
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	Param
@@ -28,7 +28,7 @@
 				 Position = 5)]
 		[Boolean]$NoSimilarCharacters
 	)
-	
+
 	Begin
 	{
 		# Validate our parameters
@@ -59,13 +59,13 @@
 		For ($a = 48; $a -le 57; $a++) { If ($noSimilarCharacters -eq $false -or [char][byte]$a -notin $CharsToSkip) { $digitChars += ,[char][byte]$a } }
 		$specialChars = $null
 		$specialChars += [char]"=", [char]"+", [char]"_", [char]"?", [char]"!", [char]"-", [char]"#", [char]"$", [char]"*", [char]"&", [char]"@"
-		
+
 		$TemplateLetters = $null
 		If ($includeLCase) { $TemplateLetters += "L" }
 		If ($includeUCase) { $TemplateLetters += "U" }
 		If ($includeNumbers) { $TemplateLetters += "N" }
 		If ($includeSpecialChar) { $TemplateLetters += "S" }
-		
+
 		$PasswordTemplate = @()
 		# Set password template, to ensure that required chars are included
 		Do
@@ -82,7 +82,7 @@
 				(($includeNumbers -eq $false) -or ($myPassTemplate -contains "N")) -and
 				(($includeSpecialChar -eq $false) -or ($myPassTemplate -contains "S"))) -eq $false
 		)
-		
+
 		#$PasswordTemplate now contains an array with at least one of each included character type  (uppercase, lowercase, number and/or special)
 		ForEach ($char In $myPassTemplate)
 		{

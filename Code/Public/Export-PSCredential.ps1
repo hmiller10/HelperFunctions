@@ -1,9 +1,9 @@
 ﻿function global:Export-PSCredential
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				PositionalBinding = $true,
 				SupportsShouldProcess = $true)]
@@ -17,10 +17,19 @@
 				 HelpMessage = "Specify the PSCredential object.")]
 		[pscredential]$Credential
 	)
-	
+
 	begin
 	{
-		$objCredential = $Credential | Select-Object *
+		$ErrorActionPreference = 'stop'
+		try
+		{
+			$objCredential = $Credential | Select-Object *
+		}
+		catch
+		{
+			$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+			Write-Error $errorMessage -ErrorAction Continue
+		}
 	}
 	process
 	{
@@ -33,4 +42,4 @@
 	{
 		$objCredential | Export-Clixml $OutputFile -Confirm:$false
 	}
-}
+}#end function Export-PSCredential

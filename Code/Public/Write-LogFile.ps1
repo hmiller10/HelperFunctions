@@ -1,9 +1,9 @@
 ﻿function global:Write-Logfile
 {
 		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+			.EXTERNALHELP HelperFunctions.psm1-Help.xml
 		#>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -15,11 +15,11 @@
 		[ValidateSet('1', '2', '3')]
 		[uint32]$Level
 	)
-	
+
 	begin
 	{
 		$dtmFormatString = "yyyy-MM-dd HH:mm:ss"
-		$dtmUTC = [DateTime]::UtcNow
+		$dtmUTC = (Get-Date).ToUniversalTime()
 	}
 	process
 	{
@@ -29,7 +29,7 @@
 			2 { $loglevel = "[WARNING]: " }
 			3 { $loglevel = "[ERROR]: " }
 		}
-		
+
 		Write-Verbose -Message $Logentry
 	}
 	end

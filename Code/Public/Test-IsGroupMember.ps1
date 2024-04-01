@@ -1,21 +1,28 @@
 ﻿function global:Test-IsGroupMember
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+		
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true)]
-		$user,
-		[Parameter(Mandatory = $true)]
-		$grp
+	[Parameter(Mandatory = $true,
+			 Position = 0,
+			 HelpMessage = 'Enter User sAMAccountName')]
+	[ValidateNotNullOrEmpty()]
+	[String]$User,
+	[Parameter(Mandatory = $true,
+			 Position = 1,
+			 HelpMessage = 'Enter the AD group name in sAMAccountName format')]
+	[ValidateNotNullOrEmpty()]
+	[Alias('grp')]
+	[String]$Group
 	)
 	
 	begin
 	{
-		$strFilter = "(&(objectClass=Group)(name=" + $grp + "))"
+		$strFilter = "(&(objectClass=Group)(name=" + $Group + "))"
 		$objDomain = New-Object System.DirectoryServices.DirectoryEntry
 		$objSearcher = New-Object System.DirectoryServices.DirectorySearcher
 	}
@@ -32,7 +39,6 @@
 	}
 	end
 	{
-		([string]$objItem.member).contains($user)
+		([string]$objItem.member).contains($User)
 	}
-	
 } #end function Test-IsGroupMember

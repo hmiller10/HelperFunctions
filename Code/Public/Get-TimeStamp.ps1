@@ -1,11 +1,22 @@
-﻿function Get-TimeStamp
+﻿function global:Get-TimeStamp
 {
 		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+			.EXTERNALHELP HelperFunctions.psm1-Help.xml
 		#>
 	[CmdletBinding()]
 	param ()
 	begin {}
-	process { (Get-Date).ToString('yyyy-MM-dd_hh-mm-ss') }
+	process
+	{
+		try
+		{
+			(Get-Date -ErrorAction Stop).ToString('yyyy-MM-dd_hh-mm-ss')
+		}
+		catch
+		{
+			$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+			Write-Error $errorMessage -ErrorAction Continue
+		}
+	}
 	end {}
 } #End function Get-TimeStamp

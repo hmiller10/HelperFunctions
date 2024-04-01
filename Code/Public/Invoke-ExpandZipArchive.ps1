@@ -1,9 +1,9 @@
 ﻿function global:Invoke-ExpandZipArchive
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	param
 	(
@@ -16,7 +16,7 @@
 				 HelpMessage = 'Name of directory to decompress archive into.')]
 		[String]$DestinationDirectory
 	)
-	
+
 	begin
 	{
 		$Net45Check = Get-ChildItem "HKLM:SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\" | Get-ItemPropertyValue -Name Release | ForEach-Object { $_ -ge 378389 }
@@ -34,7 +34,5 @@
 		[System.IO.Compression.ZipFile]::ExtractToDirectory($ZipFileName, $DestinationDirectory)
 	}
 	end
-	{
-		
-	}
+	{}
 } #End function Invoke-ExpandZipArchive

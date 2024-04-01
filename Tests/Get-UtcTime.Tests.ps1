@@ -9,7 +9,7 @@ Describe "Get-UtcTime" {
 		It "should return [System.DateTime]::UtcNow in GMT time" {
 			Get-UtcTime | Should -BeOfType System.DateTime
 		}
-		
+
 		It "should return [DateTime]::UtcNow" {
 			Get-UTCTime | Should -BeLike $([DateTime]::UtcNow)
 		}

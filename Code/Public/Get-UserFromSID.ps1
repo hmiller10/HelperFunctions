@@ -1,10 +1,9 @@
-﻿function Get-UserFromSID
+﻿function global:Get-UserFromSID
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	[OutputType([System.Security.Principal.NTAccount])]
 	param
@@ -14,7 +13,7 @@
 				 HelpMessage = 'Enter the SID to query.')]
 		[string]$ObjectSID
 	)
-	
+
 	begin
 	{
 		$objSID = New-Object System.Security.Principal.SecurityIdentifier($ObjectSID)
@@ -27,4 +26,4 @@
 	{
 		$objUser.Value
 	}
-}
+}#ebd function Get-UserFromSID

@@ -1,9 +1,9 @@
 function global:Get-MyNewCimSession
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	[OutputType([Microsoft.Management.Infrastructure.CimSession])]
 	param
@@ -14,24 +14,24 @@ function global:Get-MyNewCimSession
 		[Parameter(Mandatory = $false, ValueFromPipeline = $true, Position = 1)]
 		[System.Management.Automation.PSCredential]$Credential
 	)
-	
+
 	begin
 	{
 		$so = New-CimSessionOption -Protocol Dcom
-		
-		<# 	
+
+		<#
 			NOTE: Reasons to use 'Negotiate' instead of Kerberos authentication:
 			Peer-to-Peer Network: maybe you are not working in a network domain and want to test-drive remote access in a lab, or at home in your private network. Kerberos requires a network domain.
 			Cross-Domain: maybe the target computer belongs to a different domain, and there are no trust relationships. Kerberos requires trust relationships.
 			IP Address: or maybe you must use IP addresses. Kerberos requires computer names.
 		#>
-		
+
 		$Params = @{
 			Authentication = 'Negotiate'
 			ErrorAction    = 'Stop'
 			ErrorVariable  = 'CIMSessionError'
 		}
-		
+
 		if (($PSBoundParameters.ContainsKey('Credential')) -and ($null -ne ($PSBoundParameters["Credentail"])))
 		{
 			$Params.Add('Credential', $Credential)
@@ -62,7 +62,7 @@ function global:Get-MyNewCimSession
 			else
 			{
 				$Params.Add('SessionOption', $so)
-				
+
 				try
 				{
 					Write-Verbose -Message "Attempting connection to $Server using DCOM."
@@ -75,7 +75,7 @@ function global:Get-MyNewCimSession
 				}
 				$Params.Remove('SessionOption')
 			}
-			
+
 			$Params.Remove('ComputerName')
 		}
 	}

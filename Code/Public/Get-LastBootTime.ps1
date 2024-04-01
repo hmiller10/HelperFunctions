@@ -1,45 +1,44 @@
 ﻿function global:Get-LastBootTime
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
-	[CmdletBinding(DefaultParameterSetName = 'Default',
-				SupportsShouldProcess = $true)]
+
+	[CmdletBinding(SupportsShouldProcess = $true)]
 	[OutputType([PSObject])]
 	param
 	(
-	[Parameter(ParameterSetName = 'Default',
-			 Mandatory = $false,
-			 ValueFromPipeline = $true,
-			 ValueFromPipelineByPropertyName = $true,
-			 HelpMessage = 'Enter the name of the computer to check or pipe the input to the function')]
-	[Alias('cn')]
-	[string[]]$ComputerName,
-	[Parameter(ParameterSetName = 'Default',
-			 Mandatory = $false,
-			 ValueFromPipeline = $true,
-			 ValueFromPipelineByPropertyName = $true,
-			 HelpMessage = 'Enter the PS credential object variable name')]
-	[ValidateNotNull()]
-	[Alias('Cred')]
-	[System.Management.Automation.PSCredential]$Credential,
-	[Parameter(ParameterSetName = 'Default',
-			 Mandatory = $false,
-			 ValueFromPipeline = $true,
-			 ValueFromPipelineByPropertyName = $true,
-			 HelpMessage = 'Enter the number of days past or pipe input')]
-	[ValidateNotNullOrEmpty()]
-	[int]$DaysPast
+		[Parameter(ParameterSetName = 'Default',
+				 Mandatory = $false,
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
+				 HelpMessage = 'Enter the name of the computer to check or pipe the input to the function')]
+		[Alias('cn')]
+		[string[]]$ComputerName,
+		[Parameter(ParameterSetName = 'Default',
+				 Mandatory = $false,
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
+				 HelpMessage = 'Enter the PS credential object variable name')]
+		[ValidateNotNull()]
+		[Alias('Cred')]
+		[System.Management.Automation.PSCredential]$Credential,
+		[Parameter(ParameterSetName = 'Default',
+				 Mandatory = $false,
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
+				 HelpMessage = 'Enter the number of days past or pipe input')]
+		[ValidateNotNullOrEmpty()]
+		[int]$DaysPast
 	)
-	
+
 	begin
 	{
 		if ($null -eq $PSBoundParameters['ComputerName'])
 		{
 			$ComputerName = $env:COMPUTERNAME
 		}
-		
+
 		if (($PSBoundParameters.ContainsKey('DaysPast') -and ($null -ne $PSBoundParameters["DaysPast"])))
 		{
 			$TimePast = (Get-Date).AddDays(-$DaysPast)
@@ -62,24 +61,24 @@
 					Quiet	   = $true
 					ErrorAction  = 'Stop'
 				}
-				
+
 				if (($PSBoundParameters.ContainsKey("Credential")) -and ($null -ne $PSBoundParameters["Credential"]))
 				{
 					$params1.Add('Credential', $Credential)
 				}
-				
+
 				if ((Test-Connection @params1) -eq $true)
 				{
 					$params2 = @{
 						ComputerName = $Computer
 						ErrorAction  = 'Stop'
 					}
-					
+
 					if (($PSBoundParameters.ContainsKey("Credential")) -and ($null -ne $PSBoundParameters["Credential"]))
 					{
 						$params2.Add('Credential', $Credential)
 					}
-					
+
 					try
 					{
 						if ($PSCmdlet.ShouldProcess($Computer))
@@ -90,7 +89,7 @@
 								StartTime = $TimePast
 							}
 						}
-						
+
 					}
 					catch
 					{

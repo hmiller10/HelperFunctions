@@ -1,9 +1,9 @@
-﻿function Export-Registry
+﻿function global:Export-Registry
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -15,7 +15,7 @@
 				 HelpMessage = 'Enter the path where the registry key should be exported to.')]
 		[System.IO.FileInfo]$OutputFile
 	)
-	
+
 	begin
 	{
 		[PSObject[]]$regObject = @()
@@ -42,7 +42,7 @@
 					Write-Error "ImportExcel PS module could not be loaded. $($_.Exception.Message)" -ErrorAction SilentlyContinue
 				}
 			}
-			
+
 			if ($null -eq (Get-Module -Name ImportExcel))
 			{
 				[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
@@ -54,7 +54,7 @@
 	process
 	{
 		$regKeys = Get-ChildItem -Path $Path -Recurse -ErrorAction SilentlyContinue
-		
+
 		foreach ($regKey in $regKeys)
 		{
 			foreach ($property in $regKey)
@@ -78,7 +78,7 @@
 				}
 			}
 		}
-		
+
 		switch ($OutputFile.Extension)
 		{
 			".xlsx" {

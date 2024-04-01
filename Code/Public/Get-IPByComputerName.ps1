@@ -1,9 +1,9 @@
 ﻿function global:Get-IPByComputerName
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
-	
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
+
 	[CmdletBinding()]
 	param
 	(
@@ -23,17 +23,16 @@
 				 Position = 2)]
 		[Switch]$IPV4only
 	)
-	
+
 	Begin
 	{
 		Write-Verbose "`n Checking IP Address . . .`n"
-		#$i = 0
-	} #Begin           
+	}
 	Process
 	{
 		$ComputerName | ForEach-Object {
 			$HostName = $_
-			
+
 			Try
 			{
 				$AddressList = @(([net.dns]::GetHostEntry($HostName)).AddressList)
@@ -42,7 +41,7 @@
 			{
 				"Cannot determine the IP Address on $HostName"
 			}
-			
+
 			IF ($AddressList.Count -ne 0)
 			{
 				$AddressList | ForEach-Object {
@@ -76,5 +75,5 @@
 				} #IF
 			} #ForEach-Object(IPAddress)
 		} #ForEach-Object(ComputerName)
-	} #Process
+	}
 } #End function Get-IPByComputerName

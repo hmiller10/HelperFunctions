@@ -1,8 +1,8 @@
 function global:Test-IsInstalled
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+	#>
 	
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]

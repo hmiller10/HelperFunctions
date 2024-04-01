@@ -1,33 +1,9 @@
-﻿function Test-PathExists
+﻿function global:Test-PathExists
 {
-<#
-	.SYNOPSIS
-		Checks if a path to a file or folder exists, and creates it if it does not exist.
-	
-	.DESCRIPTION
-		This function examines the contents of the 'Path' variable for the presence of the file or folder string that has been passed into the function.
-		
-		If no file or folder exists, the function creates it.
-	
-	.PARAMETER Path
-		File or Folder path
-	
-	.PARAMETER PathType
-		Specify whether the 'Path' variable is a file or folder.
-	
-	.PARAMETER Force
-		Force the creation of the folder structure in the $Path variable.
-	
-	.EXAMPLE
-		PS C:\> .\Test-PathExists.ps1 -Path 'Value1'
-	
-	.OUTPUTS
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
 
-	.NOTES
-		THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND.
-		THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
-#>
-	
 	[CmdletBinding(SupportsShouldProcess = $true)]
 	param
 	(
@@ -47,12 +23,12 @@
 		[Switch]
 		$Force
 	)
-	
+
 	begin
 	{
 		$VerbosePreference = 'Continue';
 	}
-	
+
 	process
 	{
 		switch ($PathType)
@@ -79,7 +55,7 @@
 							{
 								New-Item -Path $Path -ItemType File -Force -WhatIf -ErrorAction Stop
 							}
-							
+
 						}
 						catch
 						{
@@ -105,9 +81,9 @@
 						{
 							$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 							Write-Error $errorMessage -ErrorAction Continue
-						}	
+						}
 					}
-					
+
 				}
 			}
 			Folder
@@ -159,6 +135,6 @@
 			}
 		}
 	}
-	
+
 	end { }
 }#end function Test-PathExists
