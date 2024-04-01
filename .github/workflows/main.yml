@@ -19,9 +19,12 @@ jobs:
       - name: Build and test module
         run: |
          # Replace with your build and test commands
-         Invoke-Pester -Path .\Tests
+         $config = [PesterConfiguration]::Default
+         $config.TestResult.Enabled = $true
+         $config.Run.Exit = $true
+         $config.CodeCoverage.Enabled = $true
+         Invoke-Pester -Path .\Tests -CI -Configuration $config
         shell: powershell
-          
 
       - name: Publish to PowerShell Gallery
 

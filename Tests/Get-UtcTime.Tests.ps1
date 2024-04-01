@@ -1,5 +1,6 @@
-Before All {
+BeforeAll {
     Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
     if ($Error) { $Error.Clear() }
 
 }

@@ -7,7 +7,7 @@
 Describe "Test-IsAdmin" {
 	Context "when function Test-IsAdmin is called" {
 		It "should return $True" {
-			Test-IsAdmin | Should -Be $True -Because "Test must run with elevated rights."
+			Get-Command Test-IsAdmin | Should -Be $True -Because "Test must run with elevated rights."
 		}
 	}
 }
