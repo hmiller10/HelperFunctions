@@ -1,13 +1,14 @@
 ﻿BeforeAll {
-	Import-Module -Name HelperFunctions -Force
-	Import-Module -Name Pester -Force
+	#Import-Module -Name HelperFunctions -Force
+	#Import-Module -Name Pester -Force
+	
+	. $PSCommandPath.Replace('.Tests.ps1','.ps1')
 	if ($Error)
 	{
 		$Error.Clear()
-
-		$IPAddress = (Get-CimInstance -ClassName Win32_NetworkAdapterConfiguration -Namespace 'root\CIMv2' -Filter "IPEnabled = 'True'" | Where { $_.DefaultIPGateway -ne $null } | Select-Object -Property IPAddress).IPAddress
-		[IPAddress]$IPAddress = $IPAddress[0]
 	}
+	$IPAddress = (Get-CimInstance -ClassName Win32_NetworkAdapterConfiguration -Namespace 'root\CIMv2' -Filter "IPEnabled = 'True'" | Where { $_.DefaultIPGateway -ne $null } | Select-Object -Property IPAddress).IPAddress
+	[IPAddress]$IPAddress = $IPAddress[0]
 }
 
 Describe 'Get-ComputerNameByIP' {
