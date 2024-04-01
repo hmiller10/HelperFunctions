@@ -18,7 +18,6 @@ jobs:
 
       #- name: Set up PowerShell
       #  uses: microsoft/powershell@v5
-
       - name: Build and test module
         run: |
          # Replace with your build and test commands
