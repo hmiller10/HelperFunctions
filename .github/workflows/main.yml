@@ -33,6 +33,6 @@ jobs:
           BUILDVER: '2.3.0'
           
         run: |
-          Publish-Module -Path .\Code -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
+          Publish-Module -Path .\Code\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
         shell: powershell
           
