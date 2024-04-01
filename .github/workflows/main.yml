@@ -19,15 +19,15 @@ jobs:
       #- name: Set up PowerShell
       #  uses: microsoft/powershell@v5
 
-      #- name: Build and test module
-      #  run: |
-      #    # Replace with your build and test commands
-      #    # Example:
-     #     Invoke-Pester -Path .\Tests
+      - name: Build and test module
+        run: |
+         # Replace with your build and test commands
+         # Example:
+          Invoke-Pester -Path "C:\Scripts\Repos\hmiller10\HelperFunctions\Tests"
 
       - name: Publish to PowerShell Gallery
         env:
           HMILLER10_PSGALLERY_APIKEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           
         run: |
-          Publish-Module -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
+          Publish-Module -Path "C:\Scripts\Repos\hmiller10\HelperFunctions" -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
