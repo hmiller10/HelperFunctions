@@ -1,35 +1,36 @@
 # This is a basic workflow to help you get started with Actions
-name: Publish HelperFunctions Module
+name: Publish_HelperFunctions_Module
 
 # Controls when the workflow will run
 on:
-  workflow_dispatch:
+  
   push:
-    branches:
-      - main 
+    branches: [main]
+
+  workflow_dispatch:
 
 jobs:
-  publish:
+  publish-to-gallery:
     runs-on: windows-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      #- name: Set up PowerShell
-      #  uses: microsoft/powershell@v5
       - name: Build and test module
         run: |
          # Replace with your build and test commands
-         Invoke-Pester -Path ..\Tests
+         Invoke-Pester -Path .\Tests
         shell: powershell
           
 
       - name: Publish to PowerShell Gallery
+
         env:
-          HMILLER10_PSGALLERY_APIKEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          BUILDVER: '2.3.0'
           
         run: |
-          Publish-Module -Path '...' -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
+          Publish-Module -Path .\Code -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
         shell: powershell
           
