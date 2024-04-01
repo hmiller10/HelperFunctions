@@ -1,6 +1,7 @@
 ﻿BeforeAll {
 	
-	..\Code\Public\Get-ComputerNameByIP.ps1
+	Import-Module -Name (Join-Path -Path $PSScriptRoot -ChildPath '..\Code\Public\HelperFunctions.psm1') -Force
+	
 	if ($Error)
 	{
 		$Error.Clear()
