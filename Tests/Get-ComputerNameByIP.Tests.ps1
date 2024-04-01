@@ -1,6 +1,6 @@
 ﻿BeforeAll {
-	
-	Import-Module $PSScriptRoot\..\..\HelperFunctions.psd1 -Force
+	Set-Location -Path ..\Code\Public
+	Import-Module .\HelperFunctions.psd1 -Force
 	
 	if ($Error)
 	{
