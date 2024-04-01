@@ -22,7 +22,7 @@ jobs:
       - name: Build and test module
         run: |
          # Replace with your build and test commands
-        shell: PowerShell
+        shell: powershell
           Invoke-Pester -Path ..\Tests
 
       - name: Publish to PowerShell Gallery
@@ -31,5 +31,5 @@ jobs:
           
         run: |
 
-        shell:
+        shell: powershell
           Publish-Module -Path '...' -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
