@@ -1,4 +1,4 @@
-﻿aAdd-Type @"
+﻿Add-Type @"
 public enum ShutdownType {
     LogOff = 0,
     Shutdown = 1,
