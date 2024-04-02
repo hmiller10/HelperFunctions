@@ -1,6 +1,6 @@
 ﻿BeforeAll {
-	Set-Location -Path ..\Code\Public
-	Import-Module .\HelperFunctions.psd1 -Force
+	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
 	
 	if ($Error)
 	{
