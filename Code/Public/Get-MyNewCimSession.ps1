@@ -11,7 +11,7 @@ function global:Get-MyNewCimSession
 		[Parameter(Mandatory = $true, ValueFromPipeline = $true, Position = 0)]
 		[ValidateNotNullorEmpty()]
 		[String[]]$ServerName,
-		[Parameter(Mandatory = $false, ValueFromPipeline = $true, Position = 1)]
+		[Parameter(Mandatory = $false, ValueFromPipeline = $false, Position = 1)]
 		[System.Management.Automation.PSCredential]$Credential
 	)
 
