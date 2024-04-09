@@ -32,7 +32,7 @@ jobs:
 
         env:
           NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
-          BUILDVER: '2.3.1'
+          BUILDVER: '2.3.4'
           
         run: |
           Publish-Module -Path .\Code\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
