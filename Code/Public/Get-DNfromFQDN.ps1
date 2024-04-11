@@ -13,70 +13,36 @@
 			 Position = 0,
 			 HelpMessage = 'Enter the fully qualified domain name to convert')]
 	[ValidateNotNullOrEmpty()]
-	[string]$FQDN,
-	[Parameter(Position = 1,
-			 HelpMessage = 'Enter the name of PS credential object')]
-	[ValidateNotNullOrEmpty()]
-	[pscredential]$Credential
+	[string]$FQDN
 	)
 
 	begin
 	{
 		$Error.Clear()
-		try
-		{
-			Import-Module -Name ActiveDirectory -Force -ErrorAction Stop
-		}
-		catch
-		{
-			$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
-			Write-Error $errorMessage -ErrorAction Continue
-		}
+		$arrFQDN = $FQDN -split ("\.")
+		[int]$DomainNameCount = 0
 	}
 	process
 	{
-		foreach ($index in $FQDN)
+		foreach ($item in $arrFQDN)
 		{
-			$Dot = $index.IndexOf('.')
-			$Object = [pscustomobject]@{
-				Hostname = $index.Substring(0, $Dot)
-				Domain   = $index.Substring($Dot + 1)
-			}
-
-		}
-
-		if (($PSBoundParameters.ContainsKey("Credential")) -and ($null -ne $PSBoundParameters["Credential"]))
-		{
-			try
+			if ($DomainNameCount = 0)
 			{
-				$DN = Get-ADObject -Identity $Object.HostName -Properties distinguishedName -Server $Object.Domain -Credential $Credential -ErrorAction Stop | Select-Object -ExpandProperty distinguishedName
+				[string]$ADObjectArrayItem += "DC" + $item
 			}
-			catch
+			else
 			{
-				$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
-				Write-Error $errorMessage -ErrorAction Continue
+				[string]$ADObjectArrayItem += ",DC" + $item
 			}
-		}
-		else
-		{
-			try
-			{
-				$DN = Get-ADObject -Identity $Object.HostName -Properties distinguishedName -Server $Object.Domain -ErrorAction Stop | Select-Object -ExpandProperty distinguishedName
-			}
-			catch
-			{
-				$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
-				Write-Error $errorMessage -ErrorAction Continue
-			}
+			$DomainNameCount++
 		}
 
 	}
 	end
 	{
-		if ($null -ne $DN)
-		{
-			return $DN
-		}
+
+		return $ADObjectArrayItem
+
 	}
 
 } #End function Get-DNfromFQDN

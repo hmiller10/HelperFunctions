@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <helpItems xmlns="http://msh" schema="maml">
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.65-->
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.67 (L)-->
 	<!--
 		Module: 		HelperFunctions
 		Version:		2.2.21
@@ -423,7 +423,7 @@ It is based on Tobias Weltner's example.</maml:para>
 			<dev:version />
 		</command:details>
 		<maml:description>
-			<maml:para>This function translates an object fully qualified domain name into its proper object disthinguishedName</maml:para>
+			<maml:para>This function translates a domain fully qualified domain name into its proper object distinguishedName</maml:para>
 		</maml:description>
 		<command:syntax>
 			<!--Parameter Sets-->
@@ -433,7 +433,7 @@ It is based on Tobias Weltner's example.</maml:para>
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
 					<maml:name>FQDN</maml:name>
 					<maml:description>
-						<maml:para />
+						<maml:para>Domain FQDN to convert to distinguishedName</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 					<dev:type>
@@ -446,10 +446,10 @@ It is based on Tobias Weltner's example.</maml:para>
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0">
 				<maml:name>FQDN</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>Domain FQDN to convert to distinguishedName</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 				<dev:type>
@@ -495,7 +495,7 @@ It is based on Tobias Weltner's example.</maml:para>
 		<command:examples>
 			<!--Examples-->
 			<command:example>
-				<maml:title>PS C:\&gt;Get-DNfromFQDN -FQDN mycomputer.mydomain.example.com</maml:title>
+				<maml:title>PS C:\&gt;Get-DNfromFQDN -FQDN mydomain.example.com</maml:title>
 				<dev:code>C:\PS&gt; Get-DNfromFQDN</dev:code>
 				<dev:remarks>
 					<maml:para />
@@ -507,7 +507,7 @@ It is based on Tobias Weltner's example.</maml:para>
 		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
 		<command:details>
-			<command:name>Get-DomainFromDN</command:name>
+			<command:name>Get-DnsDomainFromDN</command:name>
 			<maml:description>
 				<maml:para>Parse domain name from DN</maml:para>
 			</maml:description>
@@ -515,17 +515,17 @@ It is based on Tobias Weltner's example.</maml:para>
 				<maml:para />
 			</maml:copyright>
 			<command:verb>Get</command:verb>
-			<command:noun>DomainFromDN</command:noun>
+			<command:noun>DnsDomainFromDN</command:noun>
 			<dev:version />
 		</command:details>
 		<maml:description>
-			<maml:para>This function splits and translates the domain name portion of an AD object distinguishedName</maml:para>
+			<maml:para>This function splits and translates the domain name portion of an AD object distinguishedName to a fully qualified domain name.</maml:para>
 		</maml:description>
 		<command:syntax>
 			<!--Parameter Sets-->
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
-				<maml:name>Get-DomainFromDN</maml:name>
+				<maml:name>Get-DnsDomainFromDN</maml:name>
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
 					<maml:name>DistinguishedName</maml:name>
 					<maml:description>
@@ -577,7 +577,7 @@ It is based on Tobias Weltner's example.</maml:para>
 		<command:examples>
 			<!--Examples-->
 			<command:example>
-				<maml:title>PS C:\&gt; $domDN = Get-DNfromFQDN -domainName my.domain.com</maml:title>
+				<maml:title>PS C:\&gt; $domDN = Get-DnsDomainfromFQDN -DistinguishedName “CN=admin-hmiller,OU=ADAdmin,OU=AdminUserss,DC=my,DC=domain,DC=com”</maml:title>
 				<maml:introduction>
 					<maml:para>PS C:\&gt;</maml:para>
 				</maml:introduction>
@@ -2837,10 +2837,10 @@ System.Management.Automation.SwitchParameter
 					</dev:type>
 					<dev:defaultValue />
 				</command:parameter>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="grp">
 					<maml:name>Group</maml:name>
 					<maml:description>
-						<maml:para />
+						<maml:para>sAMAccountName of AD group to verify User membership in.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
 					<dev:type>
@@ -2865,10 +2865,10 @@ System.Management.Automation.SwitchParameter
 				</dev:type>
 				<dev:defaultValue />
 			</command:parameter>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="1" aliases="grp">
 				<maml:name>Group</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>sAMAccountName of AD group to verify User membership in.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
 				<dev:type>
@@ -3841,111 +3841,6 @@ THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH
 			</command:example>
 		</command:examples>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2023 v3.0.58-->
-	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
-		<!--TAG: HASCOMMONPARAMETERS-->
-		<!--Command-->
-		<command:details>
-			<command:name>Export-Registry</command:name>
-			<maml:description>
-				<maml:para>Export registry key to file</maml:para>
-			</maml:description>
-			<maml:copyright>
-				<maml:para />
-			</maml:copyright>
-			<command:verb>Export</command:verb>
-			<command:noun>Registry</command:noun>
-			<dev:version />
-		</command:details>
-		<maml:description>
-			<maml:para>This function will export the specified registry key to a PSCustomobject and write the output to the specified file and file type.</maml:para>
-		</maml:description>
-		<command:syntax>
-			<!--Parameter Sets-->
-			<command:syntaxItem>
-				<maml:name>Export-Registry</maml:name>
-				<command:parameter required="true" globbing="false" pipelineInput="false" variableLength="false" position="named">
-					<maml:name>Path</maml:name>
-					<maml:description>
-						<maml:para>The hive, path, key, values to be exported</maml:para>
-					</maml:description>
-					<command:parameterValue required="true" variableLength="false">string[]</command:parameterValue>
-					<dev:type>
-						<maml:name>string[]</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-				<command:parameter required="true" globbing="false" pipelineInput="false" variableLength="false" position="named">
-					<maml:name>Outfile</maml:name>
-					<maml:description>
-						<maml:para>The filesystem path and full file name the function should export output to.</maml:para>
-					</maml:description>
-					<command:parameterValue required="true" variableLength="false">System.IO.FileInfo</command:parameterValue>
-					<dev:type>
-						<maml:name>System.IO.FileInfo</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-			</command:syntaxItem>
-		</command:syntax>
-		<command:parameters>
-			<!--All Parameters-->
-			<command:parameter required="true" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>Path</maml:name>
-				<maml:description>
-					<maml:para>The hive, path, key, values to be exported</maml:para>
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">string[]</command:parameterValue>
-				<dev:type>
-					<maml:name>string[]</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-			<command:parameter required="true" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>Outfile</maml:name>
-				<maml:description>
-					<maml:para>The filesystem path and full file name the function should export output to.</maml:para>
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">System.IO.FileInfo</command:parameterValue>
-				<dev:type>
-					<maml:name>System.IO.FileInfo</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-		</command:parameters>
-		<command:returnValues>
-			<!--Outputs-->
-			<command:returnValue>
-				<dev:type>
-					<maml:name></maml:name>
-					<maml:uri></maml:uri>
-				</dev:type>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-			</command:returnValue>
-		</command:returnValues>
-		<maml:alertSet>
-			<!--Notes-->
-			<maml:alert>
-				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
-			</maml:alert>
-		</maml:alertSet>
-		<command:examples>
-			<!--Examples-->
-			<command:example>
-				<maml:title>PS C:\&gt; Export-Registry -Path 'HKLM:\SOFTWARE\Microsoft\Policies' -Outfile 'C:\Temp\policiesHive.csv'</maml:title>
-				<dev:code>C:\PS&gt; Export-Registry</dev:code>
-				<dev:remarks>
-					<maml:para />
-				</dev:remarks>
-			</command:example>
-		</command:examples>
-	</command:command>
 	<!--Edited with: SAPIEN PowerShell HelpWriter 2023 v3.0.62-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!--Command-->
@@ -4270,4 +4165,173 @@ THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH
 		</command:parameters>
 	</command:command>
 	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.65-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--TAG: HASCOMMONPARAMETERS-->
+		<!--Command-->
+		<command:details>
+			<command:name>Export-Registry</command:name>
+			<maml:description>
+				<maml:para>Export registry key to file</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>Export</command:verb>
+			<command:noun>Registry</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This function will export the specified registry key to a PSCustomobject and write the output to the specified file and file type.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>Export-Registry</maml:name>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>Path</maml:name>
+				<maml:description>
+					<maml:para>The registry hive path to be exported.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>OutputFile</maml:name>
+				<maml:description>
+					<maml:para>Enter the path where the registry key should be exported to.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">System.IO.FileInfo</command:parameterValue>
+				<dev:type>
+					<maml:name>System.IO.FileInfo</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+		<command:returnValues>
+			<!--Outputs-->
+			<command:returnValue>
+				<dev:type>
+					<maml:name>System.IO.FileInfo</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:returnValue>
+		</command:returnValues>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:title>Disclaimer</maml:title>
+			<maml:alert>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>PS C:\&gt; Export-Registry -Path 'HKLM:\SOFTWARE\Microsoft\Policies' -Outfile 'C:\Temp\policiesHive.csv'</maml:title>
+				<dev:code>C:\PS&gt; Export-Registry</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+		<maml:relatedLinks>
+			<maml:navigationLink>
+				<maml:linkText>Related Topic</maml:linkText>
+				<maml:uri>Http://jdhitsolutions.com/blog</maml:uri>
+			</maml:navigationLink>
+			<!--Links-->
+		</maml:relatedLinks>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.67 (L)-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--TAG: HASCOMMONPARAMETERS-->
+		<!--Command-->
+		<command:details>
+			<command:name>Convert-ADObjectDNToFQDN</command:name>
+			<maml:description>
+				<maml:para>Convert AD DN to domain FQDN</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>Convert</command:verb>
+			<command:noun>ADObjectDNToFQDN</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This function will devolve an AD object DistinguishedName</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>Convert-ADObjectDNToFQDN</maml:name>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="true" globbing="false" pipelineInput="False" variableLength="false" position="0">
+				<maml:name>DistinguishedName</maml:name>
+				<maml:description>
+					<maml:para>Active Directory Object DistinguishedName</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+		<command:returnValues>
+			<!--Outputs-->
+			<command:returnValue>
+				<dev:type>
+					<maml:name>System.String</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:returnValue>
+		</command:returnValues>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:alert>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>Convert-ADObjectDNToFQDN -DistinguishedName $ADObjectDN = “CN=admin-hmiller,OU=ADAdmin,OU=AdminUsers,DC=my,DC=domain,DC=com”</maml:title>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>C:\PS&gt; $ADObjectDN = “CN=admin-hmiller,OU=ADAdmin,OU=AdminUsers,DC=my,DC=domain,DC=com”
+C:\PS&gt; Convert-ADObjectDNToFQDN -DistinguishedName $ADObjectDN</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+		<maml:relatedLinks>
+			<maml:navigationLink>
+				<maml:linkText>Reference article:</maml:linkText>
+				<maml:uri>https://adsecurity.org/?p=440</maml:uri>
+			</maml:navigationLink>
+			<!--Links-->
+		</maml:relatedLinks>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.67 (L)-->
 </helpItems>

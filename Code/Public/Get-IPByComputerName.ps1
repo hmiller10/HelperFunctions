@@ -1,26 +1,29 @@
-﻿function global:Get-IPByComputerName
+﻿function Get-IPByComputerName
 {
-	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml
-	#>
-
+<#
+	.EXTERNALHELP HelperFunctions.psm1-Help.xml
+#>
+	
 	[CmdletBinding()]
 	param
 	(
 		[Parameter(Mandatory = $true,
-				 ValueFromPipeline = $true,
-				 ValueFromPipelineByPropertyName = $true,
-				 Position = 0)]
-		[String[]]$ComputerName,
+		           ValueFromPipeline = $true,
+		           ValueFromPipelineByPropertyName = $true,
+		           Position = 0)]
+		[String[]]
+		$ComputerName,
 		[Parameter(Mandatory = $false,
-				 Position = 1)]
-		[Switch]$IPV6only,
+		           Position = 1)]
+		[Switch]
+		$IPV6only,
 		[Parameter(Mandatory = $false,
-				 Position = 2)]
-		[Switch]$IPV4only
+		           Position = 2)]
+		[Switch]
+		$IPV4only
 	)
-
-	Begin
+	
+Begin
 	{
 		Write-Verbose "`n Checking IP Address . . .`n"
 	}
@@ -46,7 +49,7 @@
 						{
 							New-Object PSObject -Property @{
 								IPAddress = $_.IPAddressToString
-								ComputerName = $HostName
+								ComputerName = $Computer
 							} | Select-Object -Property ComputerName, IPAddress
 						}
 					}
@@ -56,7 +59,7 @@
 						{
 							New-Object PSObject -Property @{
 								IPAddress = $_.IPAddressToString
-								ComputerName = $HostName
+								ComputerName = $Computer
 							} | Select-Object -Property ComputerName, IPAddress
 						}
 					}
@@ -64,7 +67,7 @@
 					{
 						New-Object PSObject -Property @{
 							IPAddress = $_.IPAddressToString
-							ComputerName = $HostName
+							ComputerName = $Computer
 						} | Select-Object -Property ComputerName, IPAddress
 					}
 				} #IF

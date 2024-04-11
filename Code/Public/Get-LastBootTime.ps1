@@ -8,25 +8,18 @@
 	[OutputType([PSObject])]
 	param
 	(
-		[Parameter(ParameterSetName = 'Default',
-				 Mandatory = $false,
+		[Parameter(Mandatory = $false,
 				 ValueFromPipeline = $true,
 				 ValueFromPipelineByPropertyName = $true,
 				 HelpMessage = 'Enter the name of the computer to check or pipe the input to the function')]
 		[Alias('cn')]
 		[string[]]$ComputerName,
-		[Parameter(ParameterSetName = 'Default',
-				 Mandatory = $false,
-				 ValueFromPipeline = $true,
-				 ValueFromPipelineByPropertyName = $true,
+		[Parameter(Mandatory = $false,
 				 HelpMessage = 'Enter the PS credential object variable name')]
 		[ValidateNotNull()]
 		[Alias('Cred')]
 		[System.Management.Automation.PSCredential]$Credential,
-		[Parameter(ParameterSetName = 'Default',
-				 Mandatory = $false,
-				 ValueFromPipeline = $true,
-				 ValueFromPipelineByPropertyName = $true,
+		[Parameter(Mandatory = $false,
 				 HelpMessage = 'Enter the number of days past or pipe input')]
 		[ValidateNotNullOrEmpty()]
 		[int]$DaysPast
@@ -94,7 +87,7 @@
 					catch
 					{
 						[pscustomobject]@{
-							ComputerName = "There were no event ID 1074 events of $($Computer)"
+							ComputerName = "There were no event ID 1074 events of $($Computer) within the specified or default time period."
 						}
 					}
 				}
