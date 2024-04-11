@@ -40,7 +40,7 @@
 			IF ($AddressList.Count -ne 0)
 			{
 				$AddressList | ForEach-Object {
-					IF ($IPV6only)
+					IF ($PSBoundParameters.ContainsKey('IPV6only'))
 					{
 						IF ($_.AddressFamily -eq "InterNetworkV6")
 						{
@@ -50,7 +50,7 @@
 							} | Select-Object -Property ComputerName, IPAddress
 						}
 					}
-					IF ($IPV4only)
+					IF ($PSBoundParamters.ContainsKey('IPV4only'))
 					{
 						IF ($_.AddressFamily -eq "InterNetwork")
 						{
@@ -60,7 +60,7 @@
 							} | Select-Object -Property ComputerName, IPAddress
 						}
 					}
-					IF (!($IPV6only -or $IPV4only))
+					IF (-Not($PSBoundParameters.ContainsKey('IPv4Only')) -or ($PSBoundParameters.ContainsKey('IPv6Only')))
 					{
 						New-Object PSObject -Property @{
 							IPAddress = $_.IPAddressToString
