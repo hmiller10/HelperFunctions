@@ -17,6 +17,7 @@ Describe 'Get-ComputerNameByIP' {
 		}
 		It "Get-ComputerNameByIP should have IPAddress as a mandatory parameter." {
 			$cmd | Should -HaveParameter IPAddress -Because "IPAddress is required to render result."
+			$cmd | Should -Not -BeNullOrEmpty
 		}
 
 		It "Should return a string value" {

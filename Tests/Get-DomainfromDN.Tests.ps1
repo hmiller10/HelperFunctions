@@ -1,11 +1,7 @@
 ﻿BeforeAll {
-	Import-Module -Name HelperFunctions -Force
-	Import-Module -Name Pester -Force
 	if ($Error)
 	{
 		$Error.Clear()
-
-		[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
 	}
 }
 
@@ -13,15 +9,24 @@ Describe 'Get-DomainfromDN' {
 
 	Context "Return Get-DomainfromDN" {
 		# Get-DomainfromDN Tests, all should pass
+		BeforeEach {
+			[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
+			$cmd = Get-Command -Name Get-DomainfromDN -Module HelperFunctions -CommandType Function
+		}
 
 		It "Get-DomainfromDN should have parameter DistinguishedName." {
-			Get-Command Get-DomainfromDN | Should -HaveParameter DistinguishedName -Type String -Mandatory
+			$cmd | Should -HaveParameter DistinguishedName -Type String -Mandatory
 		}
 
 		It "Should be of type [System.String]" {
 			$result = Get-DomainfromDN -DistinguishedName $ComputerDN
 			$result | Should -Not -BeNullOrEmpty
-			$result | Should -ExpectedType [System.String]
+			$result | Should -BeOfType [System.String]
+		}
+
+		AfterEach {
+			$null = $ComputerDN
+			$null = $cmd
 		}
 	}
 }

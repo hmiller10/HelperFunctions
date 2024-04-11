@@ -13,13 +13,9 @@
 				 Position = 0)]
 		[String[]]$ComputerName,
 		[Parameter(Mandatory = $false,
-				 ValueFromPipeline = $true,
-				 ValueFromPipelineByPropertyName = $true,
 				 Position = 1)]
 		[Switch]$IPV6only,
 		[Parameter(Mandatory = $false,
-				 ValueFromPipeline = $true,
-				 ValueFromPipelineByPropertyName = $true,
 				 Position = 2)]
 		[Switch]$IPV4only
 	)
@@ -30,16 +26,15 @@
 	}
 	Process
 	{
-		$ComputerName | ForEach-Object {
-			$HostName = $_
-
+		foreach ($Computer in $ComputerName)
+		{
 			Try
 			{
-				$AddressList = @(([net.dns]::GetHostEntry($HostName)).AddressList)
+				$AddressList = @(([net.dns]::GetHostEntry($Computer)).AddressList)
 			}
 			Catch
 			{
-				"Cannot determine the IP Address on $HostName"
+				Write-Error "Cannot determine the IP Address on $($Computer)"
 			}
 
 			IF ($AddressList.Count -ne 0)
