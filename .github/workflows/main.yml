@@ -18,6 +18,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Import HelperFunctions Module
+        run: |
+          Import-Module -Name HelperFunctions -Force -ErrorAction 'Stop'
+
       - name: Build and test module
         run: |
          # Replace with your build and test commands
