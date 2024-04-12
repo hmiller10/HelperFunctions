@@ -19,7 +19,7 @@ Describe "Test-MyNetConnection" {
 		# Test-MyNetConnection Tests, all should pass
 		
 		It "Should Have Parameter User" {
-			Get-Command Test-MyNetConnection | Should -HaveParameter Server -Mandatory -Type System.String
+			Get-Command Test-MyNetConnection | Should -HaveParameter ServerName -Mandatory -Type System.String
 		}
 		
 		It "Should Have Parameter Group" {
@@ -29,7 +29,7 @@ Describe "Test-MyNetConnection" {
 	
 	Context "Testing network connectivity" {
 		It "Should resolve DNS name 'google.com'" {
-			$result = Test-MyNetConnection -Server $google -Port $SecurePort
+			$result = Test-MyNetConnection -ServerName $google -Port $SecurePort
 			$result | Should -Not -BeNullOrEmpty
 			$result.TcpTestSucceeded | Should -Be $true
 		}
@@ -37,13 +37,13 @@ Describe "Test-MyNetConnection" {
 	
 	Context "Testing specific ports" {
 		It "Should check if port 80 (HTTP) is open on yahoo.com" {
-			$result = Test-MyNetConnection -Server $remoteDomain1 -Port $Port
+			$result = Test-MyNetConnection -ServerName $remoteDomain1 -Port $Port
 			$result | Should -Not -BeNullOrEmpty
 			$result.TcpTestSucceeded | Should -Be $true
 		}
 		
 		It "Should check if port 443 (HTTPS) is open on microsoft.com" {
-			$result = Test-MyNetConnection -Server $remoteDomain2 -Port $SecurePort
+			$result = Test-MyNetConnection -ServerName $remoteDomain2 -Port $SecurePort
 			$result | Should -Not -BeNullOrEmpty
 			$result.TcpTestSucceeded | Should -Be $true
 		}

@@ -19,7 +19,7 @@ Describe "Test-MyNetConnection" {
 		# Test-MyNetConnection Tests, all should pass
 		
 		It "Should Have Parameter User" {
-			Get-Command -Name Test-MyNetConnection -Module HelperFunctions -CommandType Function | Should -HaveParameter Server -Mandatory -Type System.String
+			Get-Command -Name Test-MyNetConnection -Module HelperFunctions -CommandType Function | Should -HaveParameter ServerName -Mandatory -Type System.String
 		}
 		
 		It "Should Have Parameter Group" {
@@ -30,7 +30,7 @@ Describe "Test-MyNetConnection" {
 	Context "Testing network connectivity" {
 
           BeforeEach {
-               $result1 = Test-MyNetConnection -Server $google -Port $SecurePort
+               $result1 = Test-MyNetConnection -ServerName $google -Port $SecurePort
           }
 
 		It "Should resolve DNS name 'google.com'" {
@@ -46,8 +46,8 @@ Describe "Test-MyNetConnection" {
 	Context "Testing specific ports" {
 
           BeforeEach {
-               $result2 = Test-MyNetConnection -Server $remoteDomain1 -Port $Port
-               $result3 = Test-MyNetConnection -Server $remoteDomain2 -Port $SecurePort
+               $result2 = Test-MyNetConnection -ServerName $remoteDomain1 -Port $Port
+               $result3 = Test-MyNetConnection -ServerName $remoteDomain2 -Port $SecurePort
           }
 
 		It "Should check if port 80 (HTTP) is open on yahoo.com" {

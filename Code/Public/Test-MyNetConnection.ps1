@@ -9,7 +9,8 @@
 	(
 		[Parameter(Mandatory = $true,
 				 Position = 0)]
-		[String]$Server,
+		[Alias("Computer","ComputerName","Server")]
+		[String]$ServerName,
 		[Parameter(Mandatory = $true,
 				 Position = 1)]
 		[int32]$Port

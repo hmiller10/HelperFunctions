@@ -26,7 +26,7 @@
 	{
 		foreach ($item in $arrFQDN)
 		{
-			if ($DomainNameCount = 0)
+			if ($DomainNameCount -eq 0)
 			{
 				[string]$ADObjectArrayItem += "DC" + $item
 			}
@@ -40,9 +40,7 @@
 	}
 	end
 	{
-
 		return $ADObjectArrayItem
-
 	}
 
 } #End function Get-DNfromFQDN
