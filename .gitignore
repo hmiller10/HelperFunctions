@@ -1,5 +1,6 @@
 *.recall
 Test/
+*.temppoint.xml
 *.temppoint.ps1
 *.bak
 *.restorepoint.ps1
