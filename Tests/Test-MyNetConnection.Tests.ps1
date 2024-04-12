@@ -1,7 +1,4 @@
 ﻿BeforeAll {
-	Import-Module -Name HelperFunctions -Force
-	Import-Module -Name Pester -Force
-	Import-Module -Name NetTcpip -Force
 	if ($Error)
 	{
 		$Error.Clear()
@@ -51,4 +48,14 @@ Describe "Test-MyNetConnection" {
 			$result.TcpTestSucceeded | Should -Be $true
 		}
 	}
+}
+
+AfterAll {
+	$null = $ServerIP
+	$null = $google
+	$null = $dnsPort
+	$null = $SecurePort
+	$null = $Port
+	$null = $remoteDomain1
+	$null = $remoteDomain2
 }

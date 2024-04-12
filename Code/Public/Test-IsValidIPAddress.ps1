@@ -20,15 +20,16 @@
 		[System.Net.IPAddress]$IPAddressObject = $null
 		if ([System.Net.IPAddress]::TryParse($IP, [ref]$IPAddressObject) -and $IP -eq $IPAddressObject.tostring())
 		{
-			$true
+			[bool]$result = $true
 		}
 		else
 		{
-			$false
+			[bool]$result = $false
 		}
 	}
 	end
 	{
+		return $result
 	}
 
 }#end function Test-IsValidIPAddress

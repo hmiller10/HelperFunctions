@@ -11,7 +11,7 @@
 	Process {
 		try
 		{
-			Get-Date -Format 'yyyy-MM-dd' -ErrorAction Stop
+			(Get-Date -ErrorAction Stop).ToString("yyyy-MM-dd")
 		}
 		catch
 		{
