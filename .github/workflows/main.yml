@@ -40,7 +40,7 @@ jobs:
          #$config.TestResult.Enabled = $true
          #$config.Run.Exit = $true
          #$config.CodeCoverage.Enabled = $true
-         Invoke-Pester -Path ${{ github.workspace }}\Tests -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
+         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "Tests\*.tests.ps1") -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
         shell: powershell
 
       - name: Publish to PowerShell Gallery
