@@ -18,9 +18,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Import HelperFunctions Module
-        run: |
-          Import-Module -Name HelperFunctions -Force -ErrorAction 'Stop'
 
       - name: Build and test module
         run: |
@@ -29,7 +26,7 @@ jobs:
          #$config.TestResult.Enabled = $true
          #$config.Run.Exit = $true
          #$config.CodeCoverage.Enabled = $true
-         Invoke-Pester -Path .\Tests -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
+         Invoke-Pester -Path $PSScriptRoot\Tests -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
         shell: powershell
 
       - name: Publish to PowerShell Gallery
@@ -39,6 +36,6 @@ jobs:
           BUILDVER: '2.3.4'
           
         run: |
-          Publish-Module -Path .\Code\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
+          Publish-Module -Path $PSScriptRoot\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
         shell: powershell
           

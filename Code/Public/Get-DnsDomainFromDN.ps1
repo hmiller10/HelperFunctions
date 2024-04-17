@@ -5,6 +5,7 @@
 	#>
 
 	[CmdletBinding()]
+	[Alias('Get-DomainFromDN')]
 	[OutputType([string])]
 	param
 	(

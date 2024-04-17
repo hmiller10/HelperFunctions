@@ -5,6 +5,7 @@ function global:Get-MyInvocation
 	#>
 
 	[CmdletBinding()]
+	[Alias('fnGet-MyInvocation')]
 	param
 	( )
 	Begin {}

@@ -5,6 +5,7 @@ function global:Get-UTCTime
 	#>
 	
 	[CmdletBinding()]
+	[Alias('UTC-Now','fnUTC-Now')]
 	Param ()
 	
 	Begin {}
@@ -12,7 +13,7 @@ function global:Get-UTCTime
 		$ErrorActionPreference = 'Stop'
 		try
 		{
-			[System.DateTime]::UtcNow
+			(Get-Date).ToUniversalTime()
 		}
 		catch
 		{

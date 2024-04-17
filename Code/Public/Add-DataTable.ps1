@@ -5,6 +5,7 @@
 	#>
 
 	[CmdletBinding()]
+	[Alias('Make-Table','fnMake-Table')]
 	[OutputType([System.Data.DataTable])]
 	param
 	(

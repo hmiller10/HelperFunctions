@@ -6,6 +6,7 @@ function global:Invoke-CreateZipFile
 	#>
 
 	[CmdletBinding()]
+	[Alias('Create-ZipFile')]
 	param
 	(
 	[Parameter(Mandatory = $true)]
