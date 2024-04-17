@@ -36,6 +36,6 @@ jobs:
           BUILDVER: '2.4.0'
           
         run: |
-          Publish-Module -Path $PSScriptRoot -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery
+          Publish-Module -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery
         shell: powershell
           

@@ -8,11 +8,12 @@ foreach ($import in @($Public + $Private))
 {
     try
     {
+        Write-Verbose "Importing $($import.FullName)"
         . $import.fullname
     }
     catch
     {
-        throw "Failed to import function {0}" -f $import.FullName
+        Write-Error -Message ("Failed to import function {0}" -f $import.FullName) -ErrorAction 'Stop'
     }
 }
 
