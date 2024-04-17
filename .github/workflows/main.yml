@@ -38,4 +38,3 @@ jobs:
         run: |
           Publish-Module -Path .\Code\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery
         shell: powershell
-          
