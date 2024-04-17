@@ -26,7 +26,7 @@ jobs:
          #$config.TestResult.Enabled = $true
          #$config.Run.Exit = $true
          #$config.CodeCoverage.Enabled = $true
-         Invoke-Pester -Path $PSScriptRoot\Tests -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
+         Invoke-Pester -Path .\Tests -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
         shell: powershell
 
       - name: Publish to PowerShell Gallery
@@ -36,6 +36,6 @@ jobs:
           BUILDVER: '2.4.0'
           
         run: |
-          Publish-Module -Path $PSScriptRoot\Code -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery
+          Publish-Module -Path .\Code\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery
         shell: powershell
           
