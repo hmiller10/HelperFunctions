@@ -39,7 +39,7 @@ jobs:
 
       - name: Publish to PowerShell Gallery
         env:
-          NUIGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           #BUILDVER: '2.4.0'
           
         run: |
