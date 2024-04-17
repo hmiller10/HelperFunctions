@@ -26,6 +26,8 @@ jobs:
          #$config.TestResult.Enabled = $true
          #$config.Run.Exit = $true
          #$config.CodeCoverage.Enabled = $true
+         Import-Module -Name HelperFunctions -Force
+         $hfModule = Get-Module -ListAvailable -Name HelperFunctions
          Invoke-Pester -Path .\Tests -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
         shell: powershell
 
