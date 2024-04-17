@@ -39,9 +39,9 @@ jobs:
 
       - name: Publish to PowerShell Gallery
         env:
-          PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          NUIGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           #BUILDVER: '2.4.0'
           
         run: |
-          Publish-Module -Path .\Code\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:PGALLERY_KEY -Repository PSGallery
+          Publish-Module -Path .\Code\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -ErrorAction 'Continue'
         shell: powershell
