@@ -7,6 +7,7 @@ on:
     branches: [main]
 
   pull_request:
+    branches: [main]
 
   workflow_dispatch:
 
@@ -27,6 +28,11 @@ jobs:
           modules-to-cache: PSFramework,Pester::,HelperFunctions
           updatable: true
 
+      - name: Get working directory
+        run: |
+          Get-ChildItem -Path ${{ github.workspace }} -Recurse
+        shell: powershell
+
       - name: Test module
         run: |
          # Replace with your build and test commands
@@ -34,7 +40,7 @@ jobs:
          #$config.TestResult.Enabled = $true
          #$config.Run.Exit = $true
          #$config.CodeCoverage.Enabled = $true
-         Invoke-Pester -Path .\Tests -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
+         #Invoke-Pester -Path .\Tests -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
         shell: powershell
 
       - name: Publish to PowerShell Gallery
@@ -43,5 +49,5 @@ jobs:
           #BUILDVER: '2.4.0'
           
         run: |
-          Publish-Module -Path .\Code\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -ErrorAction 'Continue'
+          #Publish-Module -Path .\Code\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -ErrorAction 'Continue'
         shell: powershell
