@@ -3044,8 +3044,8 @@ System.Management.Automation.SwitchParameter
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>Test-MyNetConnection</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
-					<maml:name>Server</maml:name>
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="Computer,ComputerName,Server">
+					<maml:name>ServerName</maml:name>
 					<maml:description>
 						<maml:para>Computer FQDN</maml:para>
 					</maml:description>
@@ -3072,8 +3072,8 @@ System.Management.Automation.SwitchParameter
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
-				<maml:name>Server</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="Computer,ComputerName,Server">
+				<maml:name>ServerName</maml:name>
 				<maml:description>
 					<maml:para>Computer FQDN</maml:para>
 				</maml:description>
