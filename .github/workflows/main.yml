@@ -27,6 +27,7 @@ jobs:
         with:
           modules-to-cache: PSFramework,Pester::,HelperFunctions
           updatable: true
+        shell: powershell
 
       - name: Get working directory
         run: |
