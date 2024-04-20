@@ -29,6 +29,12 @@ jobs:
           updatable: true
           shell: powershell
 
+      - name: Show that the Action works
+        shell: powershell
+        run: |
+              Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
+              Import-Module HelperFunctions
+
       - name: Get working directory
         run: |
           Get-ChildItem -Path ${{ github.workspace }} -Recurse
