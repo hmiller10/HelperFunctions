@@ -18,12 +18,12 @@ Describe "Test-MyNetConnection" {
 	Context "Test function parameters" {
 		# Test-MyNetConnection Tests, all should pass
 		
-		It "Should Have Parameter User" {
-			Get-Command Test-MyNetConnection | Should -HaveParameter ServerName -Mandatory -Type System.String
+		It "Should Have Parameter ServerName" {
+			Get-Command Test-MyNetConnection -ServerName $ServerIP -Port $Port | Should -HaveParameter ServerName -Mandatory -Type System.String
 		}
 		
-		It "Should Have Parameter Group" {
-			Get-Command Test-MyNetConnection | Should -HaveParameter Port -Mandatory -Type int32
+		It "Should Have Parameter Port" {
+			Get-Command Test-MyNetConnection -ServerName $ServerIP -Port $Port | Should -HaveParameter Port -Mandatory -Type int32
 		}
 	}
 	

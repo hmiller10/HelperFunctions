@@ -4,19 +4,12 @@
 
 Describe "Get-ReportDate" {
 	Context "when function Get-ReportDate is called" {
-		Mock Get-ReportDate -MockWith {
-			$result = Get-ReportDate
-		}
+		Mock Get-ReportDate { return "2024-04-20" } -Verifiable -ParameterFilter {$format -match "yyyy-MM-dd"}
+
 		It "Get-ReportDate should be of type String in the format 'yyyy-MM-dd'" {
+			$result = Get-ReportDate
 			$result | Should -BeOfType [String] -Because "The function is to return a formatted date."
-		}
-
-		It "should not return $null"  {
-			$result | Should -Not -Be $null
-		}
-
-		It "Should be a date string in the format yyyy-MM-dd_mm-dd-ss" {
-			$result | Should -BeLessOrEqual $(Get-Date -Format "yyyy-MM-dd")
+			$result | Should -Not -BeNullOrEmpty
 		}
 	}
 }

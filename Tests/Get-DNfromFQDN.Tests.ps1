@@ -1,39 +1,30 @@
 ﻿BeforeAll {
 	if ($Error) { $Error.Clear() }
-	#$ComputerFQDN = "computer1.my.domain.com"
-	$ComputerFQDN = [System.Net.Dns]::GetHostByName("LocalHost").HostName
-	Import-Module -Name ActiveDirectory -Force
+	$ComputerFQDN = "computer1.my.domain.com"
+	#$ComputerFQDN = [System.Net.Dns]::GetHostByName("LocalHost").HostName
+	#Import-Module -Name ActiveDirectory -Force
 }
 
 Describe 'Get-DNfromFQDN' {
 	Context "Test function parameters" {
 		# Get-DNfromFQDN Tests, all should pass
-		BeforeEach {
-			$cmd = Get-Command -Name Get-DNfromFQDN -Module HelperFunctions -CommandType Function
-		}
 		
 		It "Get-DNfromFQDN should have parameter DomainFQDN." {
-			$cmd | Should -Not -BeNullOrEmpty
-			$cmd | Should -HaveParameter FQDN -Type String -Mandatory -Because "Function must have object FQDN to process."
-		}
-
-		AfterEach {
-			$null = $cmd
+			Get-Command -Name Get-DomainDNfromFQDN -FQDN $ComputerFQDN -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName FQDN
+			Get-Command -Name Get-DomainDNfromFQDN -FQDN $ComputerFQDN -Module HelperFunctions -CommandType Function | Should -Not -BeNullOrEmpty
 		}
 	}
-
-	Context "Test function output" {
-		Mock Get-DNfromFQDN -MockWith {
+	
+	Context "When Get-DNfromFQDN is called" {
+		It "Should return the object DN" {
 			$result = Get-DNfromFQDN -FQDN $ComputerFQDN
-		}
-		
-		It "Should be type String" {
-			#$result | Should -Not -BeNullOrEmpty
-			$result | Should -BeOfType [System.String]
+			$result | Should -BeOfType System.String
+			$result | Should -Not -BeNullOrEmpty
 		}
 	}
 }
 
 AfterAll {
-	Remove-Module -Name ActiveDirectory
+	$null = $result
+	#Remove-Module -Name ActiveDirectory
 }

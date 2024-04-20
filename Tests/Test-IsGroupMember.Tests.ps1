@@ -24,9 +24,9 @@ Describe "Test-IsGroupMember" {
 		}
 		
 		It "Should be of type [System.Boolean]" {
-			$result = Test-IsGroupMember -User $Me -Grp 'Administrators'
+			$result = Test-IsGroupMember -User $Me -Group 'Administrators'
 			$result | Should -Not -BeNullOrEmpty
-			$result | Should -ExpectedType [bool]
+			$result | Should -BeOfType System.Boolean
 		}
 	}
 }
