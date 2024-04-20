@@ -17,7 +17,7 @@ Describe "Test-MyNetConnection" {
 	
 	Context "Test parameters" {
 		It "Should have verified parameters" {
-			Get-Command Test-MyNetConnection -Server $ServerIP -Port $Port -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName ServerName -Type System.String -Because "The function requires a destination to test."
+			Get-Command Test-MyNetConnection -Server $ServerIP -Port $Port -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName Server -Type System.String -Because "The function requires a destination to test."
 			Get-Command Test-MyNetConnection -Server $ServerIP -Port $Port -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName Port -Type int32 -Because "This function is intended to test port connectivity."
 		}
 	}
