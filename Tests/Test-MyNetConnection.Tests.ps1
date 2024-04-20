@@ -17,8 +17,8 @@ Describe "Test-MyNetConnection" {
 	
 	Context "Testing network connectivity and parameters" {
 		It "Should resolve DNS name 'google.com'" {
-			$result = Test-MyNetConnection -ServerName $google -Port $SecurePort
-			$result | Should -HaveParameter ServerName
+			$result = Test-MyNetConnection -Server $google -Port $SecurePort
+			$result | Should -HaveParameter Server
 			$result | Should -HaveParameter Port
 			$result | Should -Not -BeNullOrEmpty
 			$result.TcpTestSucceeded | Should -Be $true
@@ -27,13 +27,13 @@ Describe "Test-MyNetConnection" {
 	
 	Context "Testing specific ports" {
 		It "Should check if port 80 (HTTP) is open on yahoo.com" {
-			$result = Test-MyNetConnection -ServerName $remoteDomain1 -Port $Port
+			$result = Test-MyNetConnection -Server $remoteDomain1 -Port $Port
 			$result | Should -Not -BeNullOrEmpty
 			$result.TcpTestSucceeded | Should -Be $true
 		}
 		
 		It "Should check if port 443 (HTTPS) is open on microsoft.com" {
-			$result = Test-MyNetConnection -ServerName $remoteDomain2 -Port $SecurePort
+			$result = Test-MyNetConnection -Server $remoteDomain2 -Port $SecurePort
 			$result | Should -Not -BeNullOrEmpty
 			$result.TcpTestSucceeded | Should -Be $true
 		}
