@@ -20,7 +20,7 @@ Describe "Test-IsGroupMember" {
 		}
 		
 		It "Should Have Parameter Group" {
-			Get-Command Test-IsGroupMember | Should -HaveParameter Grp -Mandatory -Type System.String
+			Get-Command Test-IsGroupMember | Should -HaveParameter Group -Mandatory -Type System.String
 		}
 		
 		It "Should be of type [System.Boolean]" {

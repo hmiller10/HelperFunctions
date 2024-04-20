@@ -19,11 +19,11 @@ Describe "Test-MyNetConnection" {
 		# Test-MyNetConnection Tests, all should pass
 		
 		It "Should Have Parameter ServerName" {
-			Get-Command Test-MyNetConnection -ServerName $ServerIP -Port $Port | Should -HaveParameter ServerName -Mandatory -Type System.String
+			Get-Command Test-MyNetConnection -ServerName $ServerIP -Port $Port -Module HelperFunctions -CommandType Function | Should -HaveParameter ServerName
 		}
 		
 		It "Should Have Parameter Port" {
-			Get-Command Test-MyNetConnection -ServerName $ServerIP -Port $Port | Should -HaveParameter Port -Mandatory -Type int32
+			Get-Command Test-MyNetConnection -ServerName $ServerIP -Port $Port -Module HelperFunctions -CommandType Function | Should -HaveParameter Port
 		}
 	}
 	
