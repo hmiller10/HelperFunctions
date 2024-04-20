@@ -15,21 +15,11 @@
 
 Describe "Test-MyNetConnection" {
 	
-	Context "Test function parameters" {
-		# Test-MyNetConnection Tests, all should pass
-		
-		It "Should Have Parameter ServerName" {
-			Get-Command Test-MyNetConnection -ServerName $ServerIP -Port $Port -Module HelperFunctions -CommandType Function | Should -HaveParameter ServerName
-		}
-		
-		It "Should Have Parameter Port" {
-			Get-Command Test-MyNetConnection -ServerName $ServerIP -Port $Port -Module HelperFunctions -CommandType Function | Should -HaveParameter Port
-		}
-	}
-	
-	Context "Testing network connectivity" {
+	Context "Testing network connectivity and parameters" {
 		It "Should resolve DNS name 'google.com'" {
 			$result = Test-MyNetConnection -ServerName $google -Port $SecurePort
+			$result | Should -HaveParameter ServerName
+			$result | Should -HaveParameter Port
 			$result | Should -Not -BeNullOrEmpty
 			$result.TcpTestSucceeded | Should -Be $true
 		}
