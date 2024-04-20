@@ -33,7 +33,7 @@ jobs:
         shell: powershell
         run: |
               Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
-              Import-Module HelperFunctions
+              Import-Module -Name HelperFunctions -RequiredVersion 2.4.0 -Force
 
       - name: Get working directory
         run: |
