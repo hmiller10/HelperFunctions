@@ -4,6 +4,7 @@
 			.EXTERNALHELP HelperFunctions.psm1-Help.xml
 		#>
 	[CmdletBinding()]
+	[Alias('Get-FileDate')]
 	param ()
 	begin {}
 	process

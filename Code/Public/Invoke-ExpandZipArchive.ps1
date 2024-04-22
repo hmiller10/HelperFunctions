@@ -5,6 +5,7 @@
 	#>
 
 	[CmdletBinding()]
+	[Alias('Expand-ZipArchive')]
 	param
 	(
 		[Parameter(Mandatory = $true,

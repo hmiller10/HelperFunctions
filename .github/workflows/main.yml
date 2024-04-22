@@ -7,6 +7,7 @@ on:
     branches: [main]
 
   pull_request:
+    branches: [main]
 
   workflow_dispatch:
 
@@ -17,28 +18,43 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          path: main
+      
+      - name: Install and cache PowerShell modules
+        uses: potatoqualitee/psmodulecache@v6.0
+        with:
+          modules-to-cache: PSFramework,Pester::,HelperFunctions
+          updatable: true
+          shell: powershell
 
-      - name: Import HelperFunctions Module
+      - name: Show that the Action works
+        shell: powershell
         run: |
-          Import-Module -Name HelperFunctions -Force -ErrorAction 'Stop'
+              Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
+              Import-Module -Name HelperFunctions -Force
 
-      - name: Build and test module
+      - name: Get working directory
+        run: |
+          Get-ChildItem -Path ${{ github.workspace }} -Recurse
+        shell: powershell
+
+      - name: Test module
         run: |
          # Replace with your build and test commands
          #$config = [PesterConfiguration]::Default
          #$config.TestResult.Enabled = $true
          #$config.Run.Exit = $true
          #$config.CodeCoverage.Enabled = $true
-         Invoke-Pester -Path .\Tests -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
+         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
         shell: powershell
 
       - name: Publish to PowerShell Gallery
-
         env:
           NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
-          BUILDVER: '2.3.4'
+          #BUILDVER: '2.4.0'
           
         run: |
-          Publish-Module -Path .\Code\Public\HelperFunctions.psd1 -Name "HelperFunctions" -NuGetApiKey $env:HMILLER10_PSGALLERY_APIKEY -Repository PSGallery
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -ErrorAction 'Continue'
         shell: powershell
-          

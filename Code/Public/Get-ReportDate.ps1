@@ -5,6 +5,7 @@
 	#>
 
 	[CmdletBinding()]
+	[Alias('fnGet-ReportDate')]
 	Param ()
 
 	Begin {}

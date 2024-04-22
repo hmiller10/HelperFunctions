@@ -5,6 +5,7 @@
 	#>
 
 	[CmdletBinding()]
+	[Alias('fnTest-IsValidIPAddress')]
 	[OutputType([boolean])]
 	param
 	(

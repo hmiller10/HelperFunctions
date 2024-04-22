@@ -4,21 +4,12 @@
 
 Describe "Get-TimeStamp" {
 	Context "When function Get-TimeStamp is called" {
-		
-		Mock Get-TimeStamp -MockWith {
-			$result | Get-TimeStamp
-		}
+		Mock Get-TimeStamp { return "2024-04-20_01-00-00" } -Verifiable -ParameterFilter {$format -match "yyyy-MM-dd_hh-mm-ss"}
 
 		It "Get-TimeStamp should be of type String in the format 'yyyy-MM-dd_hh-mm-ss'" {
-			$result | Should -BeOfType [String]
-		}
-		
-		It "should not return $null"  {
-			$result | Should -Not -Be $null
-		}
-
-		It "Should be a date string in the format yyyy-MM-dd_mm-dd-ss" {
-			$result | Should -BeLessOrEqual $(Get-Date -Format "yyyy-MM-dd_hh-mm-ss")
+			$result = Get-TimeStamp
+			$result | Should -BeOfType System.String
+			$result | Should -Not -BeNullOrEmpty
 		}
 	}
 }

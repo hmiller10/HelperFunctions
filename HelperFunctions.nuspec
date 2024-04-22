@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>HelperFunctions</id>
+    <version>2.4.1</version>
+    <authors>Heather Miller, Thomas Ashworth</authors>
+    <owners>Heather Miller</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <description>Common every day PS functions used repeatedly in script writing.</description>
+    <releaseNotes>Removed non-working function Get-DNfromFQDN</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>PowerShell Function Datatable DateTime FQDN DistinguishedName CimSession Create Zip Unzip Expand Archive PSCredential Import Export Invoke Shutdown Reboot SemVer</tags>
+  </metadata>
+  <files>
+    <file src="Code\**\*.*" />
+  </files>
+</package>

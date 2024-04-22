@@ -5,6 +5,7 @@
 	#>
 
 	[CmdletBinding()]
+	[Alias('fnTest-NetConnection')]
 	param
 	(
 		[Parameter(Mandatory = $true,

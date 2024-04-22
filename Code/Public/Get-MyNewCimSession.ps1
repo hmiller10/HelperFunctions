@@ -5,6 +5,7 @@ function global:Get-MyNewCimSession
 	#>
 
 	[CmdletBinding()]
+	[Alias('fnNew-CimSession')]
 	[OutputType([Microsoft.Management.Infrastructure.CimSession])]
 	param
 	(

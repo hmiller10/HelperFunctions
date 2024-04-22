@@ -16,7 +16,7 @@
 			 Position = 1,
 			 HelpMessage = 'Enter the AD group name in sAMAccountName format')]
 	[ValidateNotNullOrEmpty()]
-	[Alias('grp')]
+	[Alias('grp','Grp')]
 	[String]$Group
 	)
 	

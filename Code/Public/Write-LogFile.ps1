@@ -5,6 +5,7 @@
 		#>
 
 	[CmdletBinding()]
+	[Alias('fnWrite-LogFile')]
 	param
 	(
 		[Parameter(Mandatory = $true)]

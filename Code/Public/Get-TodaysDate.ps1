@@ -5,6 +5,7 @@
 	#>
 
 	[CmdletBinding()]
+	[Alias('fnGet-TodaysDate')]
 	Param ()
 	Begin {}
 	Process {

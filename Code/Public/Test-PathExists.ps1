@@ -5,6 +5,7 @@
 	#>
 
 	[CmdletBinding(SupportsShouldProcess = $true)]
+	[Alias('Check-Path','fnCheck-Path')]
 	param
 	(
 		[Parameter(Mandatory = $true,

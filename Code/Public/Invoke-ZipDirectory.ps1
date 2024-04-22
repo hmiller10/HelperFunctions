@@ -1,48 +1,55 @@
-﻿Function global:Invoke-ZipDirectory
+﻿function global:Invoke-ZipDirectory
 {
-	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml
-	#>
-
-	[CmdletBinding()]
-	Param
+<#
+	.EXTERNALHELP HelperFunctions.psm1-Help.xml
+		
+#>
+	
+	[CmdletBinding(SupportsShouldProcess = $true)]
+	param
 	(
-
-		[Parameter(Mandatory = $true,
-				 Position = 0,
-				 ValueFromPipeline = $true,
-				 HelpMessage = 'Name of archive file to create.')]
-		[String]$ZipFileName,
-		[Parameter(Mandatory = $true,
-				 Position = 1,
-				 ValueFromPipeline = $true,
-				 HelpMessage = 'Name of directory containing files to zip.')]
-		[String]$SourceDirectory
-
+	[Parameter(Mandatory = $true,
+			 ValueFromPipeline = $true,
+			 Position = 0)]
+	[String]$ZipFileName,
+	[Parameter(Mandatory = $true,
+			 ValueFromPipeline = $true,
+			 Position = 1)]
+	[String]$SourceFolder,
+	[Parameter(ValueFromPipeline = $true,
+			 Position = 2)]
+	[ValidateSet('Fast', '1', 'Normal', '2', 'Optimal', '0')]
+	[String]$ArchiveMode
 	)
-
-	Begin
+	
+	begin
 	{
-		$Net45Check = Get-ChildItem "HKLM:SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\" | Get-ItemPropertyValue -Name Release | ForEach-Object { $_ -ge 378389 }
-		if ($Net45Check)
+		try
 		{
-			Add-Type -AssemblyName "System.IO.Compression", "System.IO.Compression.FileSystem"
+			Add-Type -Assembly System.IO.Compression.FileSystem -ErrorAction Stop
 		}
-		else
+		catch
 		{
-			Write-Warning ".NET 4.5 or later is required. Please install a compatible version before attempting further operations."
+			$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+			Write-Error $errorMessage -ErrorAction Stop
 		}
-		$CompressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
-	}
-	Process
-	{
-		[System.IO.Compression.ZipFile]::CreateFromDirectory($SourceDirectory, $ZipFileName, $CompressionLevel, $false)
-	}
-	End
-	{
-		If ($?)
+		
+		switch ($ArchiveMode)
 		{
-			Write-Output  ("{0} was successfully zipped from {1}" -f $ZipFileName, $SourceDirectory)
+			"Fast"{ $compressionLevel = [System.IO.Compression.CompressionLevel]::Fastest; break }
+			"None"{ $compressionLevel = [System.IO.Compression.CompressionLevel]::NoCompression; break }
+			default{ $compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal; break }
 		}
 	}
-} #End function Invoke-ZipDirectory
+	process
+	{
+		if ($PSCmdlet.ShouldProcess($ZipFileName,'Zipping directory'))
+		{
+			[System.IO.Compression.ZipFile]::CreateFromDirectory($sourceDir, $zipFileName, $compressionLevel, $false)
+		}
+	}
+	end
+	{
+		
+	}
+}#end function Invoke-ZipDirectory
