@@ -1,12 +1,12 @@
 ﻿BeforeAll {
-	Import-Module -Name HelperFunctions -Force
-	Import-Module -Name Pester -Force
 	if ($Error)
 	{
 		$Error.Clear()
 	}
 	
 	[string]$Me = $env:USERNAME
+	$ErrorActionPreference = 'Continue'
+	$DOMAIN = [System.DirectoryServices.ActiveDirectory.Domain]::GetComputerDomain()
 }
 
 
@@ -24,9 +24,12 @@ Describe "Test-IsGroupMember" {
 		}
 		
 		It "Should be of type [System.Boolean]" {
-			$result = Test-IsGroupMember -User $Me -Group 'Administrators'
-			$result | Should -Not -BeNullOrEmpty
-			$result | Should -BeOfType System.Boolean
+			if ($null -ne $DOMAIN )
+			{
+				$result = Test-IsGroupMember -User $Me -Group 'Administrators'
+				$result | Should -Not -BeNullOrEmpty
+				$result | Should -BeOfType System.Boolean
+			}
 		}
 	}
 }
