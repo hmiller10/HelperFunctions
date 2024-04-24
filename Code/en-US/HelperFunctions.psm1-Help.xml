@@ -2321,6 +2321,21 @@ System.Management.Automation.SwitchParameter
 				</dev:type>
 				<dev:defaultValue />
 			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>ArchiveMode</maml:name>
+				<maml:description>
+					<maml:para>.NET IO.CompressionLevel</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+				<command:parameterValueGroup>
+					<command:parameterValue required="false" variableLength="false">Fast,Normal,Optimal</command:parameterValue>
+				</command:parameterValueGroup>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
 		</command:parameters>
 		<command:inputTypes>
 			<!--Inputs-->
@@ -3045,7 +3060,7 @@ System.Management.Automation.SwitchParameter
 				<!--NAME: __AllParameterSets-->
 				<maml:name>Test-MyNetConnection</maml:name>
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="Computer,ComputerName,Server">
-					<maml:name>ServerName</maml:name>
+					<maml:name>Server</maml:name>
 					<maml:description>
 						<maml:para>Computer FQDN</maml:para>
 					</maml:description>
@@ -3073,7 +3088,7 @@ System.Management.Automation.SwitchParameter
 		<command:parameters>
 			<!--All Parameters-->
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="Computer,ComputerName,Server">
-				<maml:name>ServerName</maml:name>
+				<maml:name>Server</maml:name>
 				<maml:description>
 					<maml:para>Computer FQDN</maml:para>
 				</maml:description>
