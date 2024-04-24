@@ -52,9 +52,9 @@ jobs:
 
       - name: Publish to PowerShell Gallery
         env:
-          NUGET_KEY: ${{ secrets.PSGallery-AoiKey }}
+          NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           #BUILDVER: '2.4.0'
           
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -ErrorAction 'Continue'
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -NuGetApiKey $env:NUGET_KEY -Verbose'
         shell: powershell
