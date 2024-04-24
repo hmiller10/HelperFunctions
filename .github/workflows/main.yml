@@ -56,6 +56,6 @@ jobs:
           #BUILDVER: '2.4.0'
           
         run: |
-          $Path = (Join-Path ${{ github.workspace }} "main\Code\Public")
+          $Path = (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1")
           Publish-Module -Path $Path -NuGetApiKey $env:NUGET_KEY -Verbose
         shell: powershell
