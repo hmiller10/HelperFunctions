@@ -57,6 +57,6 @@ jobs:
           
         run: |
           #$Path = (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1")
-          $Path = (Join-Path ${{ github.workspace}}) ${{github.repository}})
-          Publish-Module -Path $Path -NuGetApiKey $env:NUGET_KEY -Verbose
+          #$Path = (Join-Path ${{ github.workspace}}) ${{github.repository}})
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -NuGetApiKey ${{ secrets.HMILLER10_PSGALLERY_APIKEY }} -Verbose
         shell: powershell
