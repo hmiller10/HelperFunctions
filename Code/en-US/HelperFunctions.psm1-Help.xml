@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <helpItems xmlns="http://msh" schema="maml">
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.67 (L)-->
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.68 (L)-->
 	<!--
 		Module: 		HelperFunctions
 		Version:		2.2.21
@@ -108,7 +108,7 @@
 			<command:returnValue>
 				<dev:type>
 					<maml:name>System.Data.DataTable
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -154,7 +154,7 @@
 		</command:details>
 		<maml:description>
 			<maml:para>This function will create a CliXML file containing the credentials from a PSCredential object.
-It is based on Tobias Weltner's example.</maml:para>
+				It is based on Tobias Weltner's example.</maml:para>
 		</maml:description>
 		<command:syntax>
 			<!--Parameter Sets-->
@@ -267,7 +267,7 @@ It is based on Tobias Weltner's example.</maml:para>
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -280,7 +280,7 @@ It is based on Tobias Weltner's example.</maml:para>
 			<command:returnValue>
 				<dev:type>
 					<maml:name>System.IO.FileInfo
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -366,7 +366,7 @@ It is based on Tobias Weltner's example.</maml:para>
 			<command:inputType>
 				<dev:type>
 					<maml:name>System.Net.IPAddress
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -464,7 +464,7 @@ It is based on Tobias Weltner's example.</maml:para>
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -477,7 +477,7 @@ It is based on Tobias Weltner's example.</maml:para>
 			<command:returnValue>
 				<dev:type>
 					<maml:name>System.String
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -651,7 +651,7 @@ It is based on Tobias Weltner's example.</maml:para>
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -664,7 +664,7 @@ It is based on Tobias Weltner's example.</maml:para>
 			<command:returnValue>
 				<dev:type>
 					<maml:name>System.String
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -798,8 +798,8 @@ It is based on Tobias Weltner's example.</maml:para>
 			<command:inputType>
 				<dev:type>
 					<maml:name>System.String[]
-System.Management.Automation.SwitchParameter
-</maml:name>
+						System.Management.Automation.SwitchParameter
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -884,7 +884,7 @@ System.Management.Automation.SwitchParameter
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -1208,7 +1208,7 @@ System.Management.Automation.SwitchParameter
 			<command:inputType>
 				<dev:type>
 					<maml:name>System.Int32
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -1230,7 +1230,7 @@ System.Management.Automation.SwitchParameter
 			<command:returnValue>
 				<dev:type>
 					<maml:name>System.String
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -1288,7 +1288,7 @@ System.Management.Automation.SwitchParameter
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -1488,7 +1488,7 @@ System.Management.Automation.SwitchParameter
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -1762,7 +1762,7 @@ System.Management.Automation.SwitchParameter
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -1918,7 +1918,7 @@ System.Management.Automation.SwitchParameter
 			<command:returnValue>
 				<dev:type>
 					<maml:name>System.Management.Automation.PSCredential
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -2080,7 +2080,7 @@ System.Management.Automation.SwitchParameter
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -2205,7 +2205,7 @@ System.Management.Automation.SwitchParameter
 			<command:inputType>
 				<dev:type>
 					<maml:name>System.String
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -2779,7 +2779,7 @@ System.Management.Automation.SwitchParameter
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -2898,7 +2898,7 @@ System.Management.Automation.SwitchParameter
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -3259,7 +3259,7 @@ System.Management.Automation.SwitchParameter
 			<command:inputType>
 				<dev:type>
 					<maml:name>None
-</maml:name>
+					</maml:name>
 					<maml:uri />
 				</dev:type>
 				<maml:description>
@@ -3326,7 +3326,7 @@ System.Management.Automation.SwitchParameter
 			<dev:version />
 		</command:details>
 		<maml:description>
-			<maml:para>Function to add log entries to an existing log file, associate a severity rating to the entry along with the log entry you want logged</maml:para>
+			<maml:para>Function to add log entries to an existing log file, associate a severity rating to the entry along with the log entry you want logged.</maml:para>
 		</maml:description>
 		<command:syntax>
 			<!--Parameter Sets-->
@@ -3358,21 +3358,21 @@ System.Management.Automation.SwitchParameter
 					<dev:defaultValue />
 				</command:parameter>
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
-					<maml:name>Level</maml:name>
+					<maml:name>LogLevel</maml:name>
 					<maml:description>
-						<maml:para>Integer showing log level</maml:para>
-						<maml:para>1 - Information
-2 - Warning
-3 - Error</maml:para>
+						<maml:para>Type of log entry being written to log</maml:para>
 					</maml:description>
-					<command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 					<command:parameterValueGroup>
-						<command:parameterValue required="false" variableLength="false">1</command:parameterValue>
-						<command:parameterValue required="false" variableLength="false">2</command:parameterValue>
-						<command:parameterValue required="false" variableLength="false">3</command:parameterValue>
+						<command:parameterValue required="false" variableLength="false">Info</command:parameterValue>
+						<command:parameterValue required="false" variableLength="false">Warning</command:parameterValue>
+						<command:parameterValue required="false" variableLength="false">Error</command:parameterValue>
+						<command:parameterValue required="false" variableLength="false">Debug</command:parameterValue>
+						<command:parameterValue required="false" variableLength="false">Failure</command:parameterValue>
+						<command:parameterValue required="false" variableLength="false">Suc</command:parameterValue>
 					</command:parameterValueGroup>
 					<dev:type>
-						<maml:name>UInt32</maml:name>
+						<maml:name>String</maml:name>
 						<maml:uri />
 					</dev:type>
 					<dev:defaultValue />
@@ -3406,21 +3406,21 @@ System.Management.Automation.SwitchParameter
 				<dev:defaultValue />
 			</command:parameter>
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="2">
-				<maml:name>Level</maml:name>
+				<maml:name>LogLevel</maml:name>
 				<maml:description>
-					<maml:para>Integer showing log level</maml:para>
-					<maml:para>1 - Information
-2 - Warning
-3 - Error</maml:para>
+					<maml:para>Type of log entry being written to log</maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 				<command:parameterValueGroup>
-					<command:parameterValue required="false" variableLength="false">1</command:parameterValue>
-					<command:parameterValue required="false" variableLength="false">2</command:parameterValue>
-					<command:parameterValue required="false" variableLength="false">3</command:parameterValue>
+					<command:parameterValue required="false" variableLength="false">Info</command:parameterValue>
+					<command:parameterValue required="false" variableLength="false">Warning</command:parameterValue>
+					<command:parameterValue required="false" variableLength="false">Error</command:parameterValue>
+					<command:parameterValue required="false" variableLength="false">Debug</command:parameterValue>
+					<command:parameterValue required="false" variableLength="false">Failure</command:parameterValue>
+					<command:parameterValue required="false" variableLength="false">Success</command:parameterValue>
 				</command:parameterValueGroup>
 				<dev:type>
-					<maml:name>UInt32</maml:name>
+					<maml:name>String</maml:name>
 					<maml:uri />
 				</dev:type>
 				<dev:defaultValue />
@@ -3448,8 +3448,8 @@ System.Management.Automation.SwitchParameter
 			</command:inputType>
 			<command:inputType>
 				<dev:type>
-					<maml:name>UInt32</maml:name>
-					<maml:uri />
+					<maml:name>String</maml:name>
+					<maml:uri></maml:uri>
 				</dev:type>
 				<maml:description>
 					<maml:para />
@@ -3478,7 +3478,7 @@ System.Management.Automation.SwitchParameter
 		<command:examples>
 			<!--Examples-->
 			<command:example>
-				<maml:title>PS C:\&gt;Write-LogFile -LogEntry "Test Entry" -LogFile 'C:\Logs\MyLogfile.txt' -LogLevel 3</maml:title>
+				<maml:title>PS C:\&gt;Write-LogFile -LogEntry "Test Entry" -LogFile 'C:\Windows\Logs\MyLogfile.txt' -LogLevel Info</maml:title>
 				<maml:introduction>
 					<maml:para />
 				</maml:introduction>
@@ -3684,8 +3684,8 @@ System.Management.Automation.SwitchParameter
 			<!--Notes-->
 			<maml:title>Author</maml:title>
 			<maml:alert>
-				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. 
-THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND.
+					THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
 			</maml:alert>
 			<maml:alert>
 				<maml:para>Author: Heather Miller</maml:para>
@@ -4308,6 +4308,18 @@ THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH
 				<dev:defaultValue />
 			</command:parameter>
 		</command:parameters>
+		<command:inputTypes>
+			<!--Inputs-->
+			<command:inputType>
+				<dev:type>
+					<maml:name>None</maml:name>
+					<maml:uri />
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:inputType>
+		</command:inputTypes>
 		<command:returnValues>
 			<!--Outputs-->
 			<command:returnValue>
@@ -4334,7 +4346,102 @@ THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH
 					<maml:para />
 				</maml:introduction>
 				<dev:code>C:\PS&gt; $ADObjectDN = “CN=admin-hmiller,OU=ADAdmin,OU=AdminUsers,DC=my,DC=domain,DC=com”
-C:\PS&gt; Convert-ADObjectDNToFQDN -DistinguishedName $ADObjectDN</dev:code>
+					C:\PS&gt; Convert-ADObjectDNToFQDN -DistinguishedName $ADObjectDN</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.67 (L)-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--TAG: HASCOMMONPARAMETERS-->
+		<!--Command-->
+		<command:details>
+			<command:name>Convert-FQDNToDN</command:name>
+			<maml:description>
+				<maml:para>Convert an FQDN to DistinguishedName</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>Convert</command:verb>
+			<command:noun>FQDNToDN</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This function builds a string array distinguishedName string from the FQDN of a domain.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem default="true" parametersetname="Default Parameter Set">
+				<!--NAME: Default Parameter Set-->
+				<!--TAG: DEFAULT-->
+				<maml:name>Convert-FQDNToDN</maml:name>
+				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+					<maml:name>FQDN</maml:name>
+					<maml:description>
+						<maml:para>DNS fully qualified domain name</maml:para>
+					</maml:description>
+					<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+					<dev:type>
+						<maml:name>String</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue />
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>FQDN</maml:name>
+				<maml:description>
+					<maml:para>DNS fully qualified domain name</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+		<command:inputTypes>
+			<!--Inputs-->
+			<command:inputType>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:inputType>
+		</command:inputTypes>
+		<command:returnValues>
+			<!--Outputs-->
+			<command:returnValue>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:returnValue>
+		</command:returnValues>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:alert>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>Convert-FQDNToDN -FQDN "my.domain.com"</maml:title>
+				<dev:code>C:\PS&gt; Convert-FQDNToDN</dev:code>
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>
@@ -4342,11 +4449,184 @@ C:\PS&gt; Convert-ADObjectDNToFQDN -DistinguishedName $ADObjectDN</dev:code>
 		</command:examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:linkText>Reference article:</maml:linkText>
+				<maml:linkText>Adsecurity.org</maml:linkText>
 				<maml:uri>https://adsecurity.org/?p=440</maml:uri>
 			</maml:navigationLink>
 			<!--Links-->
 		</maml:relatedLinks>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.67 (L)-->
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.68 (L)-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--TAG: HASCOMMONPARAMETERS-->
+		<!--Command-->
+		<command:details>
+			<command:name>Test-Credential</command:name>
+			<maml:description>
+				<maml:para>Test validity of AD or local credential</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>Test</command:verb>
+			<command:noun>Credential</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This function will validate whether or not the credential object information passed to the function is valid for a given computer or domain.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem parametersetname="LocalUserParamSet">
+				<!--NAME: LocalUserParamSet-->
+				<maml:name>Test-Credential</maml:name>
+				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+					<maml:name>LocalUser</maml:name>
+					<maml:description>
+						<maml:para>Switch to indicate whether to test local computer credential</maml:para>
+					</maml:description>
+					<dev:type>
+						<maml:name>Switch</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue />
+				</command:parameter>
+			</command:syntaxItem>
+			<command:syntaxItem parametersetname="DomainUserParamSet">
+				<!--NAME: DomainUserParamSet-->
+				<maml:name>Test-Credential</maml:name>
+				<command:parameter required="true" globbing="false" pipelineInput="false" variableLength="false" position="1" aliases="FQDN, Domain, ADDomain">
+					<maml:name>DomainFQDN</maml:name>
+					<maml:description>
+						<maml:para>FQDN of AD domain</maml:para>
+					</maml:description>
+					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<dev:type>
+						<maml:name>String</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue />
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="true" globbing="false" pipelineInput="False" variableLength="false" position="0">
+				<maml:name>Credential</maml:name>
+				<maml:description>
+					<maml:para>Credential Object</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">pscredential</command:parameterValue>
+				<dev:type>
+					<maml:name>pscredential</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>LocalUser</maml:name>
+				<maml:description>
+					<maml:para>Switch to indicate whether to test local computer credential</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">Switch</command:parameterValue>
+				<dev:type>
+					<maml:name>Switch</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="true" globbing="false" pipelineInput="False" variableLength="false" position="1" aliases="FQDN, Domain, ADDomain">
+				<maml:name>DomainFQDN</maml:name>
+				<maml:description>
+					<maml:para>FQDN of AD domain</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+		<command:inputTypes>
+			<!--Inputs-->
+			<command:inputType>
+				<dev:type>
+					<maml:name>PSCredential</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:inputType>
+			<command:inputType>
+				<dev:type>
+					<maml:name>Switch</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:inputType>
+			<command:inputType>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:inputType>
+		</command:inputTypes>
+		<command:returnValues>
+			<!--Outputs-->
+			<command:returnValue>
+				<dev:type>
+					<maml:name>Boolean</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:returnValue>
+		</command:returnValues>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:alert>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>PS C:\&gt; Test-Credential -Credential (Get-Credential) -LocalUser -Confirm:$false</maml:title>
+				<dev:code>C:\PS&gt; Test-Credential</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>PS C:\&gt; Test-Credential -Credential (Get-Credential) -DomainFQDN 'my.domain.com' -Confirm:$false</maml:title>
+				<dev:code>C:\PS&gt; Test-Credential</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+		<maml:relatedLinks>
+			<!--Links-->
+			<maml:navigationLink>
+				<maml:linkText>Link 1</maml:linkText>
+				<maml:uri>https://stackoverflow.com/questions/290548/validate-a-username-and-password-against-active-directory/499716</maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Link 2</maml:linkText>
+				<maml:uri>https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/validating-user-account-passwords-part-1</maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Link 3</maml:linkText>
+				<maml:uri>https://gist.github.com/Mike-Crowley/0cfaf1a8733b530e8f00acb59dec771f</maml:uri>
+			</maml:navigationLink>
+		</maml:relatedLinks>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.68 (L)-->
 </helpItems>

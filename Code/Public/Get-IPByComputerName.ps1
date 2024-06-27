@@ -1,4 +1,4 @@
-﻿function Get-IPByComputerName
+﻿function global:Get-IPByComputerName
 {
 <#
 	.EXTERNALHELP HelperFunctions.psm1-Help.xml

@@ -6,6 +6,7 @@
 	
 	[CmdletBinding()]
 	[OutputType([string])]
+	[Alias('Get-DNfromFQDN')]
 	param
 	(
 		[Parameter(Mandatory = $true,
