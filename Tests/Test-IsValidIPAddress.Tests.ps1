@@ -2,7 +2,8 @@
 	if ($Error)
 	{
 		$Error.Clear()
-	}Import-Module -Name HelperFunctions -Force
+	}
+	Import-Module -Name HelperFunctions -Force
 	[string]$IP = "10.0.0.1"
 }
 
