@@ -16,13 +16,13 @@
 			 Position = 1,
 			 HelpMessage = 'Enter the AD group name in sAMAccountName format')]
 	[ValidateNotNullOrEmpty()]
-	[Alias('grp','Grp')]
-	[String]$Group
+	[Alias('Grp')]
+	[String]$GroupName
 	)
 	
 	begin
 	{
-		$strFilter = "(&(objectClass=Group)(name=" + $Group + "))"
+		$strFilter = "(&(objectClass=Group)(name=" + $GroupName + "))"
 		$objDomain = New-Object System.DirectoryServices.DirectoryEntry
 		$objSearcher = New-Object System.DirectoryServices.DirectorySearcher
 	}

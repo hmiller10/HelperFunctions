@@ -23,7 +23,7 @@ Describe "Test-IsGroupMember" {
 		}
 
 		It "Should be of type [System.Boolean]" {
-			$result = Test-IsGroupMember -User $Me -Group 'Administrators'
+			$result = Test-IsGroupMember -User $Me -GroupName 'Administrators'
 			$result | Should -Not -BeNullOrEmpty
 			$result | Should -Not -Be $false
 			$result | Should -Be $true
