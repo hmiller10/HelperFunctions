@@ -18,12 +18,12 @@ Describe "Test-IsGroupMember" {
 			Get-Command Test-IsGroupMember | Should -HaveParameter User -Mandatory -Type System.String
 		}
 		
-		It "Should Have Parameter Group" {
+		It "Should Have Parameter GroupName" {
 			Get-Command Test-IsGroupMember | Should -HaveParameter GroupName -Mandatory -Type System.String
 		}
-		
+
 		It "Should be of type [System.Boolean]" {
-			$result = Test-IsGroupMember -User $Me -GroupName 'Administrators'
+			$result = Test-IsGroupMember -User $Me -Group 'Administrators'
 			$result | Should -Not -BeNullOrEmpty
 			$result | Should -Not -Be $false
 			$result | Should -Be $true

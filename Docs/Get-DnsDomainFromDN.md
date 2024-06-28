@@ -1,29 +1,29 @@
-﻿# Get-UserFromSID
+﻿# Get-DnsDomainFromDN
 
 ## SYNOPSIS
-Get User ID from object SID
+Parse domain name from DN
 
 ## SYNTAX
 
 ### Set 1
 ```
-Get-UserFromSID [-ObjectSID] <String> [<CommonParameters>]
+Get-DnsDomainFromDN [-DistinguishedName] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function translates an object SID to it's NTAccount value
+This function splits and translates the domain name portion of an AD object distinguishedName to a fully qualified domain name.
 
 ## EXAMPLES
 
-### PS C:\\\> Get-UserFromSID -ObjectSID '12AB34CD56EF'
+### PS C:\\\> $domDN = Get-DnsDomainfromFQDN -DistinguishedName “CN=admin-hmiller,OU=ADAdmin,OU=AdminUserss,DC=my,DC=domain,DC=com”
 PS C:\\\>
 ```powershell
-Get-UserFromSID -ObjectSID '12AB34CD56EF'
+Get-DomainFromDN -DistinguishedName 'CN=TestUser,DC=Example,DC=com'
 ```
 
 ## PARAMETERS
 
-### ObjectSID
+### DistinguishedName
 
 
 ```yaml
@@ -44,7 +44,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Security.Principal.NTAccount
+### System.String
 
 
 ## NOTES
