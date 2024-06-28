@@ -1,30 +1,40 @@
 ﻿BeforeAll {
-	Import-Module -Name HelperFunctions -Force -ErrorAction Stop
-	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
+	Import-Module -Name HelperFunctions -Force
+	$Path = TestDrive:\tmpPath
+	$File = TestDrive:\text.txt
 }
 
 Describe 'Test-PathExists' {
-
-	## This ensures New-Item will never run. It's just being used as a
-	## flag to test if it attempts to execute
-	mock 'Test-PathExists'
-
-	context 'when the file path does not exist' {
-
-		## This ensures Test-Path always returns $false "mimicking" the file does not exist
-		mock 'Test-Path' -ModuleName HelperFunctions  { $false }
-
-		$null = Test-PathExists -Path '~\file.txt' -PathType File
-
-		it 'creates the file' {
-			## This checks to see if New-Item attempted to run. If so, we know the script did what we expected
+	
+	context 'when Test-PathExists and the folder path does not exist' {
+		It 'creates the folder' {
+			Test-PathExists -Path $Path -PathType Folder | Should -BeOfType System.IO.FileInfo
+		}
+	}
+	
+	context 'when Test-PathExists and the folder path already exists' {
+		
+		It 'attempts to write a output message' {
+			## This checks to see if New-Item did not attempt to run (Times = 0). If it did not
+			## that means that it did not attempt to create the file
 			$assMParams = @{
-				CommandName = 'Test-Path'
+				CommandName = 'Write-Output'
 				Times	  = 1
 				Exactly     = $true
 			}
-			Assert-MockCalled -CommandName Test-PathExists -Times 1 -ModuleName HelperFUnctions -Scope Context
+			Assert-MockCalled @assMParams
 		}
 	}
+	
+	context 'when Test-PathExists and the file path does not exist' {
+		
+		It 'creates the file' {
+			Test-Path -Path $Path -PathType File | Should -BeOfType System.IO.File
+		}
+	}
+}
+
+AfterAll {
+	Remove-Module -Name HelperFunctions -Force
 }

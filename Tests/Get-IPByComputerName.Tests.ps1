@@ -12,7 +12,7 @@ Describe 'Get-IPByComputerName' {
 		# Get-ComputerNameByIP Tests, all should pass
 
 		It "Get-IPByComputerName should have parameter ComputerName" {
-			Get-Command Get-IPByComputerName | Should -HaveParameter ComputerName -Type [System.String[]] -Mandatory -Because "If IP address is valid it should return the assigned device."
+			Get-Command Get-IPByComputerName | Should -HaveParameter -ParameterName ComputerName -Type [System.String[]] -Mandatory -Because "If IP address is valid it should return the assigned device."
 		}
 
 		It "Get-IPByComputerName should return the IP address of the computer passed into the function" {
@@ -25,5 +25,6 @@ Describe 'Get-IPByComputerName' {
 }
 
 AfterAll {
+	$null = $Computer
 	Remove-Module -Name HelperFunctions -Force
 }
