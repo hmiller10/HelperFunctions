@@ -1,6 +1,5 @@
 ﻿BeforeAll {
 	Import-Module -Name HelperFunctions -Force
-	Import-Module -Name Pester -Force
 	if ($Error)
 	{
 		$Error.Clear()
@@ -20,13 +19,18 @@ Describe "Test-IsGroupMember" {
 		}
 		
 		It "Should Have Parameter Group" {
-			Get-Command Test-IsGroupMember | Should -HaveParameter Grp -Mandatory -Type System.String
+			Get-Command Test-IsGroupMember | Should -HaveParameter GroupName -Mandatory -Type System.String
 		}
 		
 		It "Should be of type [System.Boolean]" {
-			$result = Test-IsGroupMember -User $Me -Grp 'Administrators'
+			$result = Test-IsGroupMember -User $Me -GroupName 'Administrators'
 			$result | Should -Not -BeNullOrEmpty
-			$result | Should -ExpectedType [bool]
-		}
+			$result | Should -Not -Be $false
+			$result | Should -Be $true
+		} 
 	}
+}
+
+AfterAll {
+	Remove-Module -Name HelperFunctions -Force
 }
