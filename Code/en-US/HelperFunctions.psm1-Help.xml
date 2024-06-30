@@ -3,7 +3,7 @@
 	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.68 (L)-->
 	<!--
 		Module: 		HelperFunctions
-		Version:		2.2.21
+		Version:		2.7.0
 	-->
 	<!--All Commands-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
@@ -3702,7 +3702,6 @@
 			</command:example>
 		</command:examples>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2023 v3.0.58-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
@@ -3856,7 +3855,6 @@
 			</command:example>
 		</command:examples>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2023 v3.0.62-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!--Command-->
 		<command:details>
@@ -4129,7 +4127,6 @@
 			<!--Links-->
 		</maml:relatedLinks>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.65-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
@@ -4179,7 +4176,6 @@
 			</command:parameter>
 		</command:parameters>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.65-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
@@ -4268,7 +4264,6 @@
 			<!--Links-->
 		</maml:relatedLinks>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.67 (L)-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
@@ -4353,7 +4348,6 @@
 			</command:example>
 		</command:examples>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.67 (L)-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
@@ -4455,7 +4449,6 @@
 			<!--Links-->
 		</maml:relatedLinks>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.68 (L)-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
@@ -4479,13 +4472,14 @@
 			<command:syntaxItem parametersetname="LocalUserParamSet">
 				<!--NAME: LocalUserParamSet-->
 				<maml:name>Test-Credential</maml:name>
-				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
-					<maml:name>LocalUser</maml:name>
+				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="ComputerName">
+					<maml:name>Computer</maml:name>
 					<maml:description>
-						<maml:para>Switch to indicate whether to test local computer credential</maml:para>
+						<maml:para>Parameter to tell function which remote computer to test credentials on.</maml:para>
 					</maml:description>
+					<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
 					<dev:type>
-						<maml:name>Switch</maml:name>
+						<maml:name>String</maml:name>
 						<maml:uri />
 					</dev:type>
 					<dev:defaultValue />
@@ -4522,14 +4516,14 @@
 				</dev:type>
 				<dev:defaultValue />
 			</command:parameter>
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>LocalUser</maml:name>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="ComputerName">
+				<maml:name>Computer</maml:name>
 				<maml:description>
-					<maml:para>Switch to indicate whether to test local computer credential</maml:para>
+					<maml:para>Parameter to tell function which remote computer to test credentials on.</maml:para>
 				</maml:description>
-				<command:parameterValue required="false" variableLength="false">Switch</command:parameterValue>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
 				<dev:type>
-					<maml:name>Switch</maml:name>
+					<maml:name>String</maml:name>
 					<maml:uri />
 				</dev:type>
 				<dev:defaultValue />
@@ -4627,6 +4621,254 @@
 				<maml:uri>https://gist.github.com/Mike-Crowley/0cfaf1a8733b530e8f00acb59dec771f</maml:uri>
 			</maml:navigationLink>
 		</maml:relatedLinks>
+	</command:command>
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--TAG: HASCOMMONPARAMETERS-->
+		<!--Command-->
+		<command:details>
+			<command:name>Test-IsLocalGroupMember</command:name>
+			<maml:description>
+				<maml:para>Test to see if specified user belongs to a built-in group</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>Test</command:verb>
+			<command:noun>IsLocalGroupMember</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This function uses [ADSI] to test group membership for a specified user in one of the 'built-in' groups native to a Windows computer</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>Test-IsLocalGroupMember</maml:name>
+				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+					<maml:name>User</maml:name>
+					<maml:description>
+						<maml:para>'Enter the name of the user account to check group membership against.'</maml:para>
+					</maml:description>
+					<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+					<dev:type>
+						<maml:name>String</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue />
+				</command:parameter>
+				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+					<maml:name>GroupName</maml:name>
+					<maml:description>
+						<maml:para>'Enter the name(s) of the built-in groups to test.'</maml:para>
+					</maml:description>
+					<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+					<dev:type>
+						<maml:name>String</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue />
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>User</maml:name>
+				<maml:description>
+					<maml:para>'Enter the name of the user account to check group membership against.'</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>GroupName</maml:name>
+				<maml:description>
+					<maml:para>'Enter the name(s) of the built-in groups to test.'</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+		<command:inputTypes>
+			<!--Inputs-->
+			<command:inputType>
+				<dev:type>
+					<maml:name>None</maml:name>
+					<maml:uri />
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:inputType>
+		</command:inputTypes>
+		<command:returnValues>
+			<!--Outputs-->
+			<command:returnValue>
+				<dev:type>
+					<maml:name>Boolean</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:returnValue>
+		</command:returnValues>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:title>Disclaimer</maml:title>
+			<maml:alert>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>EXAMPLE</maml:title>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>C:\PS&gt; Test-IsLocalGroupMember -User $env:USERNAME -GroupName 'Administrators'</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+		<maml:relatedLinks>
+			<!--Links-->
+			<maml:navigationLink>
+				<maml:linkText>Related Link</maml:linkText>
+				<maml:uri>https://morgantechspace.com/2017/10/check-if-user-is-member-of-local-group-powershell.html</maml:uri>
+			</maml:navigationLink>
+		</maml:relatedLinks>
+	</command:command>
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--TAG: HASCOMMONPARAMETERS-->
+		<!--Command-->
+		<command:details>
+			<command:name>Convert-SecureStringToPlainText</command:name>
+			<maml:description>
+				<maml:para>Reverse secure string into plain text</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>Convert</command:verb>
+			<command:noun>SecureStringToPlainText</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This function will decrypt the secure string passed in the function parameter to plain text</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>Convert-SecureStringToPlainText</maml:name>
+				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="0">
+					<maml:name>SecureString</maml:name>
+					<maml:description>
+						<maml:para>Secure string to decrypt</maml:para>
+					</maml:description>
+					<command:parameterValue required="true" variableLength="false">securestring</command:parameterValue>
+					<dev:type>
+						<maml:name>securestring</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue />
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="0">
+				<maml:name>SecureString</maml:name>
+				<maml:description>
+					<maml:para>Secure string to decrypt</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">securestring</command:parameterValue>
+				<dev:type>
+					<maml:name>securestring</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+		<command:inputTypes>
+			<!--Inputs-->
+			<command:inputType>
+				<dev:type>
+					<maml:name>SecureString</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:inputType>
+		</command:inputTypes>
+		<command:returnValues>
+			<!--Outputs-->
+			<command:returnValue>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:returnValue>
+		</command:returnValues>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:title>Disclaimer</maml:title>
+			<maml:alert>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>EXAMPLE</maml:title>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>C:\PS&gt; Convert-SecureStringToPlainText -SecureString $password</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.68 (L)-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--Command-->
+		<command:details>
+			<command:name>Test-IsRemoteGroupMember</command:name>
+			<maml:description>
+				<maml:para>Test to see if specified user belongs to a built-in group</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>Test</command:verb>
+			<command:noun>IsRemoteGroupMember</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This function uses [ADSI] to test group membership for a specified user in one of the 'built-in' groups native to a remote Windows computer</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>Test-IsRemoteGroupMember</maml:name>
+			</command:syntaxItem>
+		</command:syntax>
 	</command:command>
 	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.68 (L)-->
 </helpItems>

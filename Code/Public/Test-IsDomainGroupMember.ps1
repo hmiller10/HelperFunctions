@@ -5,6 +5,7 @@
 	#>
 		
 	[CmdletBinding()]
+	[Alias('Test-IsGroupMember')]
 	param
 	(
 	[Parameter(Mandatory = $true,

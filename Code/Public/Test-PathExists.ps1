@@ -15,12 +15,12 @@
 		$Path,
 		[Parameter(Mandatory = $true,
 		           Position = 1,
-		           HelpMessage = 'Specify path content as file or folder')]
+		           HelpMessage = 'Specify path content as file or folder.')]
 		[string]
 		$PathType,
 		[Parameter(Mandatory = $false,
 		           Position = 2,
-		           HelpMessage = 'Force create folder or file')]
+		           HelpMessage = 'Force create folder or file.')]
 		[Switch]
 		$Force
 	)

@@ -6,6 +6,7 @@
 	
 	[CmdletBinding(DefaultParameterSetName = 'LocalUserParamSet',
 				SupportsShouldProcess = $true)]
+	[OutputType([Boolean], ParameterSetName = 'RemoteUserParamSet')]
 	[OutputType([Boolean], ParameterSetName = 'LocalUserParamSet')]
 	[OutputType([Boolean], ParameterSetName = 'DomainUserParamSet')]
 	param
@@ -20,11 +21,12 @@
 		[ValidateNotNullOrEmpty()]
 		[Alias('PSCredential')]
 		[pscredential]$Credential,
-		[Parameter(ParameterSetName = 'LocalUserParamSet',
+		[Parameter(ParameterSetName = 'RemoteUserParamSet',
 				 Mandatory = $true,
 				 Position = 1,
 				 HelpMessage = 'Select this parameter if validating a local computer user credential')]
-		[Switch]$LocalUser,
+		[Alias('ComputerName')]
+		[String]$Computer,
 		[Parameter(ParameterSetName = 'DomainUserParamSet',
 				 Mandatory = $true,
 				 Position = 1,
@@ -42,14 +44,14 @@
 		if ($pscmdlet.ShouldProcess($Credential, "ValidateCredential"))
 		{
 			$passToValidate = $Credential.GetNetworkCredential().Password
-			if ($PSBoundParameters.ContainsKey('LocalUser'))
+			if ($PSBoundParameters.ContainsKey('Computer'))
 			{
-				Write-Verbose -Message "Searching local sAMAccountDatabase. Please wait... `n"
+				Write-Verbose -Message "Searching remote computer sAMAccountDatabase. Please wait... `n"
 				$ctx = [System.DirectoryServices.AccountManagement.ContextType]::Machine
-				$principalCtx = [System.DirectoryServices.AccountManagement.PrincipalContext]::new($ctx, $env:COMPUTERNAME)
+				$principalCtx = [System.DirectoryServices.AccountManagement.PrincipalContext]::new($ctx, $Computer)
 				$UserIDToValidate = $Credential.GetNetworkCredential().UserName
 			}
-			elseif (($LocalUser -eq $false) -and ($null -ne $PSBoundParameters["DomainFQDN"]))
+			elseif (($PSBoundParameters.ContainsKey('DomainFQDN')) -and ($null -ne $PSBoundParameters["DomainFQDN"]))
 			{
 				Write-Verbose -Message "Searching Active Directory. Please wait... `n"
 				$ctx = [System.DirectoryServices.AccountManagement.ContextType]::Domain
@@ -57,7 +59,13 @@
 				$adUser = [System.DirectoryServices.AccountManagement.UserPrincipal]::FindByIdentity($principalCtx, $Credential.UserName)
 				$UserIDToValidate = $adUser.SamAccountName
 			}
-			
+			else
+			{
+				Write-Verbose -Message "Searching local computer sAMAccountDatabase. Please wait... `n"
+				$ctx = [System.DirectoryServices.AccountManagement.ContextType]::Machine
+				$principalCtx = [System.DirectoryServices.AccountManagement.PrincipalContext]::new($ctx, $nv:COMPUTERNAME)
+				$UserIDToValidate = $Credential.GetNetworkCredential().UserName
+			}
 			Write-Verbose -Message "Testing credential. Please wait... `n"
 			$result = $principalCtx.ValidateCredentials($UserIDToValidate, $passToValidate)
 		}
