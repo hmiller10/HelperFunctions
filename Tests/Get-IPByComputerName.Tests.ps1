@@ -1,5 +1,6 @@
 ﻿BeforeAll {
 	if ($Error) { $Error.Clear() }
+	Import-Module -Name HelperFunctions -Force
 	$Computer = [System.Net.Dns]::GetHostByName("LocalHost").HostName
 }
 
@@ -21,5 +22,5 @@ Describe 'Get-IPByComputerName' {
 }
 
 AfterAll {
-	#Remove-Module -Name HelperFunctions -Force
+	Remove-Module -Name HelperFunctions -Force
 }
