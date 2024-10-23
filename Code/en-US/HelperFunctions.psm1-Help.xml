@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <helpItems xmlns="http://msh" schema="maml">
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.68 (L)-->
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.69 (L)-->
 	<!--
 		Module: 		HelperFunctions
 		Version:		2.7.0
@@ -945,14 +945,14 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>Get-MyNewCimSession</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="Server, Computer, ComputerName, CN">
 					<maml:name>ServerName</maml:name>
 					<maml:description>
 						<maml:para>FQDN of remote server</maml:para>
 					</maml:description>
-					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 					<dev:type>
-						<maml:name>String</maml:name>
+						<maml:name>String[]</maml:name>
 						<maml:uri />
 					</dev:type>
 					<dev:defaultValue />
@@ -973,14 +973,14 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="Server, Computer, ComputerName, CN">
 				<maml:name>ServerName</maml:name>
 				<maml:description>
 					<maml:para>FQDN of remote server</maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 				<dev:type>
-					<maml:name>String</maml:name>
+					<maml:name>String[]</maml:name>
 					<maml:uri />
 				</dev:type>
 				<dev:defaultValue />
@@ -3192,7 +3192,7 @@
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
 					<maml:name>Path</maml:name>
 					<maml:description>
-						<maml:para>Full path to the file or folder to be checked</maml:para>
+						<maml:para>Type the file system where the folder or file to check should be verified.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 					<dev:type>
@@ -3204,7 +3204,8 @@
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
 					<maml:name>PathType</maml:name>
 					<maml:description>
-						<maml:para>Valid options are "File" and "Folder", depending on which to check.</maml:para>
+						<maml:para>Specify path to check for or create either a file or folder
+Valid options are "File" and "Folder", depending on which to check.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
 					<dev:type>
@@ -3220,7 +3221,7 @@
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0">
 				<maml:name>Path</maml:name>
 				<maml:description>
-					<maml:para>Full path to the file or folder to be checked</maml:para>
+					<maml:para>Type the file system where the folder or file to check should be verified.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 				<dev:type>
@@ -3232,7 +3233,8 @@
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="1">
 				<maml:name>PathType</maml:name>
 				<maml:description>
-					<maml:para>Valid options are "File" and "Folder", depending on which to check.</maml:para>
+					<maml:para>Specify path to check for or create either a file or folder
+Valid options are "File" and "Folder", depending on which to check.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
 				<dev:type>
@@ -3244,7 +3246,7 @@
 			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
 				<maml:name>Force</maml:name>
 				<maml:description>
-					<maml:para>Force the creation of folder or file</maml:para>
+					<maml:para>Use this switch to force the creation of folder or file if it does not already exist.</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Switch</command:parameterValue>
 				<dev:type>
@@ -4870,5 +4872,5 @@
 			</command:syntaxItem>
 		</command:syntax>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.68 (L)-->
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.69 (L)-->
 </helpItems>

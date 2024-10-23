@@ -1,35 +1,29 @@
 # This is a basic workflow to help you get started with Actions
-name: Publish_HelperFunctions_Module
+
+name: CI
 
 # Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main]
+    branches: [ main ]
 
-  pull_request:
-    branches: [main]
-
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   publish-to-gallery:
+    needs: build
     runs-on: windows-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ github.repository }}
-          path: main
-      
-      - name: Initialize environment
-        uses: PSModule/Initialize-PSModule@main
-
-      - name: Publish-PSModule
-        uses: PSModule/Publish-PSModule@main
+      - uses: actions/checkout@v2
+      - name: Build and publish
+      # API key generated in PSGallery
         env:
           NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
-
-permissions:
-  contents: write # Required to create releases
-  pull-requests: write # Required to create comments on the PRs
+          BUILDVER: '2.2.28'
+        shell: pwsh
+        run: |
+          .\build_scripts\build.ps1
+          Publish-Module -path . -NuGetApiKey $env:NUGET_KEY -Verbose          
