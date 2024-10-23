@@ -5,6 +5,16 @@
 
 Describe 'Test-PathExists' {
 	
+	context 'when the file path does not exist' {
+		## Ensure the test file isn't there
+		$null = Remove-Item -Path '~\file.txt' -ErrorAction Ignore
+		$null = Test-PathExists -Path '~\file.txt' -PathType File
+		
+		it 'creates the file' {
+			'~\file.txt' | Should -Exist
+		}
+	}
+	
 	context 'when Test-PathExists and the folder path does not exist' {
 		it 'creates a file then reads if the file does not exist' {
 			mock -CommandName 'Test-Path' -MockWith {
