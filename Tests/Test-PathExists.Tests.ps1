@@ -5,6 +5,16 @@
 
 Describe 'Test-PathExists' {
 	
+	context 'Test function parameters' {
+		It "Should Have Parameter Group" {
+			Get-Command Test-PathExists | Should -HaveParameter Path -Mandatory -Type System.String
+		}
+		It "Should Have Parameter GroupName" {
+			Get-Command Test-IsGroupMember | Should -HaveParameter PathType -Type System.String
+		}
+		
+	}
+	
 	context 'when the file path does not exist' {
 		## Ensure the test file isn't there
 		$null = Remove-Item -Path '~\file.txt' -ErrorAction Ignore
