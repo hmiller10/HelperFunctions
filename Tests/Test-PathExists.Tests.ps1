@@ -1,8 +1,6 @@
 ﻿BeforeAll {
 	if ($Error) { $Error.Clear() }
 	Import-Module -Name HelperFunctions -Force
-	$Path = TestDrive:\tmpPath
-	$File = TestDrive:\text.txt
 }
 
 Describe 'Test-PathExists' {
