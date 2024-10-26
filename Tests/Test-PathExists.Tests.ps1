@@ -13,7 +13,7 @@ Describe 'Test-PathExists' {
 			Get-Command Test-PathExists | Should -HaveParameter PathType -Mandatory -Type System.String
 		}
 		It "Should Have Parameter Force" {
-			Get-Command Test-PathExists | Should -HaveParameter Force -Type System.Switch
+			Get-Command Test-PathExists | Should -HaveParameter Force -Type System.Management.Automation.SwitchParameter
 		}
 		
 	}
@@ -27,7 +27,9 @@ Describe 'Test-PathExists' {
 				Remove-Item $testFilePath
 			}
 			
-			Test-PathExists -Path $testFilePath -PathType File | Should -Exist
+			Test-PathExists -Path $testFilePath -PathType File
+			
+			(Test-Path -Path $testFilePath) | Should -BeTrue
 		}
 		
 		It "Creates a folder if it does not exist" {
@@ -38,7 +40,9 @@ Describe 'Test-PathExists' {
 				Remove-Item $testFolderPath -Recurse
 			}
 			
-			Test-PathExists -Path $testFolderPath -PathType Folder | Should -Exist
+			Test-PathExists -Path $testFolderPath -PathType Folder
+			
+			(Test-Path -Path $testFolderPath) | Should -BeTrue
 		}
 	}
 }
