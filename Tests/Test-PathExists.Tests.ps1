@@ -6,11 +6,14 @@
 Describe 'Test-PathExists' {
 	
 	context 'Test function parameters' {
-		It "Should Have Parameter Group" {
+		It "Should Have Parameter Path" {
 			Get-Command Test-PathExists | Should -HaveParameter Path -Mandatory -Type System.String
 		}
-		It "Should Have Parameter GroupName" {
+		It "Should Have Parameter PathType" {
 			Get-Command Test-PathExists | Should -HaveParameter PathType -Mandatory -Type System.String
+		}
+		It "Should Have Parameter Force" {
+			Get-Command Test-PathExists | Should -HaveParameter Force -Type System.Switch
 		}
 		
 	}
@@ -24,7 +27,7 @@ Describe 'Test-PathExists' {
 				Remove-Item $testFilePath
 			}
 			
-			Test-PathExists -Path $testFilePath -PathType File | Should -BeTrue
+			Test-PathExists -Path $testFilePath -PathType File | Should -Exist
 		}
 		
 		It "Creates a folder if it does not exist" {
@@ -35,7 +38,7 @@ Describe 'Test-PathExists' {
 				Remove-Item $testFolderPath -Recurse
 			}
 			
-			Test-PathExists -Path $testFolderPath -PathType Folder | Should -BeTrue
+			Test-PathExists -Path $testFolderPath -PathType Folder | Should -Exist
 		}
 	}
 }
