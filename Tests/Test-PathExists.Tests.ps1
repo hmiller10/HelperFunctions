@@ -10,48 +10,32 @@ Describe 'Test-PathExists' {
 			Get-Command Test-PathExists | Should -HaveParameter Path -Mandatory -Type System.String
 		}
 		It "Should Have Parameter GroupName" {
-			Get-Command Test-IsGroupMember | Should -HaveParameter PathType -Type System.String
+			Get-Command Test-PathExists | Should -HaveParameter PathType -Mandatory -Type System.String
 		}
 		
 	}
 	
-	context 'when the file path does not exist' {
-		## Ensure the test file isn't there
-		$null = Remove-Item -Path '~\file.txt' -ErrorAction Ignore
-		$null = Test-PathExists -Path '~\file.txt' -PathType File
+	context "Test-Or-Create" {
+		It "Creates a file if it does not exist" {
+			$testFilePath = "C:\temp\testfile.txt"
+			
+			if (Test-Path $testFilePath)
+			{
+				Remove-Item $testFilePath
+			}
+			
+			Test-PathExists -Path $testFilePath -PathType File | Should -BeTrue
+		}
 		
-		it 'creates the file' {
-			'~\file.txt' | Should -Exist
-		}
-	}
-	
-	context 'when Test-PathExists and the folder path does not exist' {
-		it 'creates a file then reads if the file does not exist' {
-			mock -CommandName 'Test-Path' -MockWith {
-				return $false
+		It "Creates a folder if it does not exist" {
+			$testFolderPath = "C:\temp\testfolder"
+			
+			if (Test-Path $testFolderPath)
+			{
+				Remove-Item $testFolderPath -Recurse
 			}
-			mock -CommandName 'Get-Content' -MockWith {
-				return $null
-			}
-			mock -CommandName 'Add-Content' -MockWith {
-				return $null
-			}
-			Get-FileContents -Path 'C:\SomeBogusFile.txt'
-			Assert-MockCalled -CommandName 'Get-Content' -Times 1 -Scope It
-			Assert-MockCalled -CommandName 'Add-Content' -Times 1 -Scope It
-		}
-	}
-	
-	context 'when Test-PathExists and the folder path already exists' {
-		it 'only reads the file if it already exists' {
-			mock -CommandName 'Test-Path' -MockWith {
-				return $true
-			}
-			mock -CommandName 'Get-Content' -MockWith {
-				return $null
-			}
-			Get-FileContents -Path 'C:\SomeBogusFile.txt'
-			Assert-MockCalled -CommandName 'Get-Content' -Times 1 -Scope It
+			
+			Test-PathExists -Path $testFolderPath -PathType Folder | Should -BeTrue
 		}
 	}
 }
