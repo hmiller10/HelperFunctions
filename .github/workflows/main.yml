@@ -30,7 +30,7 @@ jobs:
           shell: powershell
       
       - name: Setup PowerShell
-        uses: setup-powershell@v4
+        uses: actions/setup-powershell@v4
  
       - name: Show that the Action works
         shell: powershell
