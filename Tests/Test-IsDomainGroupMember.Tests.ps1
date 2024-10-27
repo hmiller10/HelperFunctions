@@ -15,7 +15,7 @@
 }
 
 
-Describe "Test-IsGroupMember" {
+Describe "Test-IsDomainGroupMember" {
 	
 	Context "Test AD user membership in AD group" {
 		# Test-IsDomainGroupMember Tests, all should pass
