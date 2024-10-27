@@ -31,7 +31,7 @@ jobs:
           shell: powershell
 
 	 - name: Setup PowerShell
-          uses: 
+          uses: setup-powershell@v4
       
       - name: Show that the Action works
         shell: powershell
