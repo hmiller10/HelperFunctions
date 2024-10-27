@@ -1,8 +1,7 @@
 ﻿BeforeAll {
-	if ($Error)
-	{
-		$Error.Clear()
-	}
+	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
+	if ($Error) { $Error.Clear() }
 	
 	[string]$ServerIP = '8.8.8.8'
 	[string]$google = 'google.com'
@@ -53,4 +52,5 @@ AfterAll {
 	$null = $Port
 	$null = $remoteDomain1
 	$null = $remoteDomain2
+	Remove-Module -Name HelperFunctions -Force
 }

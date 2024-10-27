@@ -1,10 +1,8 @@
 ﻿BeforeAll {
 	Import-Module -Name HelperFunctions -Force
-	if ($Error)
-	{
-		$Error.Clear()
-	}
-	
+	Import-Module -Name Pester -Force
+	if ($Error) { $Error.Clear() }
+
 	if ((Get-CimInstance -ClassName CIM_ComputerSystem -NameSpace 'root\CIMv2').partOfDomain -eq $false)
 	{
 		exit

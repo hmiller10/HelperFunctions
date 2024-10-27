@@ -25,3 +25,7 @@ Describe 'Get-FQDNfromDN' {
 		}
 	}
 }
+
+AfterAll {
+	Remove-Module -Name HelperFunctions -Force
+}

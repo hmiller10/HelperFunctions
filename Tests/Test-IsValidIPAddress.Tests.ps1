@@ -1,8 +1,7 @@
 ﻿BeforeAll {
-	if ($Error) {
-		$Error.Clear()
-	}
 	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
+	if ($Error) { $Error.Clear() }
 	[string]$IP = "10.0.0.1"
 }
 

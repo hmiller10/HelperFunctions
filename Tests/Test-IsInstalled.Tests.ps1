@@ -22,3 +22,7 @@ Describe 'Test-IsInstalled' {
 		}
 	}
 }
+
+AfterAll {
+	Remove-Module -Name HelperFunctions -Force
+}

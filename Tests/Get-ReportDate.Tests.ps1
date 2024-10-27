@@ -1,4 +1,6 @@
 ﻿BeforeAll {
+	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 }
 
@@ -15,5 +17,6 @@ Describe "Get-ReportDate" {
 }
 
 AfterAll {
+	Remove-Module -Name HelperFunctions -Force
 	$null = $result
 }

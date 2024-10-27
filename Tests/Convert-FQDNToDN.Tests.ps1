@@ -22,5 +22,5 @@ Describe 'Convert-FQDNToDN' {
 }
 
 AfterAll {
-	$Error.Clear()
+	Remove-Module -Name HelperFunctions -Force
 }

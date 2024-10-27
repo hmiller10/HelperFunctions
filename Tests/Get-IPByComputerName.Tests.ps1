@@ -1,6 +1,7 @@
 ﻿BeforeAll {
-	if ($Error) { $Error.Clear() }
 	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
+	if ($Error) { $Error.Clear() }
 	$Computer = [System.Net.Dns]::GetHostByName("LocalHost").HostName
 	
 }

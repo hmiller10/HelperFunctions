@@ -1,10 +1,7 @@
 ﻿BeforeAll {
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
-	if ($Error)
-	{
-		$Error.Clear()
-	}
+	if ($Error) { $Error.Clear() }
 }
 
 Describe "Get-Uptime" {
@@ -26,4 +23,8 @@ Describe "Get-Uptime" {
 			$result | Should -ExpectedType [PSCustomObject]
 		}
 	}
+}
+
+AfterAll {
+	Remove-Module -Name HelperFunctions -Force
 }

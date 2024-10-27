@@ -1,8 +1,7 @@
 ﻿BeforeAll {
-	if ($Error)
-	{
-		$Error.Clear()
-	}
+	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
+	if ($Error) { $Error.Clear() }
 }
 
 Describe 'Get-DomainfromDN' {
@@ -29,4 +28,8 @@ Describe 'Get-DomainfromDN' {
 			$null = $cmd
 		}
 	}
+}
+
+AfterAll {
+	Remove-Module -Name HelperFunctions -Force
 }

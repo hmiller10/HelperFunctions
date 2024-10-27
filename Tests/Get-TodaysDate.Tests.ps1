@@ -1,4 +1,6 @@
 ﻿BeforeAll {
+	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 }
 
@@ -17,4 +19,5 @@ Describe "Get-TodaysDate" {
 
 AfterAll {
 	$null = $result
+	Remove-Module -Name HelperFunctions -Force
 }

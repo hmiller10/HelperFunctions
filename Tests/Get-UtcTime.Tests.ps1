@@ -1,7 +1,7 @@
 BeforeAll {
-    Import-Module -Name HelperFunctions -Force
+   	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
-    if ($Error) { $Error.Clear() }
+    	if ($Error) { $Error.Clear() }
 
 }
 
@@ -22,4 +22,5 @@ Describe "Get-UtcTime" {
 
 AfterAll {
 	$null = $result
+	Remove-Module -Name HelperFunctions -Force
 }

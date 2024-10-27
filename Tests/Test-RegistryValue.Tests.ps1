@@ -1,13 +1,10 @@
 ﻿BeforeAll {
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
-	if ($Error)
-	{
-		$Error.Clear()
+	if ($Error) { $Error.Clear() }
 
-		[string]$key = 'HKLM:\Software\HerThoughtsOnTech'
-		[string]$value = "BuildVersion"
-	}
+	[string]$key = 'HKLM:\Software\HerThoughtsOnTech'
+	[string]$value = "BuildVersion"
 }
 
 
