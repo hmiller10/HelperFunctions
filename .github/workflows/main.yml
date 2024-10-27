@@ -18,7 +18,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        run: Set-PSRepository PSGallery -InstallationPolicy Trusted
         with:
           repository: ${{ github.repository }}
           path: main
@@ -30,6 +29,9 @@ jobs:
           updatable: true
           shell: powershell
       
+      - name: Setup PowerShell
+        uses: setup-powershell@v4
+ 
       - name: Show that the Action works
         shell: powershell
         run: |
