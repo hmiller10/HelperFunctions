@@ -11,7 +11,7 @@
 }
 
 
-Describe "Test-RegistryValue Parameters" {
+Describe "Test-RegistryValue" {
 
 	Context "Test pre-defined registry key and value" {
 		# Test-RegistryValue Tests, all should pass
@@ -38,6 +38,7 @@ Describe "Test-RegistryValue Parameters" {
 				New-ItemProperty -Path "HKLM:\$key" -Name $value -Value "Test" -Force
 			}
 			
+			(Test-RegistryValue -Path $key -Name $value) | Should -Not -BeNullOrEmpty
 			(Test-RegistryValue -Path $key -Name $value) | Should -BeTrue
 		}
 	}
