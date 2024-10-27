@@ -18,6 +18,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        run: Set-PSRepository PSGallery -InstallationPolicy Trusted
         with:
           repository: ${{ github.repository }}
           path: main
@@ -29,6 +30,9 @@ jobs:
           updatable: true
           shell: powershell
 
+	 - name: Setup PowerShell
+          uses: 
+      
       - name: Show that the Action works
         shell: powershell
         run: |
@@ -41,14 +45,14 @@ jobs:
 
       - name: Test module
         run: |
-         #Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
+         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Stop'
         shell: powershell
 
       - name: Publish to PowerShell Gallery
         env:
-          NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           #BUILDVER: '2.7.1'
           
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -NuGetApiKey $env:NUGET_KEY -Verbose
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Verbose -ErrorAction 'Stop'
         shell: powershell  
