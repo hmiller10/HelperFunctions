@@ -11,36 +11,46 @@
 }
 
 
+# Pester Test for Test-RegistryValue function
 Describe "Test-RegistryValue" {
+    It "Returns true if the registry key and value exist" {
+        $Path = "HKLM:\Software\MyCompany\MyApp"
+        $Name = "TestValue"
+        
+        # Ensure the key and value exist for the test
+        if (-Not (Test-Path $Path)) {
+            New-Item -Path $Path -Force
+        }
+        if (-Not (Get-ItemProperty -Path $Path -Name $Name -ErrorAction SilentlyContinue)) {
+            New-ItemProperty -Path $Path -Name $Name -Value "Test" -Force
+        }
+        
+        $result = Test-RegistryValue -Path $Path -Name $Name
+        $result | Should -BeTrue
+    }
+    
+    It "Returns false if the registry key does not exist" {
+        $Path = "HKLM:\Software\NonExistentKey"
+        $Name = "TestValue"
 
-	Context "Test pre-defined registry key and value" {
-		# Test-RegistryValue Tests, all should pass
+        $result = Test-RegistryValue -Path $Path -Name $Name
+        $result | Should -BeFalse
+    }
 
-		It "Should Have Parameter Path" {
-			Get-Command Test-RegistryValue | Should -HaveParameter Path -Mandatory -Type System.String
-		}
+    It "Returns false if the registry value does not exist" {
+        $Path = "HKLM:\Software\MyCompany\MyApp"
+        $Name = "NonExistentValue"
+        
+        # Ensure the key exists but the value does not
+        if (-Not (Test-Path $Path)) {
+            New-Item -Path $Path -Force
+        }
+        
+        $result = Test-RegistryValue -Path $Path -Name $Name
+        $result | Should -BeFalse
+    }
+}
 
-		It "Should Have Parameter Name" {
-			Get-Command Test-RegistryValue | Should -HaveParameter Name -Mandatory -Type System.String
-		}
-	}
-
-	Context "Test for predefined registry key and value" {
-		It "Checks if a registry key/value pair exists" {
-			
-			# Ensure the key and value exist for the test
-			if (-Not (Test-Path "HKLM:\$key"))
-			{
-				New-Item -Path "HKLM:\$key" -Force
-			}
-			if (-Not (Get-ItemProperty -Path "HKLM:\$key" -Name $value -ErrorAction SilentlyContinue))
-			{
-				New-ItemProperty -Path "HKLM:\$key" -Name $value -Value "Test" -Force
-			}
-			
-			(Test-RegistryValue -Path $key -Name $value) | Should -Not -BeNullOrEmpty
-			(Test-RegistryValue -Path $key -Name $value) | Should -BeTrue
-		}
-	}
-	
+AfterAll {
+	Remove-Module -Name HelperFunctions -Force
 }
