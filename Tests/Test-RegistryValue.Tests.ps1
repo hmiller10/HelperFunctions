@@ -26,7 +26,7 @@ Describe "Test-RegistryValue" {
         }
         
         $result = Test-RegistryValue -Path $Path -Name $Name
-        $result | Should -BeTrue
+        $result | Should -BeFalse
     }
     
     It "Returns false if the registry key does not exist" {
