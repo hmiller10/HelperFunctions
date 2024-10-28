@@ -29,6 +29,9 @@ jobs:
           updatable: true
           shell: powershell
  
+ 	 - name: Setup PowerSHell
+ 	   uses: actions/setup-powershell@v2
+ 
       - name: Show that the Action works
         shell: powershell
         run: |
@@ -42,7 +45,7 @@ jobs:
 
       - name: Test module
         run: |
-         #Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
+         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
         shell: powershell
 
       - name: Publish to PowerShell Gallery
@@ -53,6 +56,5 @@ jobs:
         run: |
           $ModuleManifest = Get-ChildItem -Path *.psd1 -Recurse | Select-Object -First 1
           $ModuleName = (Import-PowerShellDataFile -Path $ModuleManifest.FullName).ModuleName
-          #Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
-          Publish-Module -Path $ModuleManifest.FullName -NugetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
         shell: powershell  
