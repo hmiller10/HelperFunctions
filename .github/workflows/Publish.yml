@@ -10,13 +10,20 @@ on:
     branches: [main]
     types:
      - opened
+     	
+  status
 
   workflow_dispatch:
 
 jobs:
   publish-to-gallery:
     runs-on: windows-latest
-
+    
+    if_error_or_failure:
+    if: >-
+      github.event.state == 'error' ||
+      github.event.state == 'failure'
+          
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -50,12 +57,14 @@ jobs:
 
       - name: Publish to PowerShell Gallery
         env:
+          DESCRIPTION: ${{ github.event.description }}
           PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           #BUILDVER: '2.7.1'
           
         run: |
-          $ModuleManifest = Get-ChildItem -Path *.psd1 -Recurse | Select-Object -First 1
-          $ModuleName = (Import-PowerShellDataFile -Path $ModuleManifest.FullName).ModuleName
+          #$ModuleManifest = Get-ChildItem -Path *.psd1 -Recurse | Select-Object -First 1
+          #$ModuleName = (Import-PowerShellDataFile -Path $ModuleManifest.FullName).ModuleName
+          echo The status is error or failed: $DESCRIPTION
           Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
         shell: powershell
 
