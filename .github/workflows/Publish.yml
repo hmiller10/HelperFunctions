@@ -8,10 +8,6 @@ on:
 
   pull_request:
     branches: [main]
-    types:
-     - opened
-     	
-  status
 
   workflow_dispatch:
 
@@ -64,21 +60,5 @@ jobs:
         run: |
           #$ModuleManifest = Get-ChildItem -Path *.psd1 -Recurse | Select-Object -First 1
           #$ModuleName = (Import-PowerShellDataFile -Path $ModuleManifest.FullName).ModuleName
-          echo The status is error or failed: $DESCRIPTION
           Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
         shell: powershell
-
-on:
-  status
-  
-jobs:
-  if_error_or_failure:
-    runs-on: ubuntu-latest
-    if: >-
-      github.event.state == 'error' ||
-      github.event.state == 'failure'
-    steps:
-      - env:
-          DESCRIPTION: ${{ github.event.description }}
-        run: |
-          echo The status is error or failed: $DESCRIPTION
