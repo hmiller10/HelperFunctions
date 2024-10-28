@@ -14,12 +14,7 @@ on:
 jobs:
   publish-to-gallery:
     runs-on: windows-latest
-    
-    if_error_or_failure:
-    if: >-
-      github.event.state == 'error' ||
-      github.event.state == 'failure'
-          
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
