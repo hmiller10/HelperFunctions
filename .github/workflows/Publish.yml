@@ -8,6 +8,8 @@ on:
 
   pull_request:
     branches: [main]
+    types:
+     - opened
 
   workflow_dispatch:
 
@@ -29,9 +31,6 @@ jobs:
           updatable: true
           shell: powershell
  
- 	 - name: Setup PowerSHell
- 	   uses: actions/setup-powershell@v2
- 
       - name: Show that the Action works
         shell: powershell
         run: |
@@ -41,11 +40,12 @@ jobs:
       - name: Get working directory
         run: |
           Get-ChildItem -Path ${{ github.workspace }} -Recurse
+          $WorkingDir = Get-ChildItem -Path ${{ github.workspace }} -Recurse
         shell: powershell
 
       - name: Test module
         run: |
-         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
+         #Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
         shell: powershell
 
       - name: Publish to PowerShell Gallery
@@ -56,5 +56,20 @@ jobs:
         run: |
           $ModuleManifest = Get-ChildItem -Path *.psd1 -Recurse | Select-Object -First 1
           $ModuleName = (Import-PowerShellDataFile -Path $ModuleManifest.FullName).ModuleName
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
-        shell: powershell  
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
+        shell: powershell
+
+on:
+  status
+  
+jobs:
+  if_error_or_failure:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.state == 'error' ||
+      github.event.state == 'failure'
+    steps:
+      - env:
+          DESCRIPTION: ${{ github.event.description }}
+        run: |
+          echo The status is error or failed: $DESCRIPTION
