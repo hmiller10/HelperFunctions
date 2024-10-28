@@ -53,6 +53,6 @@ jobs:
         run: |
           $ModuleManifest = Get-ChildItem -Path *.psd1 -Recurse | Select-Object -First 1
           $ModuleName = (Import-PowerShellDataFile -Path $ModuleManifest.FullName).ModuleName
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
-          #Publish-Module -Path . -NugetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
+          #Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
+          Publish-Module -Path $ModuleManifest.FullName -NugetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
         shell: powershell  
