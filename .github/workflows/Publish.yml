@@ -53,7 +53,7 @@ jobs:
           #BUILDVER: '2.7.1'
           
         run: |
-          #$ModuleManifest = Get-ChildItem -Path $WorkingDir -Filter *.psd1 -Recurse | Select-Object -First 1
-          #$ModuleName = (Import-PowerShellDataFile -Path $ModuleManifest.FullName).ModuleName
-          Publish-Module (Join-Path ${{ github.workspace }} "main\Code\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
+        	$modulePath = "{0}\{1}\{2}\{3}" -f $WorkingDir, "main", "code", "HelperFunctions.psd1"
+          #Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
+          Publish-Module -Path $modulePath -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
         shell: powershell
