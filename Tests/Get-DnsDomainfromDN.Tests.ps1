@@ -16,7 +16,7 @@ Describe 'Get-DomainfromDN' {
 
 		It "Should be of type [System.String]" {
 			$result = Get-DomainfromDN -DistinguishedName $ComputerDN
-			$result | Should -BeOfType System.String
+			$result | Should -BeOfType [System.String]
 			$result | Should -Not -BeNullOrEmpty
 		}
 	}

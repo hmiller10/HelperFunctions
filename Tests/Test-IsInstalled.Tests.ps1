@@ -2,18 +2,19 @@
 	Import-Module -Name HelperFunctions -Force -ErrorAction Stop
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
-
-	$Program = "Github Desktop"
 }
 
 
 Describe 'Test-IsInstalled' {
 	
 	Context "Program installation verification" {
+		BeforeAll {
+			$Program = "Github Desktop"
+		}
 		# Test-IsInstalled Tests, all should pass
 		
 		It "Test-IsInstalled should have a parameter Program" {
-			Get-Command Test-IsInstalled | Should -HaveParameter Program -Type System.String -Mandatory -Because "Test cannot succeed without input parameter to test."
+			Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program -Type System.String -Mandatory -Because "Test cannot succeed without input parameter to test."
 		}
 		
 		It "Should be of type [bool]" {
