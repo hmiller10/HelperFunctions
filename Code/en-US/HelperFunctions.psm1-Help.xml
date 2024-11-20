@@ -2821,7 +2821,7 @@
 		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
 		<command:details>
-			<command:name>Test-IsGroupMember</command:name>
+			<command:name>Test-IsDomainGroupMember</command:name>
 			<maml:description>
 				<maml:para>Verify user's group membership</maml:para>
 			</maml:description>
@@ -2829,7 +2829,7 @@
 				<maml:para />
 			</maml:copyright>
 			<command:verb>Test</command:verb>
-			<command:noun>IsGroupMember</command:noun>
+			<command:noun>IsDomainGroupMember</command:noun>
 			<dev:version />
 		</command:details>
 		<maml:description>
@@ -2839,7 +2839,7 @@
 			<!--Parameter Sets-->
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
-				<maml:name>Test-IsGroupMember</maml:name>
+				<maml:name>Test-IsDomainGroupMember</maml:name>
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
 					<maml:name>User</maml:name>
 					<maml:description>
@@ -2928,11 +2928,11 @@
 		<command:examples>
 			<!--Examples-->
 			<command:example>
-				<maml:title>PS C:\&gt; Test-IsGroupMember -User TestUser -Group 'Remote Desktop Users'</maml:title>
+				<maml:title>PS C:\&gt; Test-IsDomainGroupMember -User TestUser -Group 'Remote Desktop Users'</maml:title>
 				<maml:introduction>
 					<maml:para />
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Test-IsGroupMember -User TestUser -Group 'Remote Desktop Users'</dev:code>
+				<dev:code>PS C:\&gt; Test-IsDomainGroupMember -User TestUser -GroupName 'Remote Desktop Users'</dev:code>
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>
