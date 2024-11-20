@@ -14,11 +14,8 @@ Describe 'It should have parameter' {
 }
 
 Describe 'Test-IsInstalled function output' {
-	BeforeAll {
-		$Program = "Github Desktop"
-	}
-		
 	It "Should be of type [bool]" {
+		$Program = "Github Desktop"
 		$result = Test-IsInstalled -Program $Program
 		$result | Should -BeOfType [bool]
 	}
