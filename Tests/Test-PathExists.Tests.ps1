@@ -7,7 +7,7 @@ BeforeAll {
 
 Describe 'Test-PathExists - Parameters' {
 	Context "Test Function Parameters" {
-		$Path = TestDrive:\Temp
+		$Path = "$TestDrive\Temp"
 		# Test-PathExists Tests, all should pass
 		
 		It "Test-PathExists should have parameter Path." {
@@ -28,7 +28,7 @@ Describe 'Test-PathExists - Parameters' {
 
 # Pester test to check for the existence of the file or folder
 Describe 'Test-PathExists - Folder' {
-	$Path = TestDrive:\Temp
+	$Path = "$TestDrive\Temp"
 	 It 'should exist' {
 		if (-Not (Test-Path -Path $Path -PathType Container))
 		{
@@ -39,13 +39,13 @@ Describe 'Test-PathExists - Folder' {
 }
 
 Describe 'Test-PathExists - File' {
-	$File = TestDrive:\Temp\text.txt
+	$File = "$TestDrive\Temp\text.txt"
 	It 'should exist' {
 		if (-Not (Test-Path -Path $File -PathType Leaf))
 		{
-			New-Item -Path $Path -ItemType File
+			New-Item -Path $File-ItemType File
 		}
-		Test-Path -Path $Path | Should -Be $true
+		Test-Path -Path $File | Should -Be $true
 	}
 }
 
