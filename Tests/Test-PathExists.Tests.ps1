@@ -5,11 +5,12 @@ BeforeAll {
 }
 
 Describe 'Test-PathExists - Parameters' {
-	BeforeAll {
-		$Path = "TestDrive:\Temp"
-	}
 	
 	Context "Test Function Parameters" {
+		BeforeAll {
+			$Path = "TestDrive:\Temp"
+		}
+		
 		# Test-PathExists Tests, all should pass
 		
 		It "Test-PathExists should have parameter Path." {
