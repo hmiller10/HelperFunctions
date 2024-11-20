@@ -15,10 +15,10 @@ This functions creates a new Microsoft Common Information Model remote session t
 
 ## EXAMPLES
 
-### PS\> Get-MyNewCimSession -Server <ServerFQDN\> -Credential PSCredential
+### PS C:\\\> Get-MyNewCimSession -ServerName <ServerFQDN\> -Credential PSCredential -SkipICMPCheck
 PS C:\\\>
 ```powershell
-.\Get-MyNewCimSession.ps1 -ServerName user.example.com -Credential (Get-Credential)
+Get-MyNewCimSession -ServerName <ServerFQDN> -Credential PSCredential -SkipICMPCheck
 ```
 
 ## PARAMETERS
@@ -29,7 +29,7 @@ FQDN of remote server
 ```yaml
 Type: String[]
 Parameter Sets: Set 1
-Aliases: Server, Computer, ComputerName, CN
+Aliases: 'CN', 'ComputerName','Server', 'IP'
 
 Required: true
 Position: 0
@@ -51,6 +51,20 @@ Default Value:
 Pipeline Input: false
 ```
 
+### SkipICMPCheck
+'Switch statement to enable SkipTestConnection Parameter when starting new CimSession.'
+
+```yaml
+Type: 
+Parameter Sets: (All)
+Aliases: 
+
+Required: false
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
 ### \<CommonParameters\>
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -63,6 +77,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
+### Disclaimer
 THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 
 ## RELATED LINKS

@@ -20,7 +20,7 @@ function New-RemotePSSession
 				Write-Error "Cannot connect to $_."
 			}
 		}})]
-		[Alias ('Computer','Server', 'IP')]
+		[Alias ('CN', 'ServerName', 'Server', 'IP')]
 		[string[]]
 		$ComputerName,
 		[Parameter(Mandatory = $false,
