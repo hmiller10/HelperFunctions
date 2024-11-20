@@ -2,12 +2,14 @@
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
-	[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
 }
 
 Describe 'Get-DomainfromDN' {
 
 	Context "Return Get-DomainfromDN" {
+		BeforeAll {
+			[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
+		}
 		# Get-DomainfromDN Tests, all should pass
 
 		It "Get-DomainfromDN should have parameter DistinguishedName." {
