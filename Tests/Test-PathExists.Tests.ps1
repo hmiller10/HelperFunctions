@@ -21,10 +21,10 @@ Describe 'Test-PathExists - Parameters' {
 			Get-Command Test-PathExists | Should -HaveParameter -ParameterName PathType -Type System.String -Mandatory
 		}
 		
-		It "Should be of type [System.String]" {
+		It "Should be of type [System.IO.DirectoryInfo]" {
 			$result = Test-PathExists -Path $Path -PathType Folder
 			$result | Should -Not -BeNullOrEmpty
-			$result | Should -ExpectedType [System.IO.DirectoryInfo]
+			$result | Should -Be $Path
 		}
 	}
 }
