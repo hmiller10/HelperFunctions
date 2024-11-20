@@ -1,8 +1,9 @@
 ﻿BeforeAll {
+	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 	#$ComputerFQDN = "computer1.my.domain.com"
 	$ComputerFQDN = [System.Net.Dns]::GetHostByName("LocalHost").HostName
-	Import-Module -Name ActiveDirectory -Force
 }
 
 Describe 'Get-DNfromFQDN' {
@@ -35,5 +36,5 @@ Describe 'Get-DNfromFQDN' {
 }
 
 AfterAll {
-	Remove-Module -Name ActiveDirectory
+	Remove-Module -Name HelperFunctions
 }

@@ -3,8 +3,8 @@ BeforeAll {
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 	# Define the path to the file or folder to be checked 
-     $Path = TestDrive:\tmpPath
-     $File = TestDrive:\text.txt
+     $Path = TestDrive:\Temp
+     $File = TestDrive:\Temp\text.txt
 }
 
 Describe 'Test-PathExists - Parameters' {

@@ -1,11 +1,8 @@
-﻿BeforeAll {	
-	if ($Error)
-	{
-		$Error.Clear()
-	}
-
-    Import-Module -Name HelperFunctions -Force
-    . $PSCommandPath.Replace('.Tests.ps1','.ps1')
+﻿BeforeAll {
+	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
+	if ($Error) { $Error.Clear() }
+	. $PSCommandPath.Replace('.Tests.ps1','.ps1')
 	
 }
 
