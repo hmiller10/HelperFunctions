@@ -2,12 +2,14 @@ BeforeAll {
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
-	# Define the path to the file or folder to be checked 
 }
 
 Describe 'Test-PathExists - Parameters' {
+	BeforeAll {
+		$Path = "TestDrive:\Temp"
+	}
+	
 	Context "Test Function Parameters" {
-		$Path = "$TestDrive\Temp"
 		# Test-PathExists Tests, all should pass
 		
 		It "Test-PathExists should have parameter Path." {
@@ -28,8 +30,11 @@ Describe 'Test-PathExists - Parameters' {
 
 # Pester test to check for the existence of the file or folder
 Describe 'Test-PathExists - Folder' {
-	$Path = "$TestDrive\Temp"
-	 It 'should exist' {
+	BeforeAll {
+		$Path = "TestDrive:\Temp"
+	}
+	
+	It 'should exist' {
 		if (-Not (Test-Path -Path $Path -PathType Container))
 		{
 			New-Item -Path $Path -ItemType Directory
@@ -39,7 +44,13 @@ Describe 'Test-PathExists - Folder' {
 }
 
 Describe 'Test-PathExists - File' {
-	$File = "$TestDrive\Temp\text.txt"
+	BeforeAll {
+		$File = "TestDrive:\test.txt"
+		Set-Content $File -value "my test text."
+		$result = Get-Content $File
+		$result | Should -Not -BeNullOrEmpty
+	}
+	
 	It 'should exist' {
 		if (-Not (Test-Path -Path $File -PathType Leaf))
 		{
