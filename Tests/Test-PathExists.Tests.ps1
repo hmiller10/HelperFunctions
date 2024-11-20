@@ -3,8 +3,6 @@ BeforeAll {
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 	# Define the path to the file or folder to be checked 
-     $Path = TestDrive:\Temp
-     $File = TestDrive:\Temp\text.txt
 }
 
 Describe 'Test-PathExists - Parameters' {
@@ -29,6 +27,7 @@ Describe 'Test-PathExists - Parameters' {
 
 # Pester test to check for the existence of the file or folder
 Describe 'Test-PathExists - Folder' {
+	$Path = TestDrive:\Temp
 	 It 'should exist' {
 		if (-Not (Test-Path -Path $Path -PathType Container))
 		{
@@ -39,6 +38,7 @@ Describe 'Test-PathExists - Folder' {
 }
 
 Describe 'Test-PathExists - File' {
+	$File = TestDrive:\Temp\text.txt
 	It 'should exist' {
 		if (-Not (Test-Path -Path $File -PathType Leaf))
 		{

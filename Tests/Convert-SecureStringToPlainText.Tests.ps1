@@ -2,7 +2,6 @@
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
-	. $PSCommandPath.Replace('.Tests.ps1','.ps1')
 	
 }
 

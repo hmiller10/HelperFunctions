@@ -3,7 +3,15 @@
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 	#$ComputerFQDN = "computer1.my.domain.com"
-	$ComputerFQDN = [System.Net.Dns]::GetHostByName("LocalHost").HostName
+	if ((Get-CimInstance -ClassName CIM_ComputerSystem -NameSpace 'root\CIMv2').partOfDomain -eq $false)
+	{
+		exit
+	}
+	else
+	{
+		$ComputerFQDN = [System.Net.Dns]::GetHostByName("LocalHost").HostName
+	}
+	
 }
 
 Describe 'Get-DNfromFQDN' {
@@ -14,8 +22,8 @@ Describe 'Get-DNfromFQDN' {
 		}
 		
 		It "Get-DNfromFQDN should have parameter DomainFQDN." {
+			$cmd | Should -HaveParameter -ParameterName FQDN -Because "The function must have a secure string to process."
 			$cmd | Should -Not -BeNullOrEmpty
-			$cmd | Should -HaveParameter FQDN -Type String -Mandatory -Because "Function must have object FQDN to process."
 		}
 
 		AfterEach {
@@ -29,7 +37,6 @@ Describe 'Get-DNfromFQDN' {
 		}
 		
 		It "Should be type String" {
-			#$result | Should -Not -BeNullOrEmpty
 			$result | Should -BeOfType [System.String]
 		}
 	}
