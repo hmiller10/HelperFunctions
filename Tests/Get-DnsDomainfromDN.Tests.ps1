@@ -4,18 +4,21 @@
 	if ($Error) { $Error.Clear() }
 }
 
-Describe 'Get-DomainfromDN' {
+Describe 'Get-DnsDomainfromDN' {
 
-	Context "Return Get-DomainfromDN" {
+	Context "Verify Get-DomainfromDN parameters" {
+		# Get-DomainfromDN Tests, all should pass
+
+		It "Get-DnsDomainfromDN should have parameter DistinguishedName." {
+			Get-Command Get-DnsDomainfromDN -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName DistinguishedName -Type String
+		}
+	}
+	
+	Context "Test Get-DnsDomainfromDN output" {
 		BeforeAll {
 			[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
 		}
-		# Get-DomainfromDN Tests, all should pass
-
-		It "Get-DomainfromDN should have parameter DistinguishedName." {
-			Get-Command Get-DomainfromDN -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName DistinguishedName -Type String
-		}
-
+		
 		It "Should be of type [System.String]" {
 			$result = Get-DomainfromDN -DistinguishedName $ComputerDN
 			$result | Should -BeOfType [System.String]
