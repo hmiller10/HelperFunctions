@@ -5,7 +5,7 @@
 }
 
 
-Describe 'Test-IsInstalled' {
+Describe 'Test-IsInstalled Parameters' {
 	
 	Context "Check Test-IsInstalled Parameters" {
 		# Test-IsInstalled Tests, all should pass
@@ -14,7 +14,9 @@ Describe 'Test-IsInstalled' {
 			Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program -Type System.String -Mandatory
 		}
 	}
-	
+}
+
+Describe 'Test-IsInstalled function output' {
 	Context "Check Test-IsInstalled function output" {
 		BeforeAll {
 			$Program = "Github Desktop"

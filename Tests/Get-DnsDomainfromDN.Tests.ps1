@@ -13,7 +13,10 @@ Describe 'Get-DnsDomainfromDN' {
 			Get-Command Get-DnsDomainfromDN -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName DistinguishedName -Type String
 		}
 	}
-	
+}
+
+Describe 'Get-DnsDomainFromDN function output' {
+
 	Context "Test Get-DnsDomainfromDN output" {
 		BeforeAll {
 			[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
@@ -26,7 +29,6 @@ Describe 'Get-DnsDomainfromDN' {
 		}
 	}
 }
-
 AfterAll {
 	Remove-Module -Name HelperFunctions -Force
 	$null = $ComputerDN
