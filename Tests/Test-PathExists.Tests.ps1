@@ -7,14 +7,15 @@ BeforeAll {
 
 Describe 'Test-PathExists - Parameters' {
 	Context "Test Function Parameters" {
+		$Path = TestDrive:\Temp
 		# Test-PathExists Tests, all should pass
 		
 		It "Test-PathExists should have parameter Path." {
-			Get-Command Test-PathExists | Should -HaveParameter Path -Type String -Mandatory
+			Get-Command Test-PathExists | Should -HaveParameter -ParameterName Path -Type System.String -Mandatory
 		}
 		
 		It "Test-PathExists should have parameter PathType." {
-			Get-Command Test-PathExists | Should -HaveParameter PathTpe -Type String -Mandatory
+			Get-Command Test-PathExists | Should -HaveParameter -ParameterName PathType -Type System.String -Mandatory
 		}
 		
 		It "Should be of type [System.String]" {
