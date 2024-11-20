@@ -7,7 +7,7 @@
 
 Describe 'Test-IsInstalled' {
 	
-	Context "Program installation verification" {
+	Context "Check Test-IsInstalled Parameters" {
 		# Test-IsInstalled Tests, all should pass
 		
 		It "Test-IsInstalled should have a parameter Program" {
@@ -15,7 +15,7 @@ Describe 'Test-IsInstalled' {
 		}
 	}
 	
-	Context "Check function output" {
+	Context "Check Test-IsInstalled function output" {
 		BeforeAll {
 			$Program = "Github Desktop"
 		}
