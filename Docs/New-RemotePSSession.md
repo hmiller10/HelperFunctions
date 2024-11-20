@@ -7,7 +7,7 @@ Create new PowerShell session
 
 ### Set 1
 ```
-New-RemotePSSession [-ComputerName] <String> [[-Credential] <PSCredential>] [-EnableNetworkAccess] [-RequiresProxy] [<CommonParameters>]
+New-RemotePSSession [-ComputerName] <String[]> [[-Credential] <PSCredential>] [-EnableNetworkAccess] [-RequiresProxy] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -27,14 +27,14 @@ $s = New-RemoteSession -ComputerName myserver.mydomain.com -Credential $myCreds 
 Provide the FQDN of the computer you wish to create a remoting session with
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: Set 1
-Aliases: 
+Aliases: Computer, Server, IP
 
 Required: true
 Position: 0
 Default Value: 
-Pipeline Input: false
+Pipeline Input: False
 ```
 
 ### Credential

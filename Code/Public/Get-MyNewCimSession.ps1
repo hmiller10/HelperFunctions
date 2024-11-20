@@ -11,7 +11,6 @@ function global:Get-MyNewCimSession
 	(
 		[Parameter(Mandatory = $true, ValueFromPipeline = $true, Position = 0)]
 		[ValidateNotNullorEmpty()]
-		[Alias("Server", "Computer", "ComputerName", "CN")]
 		[String[]]$ServerName,
 		[Parameter(Mandatory = $false, ValueFromPipeline = $false, Position = 1)]
 		[System.Management.Automation.PSCredential]$Credential
@@ -59,7 +58,7 @@ function global:Get-MyNewCimSession
 				}
 				catch
 				{
-					$errorMessage = "{ 0 }: { 1 }" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+					$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 					Write-Error -Message $errorMessage -ErrorAction Continue
 				}
 			}
@@ -74,7 +73,7 @@ function global:Get-MyNewCimSession
 				}
 				catch
 				{
-					$errorMessage = "{ 0 }: { 1 }" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+					$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 					Write-Error -Message $errorMessage -ErrorAction Continue
 				}
 				$Params.Remove('SessionOption')

@@ -2405,14 +2405,14 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>New-RemotePSSession</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="Computer, Server, IP">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para>Provide the FQDN of the computer you wish to create a remoting session with</maml:para>
 					</maml:description>
-					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 					<dev:type>
-						<maml:name>String</maml:name>
+						<maml:name>String[]</maml:name>
 						<maml:uri />
 					</dev:type>
 					<dev:defaultValue />
@@ -2457,14 +2457,14 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="Computer, Server, IP">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para>Provide the FQDN of the computer you wish to create a remoting session with</maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 				<dev:type>
-					<maml:name>String</maml:name>
+					<maml:name>String[]</maml:name>
 					<maml:uri />
 				</dev:type>
 				<dev:defaultValue />
