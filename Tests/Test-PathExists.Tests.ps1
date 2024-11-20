@@ -24,7 +24,7 @@ Describe 'Test-PathExists - Parameters' {
 		It "Should be of type [System.IO.DirectoryInfo]" {
 			$result = Test-PathExists -Path $Path -PathType Folder
 			$result | Should -Not -BeNullOrEmpty
-			$result | Should -Be $Path
+			$result | Should -BeOfType [System.IO.DirectoryInfo]
 		}
 	}
 }
