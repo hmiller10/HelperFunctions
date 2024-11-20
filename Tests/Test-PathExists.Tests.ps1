@@ -60,5 +60,7 @@ Describe 'Test-PathExists - File' {
 }
 
 AfterAll {
+	Remove-Item -Path $Path -Force
+	Remove-Item -Path $File -Force
 	Remove-Module -Name HelperFunctions -Force
 }
