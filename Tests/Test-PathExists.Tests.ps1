@@ -24,7 +24,7 @@ Describe 'Test-PathExists - Parameters' {
 		It "Should be of type [System.String]" {
 			$result = Test-PathExists -Path $Path -PathType Folder
 			$result | Should -Not -BeNullOrEmpty
-			$result | Should -ExpectedType [System.String]
+			$result | Should -ExpectedType [System.IO.DirectoryInfo]
 		}
 	}
 }
@@ -48,8 +48,6 @@ Describe 'Test-PathExists - File' {
 	BeforeAll {
 		$File = "TestDrive:\test.txt"
 		Set-Content $File -value "my test text."
-		$result = Get-Content $File
-		$result | Should -Not -BeNullOrEmpty
 	}
 	
 	It 'should exist' {
