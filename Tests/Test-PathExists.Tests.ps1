@@ -42,6 +42,10 @@ Describe 'Test-PathExists - Folder' {
 		} 
 		Test-Path -Path $Path | Should -Be $true 
 	}
+	
+	AfterAll {
+		Remove-Item -Path $Path -Force
+	}
 }
 
 Describe 'Test-PathExists - File' {
@@ -57,10 +61,12 @@ Describe 'Test-PathExists - File' {
 		}
 		Test-Path -Path $File | Should -Be $true
 	}
+	
+	AfterAll {
+		Remove-Item -Path $File -Force
+	}
 }
 
 AfterAll {
-	Remove-Item -Path $Path -Force
-	Remove-Item -Path $File -Force
 	Remove-Module -Name HelperFunctions -Force
 }
