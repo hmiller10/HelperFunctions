@@ -17,7 +17,7 @@ Describe 'Get-DnsDomainFromDN function output' {
 
 	It "Should be of type [System.String]" {
 		[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
-		$result = Get-DomainfromDN -DistinguishedName $ComputerDN
+		$result = Get-DnsDomainfromDN -DistinguishedName $ComputerDN
 		$result | Should -BeOfType [System.String]
 		$result | Should -Not -BeNullOrEmpty
 	}

@@ -5,27 +5,28 @@ BeforeAll {
 }
 
 Describe 'Test-PathExists - Parameters' {
-	
-	Context "Test Function Parameters" {
-		BeforeAll {
+	BeforeAll {
 			$Path = "TestDrive:\Temp"
 		}
 		
-		# Test-PathExists Tests, all should pass
-		
-		It "Test-PathExists should have parameter Path." {
-			Get-Command Test-PathExists | Should -HaveParameter -ParameterName Path -Type System.String -Mandatory
-		}
-		
-		It "Test-PathExists should have parameter PathType." {
-			Get-Command Test-PathExists | Should -HaveParameter -ParameterName PathType -Type System.String -Mandatory
-		}
-		
-		It "Should be of type [System.IO.DirectoryInfo]" {
-			$result = Test-PathExists -Path $Path -PathType Folder
-			$result | Should -Not -BeNullOrEmpty
-			$result | Should -BeOfType [System.IO.DirectoryInfo]
-		}
+	# Test-PathExists Tests, all should pass
+	
+	It "Test-PathExists should have parameter Path." {
+		Get-Command Test-PathExists | Should -HaveParameter -ParameterName Path -Type System.String -Mandatory
+	}
+	
+	It "Test-PathExists should have parameter PathType." {
+		Get-Command Test-PathExists | Should -HaveParameter -ParameterName PathType -Type System.String -Mandatory
+	}
+	
+	It "Should be of type [System.IO.DirectoryInfo]" {
+		$result = Test-PathExists -Path $Path -PathType Folder
+		$result | Should -Not -BeNullOrEmpty
+		$result | Should -BeOfType [System.IO.DirectoryInfo]
+	}
+	
+	AfterAll {
+		Remove-Item -Path $Path -Force
 	}
 }
 
