@@ -5,27 +5,22 @@
 }
 
 
-Describe 'Test-IsInstalled Parameters' {
-	
-	Context "Check Test-IsInstalled Parameters" {
-		# Test-IsInstalled Tests, all should pass
-		
-		It "Test-IsInstalled should have a parameter Program" {
-			Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program -Type System.String -Mandatory
-		}
+Describe 'It should have parameter' {
+	# Test-IsInstalled Tests, all should pass
+
+	It "Test-IsInstalled should have a parameter Program" {
+		Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program -Type System.String -Mandatory
 	}
 }
 
 Describe 'Test-IsInstalled function output' {
-	Context "Check Test-IsInstalled function output" {
-		BeforeAll {
-			$Program = "Github Desktop"
-		}
+	BeforeAll {
+		$Program = "Github Desktop"
+	}
 		
-		It "Should be of type [bool]" {
-			$result = Test-IsInstalled -Program $Program
-			$result | Should -BeOfType [bool]
-		}
+	It "Should be of type [bool]" {
+		$result = Test-IsInstalled -Program $Program
+		$result | Should -BeOfType [bool]
 	}
 }
 
