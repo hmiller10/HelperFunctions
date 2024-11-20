@@ -11,7 +11,7 @@ Describe 'Test-IsInstalled' {
 		# Test-IsInstalled Tests, all should pass
 		
 		It "Test-IsInstalled should have a parameter Program" {
-			Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program -Type System.String -Mandatory -Because "Test cannot succeed without input parameter to test."
+			Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program -Type System.String -Mandatory
 		}
 	}
 	
