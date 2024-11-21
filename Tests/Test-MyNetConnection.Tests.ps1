@@ -17,7 +17,7 @@
 Describe 'Test-MyNetConnection function parameters' {
 	
 	BeforeEach {
-		$cmd = Get-Command Test-MyNetConnection -Server $ServerIP -Port $Port -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName Server -Type System.String -Because "The function requires a destination to test."
+		$cmd = Get-Command Test-MyNetConnection -Module HelperFunctions -CommandType Function
 	}
 	
 	It "Should Have Parameter ComputerName" {

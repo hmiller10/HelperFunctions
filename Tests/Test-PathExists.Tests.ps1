@@ -26,8 +26,8 @@ Describe 'Test-PathExists - Parameters' {
 
 # Pester test to check for the existence of the file or folder
 Describe 'Test-PathExists - Folder' {
-	BeforeAll {
-		$Path = Join-Path $TestDrive "Temp"
+	BeforeEach {
+		$Path = "TestDrive:\Temp"
 	}
 	
 	It 'Test-PathExists with Folder should exist' {
@@ -39,17 +39,17 @@ Describe 'Test-PathExists - Folder' {
 		Test-Path -Path $Path | Should -Be $true 
 	}
 	
-	AfterAll {
+	AfterEach {
 		Remove-Item -Path $Path -Force
 	}
 }
 
 Describe 'Test-PathExists - File' {
-	BeforeAll {
-		$File = Join-Path $TestDrive "Temp\test.txt"
+	BeforeEach {
+		$File = "TestDrive:\Temp\test.txt"
 	}
 	
-	It 'should exist' {
+	It 'Test-PathExists with File should exist' {
 		if (-Not (Test-Path -Path $File -PathType Leaf))
 		{
 			New-Item -Path $File-ItemType File
