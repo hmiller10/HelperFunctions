@@ -44,7 +44,7 @@ Describe 'Test-PathExists - Folder' {
 	}
 	
 	AfterAll {
-		Remove-Item -Path $Path -Force
+		#Remove-Item -Path $Path -Force
 	}
 }
 
@@ -63,12 +63,10 @@ Describe 'Test-PathExists - File' {
 	}
 	
 	AfterAll {
-		Remove-Item -Path $File -Force
+		#Remove-Item -Path $File -Force
 	}
 }
 
 AfterAll {
-	Remove-Item -Path $Path -Force
-	Remove-Item -Path $File -Force
 	Remove-Module -Name HelperFunctions -Force
 }
