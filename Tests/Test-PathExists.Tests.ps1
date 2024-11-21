@@ -35,7 +35,7 @@ Describe 'Test-PathExists - Folder' {
 		$Path = "TestDrive:\Temp"
 	}
 	
-	It "$($Path) should exist" {
+	It "$Path should exist" {
 		if (-Not (Test-Path -Path $Path -PathType Container))
 		{
 			New-Item -Path $Path -ItemType Directory
@@ -54,7 +54,7 @@ Describe 'Test-PathExists - File' {
 		Set-Content $File -value "my test text."
 	}
 	
-	It "$($File) should exist" {
+	It "$File should exist" {
 		if (-Not (Test-Path -Path $File -PathType Leaf))
 		{
 			New-Item -Path $File -ItemType File
