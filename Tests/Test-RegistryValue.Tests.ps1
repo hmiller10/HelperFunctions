@@ -12,7 +12,9 @@
 Describe "Test-RegistryValue parameter values" {
 	
 	BeforeEach {
-		$cmd = Get-Command -Name Test-RegistryValue -Module HelperFunctions -CommandType Function
+		$cmd = Get-Command -Name Test-RegistryValue -Module HelperFunctions -CommandType Function -ArgumentList @{ Path = $Path; 
+			Value = $Value
+		}
 	}
 	
 	It "Should Have Parameter ComputerName" {
@@ -20,7 +22,7 @@ Describe "Test-RegistryValue parameter values" {
 	}
 	
 	It "Should Have Parameter Credential" {
-		$cmd | Should -HaveParameter -ParameterName Value -Mandatory
+		$cmd | Should -HaveParameter -ParameterName Name -Mandatory
 	}
 	
 	AfterEach {

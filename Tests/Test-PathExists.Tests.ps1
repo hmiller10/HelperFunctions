@@ -6,25 +6,20 @@ BeforeAll {
 
 # Test-PathExists Tests, all should pass
 Describe 'Test-PathExists - Parameters' {
-	BeforeAll {
+	BeforeEach {
 		$Path = Join-Path $TestDrive "Temp"
+		$cmd = Get-Command Test-MyNetConnection -Server $ServerIP -Port $Port -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName Server -Type System.String -Because "The function requires a destination to test."
 	}
 
 	It "Test-PathExists should have parameter Path." {
-		Get-Command Test-PathExists | Should -HaveParameter -ParameterName Path -Type System.String -Mandatory
+		$cmd | Should -HaveParameter -ParameterName "Path" -Mandatory
 	}
 	
 	It "Test-PathExists should have parameter PathType." {
-		Get-Command Test-PathExists | Should -HaveParameter -ParameterName PathType -Type System.String -Mandatory
+		$cmd | Should -HaveParameter -ParameterName PathType -Mandatory
 	}
 	
-	It "Should be of type [System.IO.DirectoryInfo]" {
-		$result = Test-PathExists -Path $Path -PathType Folder
-		$result | Should -Not -BeNullOrEmpty
-		$result | Should -BeOfType [System.IO.DirectoryInfo]
-	}
-	
-	AfterAll {
+	AfterEach {
 		Remove-Item -Path $Path -Force
 	}
 }

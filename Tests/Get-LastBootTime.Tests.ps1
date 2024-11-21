@@ -39,45 +39,37 @@ Describe "Get-LastBootTime parameter tests" {
 
 Describe "Get-LastBootTime function output" {
 
-	BeforeAll {
+	BeforeEach {
 		$Computer = [System.Net.Dns]::GetHostByName("LocalHost").HostName
 		$DaysPast = "14"
 		$plainTextPwd = "P@ssw0rd1!"
 		$password = ConvertTo-SecureString -String $plainTextPwd -AsPlainText -Force
 		$Creds = New-Object -TypeName System.Management.Automation.PSCredential ('Administrator', $password)
+		$result = Get-LastBootTime -ComputerName $Computer -Credential $creds -DaysPast $DaysPast -ErrorAction SilentlyContinue
 	}
 
-	Context 'Get-LastBootTime function output' {
-	
-		BeforeEach {
-			$result = Get-LastBootTime -ComputerName $Computer -Credential $creds -DaysPast $DaysPast -ErrorAction SilentlyContinue
-		}
 		
-		It "If no result, should output a PowerShell Object" {
-			if (!($result)) {
-				$result | Should -BeNullOrEmpty
-			}
-		}
-
-		It "If result is found, should output an event log record" {
-			if ($result.Count -eq 1) {
-				$result | Should -Not -BeNullOrEmpty
-				$result | Should -BeOfType EventLogRecord
-			}
-		}
-
-		It "If result is found, should output an event log record" {
-			if ($result.Count -gt 1) {
-				$result | Should -BeOfType Array
-			}
-		}
-
-		AfterEach {
-			$null = $result
+	It "If no result, should output a PowerShell Object" {
+		if (!($result)) {
+			$result | Should -BeNullOrEmpty
 		}
 	}
-	
-	AfterAll {
+
+	It "If result is found, should output an event log record" {
+		if ($result.Count -eq 1) {
+			$result | Should -Not -BeNullOrEmpty
+			$result | Should -BeOfType EventLogRecord
+		}
+	}
+
+	It "If result is found, should output an event log record" {
+		if ($result.Count -gt 1) {
+			$result | Should -BeOfType Array
+		}
+	}
+
+	AfterEach {
+		$null = $result
 		$null = $Computer
 		$null = $DaysPast
 		$null = $Creds

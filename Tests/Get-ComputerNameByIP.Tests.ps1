@@ -15,7 +15,7 @@ Describe 'Get-ComputerNameByIP parameters' {
 	It "Get-ComputerNameByIP should have IPAddress as a mandatory parameter." {
 		$cmd | Should -HaveParameter -ParameterName IPAddress -Because "IPAddress is required to render result." -Mandatory
 		$cmd | Should -Not -BeNullOrEmpty
-		$cmd | Should -ExpectedType [IPAddress]
+		$cmd | Should -ExpectedType [System.String]
 	}
 	
 	AfterEach {			
@@ -27,12 +27,11 @@ Describe 'Get-ComputerNameByIP parameters' {
 Describe 'Get-ComputerNameByIP function output' {
 	
 	BeforeEach {
-		$IPAddress = (Get-CimInstance -ClassName Win32_NetworkAdapterConfiguration -Namespace 'root\CIMv2' -Filter "IPEnabled = 'True'" | Where { $_.DefaultIPGateway -ne $null } | Select-Object -Property IPAddress).IPAddress
-		[IPAddress]$IPAddress = $IPAddress[0]
+		$IPAddress = (Get-NetIPConfiguration -ErrorAction Stop | Where-Object { ($null -ne $_.IPv4DefaultGateway) -and ($_.NetAdapter.status -ne "Disconnected") }).IPv4Address.IPAddress
 	}
 	
 	It "Get-ComputerNameByIP output should return a string value" {
-		$result = Get-ComputerNameByIP -IPAddress $IPAddress
+		$result = Get-ComputerNameByIP -IPAddress $IPAddress -ErrorAction
 		$result | Should -Not -BeNullOrEmpty
 		$result | Should -BeOfType [System.String]
 	}

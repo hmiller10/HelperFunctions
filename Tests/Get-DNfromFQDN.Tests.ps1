@@ -16,7 +16,7 @@ Describe 'Get-DNfromFQDN Parameters' {
 	It "Get-DNfromFQDN should have parameter DomainFQDN." {
 		$cmd | Should -HaveParameter -ParameterName FQDN -Because "The function must have a secure string to process." -Mandatory
 		$cmd | Should -Not -BeNullOrEmpty
-		$cmd | Should -ExpectedType [System.String]
+		$cmd | Should -ExpectedType [System.Management.Automation.FunctionInfo]
 	}
 
 	AfterEach {

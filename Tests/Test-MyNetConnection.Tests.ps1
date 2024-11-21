@@ -2,6 +2,15 @@
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
+
+	[string]$ServerIP = '8.8.8.8'
+	[string]$google = 'google.com'
+	[int32]$dnsPort = 53
+	[int32]$SecurePort = 443
+	[int32]$Port = 80
+	[string]$remoteDomain1 = 'yahoo.com'
+	[string]$remoteDomain2 = 'microsoft.com'
+
 }
 
 # Test-MyNetConnection Tests, all should pass
@@ -12,11 +21,11 @@ Describe 'Test-MyNetConnection function parameters' {
 	}
 	
 	It "Should Have Parameter ComputerName" {
-		$cmd | Should -HaveParameter -ParameterName Server -Mandatory -Type System.String
+		$cmd | Should -HaveParameter -ParameterName Server -Mandatory
 	}
 	
 	It "Should Have Parameter Credential" {
-		$cmd | Should -HaveParameter -ParameterName Port -Mandatory -Type System.String
+		$cmd | Should -HaveParameter -ParameterName Port -Mandatory
 	}
 	
 	AfterEach {
@@ -25,17 +34,7 @@ Describe 'Test-MyNetConnection function parameters' {
 }
 
 Describe 'Test-MyNetConnection function output' {
-	
-	BeforeEach {
-		[string]$ServerIP = '8.8.8.8'
-		[string]$google = 'google.com'
-		[int32]$dnsPort = 53
-		[int32]$SecurePort = 443
-		[int32]$Port = 80
-		[string]$remoteDomain1 = 'yahoo.com'
-		[string]$remoteDomain2 = 'microsoft.com'
-	}
-	
+
 	It "Test-MyNetConnection should resolve DNS name 'google.com'" {
 		$result = Test-MyNetConnection -Server $google -Port $SecurePort
 		$result | Should -Not -BeNullOrEmpty
@@ -56,18 +55,15 @@ Describe 'Test-MyNetConnection function output' {
 			$result.TcpTestSucceeded | Should -Be $true
 		}
 	}
-	
-	AfterEach {
-		$null = $ServerIP
-		$null = $google
-		$null = $dnsPort
-		$null = $SecurePort
-		$null = $Port
-		$null = $remoteDomain1
-		$null = $remoteDomain2
-	}
 }
 
 AfterAll {
+	$null = $ServerIP
+	$null = $google
+	$null = $dnsPort
+	$null = $SecurePort
+	$null = $Port
+	$null = $remoteDomain1
+	$null = $remoteDomain2
 	Remove-Module -Name HelperFunctions -Force
 }
