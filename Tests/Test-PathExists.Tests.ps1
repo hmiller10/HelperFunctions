@@ -5,10 +5,10 @@ BeforeAll {
 }
 
 # Test-PathExists Tests, all should pass
-Describe 'Test-PathExists - Parameters' {
+Describe 'Test-PathExists parameter values' {
 	BeforeEach {
-		$Path = Join-Path $TestDrive "Temp"
-		$cmd = Get-Command Test-MyNetConnection -Server $ServerIP -Port $Port -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName Server -Type System.String -Because "The function requires a destination to test."
+		$Path = "TestDrive:\Temp"
+		$cmd = Get-Command Test-PathExists -Module HelperFunctions -CommandType Function
 	}
 
 	It "Test-PathExists should have parameter Path." {
@@ -36,7 +36,7 @@ Describe 'Test-PathExists - Folder' {
 			New-Item -Path $Path -ItemType Directory
 		}
 		
-		Test-Path -Path $Path | Should -Be $true 
+		Test-Path -Path $Path -PathType Container | Should -Be $true 
 	}
 	
 	AfterEach {
@@ -52,11 +52,11 @@ Describe 'Test-PathExists - File' {
 	It 'Test-PathExists with File should exist' {
 		if (-Not (Test-Path -Path $File -PathType Leaf))
 		{
-			New-Item -Path $File-ItemType File
+			New-Item -Path $File -ItemType File
 			Set-Content $File -value "My test text."
 		}
 		
-		Test-Path -Path $File | Should -Be $true
+		Test-Path -Path $File -PathType Leaf | Should -Be $true
 	}
 	
 	AfterAll {
