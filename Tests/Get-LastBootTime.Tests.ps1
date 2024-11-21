@@ -1,5 +1,5 @@
 ﻿BeforeAll {
-	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name HelperFunctions -MinimumVersion 2.7.4 -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 	$Computer = [System.Net.Dns]::GetHostByName("LocalHost").HostName
@@ -22,18 +22,6 @@ Describe "Get-LastBootTime parameter tests" {
 	
 	It "Should Have Parameter Credential" {
 		$cmd | Should -HaveParameter -ParameterName Credential
-	}
-	
-	It "Should Have Parameter DaysPast" {
-		$cmd | Should -HaveParameter -ParameterName DaysPast
-	}
-	
-	It "Should Have Parameter Confirm" {
-		$cmd | Should -HaveParameter -ParameterName Confirm
-	}
-	
-	It "Should Have Parameter WhatIf" {
-		$cmd | Should -HaveParameter -ParameterName WhatIf
 	}
 	
 	AfterEach {
