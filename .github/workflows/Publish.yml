@@ -26,10 +26,16 @@ jobs:
         uses: potatoqualitee/psmodulecache@v6.0
         with:
           modules-to-cache: PSFramework,Pester::,HelperFunctions
-          updatable: true
-          shell: powershell
- 
-      - name: Show that the Action works
+          updatable: "true"
+          shell: powershell,pwsh
+          
+      - name: Show that the v7 Action works on pwsh
+        shell: pwsh
+        run: |
+          Get-Module -Name PSFramework, Pester, HelperFunctions  -ListAvailable | Select Path
+          Import-Module -Name HelperFunctions -Force
+
+      - name: Show that the v5 Action works on powershell
         shell: powershell
         run: |
               Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
@@ -50,7 +56,7 @@ jobs:
         env:
           DESCRIPTION: ${{ github.event.description }}
           PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
-          #BUILDVER: '2.7.2'
+          #BUILDVER: '2.7.4'
           
         run: |
           Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
