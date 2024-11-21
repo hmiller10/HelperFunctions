@@ -4,9 +4,8 @@
 	if ($Error) { $Error.Clear() }
 }
 
-
+# Test-IsInstalled Tests, all should pass
 Describe 'It should have parameter' {
-	# Test-IsInstalled Tests, all should pass
 
 	It "Test-IsInstalled should have a parameter Program" {
 		Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program -Type System.String -Mandatory

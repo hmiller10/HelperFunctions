@@ -3,8 +3,8 @@
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 }
-# Get-DomainfromDN Tests, all should pass
 
+# Get-DnsDomainfromDN Tests, all should pass
 Describe 'Get-DnsDomainfromDN should have parameter' {
 	
 	It "Get-DnsDomainfromDN should have parameter DistinguishedName." {
