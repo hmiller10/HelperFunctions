@@ -1,28 +1,32 @@
 ﻿BeforeAll {
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
-	if ($Error)
-	{
-		$Error.Clear()
-	}
-	
-	[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
+	if ($Error) { 	$Error.Clear() }
 }
 
-Describe 'Get-FQDNfromDN' {
+# Get-FQDNfromDN Tests, all should pass
+Describe 'Get-FQDNfromDN parameters' {
 
-	Context "Return Get-FQDNfromDN" {
-		# Get-FQDNfromDN Tests, all should pass
+   It "Get-FQDNfromDN should have parameter DistinguishedName." {
+       Get-Command Get-FQDNfromDN | Should -HaveParameter -ParameterName DistinguishedName -Mandatory
+   }
 
-        It "Get-FQDNfromDN should have parameter DistinguishedName." {
-            Get-Command Get-FQDNfromDN | Should -HaveParameter DistinguishedName -Type String -Mandatory
-        }
+}
 
-		It "Should be of type [System.String]" {
-			$result = Get-FQDNfromDN -DistinguishedName $ComputerDN
-			$result | Should -Not -BeNullOrEmpty
-			$result | Should -ExpectedType [System.String]
-		}
+Describe 'Get-FQDNfromDN function output' {
+
+	BeforeEach {
+		[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
+	}
+	
+	It "Get-FQDNfromDN output should be of type [System.String]" {
+		$result = Get-FQDNfromDN -DistinguishedName $ComputerDN -ErrorAction SilentlyContinue
+		$result | Should -Not -BeNullOrEmpty
+		$result | Should -ExpectedType [System.String]
+	}
+	
+	AfterEach {
+		$null = $ComputerDN
 	}
 }
 

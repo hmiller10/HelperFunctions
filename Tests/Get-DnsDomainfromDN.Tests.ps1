@@ -14,12 +14,20 @@ Describe 'Get-DnsDomainfromDN should have parameter' {
 }
 
 Describe 'Get-DnsDomainFromDN function output' {
-
-	It "Should be of type [System.String]" {
+	
+	BeforeEach {
 		[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
+	}
+	
+	It "Should be of type [System.String]" {
+		
 		$result = Get-DnsDomainfromDN -DistinguishedName $ComputerDN
 		$result | Should -BeOfType [System.String]
 		$result | Should -Not -BeNullOrEmpty
+	}
+	
+	AfterEach {
+		$null = $ComputerDN
 	}
 }
 

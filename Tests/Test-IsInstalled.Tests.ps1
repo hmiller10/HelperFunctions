@@ -5,7 +5,7 @@
 }
 
 # Test-IsInstalled Tests, all should pass
-Describe 'It should have parameter' {
+Describe 'Test-IsInstalled parameters' {
 
 	It "Test-IsInstalled should have a parameter Program" {
 		Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program -Type System.String -Mandatory
@@ -13,10 +13,18 @@ Describe 'It should have parameter' {
 }
 
 Describe 'Test-IsInstalled function output' {
-	It "Should be of type [bool]" {
+	BeforeEach {
 		$Program = "Github Desktop"
+	}
+	
+	It "Test-IsInstalled output should be of type [bool]" {
+		
 		$result = Test-IsInstalled -Program $Program
 		$result | Should -BeOfType [bool]
+	}
+	
+	AfterEach {
+		$null = $Program
 	}
 }
 

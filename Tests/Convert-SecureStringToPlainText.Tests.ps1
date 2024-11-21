@@ -3,33 +3,31 @@
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 	
+	$cmd = Get-Command -Name Convert-SecureStringToPlainText -Module HelperFunctions -CommandType Function
+	$securePass = ("P@ssw0rd1!!" | ConvertTo-SecureString -AsPlainText -Force)
 }
 
-Describe 'Convert-SecureStringToPlainText' {
+# Get-ComputerNameByIP Tests, all should pass
+Describe 'Convert-SecureStringToPlainText Parameters' {
+	
+	It "Convert-SecureStringToPlainText should have SecureString as a mandatory parameter." {
+		$cmd | Should -HaveParameter -ParameterName SecureString -Because "The function must have a secure string to process." -Mandatory
+		$cmd | Should -Not -BeNullOrEmpty
+	}
+	
+}
 
-	Context "Convert-SecureStringToPlainText is called, it must have parameter SecureString" {
-		# Get-ComputerNameByIP Tests, all should pass
-		BeforeEach {
-			$cmd = Get-Command -Name Convert-SecureStringToPlainText -Module HelperFunctions -CommandType Function
-			$securePass = ("P@ssw0rd1!!" | ConvertTo-SecureString -AsPlainText -Force)
-		}
-
-		It "Convert-SecureStringToPlainText should have SecureString as a mandatory parameter." {
-			$cmd | Should -HaveParameter -ParameterName SecureString -Because "The function must have a secure string to process."
-			$cmd | Should -Not -BeNullOrEmpty
-		}
-
-        It "Convert-SecureStringToPlainText should have output type of string." {
-			$cmd | Should -BeOfType PSCustomObject
-		}
-
-		AfterEach {
-			$null = $securePass
-			$null = $cmd
-		}
+Describe 'Convert-SecureStringToPlainText function output' {
+	
+	It "Convert-SecureStringToPlainText should have output type of string." {
+		$cmd = Convert-SecureStringToPlainText -SecureString $securePass -ErrorAction SilentlyContinue
+		$cmd | Should -BeOfType PSCustomObject
+		$cmd | Should -Not -BeNullOrEmpty
 	}
 }
 
 AfterAll {
-    Remove-Module -Name HelperFunctions -Force
+	$null = $cmd
+	$null = $securePass
+	Remove-Module -Name HelperFunctions -Force
 }

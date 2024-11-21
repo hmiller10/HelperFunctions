@@ -1,44 +1,43 @@
 ﻿BeforeAll {
+
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
-	#$ComputerFQDN = "computer1.my.domain.com"
-	if ((Get-CimInstance -ClassName CIM_ComputerSystem -NameSpace 'root\CIMv2').partOfDomain -eq $false)
-	{
-		exit
-	}
-	else
-	{
-		$ComputerFQDN = [System.Net.Dns]::GetHostByName("LocalHost").HostName
-	}
 	
 }
 
-Describe 'Get-DNfromFQDN' {
-	Context "Test function parameters" {
-		# Get-DNfromFQDN Tests, all should pass
-		BeforeEach {
-			$cmd = Get-Command -Name Get-DNfromFQDN -Module HelperFunctions -CommandType Function
-		}
-		
-		It "Get-DNfromFQDN should have parameter DomainFQDN." {
-			$cmd | Should -HaveParameter -ParameterName FQDN -Because "The function must have a secure string to process."
-			$cmd | Should -Not -BeNullOrEmpty
-		}
+# Get-DNfromFQDN Tests, all should pass
+Describe 'Get-DNfromFQDN Parameters' {
 
-		AfterEach {
-			$null = $cmd
-		}
+	BeforeEach {
+		$cmd = Get-Command -Name Get-DNfromFQDN -Module HelperFunctions -CommandType Function
+	}
+	
+	It "Get-DNfromFQDN should have parameter DomainFQDN." {
+		$cmd | Should -HaveParameter -ParameterName FQDN -Because "The function must have a secure string to process." -Mandatory
+		$cmd | Should -Not -BeNullOrEmpty
+		$cmd | Should -ExpectedType [System.String]
 	}
 
-	Context "Test function output" {
-		Mock Get-DNfromFQDN -MockWith {
-			$result = Get-DNfromFQDN -FQDN $ComputerFQDN
-		}
+	AfterEach {
+		$null = $cmd
+	}
+}
+
+Describe 'Get-DNfromFQDN function output' {
 		
-		It "Should be type String" {
-			$result | Should -BeOfType [System.String]
-		}
+	BeforeEach {
+		$ComputerFQDN = "computer1.my.domain.com"
+	}
+	
+	It "Get-DNfromFQDN output should be type String" {
+		$result = Get-DNfromFQDN -FQDN $ComputerFQDN -ErrorAction SilentlyContinue
+		$result | Should -BeOfType [System.String]
+		$result | Should -Not -BeNullOrEmpty
+	}
+	
+	AfterEach {
+		$null = $ComputerFQDN
 	}
 }
 
