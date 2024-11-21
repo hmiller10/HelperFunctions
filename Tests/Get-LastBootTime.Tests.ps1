@@ -2,6 +2,11 @@
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
+	$Computer = [System.Net.Dns]::GetHostByName("LocalHost").HostName
+	$DaysPast = "14"
+	$plainTextPwd = "P@ssw0rd1!"
+	$password = ConvertTo-SecureString -String $plainTextPwd -AsPlainText -Force
+	$Creds = New-Object -TypeName System.Management.Automation.PSCredential ('Administrator', $password)
 }
 
 # Get-LastBootTime Tests, all should pass
@@ -40,11 +45,6 @@ Describe "Get-LastBootTime parameter tests" {
 Describe "Get-LastBootTime function output" {
 
 	BeforeEach {
-		$Computer = [System.Net.Dns]::GetHostByName("LocalHost").HostName
-		$DaysPast = "14"
-		$plainTextPwd = "P@ssw0rd1!"
-		$password = ConvertTo-SecureString -String $plainTextPwd -AsPlainText -Force
-		$Creds = New-Object -TypeName System.Management.Automation.PSCredential ('Administrator', $password)
 		$result = Get-LastBootTime -ComputerName $Computer -Credential $creds -DaysPast $DaysPast -ErrorAction SilentlyContinue
 	}
 
@@ -67,17 +67,18 @@ Describe "Get-LastBootTime function output" {
 			$result | Should -BeOfType Array
 		}
 	}
-
+	
 	AfterEach {
 		$null = $result
-		$null = $Computer
-		$null = $DaysPast
-		$null = $Creds
-		$null = $plainTxtPwd
-		$null = $password
 	}
 }
 
 AfterAll {
+	$null = $Computer
+	$null = $DaysPast
+	$null = $Creds
+	$null = $plainTxtPwd
+	$null = $password
+
 	Remove-Module -Name HelperFunctions -Force
 }

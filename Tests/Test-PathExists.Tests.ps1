@@ -4,59 +4,63 @@ BeforeAll {
 	if ($Error) { $Error.Clear() }
 }
 
-# Test-PathExists Tests, all should pass
-Describe 'Test-PathExists parameter values' {
-	BeforeEach {
+Describe 'Test-PathExists - Parameters' {
+	BeforeAll {
 		$Path = "TestDrive:\Temp"
-		$cmd = Get-Command Test-PathExists -Module HelperFunctions -CommandType Function
 	}
-
+	
+	# Test-PathExists Tests, all should pass
+	
 	It "Test-PathExists should have parameter Path." {
-		$cmd | Should -HaveParameter -ParameterName "Path" -Mandatory
+		Get-Command Test-PathExists | Should -HaveParameter -ParameterName Path -Type System.String -Mandatory
 	}
 	
 	It "Test-PathExists should have parameter PathType." {
-		$cmd | Should -HaveParameter -ParameterName PathType -Mandatory
+		Get-Command Test-PathExists | Should -HaveParameter -ParameterName PathType -Type System.String -Mandatory
 	}
 	
-	AfterEach {
+	It "Should be of type [System.IO.DirectoryInfo]" {
+		$result = Test-PathExists -Path $Path -PathType Folder
+		$result | Should -Not -BeNullOrEmpty
+		$result | Should -BeOfType [System.IO.DirectoryInfo]
+	}
+	
+	AfterAll {
 		Remove-Item -Path $Path -Force
 	}
 }
 
 # Pester test to check for the existence of the file or folder
 Describe 'Test-PathExists - Folder' {
-	BeforeEach {
+	BeforeAll {
 		$Path = "TestDrive:\Temp"
 	}
 	
-	It 'Test-PathExists with Folder should exist' {
+	It 'should exist' {
 		if (-Not (Test-Path -Path $Path -PathType Container))
 		{
 			New-Item -Path $Path -ItemType Directory
 		}
-		
-		Test-Path -Path $Path -PathType Container | Should -Be $true 
+		Test-Path -Path $Path | Should -Be $true
 	}
 	
-	AfterEach {
+	AfterAll {
 		Remove-Item -Path $Path -Force
 	}
 }
 
 Describe 'Test-PathExists - File' {
-	BeforeEach {
-		$File = "TestDrive:\Temp\test.txt"
+	BeforeAll {
+		$File = "TestDrive:\test.txt"
+		Set-Content $File -value "my test text."
 	}
 	
-	It 'Test-PathExists with File should exist' {
+	It 'should exist' {
 		if (-Not (Test-Path -Path $File -PathType Leaf))
 		{
 			New-Item -Path $File -ItemType File
-			Set-Content $File -value "My test text."
 		}
-		
-		Test-Path -Path $File -PathType Leaf | Should -Be $true
+		Test-Path -Path $File | Should -Be $true
 	}
 	
 	AfterAll {
