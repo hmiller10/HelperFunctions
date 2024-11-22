@@ -63,7 +63,7 @@ Describe 'Test-PathExists - File' {
 	}
 	
 	AfterAll {
-		#Remove-Item -Path $File -Force
+		Remove-Item -Path $File -Force
 	}
 }
 
