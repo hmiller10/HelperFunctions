@@ -13,19 +13,11 @@ Describe 'Test-IsInstalled parameters' {
 }
 
 Describe 'Test-IsInstalled function output' {
-	
-	BeforeEach {
-		$Program = "Github Desktop"
-	}
-	
+
 	It "Test-IsInstalled output should be of type [bool]" {
-		
-		$result = Test-IsInstalled -Program $Program
+		$Program = "Github Desktop"
+		$result = Test-IsInstalled -Program $Program -ErrorAction SilentlyContinue
 		$result | Should -BeOfType [bool]
-	}
-		
-	AfterEach {
-		$null = $Program
 	}
 	
 }
