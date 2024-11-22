@@ -44,7 +44,7 @@ Describe 'Test-PathExists - Folder' {
 	}
 	
 	AfterAll {
-		#Remove-Item -Path $Path -Force
+		Remove-Item -Path $Path -Force
 	}
 }
 
