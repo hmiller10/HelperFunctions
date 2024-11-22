@@ -53,11 +53,14 @@ jobs:
         shell: powershell
 
       - name: Publish to PowerShell Gallery
+        if: success()
         env:
           DESCRIPTION: ${{ github.event.description }}
           PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           #BUILDVER: '2.7.4'
           
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
+        	$moduleVersion = (Get-Module -ListAvailable -Name HelperFunctions).Version 
+        	Publish-Module -Path .\HelperFUnctions -Repository PSGallery -NuGetApiKey ${{ $env:PSGALLERY_KEY }} -RequiredVersion $moduleVersion
+          #Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
         shell: powershell
