@@ -53,7 +53,6 @@ jobs:
         shell: powershell
 
       - name: Publish to PowerShell Gallery
-        if: success()
         env:
           DESCRIPTION: ${{ github.event.description }}
           PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
