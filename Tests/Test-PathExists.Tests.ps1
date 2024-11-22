@@ -19,9 +19,9 @@ Describe 'Test-PathExists - Parameters' {
 	}
 	
 	It "Should be of type [System.IO.DirectoryInfo]" {
-		$result = Test-PathExists -Path $Path -PathType Folder
-		$result | Should -Not -BeNullOrEmpty
-		$result | Should -BeOfType [System.IO.DirectoryInfo]
+		$result1 = Test-PathExists -Path $Path -PathType Folder
+		$result1 | Should -Not -BeNullOrEmpty
+		$result1 | Should -BeOfType [System.IO.DirectoryInfo]
 	}
 	
 	AfterAll {
@@ -51,7 +51,7 @@ Describe 'Test-PathExists - Folder' {
 Describe 'Test-PathExists - File' {
 	BeforeAll {
 		$File = "TestDrive:\test.txt"
-		Set-Content $File -value "my test text."
+		Set-Content $File -value "My test1 file text."
 	}
 	
 	It "$File should exist" {
@@ -60,6 +60,12 @@ Describe 'Test-PathExists - File' {
 			New-Item -Path $File -ItemType File
 		}
 		Test-Path -Path $File | Should -Be $true
+	}
+	
+	It "Should be of type [System.IO.FileInfo]" {
+		$result2 = Test-PathExists -Path $File -PathType File
+		$result2 | Should -Not -BeNullOrEmpty
+		$result2 | Should -BeOfType [System.IO.FileInfo]
 	}
 	
 	AfterAll {
