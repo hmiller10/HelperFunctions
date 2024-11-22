@@ -42,6 +42,7 @@ jobs:
         run: |
           Get-ChildItem -Path ${{ github.workspace }} -Recurse
           # $WorkingDir = Get-ChildItem -Path ${{ github.workspace }} -Recurse
+          $moduleVersion = (Get-Module -ListAvailable -Name HelperFunctions).Version
         shell: powershell
 
       - name: Test module
@@ -55,6 +56,6 @@ jobs:
           PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           
         run: |
-        		$moduleVersion = (Get-Module -ListAvailable -Name HelperFunctions).Version 
+        		
         		Publish-Module -Path .\HelperFUnctions -Repository PSGallery -NuGetApiKey ${{ $env:PSGALLERY_KEY }} -RequiredVersion $moduleVersion
         shell: powershell
