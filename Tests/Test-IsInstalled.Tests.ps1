@@ -2,6 +2,7 @@
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
+	if (Get-PSDrive -Name "TestDrive") { Remove-PSDrive -Name "Testdrive" -Force}
 }
 
 # Test-IsInstalled Tests, all should pass
