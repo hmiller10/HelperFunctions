@@ -6,9 +6,6 @@ BeforeAll {
 
 # Test-PathExists Tests, all should pass
 Describe 'Test-PathExists - Parameters' {
-	BeforeAll {
-		$Path = "TestDrive:\Temp"
-	}
 	
 	It "Test-PathExists should have parameter Path." {
 		Get-Command Test-PathExists | Should -HaveParameter -ParameterName Path -Type System.String -Mandatory
@@ -23,10 +20,6 @@ Describe 'Test-PathExists - Parameters' {
 		$result1 | Should -Not -BeNullOrEmpty
 		$result1 | Should -BeOfType [System.IO.DirectoryInfo]
 	}
-	
-	AfterAll {
-		Remove-Item -Path $Path -Force
-	}
 }
 
 # Pester test to check for the existence of the file or folder
@@ -35,7 +28,7 @@ Describe 'Test-PathExists - Folder' {
 		$Path = "TestDrive:\Temp"
 	}
 	
-	It "$Path should exist" {
+	It "Folder should exist" {
 		if (-Not (Test-Path -Path $Path -PathType Container))
 		{
 			New-Item -Path $Path -ItemType Directory
@@ -54,7 +47,7 @@ Describe 'Test-PathExists - File' {
 		Set-Content $File -value "My test1 file text."
 	}
 	
-	It "$File should exist" {
+	It "File should exist" {
 		if (-Not (Test-Path -Path $File -PathType Leaf))
 		{
 			New-Item -Path $File -ItemType File
