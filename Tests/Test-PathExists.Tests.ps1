@@ -31,10 +31,10 @@ Describe 'Test-PathExists - Folder' {
 		Test-Path -Path $Path | Should -Be $true
 	}
 	
-	It "Should be of type [System.IO.DirectoryInfo]" {
+	It "Folder should be of type [System.String]" {
 		$result1 = Test-PathExists -Path $Path -PathType Folder
 		$result1 | Should -Not -BeNullOrEmpty
-		$result1 | Should -BeOfType [System.IO.DirectoryInfo]
+		$result1 | Should -BeOfType [System.String]
 	}
 	
 	AfterAll {
@@ -56,7 +56,7 @@ Describe 'Test-PathExists - File' {
 		Test-Path -Path $File | Should -Be $true
 	}
 	
-	It "Should be of type [System.String]" {
+	It "File should be of type [System.String]" {
 		$result2 = Test-PathExists -Path $File -PathType File
 		$result2 | Should -Not -BeNullOrEmpty
 		$result2 | Should -BeOfType [System.String]
