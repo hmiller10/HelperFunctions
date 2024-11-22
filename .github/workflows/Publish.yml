@@ -55,7 +55,6 @@ jobs:
           PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           
         run: |
-        	$moduleVersion = (Get-Module -ListAvailable -Name HelperFunctions).Version 
-        	Publish-Module -Path .\HelperFUnctions -Repository PSGallery -NuGetApiKey ${{ $env:PSGALLERY_KEY }} -RequiredVersion $moduleVersion
-          # Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
+        		$moduleVersion = (Get-Module -ListAvailable -Name HelperFunctions).Version 
+        		Publish-Module -Path .\HelperFUnctions -Repository PSGallery -NuGetApiKey ${{ $env:PSGALLERY_KEY }} -RequiredVersion $moduleVersion
         shell: powershell
