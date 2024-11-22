@@ -14,12 +14,7 @@ Describe 'Test-PathExists - Parameters' {
 	It "Test-PathExists should have parameter PathType." {
 		Get-Command Test-PathExists | Should -HaveParameter -ParameterName PathType -Type System.String -Mandatory
 	}
-	
-	It "Should be of type [System.IO.DirectoryInfo]" {
-		$result1 = Test-PathExists -Path $Path -PathType Folder
-		$result1 | Should -Not -BeNullOrEmpty
-		$result1 | Should -BeOfType [System.IO.DirectoryInfo]
-	}
+
 }
 
 # Pester test to check for the existence of the file or folder
@@ -34,6 +29,12 @@ Describe 'Test-PathExists - Folder' {
 			New-Item -Path $Path -ItemType Directory
 		}
 		Test-Path -Path $Path | Should -Be $true
+	}
+	
+	It "Should be of type [System.IO.DirectoryInfo]" {
+		$result1 = Test-PathExists -Path $Path -PathType Folder
+		$result1 | Should -Not -BeNullOrEmpty
+		$result1 | Should -BeOfType [System.IO.DirectoryInfo]
 	}
 	
 	AfterAll {
