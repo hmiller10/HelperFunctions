@@ -62,10 +62,10 @@ Describe 'Test-PathExists - File' {
 		Test-Path -Path $File | Should -Be $true
 	}
 	
-	It "Should be of type [System.IO.FileInfo]" {
+	It "Should be of type [System.String]" {
 		$result2 = Test-PathExists -Path $File -PathType File
 		$result2 | Should -Not -BeNullOrEmpty
-		$result2 | Should -BeOfType [System.IO.FileInfo]
+		$result2 | Should -BeOfType [System.String]
 	}
 	
 	AfterAll {
