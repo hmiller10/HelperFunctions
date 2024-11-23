@@ -1,4 +1,4 @@
-﻿function global:Test-IsGroupMember
+﻿function global:Test-IsDomainGroupMember
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
@@ -42,4 +42,4 @@
 	{
 		([string]$objItem.member).contains($User)
 	}
-} #end function Test-IsGroupMember
+} #end function Test-IsDomainGroupMember

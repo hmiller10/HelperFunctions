@@ -945,7 +945,7 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>Get-MyNewCimSession</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="Server, Computer, ComputerName, CN">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="'CN', 'ComputerName','Server', 'IP'">
 					<maml:name>ServerName</maml:name>
 					<maml:description>
 						<maml:para>FQDN of remote server</maml:para>
@@ -973,7 +973,7 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="Server, Computer, ComputerName, CN">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="'CN', 'ComputerName','Server', 'IP'">
 				<maml:name>ServerName</maml:name>
 				<maml:description>
 					<maml:para>FQDN of remote server</maml:para>
@@ -997,6 +997,17 @@
 				</dev:type>
 				<dev:defaultValue />
 			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>SkipICMPCheck</maml:name>
+				<maml:description>
+					<maml:para>'Switch statement to enable SkipTestConnection Parameter when starting new CimSession.'</maml:para>
+				</maml:description>
+				<dev:type>
+					<maml:name />
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
 		</command:parameters>
 		<command:returnValues>
 			<!--Outputs-->
@@ -1012,7 +1023,7 @@
 		</command:returnValues>
 		<maml:alertSet>
 			<!--Notes-->
-			<maml:title />
+			<maml:title>Disclaimer</maml:title>
 			<maml:alert>
 				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
 			</maml:alert>
@@ -1020,11 +1031,11 @@
 		<command:examples>
 			<!--Examples-->
 			<command:example>
-				<maml:title>PS&gt; Get-MyNewCimSession -Server &lt;ServerFQDN&gt; -Credential PSCredential</maml:title>
+				<maml:title>PS C:\&gt; Get-MyNewCimSession -ServerName &lt;ServerFQDN&gt; -Credential PSCredential -SkipICMPCheck</maml:title>
 				<maml:introduction>
 					<maml:para>PS C:\&gt;</maml:para>
 				</maml:introduction>
-				<dev:code>.\Get-MyNewCimSession.ps1 -ServerName user.example.com -Credential (Get-Credential)</dev:code>
+				<dev:code>Get-MyNewCimSession -ServerName &lt;ServerFQDN&gt; -Credential PSCredential -SkipICMPCheck</dev:code>
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>
@@ -2405,7 +2416,7 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>New-RemotePSSession</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="Computer, Server, IP">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="'CN', 'ServerName', 'Server', 'IP'">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para>Provide the FQDN of the computer you wish to create a remoting session with</maml:para>
@@ -2457,7 +2468,7 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="Computer, Server, IP">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="'CN', 'ServerName', 'Server', 'IP'">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para>Provide the FQDN of the computer you wish to create a remoting session with</maml:para>
@@ -2930,7 +2941,7 @@
 			<command:example>
 				<maml:title>PS C:\&gt; Test-IsDomainGroupMember -User TestUser -Group 'Remote Desktop Users'</maml:title>
 				<maml:introduction>
-					<maml:para />
+					<maml:para>Checks AD group membership using Directory Searcher</maml:para>
 				</maml:introduction>
 				<dev:code>PS C:\&gt; Test-IsDomainGroupMember -User TestUser -GroupName 'Remote Desktop Users'</dev:code>
 				<dev:remarks>
