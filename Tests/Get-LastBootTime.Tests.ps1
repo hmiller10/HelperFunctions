@@ -1,9 +1,7 @@
 ﻿BeforeAll {
-	if ($Error) {
-		$Error.Clear()
-	}
-
 	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
+	if ($Error) { $Error.Clear() }
 }
 
 
@@ -83,5 +81,5 @@ AfterAll {
 	$null = $Computer
 	$null = $DaysPast
 
-	Remove-Module -Name HelperFunctions
+	Remove-Module -Name HelperFunctions -Force
 }

@@ -1,77 +1,80 @@
-﻿function Get-IPByComputerName
+﻿function global:Get-IPByComputerName
 {
-<#
-	.EXTERNALHELP HelperFunctions.psm1-Help.xml
-#>
+		<#
+			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+		#>
 	
 	[CmdletBinding()]
 	param
 	(
 		[Parameter(Mandatory = $true,
-		           ValueFromPipeline = $true,
-		           ValueFromPipelineByPropertyName = $true,
-		           Position = 0)]
-		[String[]]
-		$ComputerName,
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
+				 Position = 0)]
+		[String[]]$ComputerName,
 		[Parameter(Mandatory = $false,
-		           Position = 1)]
-		[Switch]
-		$IPV6only,
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
+				 Position = 1)]
+		[Switch]$IPV6only,
 		[Parameter(Mandatory = $false,
-		           Position = 2)]
-		[Switch]
-		$IPV4only
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
+				 Position = 2)]
+		[Switch]$IPV4only
 	)
 	
-Begin
+	begin
 	{
 		Write-Verbose "`n Checking IP Address . . .`n"
 	}
-	Process
+	process
 	{
-		foreach ($Computer in $ComputerName)
-		{
-			Try
+		$ComputerName | ForEach-Object {
+			$HostName = $_
+			
+			try
 			{
-				$AddressList = @(([net.dns]::GetHostEntry($Computer)).AddressList)
+				$AddressList = @(([net.dns]::GetHostEntry($HostName)).AddressList)
 			}
-			Catch
+			catch
 			{
-				Write-Error "Cannot determine the IP Address on $($Computer)"
+				"Cannot determine the IP Address on $HostName"
 			}
-
-			IF ($AddressList.Count -ne 0)
+			
+			if ($AddressList.Count -ne 0)
 			{
 				$AddressList | ForEach-Object {
-					IF ($PSBoundParameters.ContainsKey('IPV6only'))
+					if ($IPV6only)
 					{
-						IF ($_.AddressFamily -eq "InterNetworkV6")
+						if ($_.AddressFamily -eq "InterNetworkV6")
 						{
 							New-Object PSObject -Property @{
-								IPAddress = $_.IPAddressToString
-								ComputerName = $Computer
+								IPAddress    = $_.IPAddressToString
+								ComputerName = $HostName
 							} | Select-Object -Property ComputerName, IPAddress
 						}
 					}
-					IF ($PSBoundParamters.ContainsKey('IPV4only'))
+					if ($IPV4only)
 					{
-						IF ($_.AddressFamily -eq "InterNetwork")
+						if ($_.AddressFamily -eq "InterNetwork")
 						{
 							New-Object PSObject -Property @{
-								IPAddress = $_.IPAddressToString
-								ComputerName = $Computer
+								IPAddress    = $_.IPAddressToString
+								ComputerName = $HostName
 							} | Select-Object -Property ComputerName, IPAddress
 						}
 					}
-					IF (-Not($PSBoundParameters.ContainsKey('IPv4Only')) -or ($PSBoundParameters.ContainsKey('IPv6Only')))
+					if (!($IPV6only -or $IPV4only))
 					{
 						New-Object PSObject -Property @{
-							IPAddress = $_.IPAddressToString
-							ComputerName = $Computer
+							IPAddress    = $_.IPAddressToString
+							ComputerName = $HostName
 						} | Select-Object -Property ComputerName, IPAddress
 					}
 				} #IF
 			} #ForEach-Object(IPAddress)
 		} #ForEach-Object(ComputerName)
 	}
+	end {}
 } #End function Get-IPByComputerName

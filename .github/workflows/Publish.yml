@@ -28,7 +28,7 @@ jobs:
           modules-to-cache: PSFramework,Pester::,HelperFunctions
           updatable: true
           shell: powershell
-
+ 
       - name: Show that the Action works
         shell: powershell
         run: |
@@ -38,23 +38,20 @@ jobs:
       - name: Get working directory
         run: |
           Get-ChildItem -Path ${{ github.workspace }} -Recurse
+          $WorkingDir = Get-ChildItem -Path ${{ github.workspace }} -Recurse
         shell: powershell
 
       - name: Test module
         run: |
-         # Replace with your build and test commands
-         #$config = [PesterConfiguration]::Default
-         #$config.TestResult.Enabled = $true
-         #$config.Run.Exit = $true
-         #$config.CodeCoverage.Enabled = $true
-         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
+         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
         shell: powershell
 
       - name: Publish to PowerShell Gallery
         env:
-          NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
-          #BUILDVER: '2.4.0'
+          DESCRIPTION: ${{ github.event.description }}
+          PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          #BUILDVER: '2.7.6'
           
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -Name "HelperFunctions" -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -ErrorAction 'Continue'
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -Verbose -ErrorAction 'Continue'
         shell: powershell

@@ -1,34 +1,47 @@
-﻿BeforeAll {	
-	if ($Error)
-	{
-		$Error.Clear()
-	}
+﻿BeforeAll {
+	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force	
+	if ($Error) { $Error.Clear() }
 	
 }
 
-Describe 'Get-ComputerNameByIP' {
+# Get-ComputerNameByIP Tests, all should pass
+Describe 'Get-ComputerNameByIP parameters' {
 
-	Context "Get-ComputerNameByIP is called, it must have parameter IPAddress" {
-		# Get-ComputerNameByIP Tests, all should pass
-		BeforeEach {
-			$cmd = Get-Command -Name Get-ComputerNameByIP -Module HelperFunctions -CommandType Function
-			$IPAddress = (Get-CimInstance -ClassName Win32_NetworkAdapterConfiguration -Namespace 'root\CIMv2' -Filter "IPEnabled = 'True'" | Where { $_.DefaultIPGateway -ne $null } | Select-Object -Property IPAddress).IPAddress
-			[IPAddress]$IPAddress = $IPAddress[0]
-		}
-		It "Get-ComputerNameByIP should have IPAddress as a mandatory parameter." {
-			$cmd | Should -HaveParameter IPAddress -Because "IPAddress is required to render result."
-			$cmd | Should -Not -BeNullOrEmpty
-		}
-
-		It "Should return a string value" {
-			$result = Get-ComputerNameByIP -IPAddress $IPAddress
-			$result | Should -Not -BeNullOrEmpty
-			$result | Should -BeOfType [System.String]
-		}
-
-		AfterEach {
-			$null = $IPAddress
-			$null = $cmd
-		}
+	BeforeEach {
+		$cmd = Get-Command -Name Get-ComputerNameByIP -Module HelperFunctions -CommandType Function
 	}
+	
+	It "Get-ComputerNameByIP should have IPAddress as a mandatory parameter." {
+		$cmd | Should -HaveParameter -ParameterName IPAddress -Because "IPAddress is required to render result."
+		$cmd | Should -Not -BeNullOrEmpty
+		$cmd | Should -ExpectedType [System.Management.Automation.FunctionInfo]
+	}
+	
+	AfterEach {			
+		$null = $cmd
+	}
+
+}
+
+Describe 'Get-ComputerNameByIP function output' {
+	
+	BeforeEach {
+		$IPAddress = (Get-NetIPConfiguration -ErrorAction Stop | Where-Object { ($null -ne $_.IPv4DefaultGateway) -and ($_.NetAdapter.status -ne "Disconnected") }).IPv4Address.IPAddress
+	}
+	
+	It "Get-ComputerNameByIP output should return a string value" {
+		$result = Get-ComputerNameByIP -IPAddress $IPAddress -ErrorAction SilentlyContinue
+		$result | Should -Not -BeNullOrEmpty
+		$result | Should -BeOfType [System.String]
+	}
+	
+	AfterEach {
+		$null = $result
+		$null = $IPAddress
+	}
+}
+
+AfterAll {
+	Remove-Module -Name HelperFunctions -Force
 }

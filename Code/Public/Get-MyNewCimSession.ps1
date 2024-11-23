@@ -9,15 +9,29 @@ function global:Get-MyNewCimSession
 	[OutputType([Microsoft.Management.Infrastructure.CimSession])]
 	param
 	(
-		[Parameter(Mandatory = $true, ValueFromPipeline = $true, Position = 0)]
-		[ValidateNotNullorEmpty()]
-		[String[]]$ServerName,
-		[Parameter(Mandatory = $false, ValueFromPipeline = $false, Position = 1)]
-		[System.Management.Automation.PSCredential]$Credential
+		[Parameter(Mandatory = $true,
+		           ValueFromPipeline = $true,
+		           Position = 0)]
+		[ValidateNotNullOrEmpty()]
+		[Alias ('CN', 'ComputerName','Server', 'IP')]
+		[String[]]
+		$ServerName,
+		[Parameter(Mandatory = $false,
+		           ValueFromPipeline = $false,
+		           Position = 1)]
+		[System.Management.Automation.PSCredential]
+		$Credential,
+		[Parameter(Mandatory = $false,
+		           Position = 2,
+		           HelpMessage = 'Switch statement to enable SkipTestConnection Parameter when starting new cimsession.')]
+		[switch]
+		$SkipICMPCheck
 	)
-
+	
 	begin
 	{
+		$ServerName = $ServerName -split (",")
+		
 		$so = New-CimSessionOption -Protocol Dcom
 
 		<#
@@ -33,9 +47,14 @@ function global:Get-MyNewCimSession
 			ErrorVariable  = 'CIMSessionError'
 		}
 
-		if (($PSBoundParameters.ContainsKey('Credential')) -and ($null -ne ($PSBoundParameters["Credentail"])))
+		if (($PSBoundParameters.ContainsKey('Credential')) -and ($null -ne ($PSBoundParameters["Credential"])))
 		{
 			$Params.Add('Credential', $Credential)
+		}
+		
+		if ($PSBoundParameters.ContainsKey('SkipICMPCheck'))
+		{
+			$Params.Add('SkipTestConnection', $True)
 		}
 	}
 	process
@@ -47,7 +66,7 @@ function global:Get-MyNewCimSession
 			{
 				try
 				{
-					Write-Verbose -Message "Attempting connection to $Server using the default protocol."
+					Write-Verbose -Message ("Attempting connection to {0} using the default protocol." -f $Server)
 					New-CimSession @Params
 					if ($CIMSessionError.Count)
 					{
@@ -56,7 +75,7 @@ function global:Get-MyNewCimSession
 				}
 				catch
 				{
-					$errorMessage = "{ 0 }: { 1 }" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+					$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 					Write-Error -Message $errorMessage -ErrorAction Continue
 				}
 			}
@@ -71,7 +90,7 @@ function global:Get-MyNewCimSession
 				}
 				catch
 				{
-					$errorMessage = "{ 0 }: { 1 }" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+					$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 					Write-Error -Message $errorMessage -ErrorAction Continue
 				}
 				$Params.Remove('SessionOption')
@@ -80,5 +99,5 @@ function global:Get-MyNewCimSession
 			$Params.Remove('ComputerName')
 		}
 	}
-	End {}
+	end {}
 } #end Get-MyNewCimSession

@@ -1,1 +1,172 @@
-# Invoke-Shutdown# SYNOPSISInitiate LogOff, Reboot, Shutdown, PowerOff# DESCRIPTIONThis function utilizes Win32ShutdownTracker methods to trigger a LogOff, Reboot, Shutdown, PowerOff of the computer or computers passed to the function as a parameter. Either a local or remote shutdown can be triggered. If a remote shutdown method i s used WinRM or DCOM protocols must be accessible on the remote computer.# EXAMPLES```powershellC:\PS> IInvoke-Shutdown -ComputerName computer1.domain.com, computer2.domain.com -ShutdownType Reboot -MajorReasonCode Application -MinorReasonCode Installation -Unplanned -Confirm:$false```# PARAMETERS### ComputerNameThe name or names of the computers to action```yamlType: string[]Parameter Sets: Parameter Set 1Aliases: cn,S,Required: truePosition: namedDefault Value: Pipeline Input: False```### ShutdownTypeSelect option from validation set```yamlType: StringParameter Sets: Parameter Set 1Aliases: Required: truePosition: namedDefault Value: Pipeline Input: False```### ForceChoose this switch to force the action to be performed```yamlType: SwitchParameter Sets: Parameter Set 1Aliases: Required: truePosition: namedDefault Value: Pipeline Input: False```### WaitSeconds to pause before performing action```yamlType: uint32Parameter Sets: Parameter Set 1Aliases: Required: falsePosition: namedDefault Value: Pipeline Input: False```### CommentEnter  a descriptive comment for triggering this function```yamlType: StringParameter Sets: Parameter Set 1Aliases: Required: falsePosition: namedDefault Value: Pipeline Input: False```### Shutdown_MajorReasonChoose from validation set```yamlType: StringParameter Sets: Parameter Set 1Aliases: Required: truePosition: namedDefault Value: Pipeline Input: False```### Shutdown_MinorReasonChoose from validation set```yamlType: StringParameter Sets: Parameter Set 1Aliases: Required: truePosition: namedDefault Value: Pipeline Input: False```### UnplannedSelect this switch if the function is being called by an unplanned reason```yamlType: SwitchParameter Sets: Parameter Set 1Aliases: Required: falsePosition: namedDefault Value: Pipeline Input: False```### CredentialThe PS credential object```yamlType: PSCredentialParameter Sets: Parameter Set 1Aliases: Required: falsePosition: namedDefault Value: Pipeline Input: False```# INPUTS# OUTPUTS# NOTES### DisclaimerTHIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.# RELATED LINKS[Online Version:](https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32shutdowntracker-method-in-class-win32-operatingsystem)
+﻿# Invoke-Shutdown
+
+## SYNOPSIS
+Initiate LogOff, Reboot, Shutdown, PowerOff
+
+## SYNTAX
+
+### Parameter Set 1
+```
+Invoke-Shutdown -ComputerName <string[]> -ShutdownType <String> -Force [-Wait [<uint32>]] [-Comment [<String>]] -Shutdown_MajorReason <String> -Shutdown_MinorReason <String> [-Unplanned] [-Credential [<PSCredential>]]
+```
+
+## DESCRIPTION
+This function utilizes Win32ShutdownTracker methods to trigger a LogOff, Reboot, Shutdown, PowerOff of the computer or computers passed to the function as a parameter. Either a local or remote shutdown can be triggered. If a remote shutdown method i s used WinRM or DCOM protocols must be accessible on the remote computer.
+
+## EXAMPLES
+
+### PS C:\\\> Invoke-Shutdown -ComputerName computer1.domain.com, computer2.domain.com -ShutdownType Reboot -MajorReasonCode Application -MinorReasonCode Installation -Unplanned -Confirm:$false
+
+```powershell
+C:\PS> Invoke-Shutdown
+```
+
+### PS C:\\\> $Credential = Get-Credential
+
+```powershell
+C:\PS> Invoke-Shutdown
+```
+
+## PARAMETERS
+
+### ComputerName
+The name or names of the computers to action
+
+```yaml
+Type: string[]
+Parameter Sets: Parameter Set 1
+Aliases: cn,S,
+
+Required: true
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### ShutdownType
+Select option from validation set
+
+```yaml
+Type: String
+Parameter Sets: Parameter Set 1
+Aliases: 
+
+Required: true
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### Force
+Choose this switch to force the action to be performed
+
+```yaml
+Type: Switch
+Parameter Sets: Parameter Set 1
+Aliases: 
+
+Required: true
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### Wait
+Seconds to pause before performing action
+
+```yaml
+Type: uint32
+Parameter Sets: Parameter Set 1
+Aliases: 
+
+Required: false
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### Comment
+Enter  a descriptive comment for triggering this function
+
+```yaml
+Type: String
+Parameter Sets: Parameter Set 1
+Aliases: 
+
+Required: false
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### Shutdown_MajorReason
+Choose from validation set
+
+```yaml
+Type: String
+Parameter Sets: Parameter Set 1
+Aliases: 
+
+Required: true
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### Shutdown_MinorReason
+Choose from validation set
+
+```yaml
+Type: String
+Parameter Sets: Parameter Set 1
+Aliases: 
+
+Required: true
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### Unplanned
+Select this switch if the function is being called by an unplanned reason
+
+```yaml
+Type: Switch
+Parameter Sets: Parameter Set 1
+Aliases: 
+
+Required: false
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### Credential
+The PS credential object
+
+```yaml
+Type: PSCredential
+Parameter Sets: Parameter Set 1
+Aliases: 
+
+Required: false
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+
+### Disclaimer
+THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
+
+## RELATED LINKS
+
+[Online Version:](https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32shutdowntracker-method-in-class-win32-operatingsystem)
+
+
+*Generated by: v3.0.69 (L)PowerShell HelpWriter 2024*

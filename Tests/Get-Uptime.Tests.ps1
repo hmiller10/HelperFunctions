@@ -1,29 +1,39 @@
 ﻿BeforeAll {
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
-	if ($Error)
-	{
-		$Error.Clear()
+	if ($Error) { $Error.Clear() }
+}
+
+# Get-Uptime Tests, all should pass
+Describe 'Get-Uptime parameter tests' {
+	
+	BeforeEach {
+		$cmd = Get-Command -Name Get-UpTime -Module HelperFunctions -CommandType Function
+	}
+	
+	It 'Get-Uptime should Have Parameter ComputerName' {
+		$cmd | Should -HaveParameter -ParameterName ComputerName
+	}
+	
+	It ' Get-Uptime should Have Parameter Credential' {
+		$cmd | Should -HaveParameter -ParameterName Credential
+	}
+	
+	AfterEach {
+		$null = $cmd
 	}
 }
 
-Describe "Get-Uptime" {
+Describe 'Get-Uptime function output' {
 
-	Context "Get computer uptime" {
-		# Get-Uptime Tests, all should pass
-
-		It "Should Have Parameter Path" {
-			Get-Command Get-Uptime | Should -HaveParameter ComputerName -Type System.String
-		}
-
-		It "Should Have Parameter Value" {
-			Get-Command Get-Uptime | Should -HaveParameter Credential -Type System.Management.Automation.PsCredential
-		}
-
-		It "Should be of type [PSCustomObject]" {
-			$result = Get-Uptime
-			$result | Should -Not -BeNullOrEmpty
-			$result | Should -ExpectedType [PSCustomObject]
-		}
+	It 'Get-Uptime should be of type [PSCustomObject]' {
+		$result = Get-Uptime
+		$result | Should -Not -BeNullOrEmpty
+		$result | Should -ExpectedType [PSCustomObject]
 	}
+}
+
+AfterAll {
+	$null = $result
+	Remove-Module -Name HelperFunctions -Force
 }

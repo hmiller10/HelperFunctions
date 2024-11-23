@@ -1,29 +1,36 @@
 ﻿BeforeAll {
-	if ($Error)
-	{
-		$Error.Clear()
-	}
-	[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
+	Import-Module -Name HelperFunctions -Force
+	Import-Module -Name Pester -Force
+	if ($Error) { $Error.Clear() }
 }
 
-Describe 'Get-DomainfromDN' {
+# Get-DnsDomainfromDN Tests, all should pass
+Describe 'Get-DnsDomainfromDN should have parameter' {
+	
+	It "Get-DnsDomainfromDN should have parameter DistinguishedName." {
+		Get-Command Get-DnsDomainfromDN -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName DistinguishedName -Type String
+	}
 
-	Context "Return Get-DomainfromDN" {
-		# Get-DomainfromDN Tests, all should pass
+}
 
-		It "Get-DomainfromDN should have parameter DistinguishedName." {
-			Get-Command Get-DomainfromDN -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName DistinguishedName -Type String
-		}
-
-		It "Should be of type [System.String]" {
-			$result = Get-DomainfromDN -DistinguishedName $ComputerDN
-			$result | Should -BeOfType System.String
-			$result | Should -Not -BeNullOrEmpty
-		}
+Describe 'Get-DnsDomainFromDN function output' {
+	
+	BeforeEach {
+		[string]$ComputerDN = "CN=Computer1,OU=Computers,DC=my,DC=domain,DC=com"
+	}
+	
+	It "Should be of type [System.String]" {
+		
+		$result = Get-DnsDomainfromDN -DistinguishedName $ComputerDN
+		$result | Should -BeOfType [System.String]
+		$result | Should -Not -BeNullOrEmpty
+	}
+	
+	AfterEach {
+		$null = $ComputerDN
 	}
 }
 
 AfterAll {
-	$null = $ComputerDN
-	$null = $result
+	Remove-Module -Name HelperFunctions -Force
 }

@@ -5,36 +5,47 @@
 		#>
 
 	[CmdletBinding()]
+	[OutputType([System.IO.Stream])]
 	[Alias('fnWrite-LogFile')]
 	param
 	(
+		[Parameter(Mandatory = $true,
+		           HelpMessage = 'Write the text entry to be logged')]
+		[ValidateNotNullOrEmpty()]
+		[String]
+		$LogEntry,
+		[Parameter(Mandatory = $true,
+		           HelpMessage = 'Specify the path and file name to the log file')]
+		[ValidateScript({Test-Path $_})]
+		[String]
+		$LogFile,
 		[Parameter(Mandatory = $true)]
-		[String]$LogEntry,
-		[Parameter(Mandatory = $true)]
-		[String]$LogFile,
-		[Parameter(Mandatory = $true)]
-		[ValidateSet('1', '2', '3')]
-		[uint32]$Level
+		[ValidateSet('Info', 'Warning', 'Error', 'Debug', 'Failure', 'Success')]
+		[String]
+		$LogLevel
 	)
-
+	
 	begin
 	{
-		$dtmFormatString = "yyyy-MM-dd HH:mm:ss"
-		$dtmUTC = (Get-Date).ToUniversalTime()
+		$dtmFileFormatString = "yyyy-MM-dd_HH-mm-ss"
+		$dtmUTC = (Get-Date).ToUniversalTime().ToString($dtmFileFormatString)
 	}
 	process
 	{
-		switch ($level)
+		switch ($LogLevel)
 		{
-			1 { $loglevel = "[INFO]: " }
-			2 { $loglevel = "[WARNING]: " }
-			3 { $loglevel = "[ERROR]: " }
+			'Info' { $type = "[INFO]" }
+			'Warning' { $type = "[WARNING]" }
+			'Error' { $type = "[ERROR]" }
+			'Debug' { $type = "[DEBUG]" }
+			'Failure' { $type = "[FAILURE]" }
+			'Success' { $type = "[SUCCESS]" }
 		}
-
+		
 		Write-Verbose -Message $Logentry
 	}
 	end
 	{
-		("{0} {1}  {2}" -f $dtmUTC.ToString($dtmFormatString), $LogLevel, $LogEntry) | Out-File -FilePath $LogFile -Append
+		("{0}`t{1}`t{2}" -f $dtmUTC, $type, $LogEntry) | Out-File -FilePath $LogFile -Append
 	}
 } #End function Write-Logfile
