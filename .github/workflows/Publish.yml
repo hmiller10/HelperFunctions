@@ -6,9 +6,6 @@ on:
   push:
     branches: [main]
 
-  pull_request:
-    branches: [main]
-
   workflow_dispatch:
 
 jobs:
@@ -29,8 +26,14 @@ jobs:
           updatable: true
           shell: powershell
  
-      - name: Show that the Action works
+      - name: Show that the v5 Action works
         shell: powershell
+        run: |
+              Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
+              Import-Module -Name HelperFunctions -Force
+              	
+      - name: Show that the v7 Action works
+        shell: pwsh
         run: |
               Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
               Import-Module -Name HelperFunctions -Force
