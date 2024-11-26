@@ -17,7 +17,7 @@ Describe 'Test-IsInstalled function output' {
 
 	It "Test-IsInstalled output should be of type [bool]" {
 		$Program = "Github Desktop"
-		$result = Test-IsInstalled -Program $Program -ErrorAction SilentlyContinue
+		$result = Test-IsInstalled -Program $Program
 		$result | Should -BeOfType [bool]
 	}
 	
