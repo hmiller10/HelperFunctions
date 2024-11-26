@@ -2,44 +2,23 @@
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
+	if (Get-PSDrive -Name "TestDrive") { Remove-PSDrive -Name "Testdrive" -Force}
 }
 
 # Test-IsInstalled Tests, all should pass
 Describe 'Test-IsInstalled parameters' {
-	BeforeEach {
-		$cmd = Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program
-	}
 	
-	It "Test-IsInstalled should have Program as a mandatory parameter." {
-		$cmd | Should -HaveParameter -ParameterName Program -Because "Program is required to render result." -Mandatory
-		$cmd | Should -Not -BeNullOrEmpty
-		$cmd | Should -ExpectedType [System.Management.Automation.FunctionInfo]
+	It "Test-IsInstalled should have a parameter Program" {
+		Get-Command -Name Test-IsInstalled -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName Program -Mandatory
 	}
-	
-	AfterEach {
-		$null = $cmd
-	}
-	
 }
 
 Describe 'Test-IsInstalled function output' {
-	
-	Context "Test-IsInstalled output" {
-		
-		BeforeEach {
-			$Program = "Github Desktop"
-		}
-		
-		It "Test-IsInstalled output should be of type [bool]" {
-			
-			$result = Test-IsInstalled -Program $Program -ErrorAction SilentlyContinue
-			$result | Should -Not -BeNullOrEmpty
-			$result | Should -BeOfType [bool]
-		}
-		
-		AfterEach {
-			$null = $Program
-		}
+
+	It "Test-IsInstalled output should be of type [bool]" {
+		$Program = "Github Desktop"
+		$result = Test-IsInstalled -Program $Program -ErrorAction SilentlyContinue
+		$result | Should -BeOfType [bool]
 	}
 	
 }
