@@ -21,11 +21,11 @@ Describe "Test-IsDomainGroupMember - Parameters" {
 		
 		
 		It "Should Have Parameter User" {
-			Get-Command Test-IsDomainGroupMember | Should -HaveParameter -ParameterName User -Mandatory -Type System.String
+			Get-Command Test-IsDomainGroupMember -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName User -Mandatory -Type System.String
 		}
 		
 		It "Should Have Parameter Group" {
-			Get-Command Test-IsDomainGroupMember | Should -HaveParameter -ParameterName GroupName -Mandatory -Type System.String
+			Get-Command Test-IsDomainGroupMember -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName GroupName -Mandatory -Type System.String
 		}
 
 	}

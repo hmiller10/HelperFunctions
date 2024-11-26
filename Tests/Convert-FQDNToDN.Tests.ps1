@@ -10,7 +10,7 @@
 Describe 'Convert-FQDNToDN Parameters' {
 
 	It "Convert-FQDNToDN should have parameter FQDN." {
-	  Get-Command Convert-FQDNToDN | Should -HaveParameter -ParameterName FQDN -Type System.String -Mandatory
+		Get-Command Convert-FQDNToDN -Module HelperFunctions -CommandType Function  | Should -HaveParameter -ParameterName FQDN -Type System.String -Mandatory
 	}
 
 }

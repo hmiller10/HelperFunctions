@@ -9,7 +9,7 @@
 Describe 'Test-IsInstalled parameters' {
 	
 	It "Test-IsInstalled should have a parameter Program" {
-		Get-Command -Name Test-IsInstalled -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName Program -Mandatory
+		Get-Command -Name Test-IsInstalled -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName Program -Type System.String -Mandatory
 	}
 }
 
