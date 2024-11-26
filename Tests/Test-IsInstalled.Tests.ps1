@@ -11,7 +11,7 @@ Describe 'Test-IsInstalled parameters' {
 	}
 	
 	It "Test-IsInstalled should have Program as a mandatory parameter." {
-		$cmd | Should -HaveParameter -ParameterName Progra, -Because "Program is required to render result."
+		$cmd | Should -HaveParameter -ParameterName Program -Because "Program is required to render result." -Mandatory
 		$cmd | Should -Not -BeNullOrEmpty
 		$cmd | Should -ExpectedType [System.Management.Automation.FunctionInfo]
 	}
