@@ -6,11 +6,18 @@
 
 # Test-IsInstalled Tests, all should pass
 Describe 'Test-IsInstalled parameters' {
+	BeforeEach {
+		$cmd = Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program
+	}
 	
-	Context "Test-IsInstalled Parameter Validation" {
-		It "Test-IsInstalled should have a parameter Program" {
-			Get-Command Test-IsInstalled | Should -HaveParameter -ParameterName Program -Mandatory
-		}
+	It "Test-IsInstalled should have Program as a mandatory parameter." {
+		$cmd | Should -HaveParameter -ParameterName Progra, -Because "Program is required to render result."
+		$cmd | Should -Not -BeNullOrEmpty
+		$cmd | Should -ExpectedType [System.Management.Automation.FunctionInfo]
+	}
+	
+	AfterEach {
+		$null = $cmd
 	}
 	
 }
@@ -26,6 +33,7 @@ Describe 'Test-IsInstalled function output' {
 		It "Test-IsInstalled output should be of type [bool]" {
 			
 			$result = Test-IsInstalled -Program $Program -ErrorAction SilentlyContinue
+			$result | Should -Not -BeNullOrEmpty
 			$result | Should -BeOfType [bool]
 		}
 		
