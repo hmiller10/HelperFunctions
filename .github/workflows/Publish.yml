@@ -40,9 +40,8 @@ jobs:
 
       - name: Get working directory
         run: |
-          Get-ChildItem -Path ${{ github.workspace }} -Recurse
+          # Get-ChildItem -Path ${{ github.workspace }} -Recurse
           # $WorkingDir = Get-ChildItem -Path ${{ github.workspace }} -Recurse
-          Get-PSDrive -Name TestDrive
         shell: powershell
 
       - name: Test module
