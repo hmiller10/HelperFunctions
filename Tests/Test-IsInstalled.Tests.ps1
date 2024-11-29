@@ -3,6 +3,7 @@
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 	if (Get-PSDrive -Name "TestDrive") { Remove-PSDrive -Name "Testdrive" -Force}
+	$Program = "Github Desktop"
 }
 
 # Test-IsInstalled Tests, all should pass
@@ -16,7 +17,7 @@ Describe 'Test-IsInstalled parameters' {
 Describe 'Test-IsInstalled function output' {
 
 	It "Test-IsInstalled output should be of type [bool]" {
-		$Program = "Github Desktop"
+		
 		$result = Test-IsInstalled -Program $Program
 		$result | Should -BeOfType [bool]
 	}
