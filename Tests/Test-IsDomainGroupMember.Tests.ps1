@@ -5,6 +5,7 @@
 
 	if ((Get-CimInstance -ClassName CIM_ComputerSystem -NameSpace 'root\CIMv2').partOfDomain -eq $false)
 	{
+		If (Get-PSDrive -Name TestDrive -ErrorAction SilentlyContinue) { Remove-PSDrive -Name TestDrive -Force -ErrorAction SilentlyContinue}
 		exit
 	}
 	else
