@@ -5,11 +5,32 @@
 
 	if ((Get-CimInstance -ClassName CIM_ComputerSystem -NameSpace 'root\CIMv2').partOfDomain -eq $false)
 	{
-		If (Get-PSDrive -Name TestDrive -ErrorAction SilentlyContinue) { Remove-PSDrive -Name TestDrive -Force -ErrorAction SilentlyContinue}
+		try
+		{
+			$Drive = Get-PSDrive -Name TestDrive -ErrorAction Stop
+		}
+		catch
+		{
+			$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+			Write-Error $errorMessage -ErrorAction Continue
+		}
+		   
+		If ($Drive) { Remove-PSDrive -Name TestDrive -Force -ErrorAction Continue}
 		exit
 	}
 	else
 	{
+		try
+		{
+			$Drive = Get-PSDrive -Name TestDrive -ErrorAction Stop
+		}
+		catch
+		{
+			$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+			Write-Error $errorMessage -ErrorAction Continue
+		}
+		
+		If ($Drive) { Remove-PSDrive -Name TestDrive -Force -ErrorAction Continue }
 		$Me = $env:USERNAME
 	}
 	
