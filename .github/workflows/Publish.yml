@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.0
         with:
           repository: ${{ github.repository }}
           path: main
@@ -38,15 +38,9 @@ jobs:
               Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
               Import-Module -Name HelperFunctions -Force
 
-      - name: Get working directory
-        run: |
-          # Get-ChildItem -Path ${{ github.workspace }} -Recurse
-          # $WorkingDir = Get-ChildItem -Path ${{ github.workspace }} -Recurse
-        shell: powershell
-
       - name: Test module
         run: |
-         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Stop'
+         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Diagnostic -ErrorAction 'Stop'
         shell: powershell
 
       - name: Publish to PowerShell Gallery
