@@ -40,7 +40,7 @@ jobs:
 
       - name: Test module
         run: |
-         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Diagnostic -ErrorAction 'Stop'
+             Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Stop'
         shell: powershell
 
       - name: Publish to PowerShell Gallery
