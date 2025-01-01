@@ -1,0 +1,115 @@
+﻿<head>
+<META http-equiv="Content-Type" content="text/html; charset=utf-16">
+<title>Remove-LoggedOnUsers</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="headerbar"><a href="#Name">NAME</a> | <a href="#Synopsis">SYNOPSIS</a> | <a href="#Syntax">SYNTAX</a> | <a href="#DetailedDescription">DESCRIPTION</a> | <a href="#Examples">EXAMPLES</a> | <a href="#Parameters">PARAMETERS</a> | <a href="#InputType">INPUTS</a> | <a href="#ReturnType">OUTPUTS</a> | <a href="#Notes">NOTES</a> | <a href="#RelatedLinks">RELATED LINKS</a></div>
+<p><a name="Name"></a></p>
+<h4 id="Name"></h4>
+<p class="title">Remove-LoggedOnUsers</p>
+<h4 id="Synopsis"><a name="Synopsis"></a>SYNOPSIS</h4>
+<p>Log off users with stale sessions</p>
+<h4 id="Syntax"><a name="Syntax"></a>SYNTAX</h4>
+<p class="subheading">ComputerParameterSet (Default)</p>
+<div class="codeSnippetContainerCodeContainer">
+<div class="codeSnippetContainerCode">
+Remove-LoggedOnUsers -ComputerName &lt;String&gt; -Credential &lt;PSCredential&gt; [-WhatIf] [-Confirm] [&lt;CommonParameters&gt;]
+</div>
+</div>
+<p class="subheading">SessionParameterSet</p>
+<div class="codeSnippetContainerCodeContainer">
+<div class="codeSnippetContainerCode">
+Remove-LoggedOnUsers -RemoteSession &lt;PSSession&gt; [-WhatIf] [-Confirm] [&lt;CommonParameters&gt;]
+</div>
+</div>
+<h4 id="DetailedDescription"><a name="DetailedDescription"></a>DESCRIPTION</h4>
+<p>This function calls quser.exe to get a list of logged on users with stale or active sessions on the named computer and will subsequently log them off.</p>
+<h4 id="Examples"><a name="Examples"></a>EXAMPLES</h4>
+<p class="subheading">PS C:\&gt; Remove-LoggedOnUsers -ComputerName server1.example.com -Credential $Credential</p>
+<p>PS C:\&gt;</p>
+<div class="codeSnippetContainerCodeContainer">
+<div class="codeSnippetContainerCode">
+<pre>
+Remove-LoggedOnUsers -ComputerName server1.example.com -Credential $Credential
+</pre>
+</div>
+</div>
+<p class="subheading">PS C:\&gt; Remove-LoggedOnUsers -Session $session</p>
+<p>PS C:\&gt;</p>
+<div class="codeSnippetContainerCodeContainer">
+<div class="codeSnippetContainerCode">
+<pre>
+Remove-LoggedOnUsers -Session $session
+</pre>
+</div>
+</div>
+<h4 id="Parameters"><a name="Parameters"></a>PARAMETERS</h4>
+<p class="subheading" id="parameter:ComputerName">-ComputerName &lt;String&gt;
+</p><p>Computer object to perform action on.</p>
+<table>
+<tr><td><p>Parameter Sets:</p></td><td><p>ComputerParameterSet</p></td></tr>
+<tr><td><p>Aliases:</p></td><td><p>&#39;CN&#39;, &#39;Computer&#39;, &#39;ServerName&#39;, &#39;Server&#39;, &#39;IP&#39;</p></td></tr>
+<tr><td><p>Required:</p></td><td><p>true</p></td></tr>
+<tr><td><p>Position:</p></td><td><p>named</p></td></tr>
+<tr><td><p>Default Value:</p></td><td><p></p></td></tr>
+<tr><td><p>Pipeline Input:</p></td><td><p>False</p></td></tr>
+</table>
+<br/>
+<p class="subheading" id="parameter:Credential">-Credential &lt;PSCredential&gt;
+</p><p>Add the credential object or use (Get-Credential)</p>
+<table>
+<tr><td><p>Parameter Sets:</p></td><td><p>ComputerParameterSet</p></td></tr>
+<tr><td><p>Aliases:</p></td><td><p>None</p></td></tr>
+<tr><td><p>Required:</p></td><td><p>true</p></td></tr>
+<tr><td><p>Position:</p></td><td><p>named</p></td></tr>
+<tr><td><p>Default Value:</p></td><td><p></p></td></tr>
+<tr><td><p>Pipeline Input:</p></td><td><p>false</p></td></tr>
+</table>
+<br/>
+<p class="subheading" id="parameter:WhatIf">-WhatIf &lt;SwitchParameter&gt;
+</p><p></p>
+<table>
+<tr><td><p>Parameter Sets:</p></td><td><p>(All)</p></td></tr>
+<tr><td><p>Aliases:</p></td><td><p>wi</p></td></tr>
+<tr><td><p>Required:</p></td><td><p>false</p></td></tr>
+<tr><td><p>Position:</p></td><td><p>named</p></td></tr>
+<tr><td><p>Default Value:</p></td><td><p></p></td></tr>
+<tr><td><p>Pipeline Input:</p></td><td><p>false</p></td></tr>
+</table>
+<br/>
+<p class="subheading" id="parameter:Confirm">-Confirm &lt;SwitchParameter&gt;
+</p><p></p>
+<table>
+<tr><td><p>Parameter Sets:</p></td><td><p>(All)</p></td></tr>
+<tr><td><p>Aliases:</p></td><td><p>cf</p></td></tr>
+<tr><td><p>Required:</p></td><td><p>false</p></td></tr>
+<tr><td><p>Position:</p></td><td><p>named</p></td></tr>
+<tr><td><p>Default Value:</p></td><td><p></p></td></tr>
+<tr><td><p>Pipeline Input:</p></td><td><p>false</p></td></tr>
+</table>
+<br/>
+<p class="subheading" id="parameter:RemoteSession">-RemoteSession &lt;PSSession&gt;
+</p><p>Include PSSession variable.</p>
+<table>
+<tr><td><p>Parameter Sets:</p></td><td><p>SessionParameterSet</p></td></tr>
+<tr><td><p>Aliases:</p></td><td><p>None</p></td></tr>
+<tr><td><p>Required:</p></td><td><p>true</p></td></tr>
+<tr><td><p>Position:</p></td><td><p>named</p></td></tr>
+<tr><td><p>Default Value:</p></td><td><p></p></td></tr>
+<tr><td><p>Pipeline Input:</p></td><td><p>false</p></td></tr>
+</table>
+<br/>
+<p class="subheading">&lt;CommonParameters&gt;</p><p>
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (<a href="http://go.microsoft.com/fwlink/?LinkID=113216">http://go.microsoft.com/fwlink/?LinkID=113216</a>).</p>
+<h4 id="InputType"><a name="InputType"></a>INPUTS</h4>
+<h4 id="ReturnType"><a name="ReturnType"></a>OUTPUTS</h4>
+<h4 id="Notes"><a name="Notes"></a>NOTES</h4>
+<p class="subheading">Disclaimer</p>
+<p>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</p>
+<BR/>
+<h4 id="RelatedLinks"><a name="RelatedLinks"></a>RELATED LINKS</h4>
+
+</body>
+</html>
+<!--Generated by: v3.0.69 (L)PowerShell HelpWriter 2024-->

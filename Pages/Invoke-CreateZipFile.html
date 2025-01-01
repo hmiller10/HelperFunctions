@@ -1,0 +1,98 @@
+﻿<head>
+<META http-equiv="Content-Type" content="text/html; charset=utf-16">
+<title>Invoke-CreateZipFile</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="headerbar"><a href="#Name">NAME</a> | <a href="#Synopsis">SYNOPSIS</a> | <a href="#Syntax">SYNTAX</a> | <a href="#DetailedDescription">DESCRIPTION</a> | <a href="#Examples">EXAMPLES</a> | <a href="#Parameters">PARAMETERS</a> | <a href="#InputType">INPUTS</a> | <a href="#ReturnType">OUTPUTS</a> | <a href="#Notes">NOTES</a> | <a href="#RelatedLinks">RELATED LINKS</a></div>
+<p><a name="Name"></a></p>
+<h4 id="Name"></h4>
+<p class="title">Invoke-CreateZipFile</p>
+<h4 id="Synopsis"><a name="Synopsis"></a>SYNOPSIS</h4>
+<p>Uses .Net class to create compressed archive</p>
+<h4 id="Syntax"><a name="Syntax"></a>SYNTAX</h4>
+<p class="subheading">Parameter Set 1</p>
+<div class="codeSnippetContainerCodeContainer">
+<div class="codeSnippetContainerCode">
+Invoke-CreateZipFile [-CompressedFileName] &lt;String&gt; [-FileToCompress] &lt;String&gt; [-EntryName] &lt;String&gt; [-ArchiveMode] &lt;String&gt; [&lt;CommonParameters&gt;]
+</div>
+</div>
+<h4 id="DetailedDescription"><a name="DetailedDescription"></a>DESCRIPTION</h4>
+<p>This function requires .Net 4.5.2 or later and will use native .Net technologies to create, read or update a .zip archive file using the specified compression level</p>
+<h4 id="Examples"><a name="Examples"></a>EXAMPLES</h4>
+<p class="subheading">PS C:\&gt; Invoke-CreateZipFile -CompressedFileName myZip.zip -FileToCompress &#39;Test1.ps1 -EntryName Test1 -ArchiveMode Create</p>
+<div class="codeSnippetContainerCodeContainer">
+<div class="codeSnippetContainerCode">
+<pre>
+C:\PS> Invoke-CreateZipFile
+</pre>
+</div>
+</div>
+<p class="subheading">PS C:\&gt; Invoke-CreateZipFile -CompressedFileName myZip.zip -FileToCompress &#39;Test2.ps1 -EntryName Test2 -ArchiveMode Update</p>
+<div class="codeSnippetContainerCodeContainer">
+<div class="codeSnippetContainerCode">
+<pre>
+C:\PS> Invoke-CreateZipFile
+</pre>
+</div>
+</div>
+<h4 id="Parameters"><a name="Parameters"></a>PARAMETERS</h4>
+<p class="subheading" id="parameter:CompressedFileName">-CompressedFileName &lt;String&gt;
+</p><p>Zip file name</p>
+<table>
+<tr><td><p>Parameter Sets:</p></td><td><p>Set 1</p></td></tr>
+<tr><td><p>Aliases:</p></td><td><p>None</p></td></tr>
+<tr><td><p>Required:</p></td><td><p>true</p></td></tr>
+<tr><td><p>Position:</p></td><td><p>0</p></td></tr>
+<tr><td><p>Default Value:</p></td><td><p></p></td></tr>
+<tr><td><p>Pipeline Input:</p></td><td><p>False</p></td></tr>
+</table>
+<br/>
+<p class="subheading" id="parameter:FileToCompress">-FileToCompress &lt;String&gt;
+</p><p>File system file to add to zip file</p>
+<table>
+<tr><td><p>Parameter Sets:</p></td><td><p>Set 1</p></td></tr>
+<tr><td><p>Aliases:</p></td><td><p>None</p></td></tr>
+<tr><td><p>Required:</p></td><td><p>true</p></td></tr>
+<tr><td><p>Position:</p></td><td><p>1</p></td></tr>
+<tr><td><p>Default Value:</p></td><td><p></p></td></tr>
+<tr><td><p>Pipeline Input:</p></td><td><p>False</p></td></tr>
+</table>
+<br/>
+<p class="subheading" id="parameter:EntryName">-EntryName &lt;String&gt;
+</p><p>Zip entry name</p>
+<table>
+<tr><td><p>Parameter Sets:</p></td><td><p>Set 1</p></td></tr>
+<tr><td><p>Aliases:</p></td><td><p>None</p></td></tr>
+<tr><td><p>Required:</p></td><td><p>true</p></td></tr>
+<tr><td><p>Position:</p></td><td><p>2</p></td></tr>
+<tr><td><p>Default Value:</p></td><td><p></p></td></tr>
+<tr><td><p>Pipeline Input:</p></td><td><p>False</p></td></tr>
+</table>
+<br/>
+<p class="subheading" id="parameter:ArchiveMode">-ArchiveMode &lt;String&gt;
+</p><p>Mode of zip archival process (Create, Update, Read)</p>
+<table>
+<tr><td><p>Parameter Sets:</p></td><td><p>Set 1</p></td></tr>
+<tr><td><p>Aliases:</p></td><td><p>None</p></td></tr>
+<tr><td><p>Required:</p></td><td><p>true</p></td></tr>
+<tr><td><p>Position:</p></td><td><p>3</p></td></tr>
+<tr><td><p>Default Value:</p></td><td><p></p></td></tr>
+<tr><td><p>Pipeline Input:</p></td><td><p>False</p></td></tr>
+</table>
+<br/>
+<p class="subheading">&lt;CommonParameters&gt;</p><p>
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (<a href="http://go.microsoft.com/fwlink/?LinkID=113216">http://go.microsoft.com/fwlink/?LinkID=113216</a>).</p>
+<h4 id="InputType"><a name="InputType"></a>INPUTS</h4>
+<p class="subheading">None</p>
+<h4 id="ReturnType"><a name="ReturnType"></a>OUTPUTS</h4>
+<p class="subheading">System.IO.Compression.ZipFile</p>
+<h4 id="Notes"><a name="Notes"></a>NOTES</h4>
+<p class="subheading">Disclaimer</p>
+<p>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</p>
+<BR/>
+<h4 id="RelatedLinks"><a name="RelatedLinks"></a>RELATED LINKS</h4>
+
+</body>
+</html>
+<!--Generated by: v3.0.69 (L)PowerShell HelpWriter 2024-->
