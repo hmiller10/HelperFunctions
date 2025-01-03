@@ -21,27 +21,27 @@ Describe "Test-RegistryValue parameter values" {
 Describe 'Test-RegistryValue function output' {
 	
 	BeforeEach {
-		$Path = "HKLM:\Software\MyCompany\MyApp"
+		$KeyPath = "HKLM:\Software\MyCompany\MyApp"
 		$Name = "TestValue"
 	}
 	
 	It "Test-RegistryValue returns true if the registry key and value exist" {
 		# Ensure the key and value exist for the test
-		if ((Test-Path $Path) -eq $false) {
-			New-Item -Path $Path -Force
+		if ((Test-Path "TestRegistry\$KeyPath") -eq $false) {
+			New-Item -Path "TestRegistry\$KeyPath" -Force
 		}
 		
 		#if (-Not (Get-ItemProperty -Path $Path -Name $Name -ErrorAction SilentlyContinue))
-		if (-Not (Get-ItemProperty -Path $Path -Name $Name)) {
-			New-ItemProperty -Path $Path -Name $Name -Value "Test" -Force
+		if (-Not (Get-ItemProperty -Path "TestRegistry\$KeyPath" -Name $Name)) {
+			New-ItemProperty -Path "TestRegistry\$KeyPath" -Name $Name -Value "Test" -Force
 		}
 		
-		$result = Test-RegistryValue -Path $Path -Name $Name
-		$result | Should -BeFalse
+		$result = Test-RegistryValue -Path "TestRegistry\$KeyPath" -Name $Name
+		$result | Should -BeTrue
 	}
 	
 	AfterEach {
-		$null = $Path
+		$null = $KeyPath
 		$null = $Name
 	}
 }
