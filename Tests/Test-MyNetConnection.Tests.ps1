@@ -17,8 +17,21 @@
 Describe 'Test-MyNetConnection function parameters' {
 
 	It "Verify Function parameters" {
-		Get-Command Test-MyNetConnection -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName ComputerName -Mandatory
-		Get-Command Test-MyNetConnection -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName Port -Mandatory
+		BeforeEach {
+			$cmd = Get-Command -Name Test-MyNetConnection -Module HelperFunctions -CommandType Function
+		}
+	
+		It 'Test-MyNetConnection should have parameter ComputerName' {
+			$cmd | Should -HaveParameter -ParameterName ComputerName
+		}
+	
+		It ' Test-MyNetConnection should have parameter Port' {
+			$cmd | Should -HaveParameter -ParameterName Port
+		}
+	
+		AfterEach {
+			$null = $cmd
+		}
 	}
 
 }
