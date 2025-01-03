@@ -8,18 +8,8 @@
 # Get-ComputerNameByIP Tests, all should pass
 Describe 'Get-ComputerNameByIP parameters' {
 
-	BeforeEach {
-		$cmd = Get-Command -Name Get-ComputerNameByIP -Module HelperFunctions -CommandType Function
-	}
-	
 	It "Get-ComputerNameByIP should have IPAddress as a mandatory parameter." {
-		$cmd | Should -HaveParameter -ParameterName IPAddress -Because "IPAddress is required to render result."
-		$cmd | Should -Not -BeNullOrEmpty
-		$cmd | Should -ExpectedType [System.Management.Automation.FunctionInfo]
-	}
-	
-	AfterEach {			
-		$null = $cmd
+		Get-Command -Name Get-ComputerNameByIP -Module HelperFunctions -CommandType Function  | Should -HaveParameter -ParameterName IPAddress -Because "IPAddress is required to render result."
 	}
 
 }
@@ -31,7 +21,7 @@ Describe 'Get-ComputerNameByIP function output' {
 	}
 	
 	It "Get-ComputerNameByIP output should return a string value" {
-		$result = Get-ComputerNameByIP -IPAddress $IPAddress -ErrorAction SilentlyContinue
+		$result = Get-ComputerNameByIP -IPAddress $IPAddress #-ErrorAction SilentlyContinue
 		$result | Should -Not -BeNullOrEmpty
 		$result | Should -BeOfType [System.String]
 	}

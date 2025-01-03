@@ -3,7 +3,7 @@
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
 	
-	$FQDN = "my.domain.com"
+	
 }
 
 # Convert-FQDNToDN Tests, all should pass
@@ -17,14 +17,21 @@ Describe 'Convert-FQDNToDN Parameters' {
 
 Describe 'Convert-FQDNToDN function output' {
 
+	BeforeEach {
+		$FQDN = "my.domain.com"
+	}
+	
 	It "Should be of type [System.String]" {
 		$result = Convert-FQDNToDN -FQDN $FQDN
 		$result | Should -Not -BeNullOrEmpty
 		$result | Should -ExpectedType [System.String]
 	}
+
+	AfterEach {			
+		$null = $FQDN
+	}
 }
 
 AfterAll {
-	$null = $FQDN
 	Remove-Module -Name HelperFunctions -Force
 }

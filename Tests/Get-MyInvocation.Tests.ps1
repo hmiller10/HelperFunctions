@@ -8,7 +8,7 @@
 Describe 'Get-MyInvocation function output' {
 
 	It "Should return $($MyInvocation)" {
-		$result = Get-MyInvocation -ErrorAction SilentlyContinue
+		$result = Get-MyInvocation #-ErrorAction SilentlyContinue
 		$result | Should -Not -BeNullOrEmpty
 		$result | Should -ExpectedType [System.Management.Automation.InvocationInfo]
 	}

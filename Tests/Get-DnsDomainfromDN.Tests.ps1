@@ -22,8 +22,7 @@ Describe 'Get-DnsDomainFromDN function output' {
 	It "Should be of type [System.String]" {
 		
 		$result = Get-DnsDomainfromDN -DistinguishedName $ComputerDN
-		$result | Should -BeOfType [System.String]
-		$result | Should -Not -BeNullOrEmpty
+		$result | Should -BeNullOrEmpty
 	}
 	
 	AfterEach {

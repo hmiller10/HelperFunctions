@@ -8,7 +8,7 @@
 Describe "Test-IsAdmin" {
 
 	It 'Test-IsAdmin should return $True' {
-		Get-Command -Name Test-IsAdmin -Module HelperFunctions | Should -Be $True -Because "Test must run with elevated rights."
+		Get-Command -Name Test-IsAdmin -Module HelperFunctions -CommandType Function | Should -Be $True -Because "Test must run with elevated rights."
 	}
 }
 

@@ -21,11 +21,11 @@ Describe 'Test-MyNetConnection function parameters' {
 	}
 	
 	It "Should Have Parameter ComputerName" {
-		$cmd | Should -HaveParameter -ParameterName Server -Mandatory
+		$cmd | Should -HaveParameter -ParameterName "ComputerName" -Mandatory
 	}
 	
 	It "Should Have Parameter Credential" {
-		$cmd | Should -HaveParameter -ParameterName Port -Mandatory
+		$cmd | Should -HaveParameter -ParameterName "Port" -Mandatory
 	}
 	
 	AfterEach {
