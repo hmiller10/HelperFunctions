@@ -3,7 +3,7 @@
 	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.69 (L)-->
 	<!--
 		Module: 		HelperFunctions
-		Version:		2.7.0
+		Version:		2.7.4
 	-->
 	<!--All Commands-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
@@ -12,7 +12,7 @@
 		<command:details>
 			<command:name>Add-DataTable</command:name>
 			<maml:description>
-				<maml:para>Creates PS data table with assigned name and column data&lt;</maml:para>
+				<maml:para>Creates PS data table with assigned name and column data</maml:para>
 			</maml:description>
 			<maml:copyright>
 				<maml:para />
@@ -82,27 +82,6 @@
 				<dev:defaultValue />
 			</command:parameter>
 		</command:parameters>
-		<command:inputTypes>
-			<!--Inputs-->
-			<command:inputType>
-				<dev:type>
-					<maml:name>System.String</maml:name>
-					<maml:uri />
-				</dev:type>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-			</command:inputType>
-			<command:inputType>
-				<dev:type>
-					<maml:name>System.Array</maml:name>
-					<maml:uri />
-				</dev:type>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-			</command:inputType>
-		</command:inputTypes>
 		<command:returnValues>
 			<!--Outputs-->
 			<command:returnValue>
@@ -128,7 +107,7 @@
 			<command:example>
 				<maml:title>Add-DataTable -TableName TableName -ColumnArray DataColumnDefinitions</maml:title>
 				<maml:introduction>
-					<maml:para>Example 1</maml:para>
+					<maml:para>C:\PS&gt; Add-DataTable -TableName TableName -ColumnArray DataColumnDefinitions</maml:para>
 				</maml:introduction>
 				<dev:code>C:\PS&gt; Add-DataTable -TableName TableName -ColumnArray DataColumnDefinitions</dev:code>
 				<dev:remarks>
@@ -716,7 +695,7 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>Get-IPByComputerName</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para />
@@ -756,7 +735,7 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para />
@@ -830,21 +809,30 @@
 			<!--Examples-->
 			<command:example>
 				<maml:title>PS C:\&gt;Get-IPByComputerName -ComputerName myComputer -IPv4Only</maml:title>
-				<dev:code>C:\PS&gt; Get-IPByComputerName</dev:code>
+				<maml:introduction>
+					<maml:para>PS C:\&gt;Get-IPByComputerName -ComputerName myComputer -IPv4Only</maml:para>
+				</maml:introduction>
+				<dev:code>PS C:\&gt;Get-IPByComputerName -ComputerName myComputer -IPv4Only</dev:code>
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>
 			</command:example>
 			<command:example>
 				<maml:title>PS C:\&gt;Get-IPByComputerName -ComputerName myComputer -IPv6Only</maml:title>
-				<dev:code>C:\PS&gt; Get-IPByComputerName</dev:code>
+				<maml:introduction>
+					<maml:para>PS C:\&gt;Get-IPByComputerName -ComputerName myComputer -IPv6Only</maml:para>
+				</maml:introduction>
+				<dev:code>PS C:\&gt;Get-IPByComputerName -ComputerName myComputer -IPv6Only</dev:code>
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>
 			</command:example>
 			<command:example>
 				<maml:title>PS C:\&gt; Get-IPByComputerName -ComputerName myComputer</maml:title>
-				<dev:code>C:\PS&gt; Get-IPByComputerName</dev:code>
+				<maml:introduction>
+					<maml:para>PS C:\&gt; Get-IPByComputerName -ComputerName myComputer</maml:para>
+				</maml:introduction>
+				<dev:code>PS C:\&gt; Get-IPByComputerName -ComputerName myComputer</dev:code>
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>
@@ -945,7 +933,7 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>Get-MyNewCimSession</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="'CN', 'ComputerName','Server', 'IP'">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ComputerName', 'Server', 'IP'">
 					<maml:name>ServerName</maml:name>
 					<maml:description>
 						<maml:para>FQDN of remote server</maml:para>
@@ -973,7 +961,7 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="'CN', 'ComputerName','Server', 'IP'">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ComputerName', 'Server', 'IP'">
 				<maml:name>ServerName</maml:name>
 				<maml:description>
 					<maml:para>FQDN of remote server</maml:para>
@@ -999,9 +987,7 @@
 			</command:parameter>
 			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
 				<maml:name>SkipICMPCheck</maml:name>
-				<maml:description>
-					<maml:para>'Switch statement to enable SkipTestConnection Parameter when starting new CimSession.'</maml:para>
-				</maml:description>
+				<maml:description />
 				<dev:type>
 					<maml:name />
 					<maml:uri />
@@ -1023,7 +1009,7 @@
 		</command:returnValues>
 		<maml:alertSet>
 			<!--Notes-->
-			<maml:title>Disclaimer</maml:title>
+			<maml:title />
 			<maml:alert>
 				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
 			</maml:alert>
@@ -1031,11 +1017,21 @@
 		<command:examples>
 			<!--Examples-->
 			<command:example>
-				<maml:title>PS C:\&gt; Get-MyNewCimSession -ServerName &lt;ServerFQDN&gt; -Credential PSCredential -SkipICMPCheck</maml:title>
+				<maml:title>PS C:\&gt; .\Get-MyNewCimSession.ps1 -ServerName user.example.com -SkipICMPCheck</maml:title>
 				<maml:introduction>
-					<maml:para>PS C:\&gt;</maml:para>
+					<maml:para>Example bypassing ICMP ping before establishing remote CIMSession but not requiring credential</maml:para>
 				</maml:introduction>
-				<dev:code>Get-MyNewCimSession -ServerName &lt;ServerFQDN&gt; -Credential PSCredential -SkipICMPCheck</dev:code>
+				<dev:code>PS C:\&gt; .\Get-MyNewCimSession.ps1 -ServerName user.example.com -SkipICMPCheck</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>PS C:\&gt; .\Get-MyNewCimSession.ps1 -ServerName user.example.com -Credential (Get-Credential) -SkipICMPCheck</maml:title>
+				<maml:introduction>
+					<maml:para>Example bypassing ICMP ping before establishing remote CIMSession</maml:para>
+				</maml:introduction>
+				<dev:code>PS C:\&gt; .\Get-MyNewCimSession.ps1 -ServerName user.example.com -Credential (Get-Credential) -SkipICMPCheck</dev:code>
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>
@@ -1560,7 +1556,7 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>Get-Uptime</maml:name>
-				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0">
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para>If querying remote computer, enter the FQDN of the computer.</maml:para>
@@ -1588,7 +1584,7 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para>If querying remote computer, enter the FQDN of the computer.</maml:para>
@@ -2416,7 +2412,7 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>New-RemotePSSession</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="'CN', 'ServerName', 'Server', 'IP'">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para>Provide the FQDN of the computer you wish to create a remoting session with</maml:para>
@@ -2468,7 +2464,7 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="'CN', 'ServerName', 'Server', 'IP'">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para>Provide the FQDN of the computer you wish to create a remoting session with</maml:para>
@@ -2574,7 +2570,7 @@
 				<!--NAME: ComputerParameterSet-->
 				<!--TAG: DEFAULT-->
 				<maml:name>Remove-LoggedOnUsers</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="CN , MachineName , Computer">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para>Computer object to perform action on.</maml:para>
@@ -2666,7 +2662,7 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="CN , MachineName , Computer">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="named" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para>Computer object to perform action on.</maml:para>
@@ -2851,7 +2847,7 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>Test-IsDomainGroupMember</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="UserName">
 					<maml:name>User</maml:name>
 					<maml:description>
 						<maml:para />
@@ -2863,8 +2859,8 @@
 					</dev:type>
 					<dev:defaultValue />
 				</command:parameter>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="grp">
-					<maml:name>Group</maml:name>
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="'grp', 'Group'">
+					<maml:name>GroupName</maml:name>
 					<maml:description>
 						<maml:para>sAMAccountName of AD group to verify User membership in.</maml:para>
 					</maml:description>
@@ -2879,7 +2875,7 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="UserName">
 				<maml:name>User</maml:name>
 				<maml:description>
 					<maml:para />
@@ -2891,8 +2887,8 @@
 				</dev:type>
 				<dev:defaultValue />
 			</command:parameter>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="1" aliases="grp">
-				<maml:name>Group</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="1" aliases="'grp', 'Group'">
+				<maml:name>GroupName</maml:name>
 				<maml:description>
 					<maml:para>sAMAccountName of AD group to verify User membership in.</maml:para>
 				</maml:description>
@@ -2941,7 +2937,7 @@
 			<command:example>
 				<maml:title>PS C:\&gt; Test-IsDomainGroupMember -User TestUser -Group 'Remote Desktop Users'</maml:title>
 				<maml:introduction>
-					<maml:para>Checks AD group membership using Directory Searcher</maml:para>
+					<maml:para />
 				</maml:introduction>
 				<dev:code>PS C:\&gt; Test-IsDomainGroupMember -User TestUser -GroupName 'Remote Desktop Users'</dev:code>
 				<dev:remarks>
@@ -3070,8 +3066,8 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>Test-MyNetConnection</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="Computer,ComputerName,Server">
-					<maml:name>Server</maml:name>
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="'CN', 'Computer', 'Server',  'ServerName', 'IP'">
+					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para>Computer FQDN</maml:para>
 					</maml:description>
@@ -3098,8 +3094,8 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="Computer,ComputerName,Server">
-				<maml:name>Server</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0" aliases="'CN', 'Computer', 'Server',  'ServerName', 'IP'">
+				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para>Computer FQDN</maml:para>
 				</maml:description>
@@ -3604,7 +3600,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 				<!--NAME: Default-->
 				<!--TAG: DEFAULT-->
 				<maml:name>Get-LastBootTime</maml:name>
-				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="0" aliases="cn,CN">
+				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="0" aliases="'CN', 'Computer', 'Server',  'ServerName', 'IP'">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para>The name of the computer to search</maml:para>
@@ -3644,7 +3640,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="0" aliases="cn,CN">
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="0" aliases="'CN', 'Computer', 'Server',  'ServerName', 'IP'">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para>The name of the computer to search</maml:para>
@@ -3869,278 +3865,6 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 		</command:examples>
 	</command:command>
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
-		<!--Command-->
-		<command:details>
-			<command:name>Invoke-Shutdown</command:name>
-			<maml:description>
-				<maml:para>Initiate LogOff, Reboot, Shutdown, PowerOff</maml:para>
-			</maml:description>
-			<maml:copyright>
-				<maml:para />
-			</maml:copyright>
-			<command:verb>Invoke</command:verb>
-			<command:noun>Shutdown</command:noun>
-			<dev:version />
-		</command:details>
-		<maml:description>
-			<maml:para>This function utilizes Win32ShutdownTracker methods to trigger a LogOff, Reboot, Shutdown, PowerOff of the computer or computers passed to the function as a parameter. Either a local or remote shutdown can be triggered. If a remote shutdown method i s used WinRM or DCOM protocols must be accessible on the remote computer.</maml:para>
-		</maml:description>
-		<command:syntax>
-			<!--Parameter Sets-->
-			<command:syntaxItem>
-				<maml:name>Invoke-Shutdown</maml:name>
-				<command:parameter required="true" globbing="false" pipelineInput="false" variableLength="false" position="named" aliases="cn,S,">
-					<maml:name>ComputerName</maml:name>
-					<maml:description>
-						<maml:para>The name or names of the computers to action</maml:para>
-					</maml:description>
-					<command:parameterValue required="true" variableLength="false">string[]</command:parameterValue>
-					<dev:type>
-						<maml:name>string[]</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-				<command:parameter required="true" globbing="false" pipelineInput="false" variableLength="false" position="named">
-					<maml:name>ShutdownType</maml:name>
-					<maml:description>
-						<maml:para>Select option from validation set</maml:para>
-					</maml:description>
-					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-					<dev:type>
-						<maml:name>String</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-				<command:parameter required="true" globbing="false" pipelineInput="false" variableLength="false" position="named">
-					<maml:name>Force</maml:name>
-					<maml:description>
-						<maml:para>Choose this switch to force the action to be performed</maml:para>
-					</maml:description>
-					<dev:type>
-						<maml:name>Switch</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
-					<maml:name>Wait</maml:name>
-					<maml:description>
-						<maml:para>Seconds to pause before performing action</maml:para>
-					</maml:description>
-					<command:parameterValue required="false" variableLength="false">uint32</command:parameterValue>
-					<dev:type>
-						<maml:name>uint32</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
-					<maml:name>Comment</maml:name>
-					<maml:description>
-						<maml:para>Enter  a descriptive comment for triggering this function</maml:para>
-					</maml:description>
-					<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
-					<dev:type>
-						<maml:name>String</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-				<command:parameter required="true" globbing="false" pipelineInput="false" variableLength="false" position="named">
-					<maml:name>Shutdown_MajorReason</maml:name>
-					<maml:description>
-						<maml:para>Choose from validation set</maml:para>
-					</maml:description>
-					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-					<dev:type>
-						<maml:name>String</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-				<command:parameter required="true" globbing="false" pipelineInput="false" variableLength="false" position="named">
-					<maml:name>Shutdown_MinorReason</maml:name>
-					<maml:description>
-						<maml:para>Choose from validation set</maml:para>
-					</maml:description>
-					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-					<dev:type>
-						<maml:name>String</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
-					<maml:name>Unplanned</maml:name>
-					<maml:description>
-						<maml:para>Select this switch if the function is being called by an unplanned reason</maml:para>
-					</maml:description>
-					<dev:type>
-						<maml:name>Switch</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
-					<maml:name>Credential</maml:name>
-					<maml:description>
-						<maml:para>The PS credential object</maml:para>
-					</maml:description>
-					<command:parameterValue required="false" variableLength="false">PSCredential</command:parameterValue>
-					<dev:type>
-						<maml:name>PSCredential</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-			</command:syntaxItem>
-		</command:syntax>
-		<command:parameters>
-			<!--All Parameters-->
-			<command:parameter required="true" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="cn,S,">
-				<maml:name>ComputerName</maml:name>
-				<maml:description>
-					<maml:para>The name or names of the computers to action</maml:para>
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">string[]</command:parameterValue>
-				<dev:type>
-					<maml:name>string[]</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-			<command:parameter required="true" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>ShutdownType</maml:name>
-				<maml:description>
-					<maml:para>Select option from validation set</maml:para>
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-				<dev:type>
-					<maml:name>String</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-			<command:parameter required="true" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>Force</maml:name>
-				<maml:description>
-					<maml:para>Choose this switch to force the action to be performed</maml:para>
-				</maml:description>
-				<command:parameterValue required="false" variableLength="false">Switch</command:parameterValue>
-				<dev:type>
-					<maml:name>Switch</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>Wait</maml:name>
-				<maml:description>
-					<maml:para>Seconds to pause before performing action</maml:para>
-				</maml:description>
-				<command:parameterValue required="false" variableLength="false">uint32</command:parameterValue>
-				<dev:type>
-					<maml:name>uint32</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>Comment</maml:name>
-				<maml:description>
-					<maml:para>Enter  a descriptive comment for triggering this function</maml:para>
-				</maml:description>
-				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
-				<dev:type>
-					<maml:name>String</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-			<command:parameter required="true" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>Shutdown_MajorReason</maml:name>
-				<maml:description>
-					<maml:para>Choose from validation set</maml:para>
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-				<dev:type>
-					<maml:name>String</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-			<command:parameter required="true" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>Shutdown_MinorReason</maml:name>
-				<maml:description>
-					<maml:para>Choose from validation set</maml:para>
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-				<dev:type>
-					<maml:name>String</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>Unplanned</maml:name>
-				<maml:description>
-					<maml:para>Select this switch if the function is being called by an unplanned reason</maml:para>
-				</maml:description>
-				<command:parameterValue required="false" variableLength="false">Switch</command:parameterValue>
-				<dev:type>
-					<maml:name>Switch</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
-				<maml:name>Credential</maml:name>
-				<maml:description>
-					<maml:para>The PS credential object</maml:para>
-				</maml:description>
-				<command:parameterValue required="false" variableLength="false">PSCredential</command:parameterValue>
-				<dev:type>
-					<maml:name>PSCredential</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-		</command:parameters>
-		<maml:alertSet>
-			<!--Notes-->
-			<maml:title>Disclaimer</maml:title>
-			<maml:alert>
-				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
-			</maml:alert>
-		</maml:alertSet>
-		<command:examples>
-			<!--Examples-->
-			<command:example>
-				<maml:title>PS C:\&gt; Invoke-Shutdown -ComputerName computer1.domain.com, computer2.domain.com -ShutdownType Reboot -MajorReasonCode Application -MinorReasonCode Installation -Unplanned -Confirm:$false</maml:title>
-				<dev:code>C:\PS&gt; Invoke-Shutdown</dev:code>
-				<dev:remarks>
-					<maml:para />
-				</dev:remarks>
-			</command:example>
-			<command:example>
-				<maml:title>PS C:\&gt; $Credential = Get-Credential</maml:title>
-				<dev:code>C:\PS&gt; Invoke-Shutdown</dev:code>
-				<dev:remarks>
-					<maml:para />
-				</dev:remarks>
-			</command:example>
-		</command:examples>
-		<maml:relatedLinks>
-			<maml:navigationLink>
-				<maml:linkText>Online Version:</maml:linkText>
-				<maml:uri>https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32shutdowntracker-method-in-class-win32-operatingsystem</maml:uri>
-			</maml:navigationLink>
-			<!--Links-->
-		</maml:relatedLinks>
-	</command:command>
-	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
 		<command:details>
@@ -4166,14 +3890,14 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="ws,s,computers,cn">
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="'CN', 'Computer', 'Server',  'ServerName', 'IP'">
 				<maml:name>WebServers</maml:name>
 				<maml:description>
 					<maml:para>List of web servers to query certificate store on</maml:para>
 				</maml:description>
-				<command:parameterValue required="false" variableLength="false">string</command:parameterValue>
+				<command:parameterValue required="false" variableLength="false">string[]</command:parameterValue>
 				<dev:type>
-					<maml:name>string</maml:name>
+					<maml:name>string[]</maml:name>
 					<maml:uri />
 				</dev:type>
 				<dev:defaultValue />
@@ -4188,6 +3912,48 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 				<dev:defaultValue />
 			</command:parameter>
 		</command:parameters>
+		<command:returnValues>
+			<!--Outputs-->
+			<command:returnValue>
+				<dev:type>
+					<maml:name>pscustomobject</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para>pscustomobject</maml:para>
+				</maml:description>
+			</command:returnValue>
+		</command:returnValues>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:title>Disclaimer</maml:title>
+			<maml:alert>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND.  THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>EXAMPLE 1</maml:title>
+				<maml:introduction>
+					<maml:para>PS C:\&gt; Get-IISWebCertificates</maml:para>
+				</maml:introduction>
+				<dev:code>PS C:\&gt; Get-IISWebCertificates</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>EXAMPLE 2</maml:title>
+				<maml:introduction>
+					<maml:para>PS C:\&gt; Get-IISWebCertificates -WebServers server1.domain.com, server2.domain.com -Credential (Get-Credential)</maml:para>
+				</maml:introduction>
+				<dev:code>PS C:\&gt; Get-IISWebCertificates -WebServers server1.domain.com, server2.domain.com -Credential (Get-Credential)</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+		</command:examples>
 	</command:command>
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!--TAG: HASCOMMONPARAMETERS-->
@@ -4485,7 +4251,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 			<command:syntaxItem parametersetname="LocalUserParamSet">
 				<!--NAME: LocalUserParamSet-->
 				<maml:name>Test-Credential</maml:name>
-				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="ComputerName">
+				<command:parameter required="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" variableLength="false" position="named" aliases="ComputerName">
 					<maml:name>Computer</maml:name>
 					<maml:description>
 						<maml:para>Parameter to tell function which remote computer to test credentials on.</maml:para>
@@ -4529,7 +4295,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 				</dev:type>
 				<dev:defaultValue />
 			</command:parameter>
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="ComputerName">
+			<command:parameter required="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" variableLength="false" position="named" aliases="ComputerName">
 				<maml:name>Computer</maml:name>
 				<maml:description>
 					<maml:para>Parameter to tell function which remote computer to test credentials on.</maml:para>
@@ -4657,7 +4423,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 			<!--Parameter Sets-->
 			<command:syntaxItem>
 				<maml:name>Test-IsLocalGroupMember</maml:name>
-				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="UserName">
 					<maml:name>User</maml:name>
 					<maml:description>
 						<maml:para>'Enter the name of the user account to check group membership against.'</maml:para>
@@ -4669,7 +4435,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 					</dev:type>
 					<dev:defaultValue />
 				</command:parameter>
-				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="Group">
 					<maml:name>GroupName</maml:name>
 					<maml:description>
 						<maml:para>'Enter the name(s) of the built-in groups to test.'</maml:para>
@@ -4685,7 +4451,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="UserName">
 				<maml:name>User</maml:name>
 				<maml:description>
 					<maml:para>'Enter the name of the user account to check group membership against.'</maml:para>
@@ -4697,7 +4463,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 				</dev:type>
 				<dev:defaultValue />
 			</command:parameter>
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="Group">
 				<maml:name>GroupName</maml:name>
 				<maml:description>
 					<maml:para>'Enter the name(s) of the built-in groups to test.'</maml:para>
@@ -4860,6 +4626,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 	</command:command>
 	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.68 (L)-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
 		<command:details>
 			<command:name>Test-IsRemoteGroupMember</command:name>
@@ -4882,6 +4649,264 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 				<maml:name>Test-IsRemoteGroupMember</maml:name>
 			</command:syntaxItem>
 		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="UserName">
+				<maml:name>User</maml:name>
+				<maml:description />
+				<command:parameterValue required="false" variableLength="false">string</command:parameterValue>
+				<dev:type>
+					<maml:name>string</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="Group">
+				<maml:name>GroupName</maml:name>
+				<maml:description />
+				<dev:type>
+					<maml:name />
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
+				<maml:name>ComputerName</maml:name>
+				<maml:description />
+				<dev:type>
+					<maml:name />
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>Credential</maml:name>
+				<maml:description />
+				<command:parameterValue required="false" variableLength="false">pscredential</command:parameterValue>
+				<dev:type>
+					<maml:name>pscredential</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:title>Disclaimer</maml:title>
+			<maml:alert>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.69 (L)-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--Command-->
+		<command:details>
+			<command:name>Invoke-Shutdown</command:name>
+			<maml:description>
+				<maml:para>Shutdown specified computer(s) cleanly as if doing through GUI</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>Invoke</command:verb>
+			<command:noun>Shutdown</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This function leverage CIM sessions, pre-defined ENUMs and credentials to shutdown or reboot the specified computers.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>Invoke-Shutdown</maml:name>
+				<command:parameter required="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" variableLength="false" position="named" aliases="'CN', 'Computer', 'Server',  'ServerName', 'IP'">
+					<maml:name>ComputerName</maml:name>
+					<maml:description>
+						<maml:para>Name or FQDN of computers to shutdown or reboot</maml:para>
+					</maml:description>
+					<command:parameterValue required="false" variableLength="false">string[]</command:parameterValue>
+					<dev:type>
+						<maml:name>string[]</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue>$env:COMPUTERNAME</dev:defaultValue>
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" variableLength="false" position="named" aliases="'CN', 'Computer', 'Server',  'ServerName', 'IP'">
+				<maml:name>ComputerName</maml:name>
+				<maml:description>
+					<maml:para>Name or FQDN of computers to shutdown or reboot</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">string[]</command:parameterValue>
+				<dev:type>
+					<maml:name>string[]</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue>$env:COMPUTERNAME</dev:defaultValue>
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>ShutdownType</maml:name>
+				<maml:description>
+					<maml:para>'Logoff', 'Shutdown', 'Reboot', 'PowerOff'</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">string</command:parameterValue>
+				<dev:type>
+					<maml:name>string</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>Force</maml:name>
+				<maml:description />
+				<command:parameterValue required="false" variableLength="false">Switch</command:parameterValue>
+				<dev:type>
+					<maml:name>Switch</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>Wait</maml:name>
+				<maml:description />
+				<command:parameterValue required="false" variableLength="false">Switch</command:parameterValue>
+				<dev:type>
+					<maml:name>Switch</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>MajorReasonCode</maml:name>
+				<maml:description>
+					<maml:para>Select from validate set</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Shutdown_MajorReason</command:parameterValue>
+				<dev:type>
+					<maml:name>Shutdown_MajorReason</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>MinorReasonCode</maml:name>
+				<maml:description>
+					<maml:para>Select from validate set</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Shutdown_MinorReason</command:parameterValue>
+				<dev:type>
+					<maml:name>Shutdown_MinorReason</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>Unplanned</maml:name>
+				<maml:description />
+				<command:parameterValue required="false" variableLength="false">Switch</command:parameterValue>
+				<dev:type>
+					<maml:name>Switch</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+				<maml:name>Credential</maml:name>
+				<maml:description />
+				<command:parameterValue required="false" variableLength="false">PSCredential</command:parameterValue>
+				<dev:type>
+					<maml:name>PSCredential</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:title>Disclaimer</maml:title>
+			<maml:alert>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>Invoke-Shutdown -ComputerName computer1.domain.com -ShutdownType Reboot -Force -MajorReasonCode APPLICATION -MinorReasonCode HOTFIX -Comment 'Application patch install'</maml:title>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>Invoke-Shutdown -ComputerName computer1.domain.com -ShutdownType Reboot -Force -MajorReasonCode APPLICATION -MinorReasonCode HOTFIX -Comment 'Application patch install'</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.69 (L)-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--TAG: HASCOMMONPARAMETERS-->
+		<!--Command-->
+		<command:details>
+			<command:name>Get-TimeStamp</command:name>
+			<maml:description>
+				<maml:para>Quick function to return a formatted date string to use with file outputs</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>Get</command:verb>
+			<command:noun>TimeStamp</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>Using (Get-Date) -Format, this functions returns a date string that is useful when naming files needing datestamps.</maml:para>
+			<maml:para />
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>Get-TimeStamp</maml:name>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+		</command:parameters>
+		<command:returnValues>
+			<!--Outputs-->
+			<command:returnValue>
+				<dev:type>
+					<maml:name>System.String</maml:name>
+					<maml:uri></maml:uri>
+				</dev:type>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+			</command:returnValue>
+		</command:returnValues>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:title>Disclaimer</maml:title>
+			<maml:alert>
+				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>C:\PS&gt; Get-TimeStamp</maml:title>
+				<maml:introduction>
+					<maml:para>C:\PS&gt; Get-TimeStamp</maml:para>
+				</maml:introduction>
+				<dev:code>C:\PS&gt; Get-TimeStamp</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+		</command:examples>
 	</command:command>
 	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.69 (L)-->
 </helpItems>

@@ -7,7 +7,7 @@ Wrapper for Test-NetConnection
 
 ### Set 1
 ```
-Test-MyNetConnection [-Server] <String> [-Port] <Int32> [<CommonParameters>]
+Test-MyNetConnection [-ComputerName] <String> [-Port] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,13 +23,13 @@ PS C:\> Test-MyNetConnection -Server server.example.com -Port 53
 
 ## PARAMETERS
 
-### Server
+### ComputerName
 Computer FQDN
 
 ```yaml
 Type: String
 Parameter Sets: Set 1
-Aliases: Computer,ComputerName,Server
+Aliases: 'CN', 'Computer', 'Server',  'ServerName', 'IP'
 
 Required: true
 Position: 0
