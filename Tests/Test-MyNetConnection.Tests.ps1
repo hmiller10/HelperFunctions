@@ -16,22 +16,15 @@
 # Test-MyNetConnection Tests, all should pass
 Describe 'Test-MyNetConnection function parameters' {
 
-	It "Verify Function parameters" {
-		BeforeEach {
-			$cmd = Get-Command -Name Test-MyNetConnection -Module HelperFunctions -CommandType Function
+	It "Should accept a ComputerName and Port paramter" {
+		$params = @{
+			ComputerName = $remoteDomain1
+			Port         = $Port
 		}
-	
-		It 'Test-MyNetConnection should have parameter ComputerName' {
-			$cmd | Should -HaveParameter -ParameterName ComputerName
-		}
-	
-		It ' Test-MyNetConnection should have parameter Port' {
-			$cmd | Should -HaveParameter -ParameterName Port
-		}
-	
-		AfterEach {
-			$null = $cmd
-		}
+
+		$result = Test-MyNetConnection @params
+		$result.ComputerName | Should -Be 'yahoo.com'
+		$result.Port | Should -Be 80
 	}
 
 }

@@ -21,10 +21,10 @@ Describe "Test-RegistryValue parameter values" {
 Describe 'Test-RegistryValue function output' {
 	
 	BeforeEach {
-		#New-Item -Path TestRegistry:\ -Name TestLocation
-		#New-ItemProperty -Path "TestRegistry:\TestLocation" -Name "TestPath" -Value
 		$KeyPath = "HKLM\Software\MyCompany\MyApp"
 		$Name = "TestValue"
+		New-Item -Path TestRegistry:\ -Name $KeyPath
+		New-ItemProperty -Path "TestRegistry:\$KeyPath" -Name $Name -Value
 	}
 	
 	It "Test-RegistryValue returns true if the registry key and value exist" {
@@ -49,5 +49,14 @@ Describe 'Test-RegistryValue function output' {
 }
 
 AfterAll {
+	try {
+		$Drive = Get-PSDrive -Name TestRegistry -ErrorAction Stop
+	}
+	catch {
+		$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+		Write-Error $errorMessage -ErrorAction Continue
+	}
+		
+	If ($Drive) { Remove-PSDrive -Name TestRegistry -Force -ErrorAction Continue }
 	Remove-Module -Name HelperFunctions -Force
 }
