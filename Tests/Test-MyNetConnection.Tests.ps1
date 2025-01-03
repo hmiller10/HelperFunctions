@@ -17,7 +17,7 @@ Describe 'Test-MyNetConnection function parameters' {
 	BeforeEach {
 		$params = @{
 			ComputerName = 'yahoo.com'
-			Port         = 80
+			Port         = '80'
 			ErrorAction  = 'Continue'
 		}
 	}
@@ -42,12 +42,6 @@ Describe 'Test-MyNetConnection function output' {
 	}
 
 	Context "Test-MyNetConnection specific port tests" {
-	
-		It "Test-MyNetConnection should check if port 80 (HTTP) is open on yahoo.com" {
-			$result = Test-MyNetConnection -Server $remoteDomain2 -Port $securePort
-			$result | Should -Not -BeNullOrEmpty
-			$result.TcpTestSucceeded | Should -Be $true
-		}
 		
 		It "Should check if port 443 (HTTPS) is open on microsoft.com" {
 			$result = Test-MyNetConnection -Server $remoteDomain2 -Port $SecurePort
