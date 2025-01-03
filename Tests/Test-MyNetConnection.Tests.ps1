@@ -18,12 +18,13 @@ Describe 'Test-MyNetConnection function parameters' {
 		$params = @{
 			ComputerName = 'yahoo.com'
 			Port         = 80
+			ErrorAction  = 'Continue'
 		}
 	}
-	It "Should accept a ComputerName and Port paramter" {
+	It 'Should accept a ComputerName and Port paramter' {
 		$result = Test-MyNetConnection @params
 		$result.ComputerName | Should -Be 'yahoo.com'
-		$result.Port | Should -Be '80'
+		$result.Port | Should -Be 80
 	}
 
 	AfterEach {
