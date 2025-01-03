@@ -15,22 +15,12 @@
 
 # Test-MyNetConnection Tests, all should pass
 Describe 'Test-MyNetConnection function parameters' {
-	
-	BeforeEach {
-		$cmd = Get-Command Test-MyNetConnection -Module HelperFunctions -CommandType Function
+
+	It "Verify Function parameters" {
+		Get-Command Test-MyNetConnection -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName "ComputerName" -Mandatory
+		Get-Command Test-MyNetConnection -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName "Port" -Mandatory
 	}
-	
-	It "Should Have Parameter ComputerName" {
-		$cmd | Should -HaveParameter -ParameterName "ComputerName" -Mandatory
-	}
-	
-	It "Should Have Parameter Credential" {
-		$cmd | Should -HaveParameter -ParameterName "Port" -Mandatory
-	}
-	
-	AfterEach {
-		$null = $cmd
-	}
+
 }
 
 Describe 'Test-MyNetConnection function output' {

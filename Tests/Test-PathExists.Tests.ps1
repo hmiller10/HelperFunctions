@@ -4,13 +4,17 @@ BeforeAll {
 	if ($Error) { $Error.Clear() }
 
 	BeforeAll {
-		$Path = "TestDrive:\Temp"
+		
 	}
 }
 
 # Test-PathExists Tests, all should pass
 Describe 'Test-PathExists - Parameters' {
 	
+	BeforeEach {
+		$Path = "TestDrive:\Temp"
+		$PathType = "Folder"
+	}
 	It "Test-PathExists should have parameter Path." {
 		Get-Command Test-PathExists | Should -HaveParameter -ParameterName Path -Type System.String -Mandatory
 	}
@@ -19,10 +23,20 @@ Describe 'Test-PathExists - Parameters' {
 		Get-Command Test-PathExists | Should -HaveParameter -ParameterName PathType -Type System.String -Mandatory
 	}
 
+	AfterEach {
+		$null = - $Path
+		$null = $PathType
+	}
+
 }
 
 # Pester test to check for the existence of the file or folder
 Describe 'Test-PathExists - Folder' {
+
+	BeforeEach {
+		$Path = "TestDrive:\Temp"
+		$PathType = "Folder"
+	}
 
 	It "Folder should exist" {
 		if (-Not (Test-Path -Path $Path -PathType Container)) {
@@ -37,13 +51,17 @@ Describe 'Test-PathExists - Folder' {
 		$result1 | Should -BeOfType [System.String]
 	}
 	
-	AfterAll {
+	AfterEach {
 		Remove-Item -Path $Path -Force
+		$null = - $Path
+		$null = $PathType
 	}
 }
 
 Describe 'Test-PathExists - File' {
 	BeforeEach {
+		$Path = "TestDrive:\Test.txt"
+		$PathType = "File"
 		$File = "TestDrive:\test.txt"
 		Set-Content $File -value "My test1 file text."
 	}
@@ -65,12 +83,18 @@ Describe 'Test-PathExists - File' {
 		if ((Test-Path -Path $File -PathType Leaf) -eq $true) {
 			Get-ChildItem -Path $File -File | Remove-Item -Force
 		}
+
+		Remove-Item -Path $File -Force
+		$null = $Path
+		$null = $PathType
+		$null = $file
+		
 	}
 	
 }
 
 AfterAll {
-	Remove-Item -Path $File -Force
+	
 	try {
 		$Drive = Get-PSDrive -Name TestDrive -ErrorAction Stop
 	}

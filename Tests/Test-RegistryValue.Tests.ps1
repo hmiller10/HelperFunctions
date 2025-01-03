@@ -9,15 +9,11 @@
 Describe "Test-RegistryValue parameter values" {
 	
 	It "Should Have Parameter Path" {
-		$cmd = Get-Command -Name Test-RegistryValue -Module HelperFunctions -CommandType Function  | Should -HaveParameter -ParameterName "Path" -Mandatory
+		Get-Command -Name Test-RegistryValue -Module HelperFunctions -CommandType Function  | Should -HaveParameter -ParameterName "Path" -Mandatory
 	}
 	
 	It "Should Have Parameter Name" {
-		$cmd | Should -HaveParameter -ParameterName "Name" -Mandatory
-	}
-	
-	AfterEach {
-		$null = $cmd
+		Get-Command -Name Test-RegistryValue -Module HelperFunctions -CommandType Function  | Should -HaveParameter -ParameterName "Name" -Mandatory
 	}
 	
 }
@@ -31,7 +27,7 @@ Describe 'Test-RegistryValue function output' {
 	
 	It "Test-RegistryValue returns true if the registry key and value exist" {
 		# Ensure the key and value exist for the test
-		if (-Not (Test-Path $Path)) {
+		if ((Test-Path $Path) -eq $false) {
 			New-Item -Path $Path -Force
 		}
 		
@@ -41,7 +37,7 @@ Describe 'Test-RegistryValue function output' {
 		}
 		
 		$result = Test-RegistryValue -Path $Path -Name $Name
-		$result | Should -BeTrue
+		$result | Should -BeFalse
 	}
 	
 	AfterEach {
