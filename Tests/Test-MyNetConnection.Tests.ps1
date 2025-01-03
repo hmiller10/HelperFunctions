@@ -7,8 +7,6 @@
 	[string]$google = 'google.com'
 	[int32]$dnsPort = 53
 	[int32]$SecurePort = 443
-	[int32]$Port = 80
-	[string]$remoteDomain1 = 'yahoo.com'
 	[string]$remoteDomain2 = 'microsoft.com'
 
 }
@@ -16,15 +14,20 @@
 # Test-MyNetConnection Tests, all should pass
 Describe 'Test-MyNetConnection function parameters' {
 
-	It "Should accept a ComputerName and Port paramter" {
+	BeforeEach {
 		$params = @{
-			ComputerName = $remoteDomain1
-			Port         = $Port
+			ComputerName = 'yahoo.com'
+			Port         = 80
 		}
-
+	}
+	It "Should accept a ComputerName and Port paramter" {
 		$result = Test-MyNetConnection @params
 		$result.ComputerName | Should -Be 'yahoo.com'
-		$result.Port | Should -Be 80
+		$result.Port | Should -Be '80'
+	}
+
+	AfterEach {
+		$params = @{}
 	}
 
 }
@@ -40,7 +43,7 @@ Describe 'Test-MyNetConnection function output' {
 	Context "Test-MyNetConnection specific port tests" {
 	
 		It "Test-MyNetConnection should check if port 80 (HTTP) is open on yahoo.com" {
-			$result = Test-MyNetConnection -Server $remoteDomain1 -Port $Port
+			$result = Test-MyNetConnection -Server $remoteDomain2 -Port $securePort
 			$result | Should -Not -BeNullOrEmpty
 			$result.TcpTestSucceeded | Should -Be $true
 		}
