@@ -23,12 +23,10 @@ Describe 'Test-RegistryValue function output' {
 		New-Item -Path TestRegistry:\ -Name TestLocation
 		New-ItemProperty -Path "TestRegistry:\TestLocation" -Name "InstallPath" -Value "C:\Program Files\MyApplication"
 	}
-
+	
 	It "Test-RegistryValue returns true if the registry key and value exist" {
 		# Ensure the key and value exist for the test
-		It 'reads the install path from the registry' {
-			Test-RegistryKeyValue -Path "TestRegistry:\TestLocation" -Name "InstallPath" | Should -Be $true
-		}
+		Test-RegistryKeyValue -Path "TestRegistry:\TestLocation" -Value "InstallPath" | Should -Be "C:\Program Files\MyApplication"
 	}
 }
 
