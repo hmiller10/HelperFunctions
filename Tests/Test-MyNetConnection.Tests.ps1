@@ -24,7 +24,7 @@ Describe 'Test-MyNetConnection function parameters' {
 	It 'Should accept a ComputerName and Port paramter' {
 		$result = Test-MyNetConnection @params
 		$result.ComputerName | Should -Be 'yahoo.com'
-		$result.Port | Should -Be 80
+		$result.Port | Should -Be '80'
 	}
 
 	AfterEach {
