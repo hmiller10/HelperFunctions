@@ -19,32 +19,16 @@ Describe "Test-RegistryValue parameter values" {
 }
 
 Describe 'Test-RegistryValue function output' {
-	
-	BeforeEach {
-		$KeyPath = "HKLM\Software\MyCompany\MyApp"
-		$Name = "TestValue"
-		New-Item -Path TestRegistry:\ -Name $KeyPath
-		New-ItemProperty -Path "TestRegistry:\$KeyPath" -Name $Name -Value
+	BeforeAll {
+		New-Item -Path TestRegistry:\ -Name TestLocation
+		New-ItemProperty -Path "TestRegistry:\TestLocation" -Name "InstallPath" -Value "C:\Program Files\MyApplication"
 	}
-	
+
 	It "Test-RegistryValue returns true if the registry key and value exist" {
 		# Ensure the key and value exist for the test
-		if ((Test-Path "TestRegistry:\$KeyPath") -eq $false) {
-			New-Item -Path "TestRegistry\$KeyPath" -Force
+		It 'reads the install path from the registry' {
+			Test-RegistryKeyValue -Path "TestRegistry:\TestLocation" -Name "InstallPath" | Should -Be $true
 		}
-		
-		#if (-Not (Get-ItemProperty -Path $Path -Name $Name -ErrorAction SilentlyContinue))
-		if (-Not (Get-ItemProperty -Path "TestRegistry:\$KeyPath" -Name $Name)) {
-			New-ItemProperty -Path "TestRegistry:\$KeyPath" -Name $Name -Value "Test" -Force
-		}
-		
-		$result = Test-RegistryValue -Path "TestRegistry:\$KeyPath" -Name $Name
-		$result | Should -BeTrue
-	}
-	
-	AfterEach {
-		$null = $KeyPath
-		$null = $Name
 	}
 }
 
