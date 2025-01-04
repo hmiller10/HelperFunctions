@@ -16,20 +16,31 @@ Describe 'Test-MyNetConnection function parameters' {
 
 	BeforeEach {
 		$params = @{
+			Server = 'www.yahoo.com'
+			Port = 80
+		}
+		
+	}
+	
+	Mock Test-NetConnection {
+		$return = @{
 			ComputerName = 'yahoo.com'
-			Port         = '80'
-			ErrorAction  = 'Continue'
+			RemotePort         = 80
+			TcpTestSucceeded  = $true
 		}
 	}
-	It 'Should accept a ComputerName and Port paramter' {
+	
+	It 'Should return a result' {
 		$result = Test-MyNetConnection @params
-		$result.ComputerName | Should -Be 'yahoo.com'
-		$result.Port | Should -Be '80'
+		$result.ComputerName | Should -Be 'www.yahoo.com'
+		$result.RemotePort | Should -Be 80
+		$result.TcpTestSucceeded | Should -Be $true
 	}
-
+	
 	AfterEach {
 		$params = @{}
 	}
+
 
 }
 
