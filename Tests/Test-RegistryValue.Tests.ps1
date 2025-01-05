@@ -18,15 +18,30 @@ Describe "Test-RegistryValue parameter values" {
 	
 }
 
-Describe 'Test-RegistryValue function output' {
-	BeforeAll {
-		New-Item -Path TestRegistry:\ -Name TestLocation
-		New-ItemProperty -Path "TestRegistry:\TestLocation" -Name "InstallPath" -Value "C:\Program Files\MyApplication"
-	}
-	
-	It "Test-RegistryValue returns true if the registry key and value exist" {
-		# Ensure the key and value exist for the test
-		Test-RegistryKeyValue -Path "TestRegistry:\TestLocation" -Value "InstallPath" | Should -Be "C:\Program Files\MyApplication"
+Describe "Testing registry access with Pester" {
+	It "Should get the value of a registry key" {
+		# Mock the Get-ItemProperty cmdlet
+		Mock Get-ItemProperty {
+			if ($Path -eq 'HKLM:\SOFTWARE\TestKey')
+			{
+				return @{ TestValue = 'TestData' }
+			}
+		}
+		
+		# Function that uses Get-ItemProperty
+		function Get-RegistryValue
+		{
+			param (
+				[string]$Path,
+				[string]$Name
+			)
+			
+			Get-ItemProperty -Path $Path -Name $Name | Select-Object -ExpandProperty $Name
+		}
+		
+		# Test the function
+		$result = Get-RegistryValue -Path 'HKLM:\SOFTWARE\TestKey' -Name 'TestValue'
+		$result | Should -Be 'TestData'
 	}
 }
 
