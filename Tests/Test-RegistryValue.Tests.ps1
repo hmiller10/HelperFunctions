@@ -21,20 +21,21 @@ Describe "Test-RegistryValue parameter values" {
 Describe "Testing registry access with Pester" {
 
 	BeforeEach {
-		Mock Test-RegistryValue { return $false }
-		$Path = 'HKLM:\SOFTWARE\TestKey'
 		$Name = 'TestData'
 	}
 	
+	New-Item -Path TestRegistry:\ -Name TestLocation
+	New-ItemProperty -Path "TestRegistry:\TestLocation" -Name $Name -Value "Test"
+	
 	It "Should test the value of a registry key" {
-		$result = Test-RegistryValue -Path $Path -Name $Name
+		$result = Test-RegistryValue -Path "TestRegistry:\TestLocation" -Name $Name
 		$result | Should -Not -BeNullOrEmpty
 		$result | Should -BeFalse
 		
 	}
 	
 	AfterEach {
-		$null = $Path = $Name = $result
+		$null = $Name = $result
 	}
 }
 
