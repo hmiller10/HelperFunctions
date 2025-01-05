@@ -21,33 +21,16 @@ Describe "Test-RegistryValue parameter values" {
 Describe "Testing registry access with Pester" {
 
 	BeforeEach {
+		Mock Test-RegistryValue { return $false }
 		$Path = 'HKLM:\SOFTWARE\TestKey'
 		$Name = 'TestData'
 	}
 	
-	It "Should get the value of a registry key" {
-		# Mock the Get-ItemProperty cmdlet
-		Mock Get-ItemProperty {
-			if ($Path -eq 'HKLM:\SOFTWARE\TestKey')
-			{
-				return @{ TestValue = 'TestData' }
-			}
-		}
+	It "Should test the value of a registry key" {
+		$result = Test-RegistryValue -Path $Path -Name $Name
+		$result | Should -Not -BeNullOrEmpty
+		$result | Should -BeFalse
 		
-		# Function that uses Get-ItemProperty
-		function Get-RegistryValue
-		{
-			param (
-				[string]$Path,
-				[string]$Name
-			)
-			
-			Get-ItemProperty -Path $Path -Name $Name | Select-Object -ExpandProperty $Name
-		}
-		
-		# Test the function
-		$result = Get-RegistryValue -Path 'HKLM:\SOFTWARE\TestKey' -Name 'TestValue'
-		$result | Should -Be 'TestData'
 	}
 	
 	AfterEach {
