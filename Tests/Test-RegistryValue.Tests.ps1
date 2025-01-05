@@ -19,6 +19,12 @@ Describe "Test-RegistryValue parameter values" {
 }
 
 Describe "Testing registry access with Pester" {
+
+	BeforeEach {
+		$Path = 'HKLM:\SOFTWARE\TestKey'
+		$Name = 'TestData'
+	}
+	
 	It "Should get the value of a registry key" {
 		# Mock the Get-ItemProperty cmdlet
 		Mock Get-ItemProperty {
@@ -42,6 +48,10 @@ Describe "Testing registry access with Pester" {
 		# Test the function
 		$result = Get-RegistryValue -Path 'HKLM:\SOFTWARE\TestKey' -Name 'TestValue'
 		$result | Should -Be 'TestData'
+	}
+	
+	AfterEach {
+		$null = $Path = $Name = $result
 	}
 }
 
