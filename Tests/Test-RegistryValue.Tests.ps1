@@ -22,11 +22,10 @@ Describe "Testing registry access with Pester" {
 
 	BeforeEach {
 		$Name = 'TestData'
+		New-Item -Path TestRegistry:\ -Name TestLocation
+		New-ItemProperty -Path "TestRegistry:\TestLocation" -Name $Name -Value "Test"
 	}
-	
-	New-Item -Path TestRegistry:\ -Name TestLocation
-	New-ItemProperty -Path "TestRegistry:\TestLocation" -Name $Name -Value "Test"
-	
+
 	It "Should test the value of a registry key" {
 		$result = Test-RegistryValue -Path "TestRegistry:\TestLocation" -Name $Name
 		$result | Should -Not -BeNullOrEmpty
