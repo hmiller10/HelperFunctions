@@ -2,17 +2,6 @@
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
-	try
-	{
-		$Drive = Get-PSDrive -Name TestDrive -ErrorAction Stop
-	}
-	catch
-	{
-		$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
-		Write-Error $errorMessage -ErrorAction Continue
-	}
-	
-	If ($Drive) { Remove-PSDrive -Name TestDrive -Force -ErrorAction Continue }
 	$Program = "Github Desktop"
 }
 
