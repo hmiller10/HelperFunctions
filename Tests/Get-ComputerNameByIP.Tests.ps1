@@ -17,11 +17,11 @@ Describe 'Get-ComputerNameByIP parameters' {
 Describe 'Get-ComputerNameByIP function output' {
 	
 	BeforeEach {
-		$IPAddress = (Get-NetIPConfiguration -ErrorAction Stop | Where-Object { ($null -ne $_.IPv4DefaultGateway) -and ($_.NetAdapter.status -ne "Disconnected") }).IPv4Address.IPAddress
+		$IPAddress = (Get-NetIPConfiguration | Where-Object { ($null -ne $_.IPv4DefaultGateway) -and ($_.NetAdapter.status -ne "Disconnected") }).IPv4Address.IPAddress
 	}
 	
 	It "Get-ComputerNameByIP output should return a string value" {
-		$result = Get-ComputerNameByIP -IPAddress $IPAddress #-ErrorAction SilentlyContinue
+		$result = Get-ComputerNameByIP -IPAddress $IPAddress
 		$result | Should -Not -BeNullOrEmpty
 		$result | Should -BeOfType [System.String]
 	}

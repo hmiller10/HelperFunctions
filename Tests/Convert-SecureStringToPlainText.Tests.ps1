@@ -8,7 +8,7 @@
 Describe 'Convert-SecureStringToPlainText Parameters' {
 	
 	It "Convert-SecureStringToPlainText should have SecureString as a mandatory parameter." {
-		Get-Command -Name Convert-SecureStringToPlainText -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName "SecureString" -Because "The function must have a secure string to process." -Mandatory
+		Get-Command -Name Convert-SecureStringToPlainText -Module HelperFunctions -CommandType Function | Should -HaveParameter -ParameterName SecureString -Mandatory -Because "The function must have an input to process."
 	}
 	
 }
@@ -19,14 +19,13 @@ Describe 'Convert-SecureStringToPlainText function output' {
 		$securePass = ("P@ssw0rd1!!" | ConvertTo-SecureString -AsPlainText -Force)
 	}
 	It "Convert-SecureStringToPlainText should have output type of string." {
-		$cmd = Convert-SecureStringToPlainText -SecureString $securePass #-ErrorAction SilentlyContinue
-		$cmd | Should -BeOfType PSCustomObject
+		$cmd = Convert-SecureStringToPlainText -SecureString $securePass
 		$cmd | Should -Not -BeNullOrEmpty
+		$cmd | Should -ExpectedType [System.String]
 	}
 
 	AfterEach {
-		$null = $cmd
-		$null = $securePass
+		$null = $cmd = $securePass
 	}
 }
 
