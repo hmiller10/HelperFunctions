@@ -22,7 +22,7 @@ Describe 'Test-PathExists - Functionality' {
 
 	Context 'Test-PathExists - Folder' {
 		BeforeEach {
-			$FolderPath = Join-Path "TestDrive:\Temp\"
+			$FolderPath = "TestDrive:\Temp\"
 			New-Item -Path $FolderPath -ItemType Directory
 		}
 
