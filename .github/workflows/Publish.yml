@@ -50,5 +50,5 @@ jobs:
           #BUILDVER: '2.7.9'
           
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -ErrorAction 'Continue'
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\HelperFunctions.psd1") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -ErrorAction 'Continue'
         shell: powershell
