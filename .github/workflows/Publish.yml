@@ -41,7 +41,7 @@ jobs:
       - name: Test module functions
         shell: powershell
    	   run: |
-         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
+          Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
 
       - name: Publish to PowerShell Gallery
         env:
@@ -52,4 +52,3 @@ jobs:
         run: |
           shell: powershell
           Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -RequiredVersion $env:BUILDVER -ErrorAction 'Continue'
-        
