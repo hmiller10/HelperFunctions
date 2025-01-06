@@ -39,9 +39,9 @@ jobs:
               Import-Module -Name HelperFunctions -Force
 
       - name: Test module functions
-   	   run: |
-	     Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests")
         shell: powershell
+   	   run: |
+	         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests")
 
       - name: Publish to PowerShell Gallery
         env:
@@ -50,5 +50,6 @@ jobs:
           BUILDVER: '2.7.7'
           
         run: |
+          shell: powershell
           Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -RequiredVersion $env:BUILDVER -ErrorAction 'Continue'
-        shell: powershell
+        
