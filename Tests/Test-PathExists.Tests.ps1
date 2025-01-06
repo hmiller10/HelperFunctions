@@ -22,13 +22,11 @@ Describe 'Test-PathExists - Functionality' {
 
 	Context 'Test-PathExists - Folder' {
 		BeforeEach {
-			$FolderPath = Join-Path $TestDrive "Temp"
+			$FolderPath = Join-Path "TestDrive:\Temp\"
+			New-Item -Path $FolderPath -ItemType Directory
 		}
 
 		It "Folder should exist" {
-			if (-Not (Test-Path -Path $FolderPath -PathType Container)) {
-				New-Item -Path $FolderPath -ItemType Directory
-			}
 			Test-Path -Path $FolderPath | Should -Be $true
 		}
 	
@@ -39,22 +37,19 @@ Describe 'Test-PathExists - Functionality' {
 		}
 	
 		AfterEach {
-			Remove-Item -Path $Path -Force
-			$null = - $FolderPath
-			$null = $PathType
+			Remove-Item -Path $FolderPath -Force
+			$null = - $FolderPath = $result1
 		}
 	}
 
 	Context 'Test-PathExists - File' {
 		BeforeEach {
-			$File = Join-Path $TestDrive 'test.txt'
+			$File = "TestDrive:\test.txt"
+			New-Item -Path $File -ItemType File
 			Set-Content $File -value "My test file text."
 		}
 	
 		It "File should exist" {
-			if (-Not (Test-Path -Path $File -PathType Leaf)) {
-				New-Item -Path $File -ItemType File
-			}
 			Test-Path -Path $File | Should -Be $true
 		}
 	
@@ -65,15 +60,8 @@ Describe 'Test-PathExists - Functionality' {
 		}
 	
 		AfterEach {
-			if ((Test-Path -Path $File -PathType Leaf) -eq $true) {
-				Get-ChildItem -Path $File -File | Remove-Item -Force
-			}
-
 			Remove-Item -Path $File -Force
-			$null = $Path
-			$null = $PathType
-			$null = $file
-		
+			$null = $File = $result2	
 		}
 	}
 }
