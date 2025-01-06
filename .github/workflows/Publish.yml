@@ -47,8 +47,8 @@ jobs:
         env:
           DESCRIPTION: ${{ github.event.description }}
           PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
-          BUILDVER: '2.7.9'
+          #BUILDVER: '2.7.9'
           
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -RequiredVersion $env:BUILDVER -ErrorAction 'Continue'
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:PSGALLERY_KEY -Repository PSGallery -ErrorAction 'Continue'
         shell: powershell
