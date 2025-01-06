@@ -40,7 +40,7 @@ jobs:
 
       - name: Test module
    	   run: |
-			Invoke-Pester  -Path (Join-Path ${{ github.workspace }} "main\Tests")
+		    Invoke-Pester  -Path (Join-Path ${{ github.workspace }} "main\Tests")
         shell: powershell
 
       - name: Publish to PowerShell Gallery
