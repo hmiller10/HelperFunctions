@@ -38,7 +38,7 @@ Describe 'Test-PathExists - Functionality' {
 	
 		AfterEach {
 			Remove-Item -Path $FolderPath -Force
-			$null = - $FolderPath = $result1
+			$null = $FolderPath = $result1
 		}
 	}
 
