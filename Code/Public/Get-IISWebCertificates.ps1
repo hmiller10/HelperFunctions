@@ -10,7 +10,8 @@
 	(
 		[Parameter(Mandatory = $false,
 				 HelpMessage = 'Enter list of computer(s)')]
-		[string[]]$WebServers,
+		[Alias('CN', 'Computer', 'ServerName', 'Server', 'IP', 'WebServers')]
+		[string[]]$ComputerName,
 		[Parameter(Mandatory = $false,
 				 ValueFromPipeline = $true,
 				 ValueFromPipelineByPropertyName = $true,
@@ -52,23 +53,27 @@
 		}
 
 
-		$computer = Get-CimInstance -ClassName CIM_ComputerSystem -Namespace 'root\CIMv2' -Property *
-		$fqdn = "{0}.{1}" -f $computer.DnsHostName, $computer.Domain
+		$localComputer = Get-CimInstance -ClassName CIM_ComputerSystem -Namespace 'root\CIMv2' -Property *
+		$fqdn = "{0}.{1}" -f $localComputer.DnsHostName, $localComputer.Domain
 
-		if ($WebServers.Count -gt 1)
+		if ($ComputerName.Count -gt 1)
 		{
-			$WebServers = $WebServers -split ','
+			$ComputerName = $ComputerName -split ','
+		}
+		elseif ($ComputerName.Count -eq 1)
+		{
+			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
 	}
 	process
 	{
-		foreach ($WebServer in $WebServers)
+		foreach ($Computer in $ComputerName)
 		{
 
-			if ($WebServer -ne $fqdn)
+			if ($Computer -ne $fqdn)
 			{
 				$Params = @{
-					ComputerName = $WebServer
+					ComputerName = $Computer
 					ErrorAction  = 'Stop'
 				}
 
@@ -244,7 +249,5 @@
 
 	}
 	end
-	{
-
-	}
+	{ }
 }#end function Get-IISWebCertificate

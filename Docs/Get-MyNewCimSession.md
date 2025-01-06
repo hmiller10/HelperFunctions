@@ -15,10 +15,16 @@ This functions creates a new Microsoft Common Information Model remote session t
 
 ## EXAMPLES
 
-### PS C:\\\> Get-MyNewCimSession -ServerName <ServerFQDN\> -Credential PSCredential -SkipICMPCheck
-PS C:\\\>
+### PS C:\\\> .\\Get-MyNewCimSession.ps1 -ServerName user.example.com -SkipICMPCheck
+Example bypassing ICMP ping before establishing remote CIMSession but not requiring credential
 ```powershell
-Get-MyNewCimSession -ServerName <ServerFQDN> -Credential PSCredential -SkipICMPCheck
+PS C:\> .\Get-MyNewCimSession.ps1 -ServerName user.example.com -SkipICMPCheck
+```
+
+### PS C:\\\> .\\Get-MyNewCimSession.ps1 -ServerName user.example.com -Credential (Get-Credential) -SkipICMPCheck
+Example bypassing ICMP ping before establishing remote CIMSession
+```powershell
+PS C:\> .\Get-MyNewCimSession.ps1 -ServerName user.example.com -Credential (Get-Credential) -SkipICMPCheck
 ```
 
 ## PARAMETERS
@@ -29,12 +35,12 @@ FQDN of remote server
 ```yaml
 Type: String[]
 Parameter Sets: Set 1
-Aliases: 'CN', 'ComputerName','Server', 'IP'
+Aliases: 'CN', 'Computer', 'ComputerName', 'Server', 'IP'
 
 Required: true
 Position: 0
 Default Value: 
-Pipeline Input: False
+Pipeline Input: True (ByPropertyName, ByValue)
 ```
 
 ### Credential
@@ -52,7 +58,7 @@ Pipeline Input: false
 ```
 
 ### SkipICMPCheck
-'Switch statement to enable SkipTestConnection Parameter when starting new CimSession.'
+
 
 ```yaml
 Type: 
@@ -77,7 +83,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-### Disclaimer
 THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 
 ## RELATED LINKS

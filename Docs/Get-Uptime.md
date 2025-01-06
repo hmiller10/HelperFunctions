@@ -35,12 +35,12 @@ If querying remote computer, enter the FQDN of the computer.
 ```yaml
 Type: String
 Parameter Sets: Set 1
-Aliases: 
+Aliases: 'CN', 'Computer', 'ServerName', 'Server', 'IP'
 
 Required: false
 Position: 0
 Default Value: [System.Net.Dns]::GetHostByName("LocalHost").HostName
-Pipeline Input: false
+Pipeline Input: False
 ```
 
 ### Credential

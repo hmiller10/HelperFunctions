@@ -1,8 +1,8 @@
 ﻿function global:Get-IPByComputerName
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml		
-		#>
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+	#>
 	
 	[CmdletBinding()]
 	param
@@ -11,6 +11,7 @@
 				 ValueFromPipeline = $true,
 				 ValueFromPipelineByPropertyName = $true,
 				 Position = 0)]
+		[Alias ('CN', 'Computer', 'ServerName', 'Server', 'IP')]
 		[String[]]$ComputerName,
 		[Parameter(Mandatory = $false,
 				 ValueFromPipeline = $true,
@@ -27,6 +28,14 @@
 	begin
 	{
 		Write-Verbose "`n Checking IP Address . . .`n"
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+		{
+			$ComputerName = $ComputerName -split (",")
+		}
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+		{
+			$ComputerName = $PSBoundParameters["ComputerName"]
+		}
 	}
 	process
 	{

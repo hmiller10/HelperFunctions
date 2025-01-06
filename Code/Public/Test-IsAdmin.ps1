@@ -1,8 +1,8 @@
 ﻿function global:Test-IsAdmin
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml
-		#>
+	<#
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+	#>
 
 	BEGIN
 	{

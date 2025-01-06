@@ -59,7 +59,7 @@ Aliases: ComputerName
 Required: false
 Position: named
 Default Value: 
-Pipeline Input: False
+Pipeline Input: True (ByPropertyName, ByValue)
 ```
 
 ### DomainFQDN

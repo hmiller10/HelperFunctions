@@ -15,15 +15,27 @@ This function will connect to the local machine certificate store on either the 
 
 ## EXAMPLES
 
+### EXAMPLE 1
+PS C:\\\> Get-IISWebCertificates
+```powershell
+PS C:\> Get-IISWebCertificates
+```
+
+### EXAMPLE 2
+PS C:\\\> Get-IISWebCertificates -WebServers server1.domain.com, server2.domain.com -Credential (Get-Credential)
+```powershell
+PS C:\> Get-IISWebCertificates -WebServers server1.domain.com, server2.domain.com -Credential (Get-Credential)
+```
+
 ## PARAMETERS
 
 ### WebServers
 List of web servers to query certificate store on
 
 ```yaml
-Type: string
+Type: string[]
 Parameter Sets: (All)
-Aliases: ws,s,computers,cn
+Aliases: 'CN', 'Computer', 'Server',  'ServerName', 'IP'
 
 Required: false
 Position: named
@@ -52,7 +64,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### pscustomobject
+pscustomobject
+
 ## NOTES
+
+### Disclaimer
+THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND.  THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 
 ## RELATED LINKS
 

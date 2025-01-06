@@ -29,7 +29,7 @@ The name of the computer to search
 ```yaml
 Type: String[]
 Parameter Sets: Default
-Aliases: cn,CN
+Aliases: 'CN', 'Computer', 'Server',  'ServerName', 'IP'
 
 Required: false
 Position: 0

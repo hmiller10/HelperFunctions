@@ -7,7 +7,7 @@ Test to see if specified user belongs to a built-in group
 
 ### Parameter Set 1
 ```
-Test-IsRemoteGroupMember
+Test-IsRemoteGroupMember [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -17,11 +17,73 @@ This function uses [ADSI] to test group membership for a specified user in one o
 
 ## PARAMETERS
 
+### User
+
+
+```yaml
+Type: string
+Parameter Sets: (All)
+Aliases: UserName
+
+Required: false
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### GroupName
+
+
+```yaml
+Type: 
+Parameter Sets: (All)
+Aliases: Group
+
+Required: false
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### ComputerName
+
+
+```yaml
+Type: 
+Parameter Sets: (All)
+Aliases: 'CN', 'Computer', 'ServerName', 'Server', 'IP'
+
+Required: false
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### Credential
+
+
+```yaml
+Type: pscredential
+Parameter Sets: (All)
+Aliases: 
+
+Required: false
+Position: named
+Default Value: 
+Pipeline Input: False
+```
+
+### \<CommonParameters\>
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ## OUTPUTS
 
 ## NOTES
+
+### Disclaimer
+THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 
 ## RELATED LINKS
 

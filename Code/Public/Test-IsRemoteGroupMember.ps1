@@ -28,7 +28,7 @@
 				 Position = 2,
 				 HelpMessage = 'Enter computer name to check group on.')]
 		[Parameter(ParameterSetName = 'RemoteComputerParamSet')]
-		[Alias('Computer')]
+		[Alias ('CN', 'Computer', 'ServerName', 'Server', 'IP')]
 		[String]$ComputerName,
 		[Parameter(ParameterSetName = 'RemoteComputerParamSet',
 				 Position = 3)]

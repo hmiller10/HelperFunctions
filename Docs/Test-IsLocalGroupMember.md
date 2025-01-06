@@ -29,7 +29,7 @@ C:\PS> Test-IsLocalGroupMember -User $env:USERNAME -GroupName 'Administrators'
 ```yaml
 Type: String
 Parameter Sets: Parameter Set 1
-Aliases: 
+Aliases: UserName
 
 Required: false
 Position: named
@@ -43,7 +43,7 @@ Pipeline Input: False
 ```yaml
 Type: String
 Parameter Sets: Parameter Set 1
-Aliases: 
+Aliases: Group
 
 Required: false
 Position: named

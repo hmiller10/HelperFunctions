@@ -1,7 +1,7 @@
 ﻿# Add-DataTable
 
 ## SYNOPSIS
-Creates PS data table with assigned name and column data<
+Creates PS data table with assigned name and column data
 
 ## SYNTAX
 
@@ -16,7 +16,7 @@ This function creates a [System.Data.DataTable] to store script output for repor
 ## EXAMPLES
 
 ### Add-DataTable -TableName TableName -ColumnArray DataColumnDefinitions
-Example 1
+C:\\PS\> Add-DataTable -TableName TableName -ColumnArray DataColumnDefinitions
 ```powershell
 C:\PS> Add-DataTable -TableName TableName -ColumnArray DataColumnDefinitions
 ```
@@ -55,12 +55,6 @@ Pipeline Input: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
-### System.String
-
-
-### System.Array
-
 
 ## OUTPUTS
 

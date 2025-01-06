@@ -1,4 +1,4 @@
-function New-RemotePSSession
+function global:New-RemotePSSession
 {
 <#
 	.EXTERNALHELP HelperFunctions.psm1-Help.xml
@@ -9,46 +9,46 @@ function New-RemotePSSession
 	param
 	(
 		[Parameter(Mandatory = $true,
-		           HelpMessage = 'Provide the FQDN of the computer you wish to create a remoting session with')]
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
+				 HelpMessage = 'Provide the FQDN of the computer you wish to create a remoting session with')]
 		[ValidateNotNullOrEmpty()]
-		[ValidateScript({$ComputerName | ForEach-Object { if ((Test-NetConnection -ComputerName $_ -CommonTCPPort WINRM -ErrorAction SilentlyContinue).TcpTestSucceeded-eq $true)
-		    	{
-				Return $true
-			}
-			else
-			{
-				Write-Error "Cannot connect to $_."
-			}
-		}})]
-		[Alias ('CN', 'ServerName', 'Server', 'IP')]
-		[string[]]
-		$ComputerName,
+		[ValidateScript({
+				$ComputerName | ForEach-Object {
+					if ((Test-NetConnection -ComputerName $_ -CommonTCPPort WINRM -ErrorAction SilentlyContinue).TcpTestSucceeded -eq $true)
+					{
+						return $true
+					}
+					else
+					{
+						Write-Error "Cannot connect to $_."
+					}
+				}
+			})]
+		[Alias ('CN', 'Computer', 'ServerName', 'Server', 'IP')]
+		[string[]]$ComputerName = $env:COMPUTERNAME,
 		[Parameter(Mandatory = $false,
-		           ValueFromPipeline = $false,
-		           HelpMessage = 'Enter username. You will be prompted for Password')]
+				 ValueFromPipeline = $false,
+				 HelpMessage = 'Enter username. You will be prompted for Password')]
 		[ValidateNotNull()]
-		[System.Management.Automation.PSCredential]
-		$Credential = [System.Management.Automation.PSCredential]::Empty,
+		[System.Management.Automation.PSCredential]$Credential = [System.Management.Automation.PSCredential]::Empty,
 		[Parameter(Mandatory = $false,
-		           ValueFromPipeline = $false,
-		           HelpMessage = 'Session requires proxy access is true.')]
-		[Switch]
-		$EnableNetworkAccess,
-		[Switch]
-		$RequiresProxy
+				 ValueFromPipeline = $false,
+				 HelpMessage = 'Session requires proxy access is true.')]
+		[Switch]$EnableNetworkAccess,
+		[Switch]$RequiresProxy
 	)
-
+	
 	begin
 	{
-		$ComputerName = $ComputerName -split (",")
-		
+		# Enable TLS 1.2 and 1.3
 		try
 		{
 			#https://docs.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=netcore-2.0#System_Net_SecurityProtocolType_SystemDefault
 			if ($PSVersionTable.PSVersion.Major -lt 6 -and [Net.ServicePointManager]::SecurityProtocol -notmatch 'Tls12')
 			{
-			    Write-Verbose -Message 'Adding support for TLS 1.2'
-			    [Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls12
+				Write-Verbose -Message 'Adding support for TLS 1.2'
+				[Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls12
 			}
 		}
 		catch
@@ -56,20 +56,50 @@ function New-RemotePSSession
 			Write-Warning -Message 'Adding TLS 1.2 to supported security protocols was unsuccessful.'
 		}
 		
-		try
+		$localComputer = Get-CimInstance -ClassName CIM_ComputerSystem -Namespace 'root\CIMv2' -ErrorAction SilentlyContinue
+		
+		if (($localComputer.Caption -match "Windows 11") -eq $true)
 		{
-			#https://docs.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=netcore-2.0#System_Net_SecurityProtocolType_SystemDefault
-			if ($PSVersionTable.PSVersion.Major -lt 6 -and [Net.ServicePointManager]::SecurityProtocol -notmatch 'Tls13')
+			try
 			{
-			    Write-Verbose -Message 'Adding support for TLS 1.3'
-			    [Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls13
+				#https://docs.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=netcore-2.0#System_Net_SecurityProtocolType_SystemDefault
+				if ($PSVersionTable.PSVersion.Major -lt 6 -and [Net.ServicePointManager]::SecurityProtocol -notmatch 'Tls13')
+				{
+					Write-Verbose -Message 'Adding support for TLS 1.3'
+					[Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls13
+				}
+			}
+			catch
+			{
+				Write-Warning -Message 'Adding TLS 1.3 to supported security protocols was unsuccessful.'
 			}
 		}
-		catch
+		elseif (($localComputer.Caption -match "Server 2022") -eq $true)
 		{
-			Write-Warning -Message 'Adding TLS 1.3 to supported security protocols was unsuccessful.'
+			try
+			{
+				#https://docs.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=netcore-2.0#System_Net_SecurityProtocolType_SystemDefault
+				if ($PSVersionTable.PSVersion.Major -lt 6 -and [Net.ServicePointManager]::SecurityProtocol -notmatch 'Tls13')
+				{
+					Write-Verbose -Message 'Adding support for TLS 1.3'
+					[Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls13
+				}
+			}
+			catch
+			{
+				Write-Warning -Message 'Adding TLS 1.3 to supported security protocols was unsuccessful.'
+			}
 		}
-
+		
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+		{
+			$ComputerName = $ComputerName -split (",")
+		}
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+		{
+			$ComputerName = $PSBoundParameters["ComputerName"]
+		}
+		
 	}
 	process
 	{
@@ -133,5 +163,5 @@ function New-RemotePSSession
 		}
 	}
 	end
-	{}
-}#End function New-RemotePSSession
+	{ }
+} #End function New-RemotePSSession

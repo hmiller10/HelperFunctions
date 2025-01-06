@@ -29,12 +29,12 @@ Provide the FQDN of the computer you wish to create a remoting session with
 ```yaml
 Type: String[]
 Parameter Sets: Set 1
-Aliases: 'CN', 'ServerName', 'Server', 'IP'
+Aliases: 'CN', 'Computer', 'ServerName', 'Server', 'IP'
 
 Required: true
 Position: 0
 Default Value: 
-Pipeline Input: False
+Pipeline Input: True (ByPropertyName, ByValue)
 ```
 
 ### Credential

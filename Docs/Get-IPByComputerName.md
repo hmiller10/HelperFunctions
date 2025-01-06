@@ -16,21 +16,21 @@ This function uses .NET to resolve a host name to its IP address
 ## EXAMPLES
 
 ### PS C:\\\>Get-IPByComputerName -ComputerName myComputer -IPv4Only
-
+PS C:\\\>Get-IPByComputerName -ComputerName myComputer -IPv4Only
 ```powershell
-C:\PS> Get-IPByComputerName
+PS C:\>Get-IPByComputerName -ComputerName myComputer -IPv4Only
 ```
 
 ### PS C:\\\>Get-IPByComputerName -ComputerName myComputer -IPv6Only
-
+PS C:\\\>Get-IPByComputerName -ComputerName myComputer -IPv6Only
 ```powershell
-C:\PS> Get-IPByComputerName
+PS C:\>Get-IPByComputerName -ComputerName myComputer -IPv6Only
 ```
 
 ### PS C:\\\> Get-IPByComputerName -ComputerName myComputer
-
+PS C:\\\> Get-IPByComputerName -ComputerName myComputer
 ```powershell
-C:\PS> Get-IPByComputerName
+PS C:\> Get-IPByComputerName -ComputerName myComputer
 ```
 
 ## PARAMETERS
@@ -41,7 +41,7 @@ C:\PS> Get-IPByComputerName
 ```yaml
 Type: String[]
 Parameter Sets: Set 1
-Aliases: 
+Aliases: 'CN', 'Computer', 'ServerName', 'Server', 'IP'
 
 Required: true
 Position: 0

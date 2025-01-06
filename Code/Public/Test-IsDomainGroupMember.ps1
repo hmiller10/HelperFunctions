@@ -12,12 +12,13 @@
 			 Position = 0,
 			 HelpMessage = 'Enter User sAMAccountName')]
 	[ValidateNotNullOrEmpty()]
+	[Alias('UserName')]
 	[String]$User,
 	[Parameter(Mandatory = $true,
 			 Position = 1,
 			 HelpMessage = 'Enter the AD group name in sAMAccountName format')]
 	[ValidateNotNullOrEmpty()]
-	[Alias('Grp')]
+	[Alias('Grp','Group')]
 	[String]$GroupName
 	)
 	

@@ -40,12 +40,12 @@ Computer object to perform action on.
 ```yaml
 Type: String
 Parameter Sets: ComputerParameterSet
-Aliases: CN , MachineName , Computer
+Aliases: 'CN', 'Computer', 'ServerName', 'Server', 'IP'
 
 Required: true
 Position: named
 Default Value: 
-Pipeline Input: false
+Pipeline Input: False
 ```
 
 ### Credential

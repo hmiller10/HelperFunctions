@@ -7,7 +7,7 @@ Verify user's group membership
 
 ### Set 1
 ```
-Test-IsDomainGroupMember [-User] <Object> [-Group] <Object> [<CommonParameters>]
+Test-IsDomainGroupMember [-User] <Object> [-GroupName] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -16,7 +16,7 @@ This function uses the .NET DirectorySearcher to search for, locate a group in t
 ## EXAMPLES
 
 ### PS C:\\\> Test-IsDomainGroupMember -User TestUser -Group 'Remote Desktop Users'
-Checks AD group membership using Directory Searcher
+
 ```powershell
 PS C:\> Test-IsDomainGroupMember -User TestUser -GroupName 'Remote Desktop Users'
 ```
@@ -29,21 +29,21 @@ PS C:\> Test-IsDomainGroupMember -User TestUser -GroupName 'Remote Desktop Users
 ```yaml
 Type: Object
 Parameter Sets: Set 1
-Aliases: 
+Aliases: UserName
 
 Required: true
 Position: 0
 Default Value: 
-Pipeline Input: false
+Pipeline Input: False
 ```
 
-### Group
+### GroupName
 sAMAccountName of AD group to verify User membership in.
 
 ```yaml
 Type: Object
 Parameter Sets: Set 1
-Aliases: grp
+Aliases: 'grp', 'Group'
 
 Required: true
 Position: 1

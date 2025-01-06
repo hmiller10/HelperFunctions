@@ -12,8 +12,8 @@
 		[Parameter(ParameterSetName = 'ComputerParameterSet',
 				 Mandatory = $true,
 				 HelpMessage = 'Type the fully qualified domain name of the computer.')]
-		[Alias('CN', 'MachineName', 'Computer')]
-		[string]$ComputerName,
+		[Alias('CN', 'Computer', 'ServerName', 'Server', 'IP')]
+		[string[]]$ComputerName,
 		[Parameter(ParameterSetName = 'ComputerParameterSet',
 				 Mandatory = $true,
 				 HelpMessage = 'Add the credential object or use (Get-Credential)')]

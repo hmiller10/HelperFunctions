@@ -2,33 +2,30 @@
 	about_HelperFunctions
 	
 SHORT DESCRIPTION	
-	Common PowerShell cmdlets with wrappers
+	English-based module help
+	
 	
 LONG DESCRIPTION
-	This module mainly serves as a convenient
-way of calling common PowerShell cmdlets formatted
-with parameters I commonly use.
+	This English-based module help file provides advanced function help for all funcitons included the module..
+	
 	
 NOTE
-	THIS CODE IS MADE AVAILABLE AS IS, 
-WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF 
-THE USE OR THE RESULTS FROM THE USE OF THIS CODE 
-REMAINS WITH THE USER.
+	THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
+	
 	
 TROUBLESHOOTING NOTE
-	For any questions during troubleshooting assign
-any of the functions to a variable. Next, type: $variable.GetType()
+	At any PowerShell prompt, after importing the PS module, type: Get-Command -Module HelperFunctions, then type: Get-Help <FunctionName> -Full
 	
 	
 EXAMPLES
-	See Function Built-In help.
-	
+	Get-Command -Module HelperFunctions
+	Get-Help Test-IsAdmin -Full
+	Get-Help Export-PSCredential -Examples
+
+
 KEYWORDS
-	'PowerShell', 'Function', 'Datatable', 'DateTime', 'FQDN', 
-	'DistinguishedName', 'CimSession', 'Create', 'Zip', 'Unzip', 
-	'Expand', 'Archive', 'PSCredential', 'Import', 'Export', 
-	'SID', 'SemVer', 'Translate', 'PSSession'
-	
-	
+English Help Module Function
+
+
 SEE ALSO
-	Place related topics here.
+	None
