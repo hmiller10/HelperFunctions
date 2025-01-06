@@ -2,38 +2,16 @@
 	Import-Module -Name HelperFunctions -Force
 	Import-Module -Name Pester -Force
 	if ($Error) { $Error.Clear() }
-
-	if ((Get-CimInstance -ClassName CIM_ComputerSystem -NameSpace 'root\CIMv2').partOfDomain -eq $false)
+	$localComputer = Get-CimInstance -ClassName Cim_ComputerSystem -Namespace 'root\CIMv2' -ErrorAction Stop
+	if ($localComputer.PartOfDomain -eq $false)
 	{
-		try
-		{
-			$Drive = Get-PSDrive -Name TestDrive -ErrorAction Stop
-		}
-		catch
-		{
-			$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
-			Write-Error $errorMessage -ErrorAction Continue
-		}
-		   
-		If ($Drive) { Remove-PSDrive -Name TestDrive -Force -ErrorAction Continue}
-		exit
+		exit;
 	}
 	else
 	{
-		try
-		{
-			$Drive = Get-PSDrive -Name TestDrive -ErrorAction Stop
-		}
-		catch
-		{
-			$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
-			Write-Error $errorMessage -ErrorAction Continue
-		}
-		
-		If ($Drive) { Remove-PSDrive -Name TestDrive -Force -ErrorAction Continue }
-		$Me = $env:USERNAME
+		$User = "Administrator"
+		$GroupName = "Domain Admins"
 	}
-	
 }
 
 # Test-IsDomainGroupMember Tests, all should pass
