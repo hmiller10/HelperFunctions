@@ -5,9 +5,14 @@ Get computer uptime
 
 ## SYNTAX
 
-### Set 1
+### CompterParamSet
 ```
 Get-Uptime [[-ComputerName] <String>] [[-Credential] <PSCredential>] [<CommonParameters>]
+```
+
+### CimParamSet
+```
+Get-Uptime [-Session [<CimSession[]>]] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -15,10 +20,10 @@ This functions uses CIM or WMI, depending upon response to query, to get the las
 
 ## EXAMPLES
 
-### PS C:\\\> Get-Uptime
+### PS C:\\\> Get-Uptime -Session $CimS
 PS C:\\\>
 ```powershell
-Get-Uptime
+PS C:\> Get-Uptime -Session $CimS
 ```
 
 ### PS C:\\\> Get-Uptime -ComputerName $ComputerName -Credential (Get-Credential)
@@ -34,7 +39,7 @@ If querying remote computer, enter the FQDN of the computer.
 
 ```yaml
 Type: String
-Parameter Sets: Set 1
+Parameter Sets: CompterParamSet
 Aliases: 'CN', 'Computer', 'ServerName', 'Server', 'IP'
 
 Required: false
@@ -48,13 +53,27 @@ Add the PSCredential object
 
 ```yaml
 Type: PSCredential
-Parameter Sets: Set 1
+Parameter Sets: CompterParamSet
 Aliases: 
 
 Required: false
 Position: 1
 Default Value: 
 Pipeline Input: false
+```
+
+### Session
+WinRM CimSession
+
+```yaml
+Type: Microsoft.Management.Infrastructure.CimSession[]
+Parameter Sets: CimParamSet
+Aliases: CimSession
+
+Required: false
+Position: named
+Default Value: 
+Pipeline Input: False
 ```
 
 ### \<CommonParameters\>

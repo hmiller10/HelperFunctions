@@ -1553,8 +1553,8 @@
 		</maml:description>
 		<command:syntax>
 			<!--Parameter Sets-->
-			<command:syntaxItem parametersetname="__AllParameterSets">
-				<!--NAME: __AllParameterSets-->
+			<command:syntaxItem parametersetname="CompterParamSet">
+				<!--NAME: CompterParamSet-->
 				<maml:name>Get-Uptime</maml:name>
 				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 					<maml:name>ComputerName</maml:name>
@@ -1576,6 +1576,22 @@
 					<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
 					<dev:type>
 						<maml:name>PSCredential</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue />
+				</command:parameter>
+			</command:syntaxItem>
+			<command:syntaxItem parametersetname="CimParamSet">
+				<!--NAME: CimParamSet-->
+				<maml:name>Get-Uptime</maml:name>
+				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="CimSession">
+					<maml:name>Session</maml:name>
+					<maml:description>
+						<maml:para>WinRM CimSession</maml:para>
+					</maml:description>
+					<command:parameterValue required="false" variableLength="false">Microsoft.Management.Infrastructure.CimSession[]</command:parameterValue>
+					<dev:type>
+						<maml:name>Microsoft.Management.Infrastructure.CimSession[]</maml:name>
 						<maml:uri />
 					</dev:type>
 					<dev:defaultValue />
@@ -1608,6 +1624,18 @@
 				</dev:type>
 				<dev:defaultValue />
 			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="CimSession">
+				<maml:name>Session</maml:name>
+				<maml:description>
+					<maml:para>WinRM CimSession</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">Microsoft.Management.Infrastructure.CimSession[]</command:parameterValue>
+				<dev:type>
+					<maml:name>Microsoft.Management.Infrastructure.CimSession[]</maml:name>
+					<maml:uri />
+				</dev:type>
+				<dev:defaultValue />
+			</command:parameter>
 		</command:parameters>
 		<command:returnValues>
 			<!--Outputs-->
@@ -1631,11 +1659,11 @@
 		<command:examples>
 			<!--Examples-->
 			<command:example>
-				<maml:title>PS C:\&gt; Get-Uptime</maml:title>
+				<maml:title>PS C:\&gt; Get-Uptime -Session $CimS</maml:title>
 				<maml:introduction>
 					<maml:para>PS C:\&gt;</maml:para>
 				</maml:introduction>
-				<dev:code>Get-Uptime</dev:code>
+				<dev:code>PS C:\&gt; Get-Uptime -Session $CimS</dev:code>
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>

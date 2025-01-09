@@ -29,7 +29,7 @@ The registry hive and path to value to be verified.
 ```yaml
 Type: String
 Parameter Sets: Default
-Aliases: 
+Aliases: RegistryKey
 
 Required: false
 Position: named
@@ -43,7 +43,7 @@ The registry key value to test for.
 ```yaml
 Type: String
 Parameter Sets: Default
-Aliases: 
+Aliases: Name
 
 Required: false
 Position: named
