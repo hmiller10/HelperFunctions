@@ -3734,7 +3734,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 			<command:syntaxItem parametersetname="Default">
 				<!--NAME: Default-->
 				<maml:name>Test-RegistryValue</maml:name>
-				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named" aliases="RegistryKey">
 					<maml:name>Path</maml:name>
 					<maml:description>
 						<maml:para>The registry hive and path to value to be verified.</maml:para>
@@ -3746,7 +3746,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 					</dev:type>
 					<dev:defaultValue />
 				</command:parameter>
-				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named" aliases="Name">
 					<maml:name>Value</maml:name>
 					<maml:description>
 						<maml:para>The registry key value to test for.</maml:para>
@@ -3785,7 +3785,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="RegistryKey">
 				<maml:name>Path</maml:name>
 				<maml:description>
 					<maml:para>The registry hive and path to value to be verified.</maml:para>
@@ -3797,7 +3797,7 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 				</dev:type>
 				<dev:defaultValue />
 			</command:parameter>
-			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named">
+			<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="Name">
 				<maml:name>Value</maml:name>
 				<maml:description>
 					<maml:para>The registry key value to test for.</maml:para>

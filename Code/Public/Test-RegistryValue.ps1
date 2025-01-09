@@ -16,7 +16,8 @@
 		[String]$Path,
 		[Parameter(Mandatory = $true,
 				 Position = 1)]
-		[String]$Name,
+		[Alias('Name')]
+		[String]$Value,
 		[Parameter(Mandatory = $false,
 				 Position = 2)]
 		[Switch]$PassThru,
