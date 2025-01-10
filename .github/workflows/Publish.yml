@@ -45,6 +45,7 @@ jobs:
               Import-Module -Name HelperFunctions -Force
               Get-Module -Name HelperFunctions -ListAvailable | Select Path
               Import-Module -Name HelperFunctions -Force
+
       - name: Test module
         run: |
              Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Stop'
