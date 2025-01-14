@@ -13,7 +13,7 @@ Describe "Test-RegistryValue parameter values" {
 	}
 	
 	It "Should Have Parameter Name" {
-		Get-Command -Name Test-RegistryValue -Module HelperFunctions -CommandType Function  | Should -HaveParameter -ParameterName "Name" -Mandatory
+		Get-Command -Name Test-RegistryValue -Module HelperFunctions -CommandType Function  | Should -HaveParameter -ParameterName "Value" -Mandatory
 	}
 	
 }
@@ -27,7 +27,7 @@ Describe "Testing registry access with Pester" {
 	}
 
 	It "Should test the value of a registry key" {
-		$result = Test-RegistryValue -Path "TestRegistry:\TestLocation" -Name $Name
+		$result = Test-RegistryValue -Path "TestRegistry:\TestLocation" -Value $Name
 		$result | Should -Not -BeNullOrEmpty
 		$result | Should -BeFalse
 		
