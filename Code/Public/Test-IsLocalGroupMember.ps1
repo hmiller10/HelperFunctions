@@ -16,12 +16,32 @@
 		[Parameter(Mandatory = $true,
 				 Position = 1,
 				 HelpMessage = 'Enter the name(s) of the built-in groups to test.')]
-		[String]$GroupName
+		[String]$GroupName,
+		[Parameter(Mandatory = $false,
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
+				 Position = 2,
+				 HelpMessage = 'Enter the computer name or FQDN.')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('CN', 'Computer', 'ServerName', 'Server', 'IP')]
+		[String]$ComputerName = $env:COMPUTERNAME,
+		[Parameter(Position = 3,
+				 HelpMessage = 'Enter PS credential to connecct to AD forest with.')]
+		[ValidateNotNull()]
+		[System.Management.Automation.PsCredential][System.Management.Automation.Credential()]
+		$Credential = [System.Management.Automation.PSCredential]::Empty
 	)
 	
 	begin
 	{
-		$objGroup = [ADSI]"WinNT://./$GroupName,group"
+		if ($PSBoundParameters["ComputerName"])
+		{
+			$objGroup = [ADSI]"WinNT://$ComputerName/$GroupName,group"
+		}
+		else
+		{
+			$objGroup = [ADSI]"WinNT://./$GroupName,group"
+		}
 		$objMembers = @($objGroup.Psbase.Invoke("Members"))
 	}
 	process
@@ -39,5 +59,4 @@
 			return [bool]$false
 		}
 	}
-	
 } #end function Test-IsLocalGroupMember
