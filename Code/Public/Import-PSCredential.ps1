@@ -13,7 +13,7 @@
 		[Parameter(Mandatory = $true, Position = 0,
 				 HelpMessage = "Enter the filesystem path to the CliXML file.")]
 		[ValidateScript({ Test-Path $_ })]
-		[string[]]$Path
+		[string]$Path
 	)
 
 	begin

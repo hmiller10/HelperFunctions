@@ -45,7 +45,7 @@
 	{
 		if ($PSCmdlet.ShouldProcess($ZipFileName,'Zipping directory'))
 		{
-			[System.IO.Compression.ZipFile]::CreateFromDirectory($sourceDir, $zipFileName, $compressionLevel, $false)
+			[System.IO.Compression.ZipFile]::CreateFromDirectory($sourceFolder, $zipFileName, $compressionLevel, $false)
 		}
 	}
 	end
