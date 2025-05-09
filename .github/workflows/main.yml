@@ -25,7 +25,7 @@ jobs:
           DESCRIPTION: ${{ github.event.description }}
           PSGALLERY: ${{ secrets.PowerShellGallery }}
           #PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
-          BUILDVER: '2.8.4'
+          BUILDVER: '2.8.5'
           
         uses: aammirmirza/Publish2PSGallery@PSGallery_v2
          with:
