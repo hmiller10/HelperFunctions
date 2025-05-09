@@ -13,6 +13,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - uses: actions/checkout@v4
+
       - name: Test module
         run: |
              Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Stop'
@@ -25,6 +27,7 @@ jobs:
           #PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           BUILDVER: '2.8.4'
           
-        run: |
-          Publish-Module -Path ${{ github.workspace }} -NuGetApiKey $env:PSGALLERY -Repository PSGallery -ErrorAction 'Continue'
-        shell: powershell
+        uses: aammirmirza/Publish2PSGallery@PSGallery_v2
+         with:
+          NuGetApiKey: ${{ github.event.inputs.NuGetApiKey }}
+          modulePath: ${{ github.event.inputs.modulePath }}
