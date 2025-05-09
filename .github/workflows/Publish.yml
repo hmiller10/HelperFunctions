@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+name: Publish_HelperFunctions_Module
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  publish-to-gallery:
+    runs-on: windows-latest
+
+    steps:
+      - name: Test module
+        run: |
+             Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Stop'
+        shell: powershell
+
+      - name: Publish to PowerShell Gallery
+        env:
+          DESCRIPTION: ${{ github.event.description }}
+          PSGALLERY: ${{ secrets.PowerShellGallery }}
+          #PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          BUILDVER: '2.8.4'
+          
+        run: |
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\") -NuGetApiKey $env:PSGALLERY -Repository PSGallery -ErrorAction 'Continue'
+        shell: powershell
