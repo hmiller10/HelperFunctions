@@ -13,6 +13,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - name: Install and cache PowerShell modules
+      uses: potatoqualitee/psmodulecache@v6.0
+      with:
+        modules-to-cache: PSFramework,Pester::, HelperFunctions
+        updatable: true
+
       - name: Test module
         run: |
              Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Stop'
