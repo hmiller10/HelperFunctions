@@ -26,5 +26,5 @@ jobs:
           BUILDVER: '2.8.4'
           
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\") -NuGetApiKey $env:PSGALLERY -Repository PSGallery -ErrorAction 'Continue'
+          Publish-Module -Path ${{ github.workspace }} -NuGetApiKey $env:PSGALLERY -Repository PSGallery -ErrorAction 'Continue'
         shell: powershell
