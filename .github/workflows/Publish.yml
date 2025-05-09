@@ -13,6 +13,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
       - name: Install and cache PowerShell modules
         uses: potatoqualitee/psmodulecache@v6.0
         with:
@@ -20,6 +22,10 @@ jobs:
           updatable: true
           shell: powershell
  
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
       - name: Show that the v5 Action works
         shell: powershell
         run: |
