@@ -164,4 +164,4 @@
 	{
 		return $results
 	}
-} #End function Get-Uptime
+} #End function Get-WinComputerUptime
