@@ -13,26 +13,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Show that the v5 Action works
-        shell: powershell
-        run: |
-              Get-Module -Name PSScriptAnalyzer -ListAvailable | Select Path
-              Import-Module -Name HelperFunctions -Force
-              Get-Module -Name Pester -ListAvailable | Select Path
-              Import-Module -Name HelperFunctions -Force
-              Get-Module -Name HelperFunctions -ListAvailable | Select Path
-              Import-Module -Name HelperFunctions -Force
-              	
-      - name: Show that the v7 Action works
-        shell: pwsh
-        run: |
-              Get-Module -Name PSScriptAnalyzer -ListAvailable | Select Path
-              Import-Module -Name HelperFunctions -Force
-              Get-Module -Name Pester -ListAvailable | Select Path
-              Import-Module -Name HelperFunctions -Force
-              Get-Module -Name HelperFunctions -ListAvailable | Select Path
-              Import-Module -Name HelperFunctions -Force
-
       - name: Test module
         run: |
              Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Stop'
@@ -43,7 +23,7 @@ jobs:
           DESCRIPTION: ${{ github.event.description }}
           PSGALLERY: ${{ secrets.PowerShellGallery }}
           #PSGALLERY_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
-          BUILDVER: '2.8.0'
+          BUILDVER: '2.8.4'
           
         run: |
           Publish-Module -Path (Join-Path ${{ github.workspace }} "main\") -NuGetApiKey $env:PSGALLERY -Repository PSGallery -ErrorAction 'Continue'
