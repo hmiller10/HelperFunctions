@@ -1,17 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <helpItems xmlns="http://msh" schema="maml">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.69 (L)-->
-=======
 	<!--Edited with: SAPIEN PowerShell HelpWriter 2025 v3.0.71 (L)-->
->>>>>>> Stashed changes
-=======
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2025 v3.0.71 (L)-->
->>>>>>> Stashed changes
 	<!--
 		Module: 		HelperFunctions
-		Version:		2.7.4
+		Version:		2.8.5
 	-->
 	<!--All Commands-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
@@ -941,18 +933,8 @@
 			<command:syntaxItem parametersetname="__AllParameterSets">
 				<!--NAME: __AllParameterSets-->
 				<maml:name>Get-MyNewCimSession</maml:name>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ComputerName', 'Server', 'IP'">
-					<maml:name>ServerName</maml:name>
-=======
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 					<maml:name>ComputerName</maml:name>
->>>>>>> Stashed changes
-=======
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
-					<maml:name>ComputerName</maml:name>
->>>>>>> Stashed changes
 					<maml:description>
 						<maml:para>FQDN of remote server</maml:para>
 					</maml:description>
@@ -979,18 +961,8 @@
 		</command:syntax>
 		<command:parameters>
 			<!--All Parameters-->
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ComputerName', 'Server', 'IP'">
-				<maml:name>ServerName</maml:name>
-=======
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 				<maml:name>ComputerName</maml:name>
->>>>>>> Stashed changes
-=======
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
-				<maml:name>ComputerName</maml:name>
->>>>>>> Stashed changes
 				<maml:description>
 					<maml:para>FQDN of remote server</maml:para>
 				</maml:description>
@@ -1583,15 +1555,7 @@
 			<!--Parameter Sets-->
 			<command:syntaxItem parametersetname="CompterParamSet">
 				<!--NAME: CompterParamSet-->
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-				<maml:name>Get-Uptime</maml:name>
-=======
 				<maml:name>Get-WinComputerUptime</maml:name>
->>>>>>> Stashed changes
-=======
-				<maml:name>Get-WinComputerUptime</maml:name>
->>>>>>> Stashed changes
 				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="'CN', 'Computer', 'ServerName', 'Server', 'IP'">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
@@ -1619,15 +1583,7 @@
 			</command:syntaxItem>
 			<command:syntaxItem parametersetname="CimParamSet">
 				<!--NAME: CimParamSet-->
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-				<maml:name>Get-Uptime</maml:name>
-=======
 				<maml:name>Get-WinComputerUptime</maml:name>
->>>>>>> Stashed changes
-=======
-				<maml:name>Get-WinComputerUptime</maml:name>
->>>>>>> Stashed changes
 				<command:parameter required="false" globbing="false" pipelineInput="False" variableLength="false" position="named" aliases="CimSession">
 					<maml:name>Session</maml:name>
 					<maml:description>
@@ -1703,27 +1659,11 @@
 		<command:examples>
 			<!--Examples-->
 			<command:example>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-				<maml:title>PS C:\&gt; Get-Uptime -Session $CimS</maml:title>
-				<maml:introduction>
-					<maml:para>PS C:\&gt;</maml:para>
-				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-Uptime -Session $CimS</dev:code>
-=======
 				<maml:title>PS C:\&gt; Get-WinComputerUptime -Session $CimS</maml:title>
 				<maml:introduction>
 					<maml:para>PS C:\&gt;</maml:para>
 				</maml:introduction>
 				<dev:code>PS C:\&gt; Get-WinComputerUptime -Session $CimS</dev:code>
->>>>>>> Stashed changes
-=======
-				<maml:title>PS C:\&gt; Get-WinComputerUptime -Session $CimS</maml:title>
-				<maml:introduction>
-					<maml:para>PS C:\&gt;</maml:para>
-				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-WinComputerUptime -Session $CimS</dev:code>
->>>>>>> Stashed changes
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>
@@ -4996,13 +4936,5 @@ Valid options are "File" and "Folder", depending on which to check.</maml:para>
 			</command:example>
 		</command:examples>
 	</command:command>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2024 v3.0.69 (L)-->
-=======
 	<!--Edited with: SAPIEN PowerShell HelpWriter 2025 v3.0.71 (L)-->
->>>>>>> Stashed changes
-=======
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2025 v3.0.71 (L)-->
->>>>>>> Stashed changes
 </helpItems>
