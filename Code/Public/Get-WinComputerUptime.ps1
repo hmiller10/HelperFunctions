@@ -44,7 +44,7 @@
 		
 		$params = @{
 			NameSpace    = $ns
-			ErrorAction  = 'Continue'
+			ErrorAction  = 'Stop'
 		}
 		
 		$results = @()
