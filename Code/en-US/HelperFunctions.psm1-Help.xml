@@ -3,7 +3,7 @@
 	<!--Edited with: SAPIEN PowerShell HelpWriter 2025 v3.0.71 (L)-->
 	<!--
 		Module: 		HelperFunctions
-		Version:		2.8.5
+		Version:		2.9.0
 	-->
 	<!--All Commands-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
@@ -380,102 +380,6 @@
 					<maml:para />
 				</maml:introduction>
 				<dev:code>PS C:\&gt;Get-ComputerNameByIP -IPAddress 10.1.1.1</dev:code>
-				<dev:remarks>
-					<maml:para />
-				</dev:remarks>
-			</command:example>
-		</command:examples>
-	</command:command>
-	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
-		<!--TAG: HASCOMMONPARAMETERS-->
-		<!--Command-->
-		<command:details>
-			<command:name>Get-DNfromFQDN</command:name>
-			<maml:description>
-				<maml:para>Get distinguished name from FQDN</maml:para>
-			</maml:description>
-			<maml:copyright>
-				<maml:para />
-			</maml:copyright>
-			<command:verb>Get</command:verb>
-			<command:noun>DNfromFQDN</command:noun>
-			<dev:version />
-		</command:details>
-		<maml:description>
-			<maml:para>This function translates a domain fully qualified domain name into its proper object distinguishedName</maml:para>
-		</maml:description>
-		<command:syntax>
-			<!--Parameter Sets-->
-			<command:syntaxItem parametersetname="__AllParameterSets">
-				<!--NAME: __AllParameterSets-->
-				<maml:name>Get-DNfromFQDN</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
-					<maml:name>FQDN</maml:name>
-					<maml:description>
-						<maml:para>Domain FQDN to convert to distinguishedName</maml:para>
-					</maml:description>
-					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-					<dev:type>
-						<maml:name>String</maml:name>
-						<maml:uri />
-					</dev:type>
-					<dev:defaultValue />
-				</command:parameter>
-			</command:syntaxItem>
-		</command:syntax>
-		<command:parameters>
-			<!--All Parameters-->
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="False" position="0">
-				<maml:name>FQDN</maml:name>
-				<maml:description>
-					<maml:para>Domain FQDN to convert to distinguishedName</maml:para>
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-				<dev:type>
-					<maml:name>String</maml:name>
-					<maml:uri />
-				</dev:type>
-				<dev:defaultValue />
-			</command:parameter>
-		</command:parameters>
-		<command:inputTypes>
-			<!--Inputs-->
-			<command:inputType>
-				<dev:type>
-					<maml:name>None
-					</maml:name>
-					<maml:uri />
-				</dev:type>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-			</command:inputType>
-		</command:inputTypes>
-		<command:returnValues>
-			<!--Outputs-->
-			<command:returnValue>
-				<dev:type>
-					<maml:name>System.String
-					</maml:name>
-					<maml:uri />
-				</dev:type>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-			</command:returnValue>
-		</command:returnValues>
-		<maml:alertSet>
-			<!--Notes-->
-			<maml:title>Disclaimer</maml:title>
-			<maml:alert>
-				<maml:para>THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.</maml:para>
-			</maml:alert>
-		</maml:alertSet>
-		<command:examples>
-			<!--Examples-->
-			<command:example>
-				<maml:title>PS C:\&gt;Get-DNfromFQDN -FQDN mydomain.example.com</maml:title>
-				<dev:code>C:\PS&gt; Get-DNfromFQDN</dev:code>
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>
