@@ -4,62 +4,71 @@ function global:Invoke-Shutdown
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-
+	
 	[CmdletBinding(SupportsShouldProcess = $true)]
 	[OutputType([int])]
 	param
 	(
-	[Parameter(Mandatory = $true,
-			 ValueFromPipeline = $true,
-			 HelpMessage = 'Enter the computer FQDN(s)')]
-	[string[]]$ComputerName,
-	[Parameter(Mandatory = $true,
-			 HelpMessage = 'Select the Shutdown Type.')]
-	[ValidateSet('Logoff', 'Shutdown', 'Reboot', 'PowerOff')]
-	[string]$ShutdownType,
-	[Parameter(Mandatory = $false,
-			 HelpMessage = 'Add this switch to force a reboot or shutdown or logoff')]
-	[switch]$Force,
-	[Parameter(Mandatory = $false,
-			 HelpMessage = 'Enter the $Timeout value in seconds')]
-	[uint32]$Wait,
-	[Parameter(Mandatory = $false,
-			 HelpMessage = 'Enter the reason for this action')]
-	[Alias('Message')]
-	[string]$Comment = "A remote shutdown was initiated by $([Environment]::UserName).",
-	[Parameter(Mandatory = $true,
-			 HelpMessage = 'Enter a valued value from within the NOTES section')]
-	[ShutDown_MajorReason]$MajorReasonCode,
-	[Parameter(Mandatory = $true,
-			 HelpMessage = 'Enter the Minor value from the NOTES section')]
-	[ShutDown_MinorReason]$MinorReasonCode,
-	[Parameter(Mandatory = $false,
-			 HelpMessage = 'Select this switch if this was an unplanned action')]
-	[switch]$Unplanned,
-	[Parameter(Mandatory = $false,
-			 HelpMessage = 'Specify administrator credentials for the computer.')]
-	[System.Management.Automation.PsCredential]$Credential
+		[Parameter(Mandatory = $true,
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
+				 HelpMessage = 'Provide the FQDN of the computer you wish to shut down')]
+		[Alias ('CN', 'Computer', 'ServerName', 'Server', 'IP')]
+		[ValidateScript({
+				$ComputerName | ForEach-Object {
+					if ((Test-NetConnection -ComputerName $_ -CommonTCPPort WINRM -ErrorAction SilentlyContinue).TcpTestSucceeded -eq $true)
+					{
+						return $true
+					}
+					else
+					{
+						Write-Error "Cannot connect to $_."
+					}
+				}
+			})]
+		[ValidateNotNullOrEmpty()]
+		[string[]]$ComputerName = $env:COMPUTERNAME,
+		[Parameter(Mandatory = $true,
+				 HelpMessage = 'Select the Shutdown Type.')]
+		[ValidateSet('Logoff', 'Shutdown', 'Reboot', 'PowerOff')]
+		[string]$ShutdownType,
+		[Parameter(Mandatory = $false,
+				 HelpMessage = 'Add this switch to force a reboot or shutdown or logoff')]
+		[switch]$Force,
+		[Parameter(Mandatory = $false,
+				 HelpMessage = 'Enter the $Timeout value in seconds')]
+		[uint32]$Wait,
+		[Parameter(Mandatory = $false,
+				 HelpMessage = 'Enter the reason for this action')]
+		[Alias('Message')]
+		[string]$Comment = "A remote shutdown was initiated by $([Environment]::UserName).",
+		[Parameter(Mandatory = $true,
+				 HelpMessage = 'Enter a valued value from within the NOTES section')]
+		[ShutDown_MajorReason]$MajorReasonCode,
+		[Parameter(Mandatory = $true,
+				 HelpMessage = 'Enter the Minor value from the NOTES section')]
+		[ShutDown_MinorReason]$MinorReasonCode,
+		[Parameter(Mandatory = $false,
+				 HelpMessage = 'Select this switch if this was an unplanned action')]
+		[switch]$Unplanned,
+		[Parameter(Mandatory = $false,
+				 HelpMessage = 'Specify administrator credentials for the computer.')]
+		[System.Management.Automation.PsCredential]$Credential
 	)
-
+	
 	begin
 	{
-		$Error.Clear()
 		$ns = 'root\CIMv2'
-
-		try
+		
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 		{
-			#https://docs.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=netcore-2.0#System_Net_SecurityProtocolType_SystemDefault
-			if ($PSVersionTable.PSVersion.Major -lt 6 -and [Net.ServicePointManager]::SecurityProtocol -notmatch 'Tls12')
-			{
-				Write-Verbose -Message 'Adding support for TLS 1.2'
-				[Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls12
-			}
+			$ComputerName = $ComputerName -split (",")
 		}
-		catch
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 		{
-			Write-Warning -Message 'Adding TLS 1.2 to supported security protocols was unsuccessful.'
+			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
-
+		
 		if ($PSBoundParameters.ContainsKey('Force'))
 		{
 			$Flags = ([ShutDownType]$ShutdownType).value__ + 4
@@ -68,7 +77,7 @@ function global:Invoke-Shutdown
 		{
 			$Flags = ([ShutDownType]$ShutdownType).value__
 		}
-
+		
 		$PlannedReasonCode = (0x80000000) * -1
 		if ($PSBoundParameters.ContainsKey('Unplanned'))
 		{
@@ -78,13 +87,13 @@ function global:Invoke-Shutdown
 		{
 			$ReasonCode = $MajorReasonCode.value__ + $MinorReasonCode.value__ + $PlannedReasonCode
 		}
-
+		
 		$params = @{
 			Flags	 = $Flags
 			Comment    = $Comment
 			ReasonCode = $ReasonCode
 		}
-
+		
 		if ($PSBoundParameters.ContainsKey("Wait"))
 		{
 			$params.Add("Timeout", $Wait)
@@ -93,7 +102,7 @@ function global:Invoke-Shutdown
 		{
 			$params.Add("Timeout", [uint32]30)
 		}
-
+		
 	}
 	process
 	{
@@ -102,17 +111,17 @@ function global:Invoke-Shutdown
 			try
 			{
 				Write-Verbose ("Testing Connection to {0}..." -f $computer)
-
+				
 				$tcParams = @{
 					ComputerName = $computer
 					Count	   = 1
 					Quiet	   = $true
 				}
-
+				
 				if (($PSBoundParameters.ContainsKey("Credential")) -and ($null -ne $PSBoundParameters["Credential"])) { $tcParams.Add("Credential", $Credential) }
 				if ((Test-Connection @tcParams) -eq $true)
 				{
-
+					
 					if ($computer -eq ([System.Net.Dns]::GetHostByName("LocalHost").HostName))
 					{
 						try
@@ -125,26 +134,26 @@ function global:Invoke-Shutdown
 									EnableAllPrivileges = $true
 									ErrorAction	     = 'Stop'
 								}
-
+								
 								if (($PSBoundParameters.ContainsKey("Credential")) -and ($null -ne $PSBoundParameters["Credential"])) { $osParams.Add("Credential", $Credential) }
 								$OS = Get-WmiObject $osParams
 								if ($PSCmdlet.ShouldProcess($computer, "Execute shutdown/reboot process on $($computer)"))
 								{
 									$result = $OS.Win32ShutdownTracker($Timeout, $Comment, $ReasonCode, $Flags)
 								}
-
+								
 							}
 							catch
 							{
 								$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 								Write-Error $errorMessage -ErrorAction Continue
 							}
-
+							
 							if ($PSBoundParameters.ContainsKey('Verbose'))
 							{
 								switch ($result.ReturnValue)
 								{
-
+									
 									0 {
 										Write-Verbose "$($MyInvocation.InvocationName) on $computer processed successfully."
 									}
@@ -157,10 +166,10 @@ function global:Invoke-Shutdown
 									default {
 										Write-Verbose "$($MyInvocation.InvocationName) on $computer returned error code $result.  System Error Codes can be found here:  https://learn.microsoft.com/en-us/windows/win32/debug/system-error-codes"
 									}
-
+									
 								}
 							}
-
+							
 							return $result.ReturnValue
 						}
 						catch
@@ -181,7 +190,7 @@ function global:Invoke-Shutdown
 							{
 								$session = New-CimSession -ComputerName $computer -SkipTestConnection -ErrorAction Stop
 							}
-
+							
 						}
 						catch
 						{
@@ -203,13 +212,13 @@ function global:Invoke-Shutdown
 								Write-Error -Message $errorMessage -ErrorAction Continue
 							}
 						}
-
+						
 						if ($null -ne $session.Name)
 						{
 							try
 							{
 								$OS = Get-CimInstance -ClassName Win32_OperatingSystem -Namespace $ns -CimSession $session -ErrorAction Stop
-
+								
 								if ($PSCmdlet.ShouldProcess($computer, "Execute shutdown method on $($computer)"))
 								{
 									if ($PSBoundParameters.ContainsKey('Force'))
@@ -243,46 +252,46 @@ function global:Invoke-Shutdown
 										}
 									}
 								}
-
+								
 							}
 							catch
 							{
 								$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 								Write-Error $errorMessage -ErrorAction Continue
 							}
-
+							
 							Remove-CimSession -CimSession $session
 						}
-
+						
 					}
-
+					
 				}
 				else
 				{
 					Write-Error ("{0} is not currently available.  No shutdown request processed" -f $computer) -Category ConnectionError -ErrorVariable +connectionErrors
 					return -1
 				}
-
+				
 			}
 			catch [System.Management.Automation.MethodInvocationException]
 			{
-
+				
 				Write-Verbose "Generic Failure may be caused if 'ShutdownType' of 'Logoff' was used and no users were logged in at the time."
 				Write-Error $_
 				return -2
-
+				
 			}
 			catch
 			{
-
+				
 				Write-Verbose "Error Type is $($_.Exception.GetType().FullName)"
 				Write-Error $_
 				return -256
-
+				
 			}
-
+			
 		}
-
+		
 	}
 	end
 	{

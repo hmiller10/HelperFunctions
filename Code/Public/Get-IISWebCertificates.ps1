@@ -10,7 +10,8 @@
 	(
 		[Parameter(Mandatory = $false,
 				 HelpMessage = 'Enter list of computer(s)')]
-		[string[]]$WebServers,
+		[Alias('CN', 'Computer', 'ServerName', 'Server', 'IP', 'WebServers')]
+		[string[]]$ComputerName,
 		[Parameter(Mandatory = $false,
 				 ValueFromPipeline = $true,
 				 ValueFromPipelineByPropertyName = $true,
@@ -23,52 +24,28 @@
 
 	begin
 	{
-		try
-		{
-			#https://docs.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=netcore-2.0#System_Net_SecurityProtocolType_SystemDefault
-			if ($PSVersionTable.PSVersion.Major -lt 6 -and [Net.ServicePointManager]::SecurityProtocol -notmatch 'Tls12')
-			{
-				Write-Verbose -Message 'Adding support for TLS 1.2'
-				[Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls12
-			}
-		}
-		catch
-		{
-			Write-Warning -Message 'Adding TLS 1.2 to supported security protocols was unsuccessful.'
-		}
 
-		try
+		$localComputer = Get-CimInstance -ClassName CIM_ComputerSystem -Namespace 'root\CIMv2' -Property *
+		$fqdn = "{0}.{1}" -f $localComputer.DnsHostName, $localComputer.Domain
+
+		if ($ComputerName.Count -gt 1)
 		{
-			#https://docs.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=netcore-2.0#System_Net_SecurityProtocolType_SystemDefault
-			if ($PSVersionTable.PSVersion.Major -lt 6 -and [Net.ServicePointManager]::SecurityProtocol -notmatch 'Tls13')
-			{
-				Write-Verbose -Message 'Adding support for TLS 1.3'
-				[Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls13
-			}
+			$ComputerName = $ComputerName -split ','
 		}
-		catch
+		elseif ($ComputerName.Count -eq 1)
 		{
-			Write-Warning -Message 'Adding TLS 1.3 to supported security protocols was unsuccessful.'
-		}
-
-
-		$computer = Get-CimInstance -ClassName CIM_ComputerSystem -Namespace 'root\CIMv2' -Property *
-		$fqdn = "{0}.{1}" -f $computer.DnsHostName, $computer.Domain
-
-		if ($WebServers.Count -gt 1)
-		{
-			$WebServers = $WebServers -split ','
+			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
 	}
 	process
 	{
-		foreach ($WebServer in $WebServers)
+		foreach ($Computer in $ComputerName)
 		{
 
-			if ($WebServer -ne $fqdn)
+			if ($Computer -ne $fqdn)
 			{
 				$Params = @{
-					ComputerName = $WebServer
+					ComputerName = $Computer
 					ErrorAction  = 'Stop'
 				}
 
@@ -244,7 +221,5 @@
 
 	}
 	end
-	{
-
-	}
+	{ }
 }#end function Get-IISWebCertificate

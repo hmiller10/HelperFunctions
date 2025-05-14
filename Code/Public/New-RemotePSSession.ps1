@@ -1,27 +1,32 @@
 function global:New-RemotePSSession
 {
-	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml
-	#>
-
+<#
+	.EXTERNALHELP HelperFunctions.psm1-Help.xml
+#>
+	
 	[CmdletBinding()]
 	[OutputType([System.Management.Automation.Runspaces.PSSession])]
 	param
 	(
 		[Parameter(Mandatory = $true,
+				 ValueFromPipeline = $true,
+				 ValueFromPipelineByPropertyName = $true,
 				 HelpMessage = 'Provide the FQDN of the computer you wish to create a remoting session with')]
+		[ValidateNotNullOrEmpty()]
 		[ValidateScript({
-				if ((Test-NetConnection -ComputerName $_ -CommonTCPPort WINRM -InformationLevel Quiet).TcpTestSucceeded -eq $true)
-				{
-					$true
-				}
-				else
-				{
-					throw "Cannot connect to $_ on the default WinRM port from this computer."
+				$ComputerName | ForEach-Object {
+					if ((Test-NetConnection -ComputerName $_ -CommonTCPPort WINRM -ErrorAction SilentlyContinue).TcpTestSucceeded -eq $true)
+					{
+						return $true
+					}
+					else
+					{
+						Write-Error "Cannot connect to $_."
+					}
 				}
 			})]
-		[ValidateNotNullOrEmpty()]
-		[string]$ComputerName,
+		[Alias ('CN', 'Computer', 'ServerName', 'Server', 'IP')]
+		[string[]]$ComputerName = $env:COMPUTERNAME,
 		[Parameter(Mandatory = $false,
 				 ValueFromPipeline = $false,
 				 HelpMessage = 'Enter username. You will be prompted for Password')]
@@ -32,70 +37,82 @@ function global:New-RemotePSSession
 				 HelpMessage = 'Session requires proxy access is true.')]
 		[Switch]$EnableNetworkAccess,
 		[Switch]$RequiresProxy
-	)#endParameterBlock
-
+	)
+	
 	begin
 	{
-		$Dot = $index.IndexOf('.')
-		$Object = [pscustomobject]@{
-			Hostname = $ComputerName.Substring(0, $Dot)
-			FQDN     = $ComputerName
-			Domain   = $ComputerName.Substring($Dot + 1)
-		}
-
-		$params = @{
-			ComputerName = $ComputerName
-			Name	        = $Object.HostName
-			ErrorAction  = 'Stop'
-		}
-
-		if ($PSBoundParameters.ContainsKey('Credential'))
+		
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 		{
-			$params.Add('Credential', $Credential)
+			$ComputerName = $ComputerName -split (",")
 		}
-
-		if ($PSBoundParameters.ContainsKey('RequiresProxy'))
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 		{
-			$option = New-PSSessionOption -ProxyAccessType NoProxyServer
-			$params.Add('SessionOption', $Option)
+			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
-
-		if ($PSBoundParameters.ContainsKey('EnableNetworkAccess'))
-		{
-			$params.Add('EnableNetworkAccess', $true)
-		}
+		
 	}
 	process
 	{
-		if ($PSCmdlet.ShouldProcess($ComputerName, "Creating new PS Session to $ComputerName"))
+		foreach ($Computer in $ComputerName)
 		{
-
-			try
-			{
-				$s = New-PSSession @params
+			$Dot = $index.IndexOf('.')
+			$Object = [pscustomobject]@{
+				Hostname = $Computer.Substring(0, $Dot)
+				FQDN     = $Computer
+				Domain   = $Computer.Substring($Dot + 1)
 			}
-			catch
+			
+			$params = @{
+				ComputerName = $Computer
+				Name	        = $Object.HostName
+				ErrorAction  = 'Stop'
+			}
+			
+			if ($PSBoundParameters.ContainsKey('Credential'))
 			{
-				switch -Wildcard ($_.Exception.Message)
+				$params.Add('Credential', $Credential)
+			}
+			
+			if ($PSBoundParameters.ContainsKey('RequiresProxy'))
+			{
+				$option = New-PSSessionOption -ProxyAccessType NoProxyServer
+				$params.Add('SessionOption', $Option)
+			}
+			
+			if ($PSBoundParameters.ContainsKey('EnableNetworkAccess'))
+			{
+				$params.Add('EnableNetworkAccess', $true)
+			}
+			
+			if ($PSCmdlet.ShouldProcess($Computer, "Creating new PS Session to $Computer"))
+			{
+				
+				try
 				{
-					"*2150858770*"                       { $ErrorMessage = 'Offline' }
-					"*server name cannot be resolved*"   { $ErrorMessage = 'ServerName cannot be resolved' }
-					"*2150859046*"                       { $ErrorMessage = 'PS Connect Failed' }
-					"*2150859193*"                       { $ErrorMessage = 'Asset Not Found' }
-					"*Access is denied*"                 { $ErrorMessage = 'Access Denied' }
-					"*specified computer name is valid*" { $ErrorMessage = 'Server Offline' }
-					"*winrm quickconfig*"                { $ErrorMessage = 'PsRemoting Not Enabled' }
-					"*firewall exception*"               { $ErrorMessage = 'PsRemoting Not Enabled' }
-					Default                              { $ErrorMessage = 'PS connect Error' }
+					$s = New-PSSession @params
 				}
-				$s = $ErrorMessage
+				catch
+				{
+					switch -Wildcard ($_.Exception.Message)
+					{
+						"*2150858770*"                       { $ErrorMessage = 'Offline' }
+						"*server name cannot be resolved*"   { $ErrorMessage = 'ServerName cannot be resolved' }
+						"*2150859046*"                       { $ErrorMessage = 'PS Connect Failed' }
+						"*2150859193*"                       { $ErrorMessage = 'Asset Not Found' }
+						"*Access is denied*"                 { $ErrorMessage = 'Access Denied' }
+						"*specified computer name is valid*" { $ErrorMessage = 'Server Offline' }
+						"*winrm quickconfig*"                { $ErrorMessage = 'PsRemoting Not Enabled' }
+						"*firewall exception*"               { $ErrorMessage = 'PsRemoting Not Enabled' }
+						Default                              { $ErrorMessage = 'PS connect Error' }
+					}
+					$s = $ErrorMessage
+				}
+				
+				return $s
 			}
-
 		}
-
 	}
 	end
-	{
-		return $s
-	}
-}#End function New-RemotePSSession
+	{ }
+} #End function New-RemotePSSession

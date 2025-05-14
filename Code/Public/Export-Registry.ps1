@@ -45,7 +45,6 @@
 
 			if ($null -eq (Get-Module -Name ImportExcel))
 			{
-				[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
 				Install-Module -Name ImportExcel -Repository "PSGallery" -Scope CurrentUser -Force -Confirm:$false
 				Import-Module -Name ImportExcel -Force
 			}
@@ -166,4 +165,5 @@
 			}
 		} #end Switch
 	}
+	end {}
 } #end Export-Registry

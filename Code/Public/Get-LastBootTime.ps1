@@ -12,8 +12,8 @@
 				 ValueFromPipeline = $true,
 				 ValueFromPipelineByPropertyName = $true,
 				 HelpMessage = 'Enter the name of the computer to check or pipe the input to the function')]
-		[Alias('cn')]
-		[string[]]$ComputerName,
+		[Alias('CN', 'Computer', 'ServerName', 'Server', 'IP')]
+		[string[]]$ComputerName = $env:COMPUTERNAME,
 		[Parameter(Mandatory = $false,
 				 HelpMessage = 'Enter the PS credential object variable name')]
 		[ValidateNotNull()]
@@ -27,9 +27,14 @@
 
 	begin
 	{
-		if ($null -eq $PSBoundParameters['ComputerName'])
+		
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 		{
-			$ComputerName = $env:COMPUTERNAME
+		    $ComputerName = $ComputerName -split (",")
+		}
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+		{
+			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
 
 		if (($PSBoundParameters.ContainsKey('DaysPast') -and ($null -ne $PSBoundParameters["DaysPast"])))
@@ -40,7 +45,7 @@
 		{
 			$TimePast = (Get-Date).AddDays(-1)
 		}
-		#$Time = Get-Date
+
 	}
 	process
 	{
