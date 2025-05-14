@@ -55,5 +55,6 @@ jobs:
           #BUILDVER: '2.8.6'
           
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\HelperFunctions.psd1") -NuGetApiKey $env:NUGET_KEY -Verbose
+          #Publish-Module -Path (Join-Path ${{ github.workspace }} "main\HelperFunctions.psd1") -NuGetApiKey $env:NUGET_KEY -Verbose
+          Publish-PSResource -Path (Join-Path ${{ github.workspace }} "main\HelperFunctions.psd1") -Repository PSGallery -ApiKey $env:NUGET_KEY -Confirm:$false -Verbose
         shell: powershell  
