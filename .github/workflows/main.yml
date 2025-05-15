@@ -25,7 +25,7 @@ jobs:
       - name: Install and cache PowerShell modules
         uses: potatoqualitee/psmodulecache@v6.2.1
         with:
-          modules-to-cache: PSFramework,Pester::,HelperFunctions
+          modules-to-cache: Microsoft.PowerShell.PSResourceGet,PSFramework,Pester::,HelperFunctions
           updatable: true
           shell: powershell
 
@@ -55,5 +55,6 @@ jobs:
           #BUILDVER: '2.8.6'
           
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\Public\HelperFunctions.psd1") -NuGetApiKey $env:NUGET_KEY -Verbose
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\HelperFunctions.psd1") -NuGetApiKey $env:NUGET_KEY -Verbose
+          #Publish-PSResource -Path (Join-Path ${{ github.workspace }} "main\HelperFunctions.psd1") -Repository PSGallery -ApiKey $env:NUGET_KEY -Confirm:$false -Verbose
         shell: powershell  

@@ -11,11 +11,11 @@ Describe 'Get-WinComputerUptime parameter tests' {
 		$cmd = Get-Command -Name Get-WinComputerUptime -Module HelperFunctions -CommandType Function
 	}
 	
-	It 'Get-Uptime should have parameter ComputerName' {
+	It 'Get-WinComputerUptime should have parameter ComputerName' {
 		$cmd | Should -HaveParameter -ParameterName ComputerName
 	}
 	
-	It ' Get-Uptime should have parameter Credential' {
+	It 'Get-WinComputerUptime should have parameter Credential' {
 		$cmd | Should -HaveParameter -ParameterName Credential
 	}
 	
@@ -24,9 +24,9 @@ Describe 'Get-WinComputerUptime parameter tests' {
 	}
 }
 
-Describe 'Get-Uptime function output' {
+Describe 'Get-WinComputerUptime function output' {
 
-	It 'Get-Uptime should be of type [PSCustomObject]' {
+	It 'Get-WinComputerUptime should be of type [PSCustomObject]' {
 		$result = Get-WinComputerUptime
 		$result | Should -Not -BeNullOrEmpty
 		$result | Should -ExpectedType [PSCustomObject]

@@ -1,18 +1,14 @@
-<?xml version="1.0"?>
-<package >
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>HelperFunctions</id>
-    <version>2.9.0</version>
+    <version>3.0.0</version>
     <authors>Heather Miller, Thomas Ashworth</authors>
     <owners>Heather Miller</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">MIT</license>
-    <description>Common every day PS functions used repeatedly in script writing.</description>
-    <releaseNotes>'Removed old functions accidentally committed. Updated help file.'</releaseNotes>
-    <copyright>$copyright$</copyright>
-    <tags>PowerShell Function Datatable DateTime FQDN DistinguishedName CimSession Create Zip Unzip Expand Archive PSCredential Import Export Invoke Shutdown Reboot SemVer</tags>
+    <description>PowerShell module for functions I continuously reuse</description>
+    <releaseNotes>Revised format on module scaffold</releaseNotes>
+    <copyright>Copyright 2025</copyright>
+    <tags>PowerShell, Module, Function, Datatable, DateTime, FQDN, DistinguishedName, CimSession, Create, Zip, Unzip, Expand, Archive, PSCredential, PSSession, Import, Export, SID, Registry, SemVer, Translate</tags>
   </metadata>
-  <files>
-    <file src="Code\**\*.*" />
-  </files>
 </package>
