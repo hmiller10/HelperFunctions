@@ -1,3 +1,4 @@
+Add-Type @"
 enum ShutdownType {
     LogOff = 0
     Shutdown = 1
@@ -45,3 +46,4 @@ enum ShutDown_MinorReason {
     UPGRADE = 0x00000003
     WMI = 0x00000015
 }
+"@

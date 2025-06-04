@@ -21,7 +21,7 @@
 		$LogFile,
 		[Parameter(Mandatory = $true)]
 		[ValidateSet('Info', 'Warning', 'Error', 'Debug', 'Failure', 'Success')]
-		[String]
+		[LogLevel]
 		$LogLevel
 	)
 	
@@ -37,12 +37,13 @@
 			'Info' { $type = "[INFO]" }
 			'Warning' { $type = "[WARNING]" }
 			'Error' { $type = "[ERROR]" }
+			'Critical' { $type = "[CRITICAL]" }
 			'Debug' { $type = "[DEBUG]" }
 			'Failure' { $type = "[FAILURE]" }
 			'Success' { $type = "[SUCCESS]" }
 		}
 		
-		Write-Verbose -Message $Logentry
+		Write-Verbose -Message $LogEntry
 	}
 	end
 	{
