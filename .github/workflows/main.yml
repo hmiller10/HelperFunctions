@@ -25,7 +25,7 @@ jobs:
       - name: Install and cache PowerShell modules
         uses: potatoqualitee/psmodulecache@v6.2.1
         with:
-          modules-to-cache: PSFramework,Pester::,HelperFunctions
+          modules-to-cache: PSFramework,Pester,HelperFunctions
           shell: powershell
 
       - name: Show that the Action works
