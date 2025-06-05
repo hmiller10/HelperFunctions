@@ -26,7 +26,6 @@ jobs:
         uses: potatoqualitee/psmodulecache@v6.2.1
         with:
           modules-to-cache: PSFramework,Pester::,HelperFunctions
-          updatable: true
           shell: powershell
 
       - name: Show that the Action works
