@@ -31,7 +31,7 @@ function global:Invoke-Shutdown
 		[Parameter(Mandatory = $true,
 				 HelpMessage = 'Select the Shutdown Type.')]
 		[ValidateSet('Logoff', 'Shutdown', 'Reboot', 'PowerOff')]
-		[string]$ShutdownType,
+		[ShutdownType]$ShutdownType,
 		[Parameter(Mandatory = $false,
 				 HelpMessage = 'Add this switch to force a reboot or shutdown or logoff')]
 		[switch]$Force,
