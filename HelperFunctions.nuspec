@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>HelperFunctions</id>
-    <version>3.0.2</version>
+    <version>3.0.6</version>
     <authors>Heather Miller, Thomas Ashworth</authors>
     <owners>Heather Miller</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>PowerShell module for HelperFunctions</description>
-    <releaseNotes>'Updated enum scripts.'</releaseNotes>
+    <releaseNotes>'Updated formats ps1mxl.'</releaseNotes>
     <copyright>Copyright 2018-2025</copyright>
     <tags>PowerShell HelperFunctions Function Datatable DateTime FQDN DistinguishedName CimSession Create Zip Unzip Expand Archive PSCredential Import Export Invoke Shutdown Reboot SemVer</tags>
   </metadata>

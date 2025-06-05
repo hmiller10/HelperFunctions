@@ -5,4 +5,3 @@ Test/
 *.bak
 *.restorepoint.ps1
 *.TempPoint
-Tests/Get-Uptime.Tests.ps1
