@@ -1,4 +1,4 @@
-﻿function global:Get-SIDforDomainUser
+﻿function Get-SIDforDomainUser
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

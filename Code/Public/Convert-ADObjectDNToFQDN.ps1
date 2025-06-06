@@ -1,4 +1,4 @@
-﻿function global:Convert-ADObjectDNToFQDN
+﻿function Convert-ADObjectDNToFQDN
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

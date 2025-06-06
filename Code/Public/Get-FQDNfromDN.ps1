@@ -1,4 +1,4 @@
-﻿function global:Get-FQDNfromDN
+﻿function Get-FQDNfromDN
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

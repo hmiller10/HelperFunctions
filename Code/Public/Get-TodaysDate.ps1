@@ -1,4 +1,4 @@
-﻿function global:Get-TodaysDate
+﻿function Get-TodaysDate
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

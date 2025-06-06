@@ -1,4 +1,4 @@
-﻿function global:Get-LastBootTime
+﻿function Get-LastBootTime
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

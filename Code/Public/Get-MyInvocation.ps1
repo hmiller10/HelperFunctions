@@ -1,4 +1,4 @@
-function global:Get-MyInvocation
+function Get-MyInvocation
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

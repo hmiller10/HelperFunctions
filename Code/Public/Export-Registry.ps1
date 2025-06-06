@@ -1,4 +1,4 @@
-﻿function global:Export-Registry
+﻿function Export-Registry
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

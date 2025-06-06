@@ -1,4 +1,4 @@
-﻿function global:Get-RandomPassword
+﻿function Get-RandomPassword
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

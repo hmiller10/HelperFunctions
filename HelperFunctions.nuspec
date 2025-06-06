@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>HelperFunctions</id>
-    <version>3.0.16</version>
+    <version>3.0.17</version>
     <authors>Heather Miller, Thomas Ashworth</authors>
     <owners>Heather Miller</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>PowerShell module for HelperFunctions</description>
-    <releaseNotes>'Updated PSD1 format.'</releaseNotes>
+    <releaseNotes>'Removed global scope from public functions.'</releaseNotes>
     <copyright>Copyright 2018-2025</copyright>
     <tags>PowerShell HelperFunctions Function Datatable DateTime FQDN DistinguishedName CimSession Create Zip Unzip Expand Archive PSCredential Import Export Invoke Shutdown Reboot SemVer</tags>
   </metadata>

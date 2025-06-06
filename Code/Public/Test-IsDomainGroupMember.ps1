@@ -1,4 +1,4 @@
-﻿function global:Test-IsDomainGroupMember
+﻿function Test-IsDomainGroupMember
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

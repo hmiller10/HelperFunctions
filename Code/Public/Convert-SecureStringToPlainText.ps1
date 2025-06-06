@@ -1,4 +1,4 @@
-﻿function global:Convert-SecureStringToPlainText
+﻿function Convert-SecureStringToPlainText
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

@@ -1,4 +1,4 @@
-function global:New-RemotePSSession
+function New-RemotePSSession
 {
 <#
 	.EXTERNALHELP HelperFunctions.psm1-Help.xml

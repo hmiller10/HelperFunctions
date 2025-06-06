@@ -1,4 +1,4 @@
-﻿function global:Remove-LoggedOnUsers
+﻿function Remove-LoggedOnUsers
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

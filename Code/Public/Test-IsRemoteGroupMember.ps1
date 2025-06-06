@@ -1,4 +1,4 @@
-﻿function global:Test-IsRemoteGroupMember
+﻿function Test-IsRemoteGroupMember
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

@@ -1,4 +1,4 @@
-﻿function global:Test-PathExists
+﻿function Test-PathExists
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

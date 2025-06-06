@@ -1,4 +1,4 @@
-﻿function global:Get-ReportDate
+﻿function Get-ReportDate
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

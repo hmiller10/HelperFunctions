@@ -1,4 +1,4 @@
-﻿function global:Test-Credential
+﻿function Test-Credential
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

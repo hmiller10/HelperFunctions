@@ -1,5 +1,5 @@
 ﻿#Requires -Module CimCmdlets
-function global:Invoke-Shutdown
+function Invoke-Shutdown
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

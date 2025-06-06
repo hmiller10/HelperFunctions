@@ -1,4 +1,4 @@
-﻿function global:Invoke-ZipDirectory
+﻿function Invoke-ZipDirectory
 {
 <#
 	.EXTERNALHELP HelperFunctions.psm1-Help.xml

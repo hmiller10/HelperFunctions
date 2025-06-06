@@ -1,4 +1,4 @@
-﻿function global:Write-Logfile
+﻿function Write-Logfile
 {
 		<#
 			.EXTERNALHELP HelperFunctions.psm1-Help.xml

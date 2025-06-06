@@ -1,4 +1,4 @@
-﻿function global:Get-WinComputerUptime
+﻿function Get-WinComputerUptime
 {
 <#
 	.EXTERNALHELP HelperFunctions.psm1-Help.xml

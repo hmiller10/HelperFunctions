@@ -1,4 +1,4 @@
-﻿function global:Test-IsValidIPAddress
+﻿function Test-IsValidIPAddress
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

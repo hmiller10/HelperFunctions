@@ -1,4 +1,4 @@
-﻿function global:Invoke-ExpandZipArchive
+﻿function Invoke-ExpandZipArchive
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

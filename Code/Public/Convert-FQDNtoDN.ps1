@@ -1,4 +1,4 @@
-﻿function global:Convert-FQDNtoDN
+﻿function Convert-FQDNtoDN
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

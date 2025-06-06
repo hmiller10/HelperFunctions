@@ -1,4 +1,4 @@
-﻿function global:Get-UserFromSID
+﻿function Get-UserFromSID
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

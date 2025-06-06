@@ -1,4 +1,4 @@
-﻿function global:Test-IsLocalGroupMember
+﻿function Test-IsLocalGroupMember
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

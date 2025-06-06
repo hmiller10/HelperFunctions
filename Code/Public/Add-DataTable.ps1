@@ -1,4 +1,4 @@
-﻿function global:Add-DataTable
+﻿function Add-DataTable
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

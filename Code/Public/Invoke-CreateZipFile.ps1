@@ -1,4 +1,4 @@
-function global:Invoke-CreateZipFile
+function Invoke-CreateZipFile
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

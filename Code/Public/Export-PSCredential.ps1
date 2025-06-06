@@ -1,4 +1,4 @@
-﻿function global:Export-PSCredential
+﻿function Export-PSCredential
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

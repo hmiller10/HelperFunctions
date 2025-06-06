@@ -1,4 +1,4 @@
-function global:Get-UTCTime
+function Get-UTCTime
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

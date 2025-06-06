@@ -1,4 +1,4 @@
-﻿function global:Get-IISWebCertificates
+﻿function Get-IISWebCertificates
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

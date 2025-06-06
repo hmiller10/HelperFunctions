@@ -1,4 +1,4 @@
-function global:Get-MyNewCimSession
+function Get-MyNewCimSession
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml

@@ -1,4 +1,4 @@
-﻿function global:Get-TimeStamp
+﻿function Get-TimeStamp
 {
 		<#
 			.EXTERNALHELP HelperFunctions.psm1-Help.xml

@@ -1,4 +1,4 @@
-function global:Test-IsInstalled
+function Test-IsInstalled
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml		

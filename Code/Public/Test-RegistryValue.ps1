@@ -1,4 +1,4 @@
-﻿function global:Test-RegistryValue
+﻿function Test-RegistryValue
 {
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
