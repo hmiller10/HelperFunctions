@@ -1,23 +1,26 @@
 function Invoke-CreateZipFile
 {
-	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+<#
+	.EXTERNALHELP HelperFunctions.psm1-Help.xml
+#>
 
-	#>
-
-	[CmdletBinding()]
+	[CmdletBinding(SupportsShouldProcess = $true)]
 	[Alias('Create-ZipFile')]
+	[OutputType([System.IO.Compression.ZipArchiveEntry])]
 	param
 	(
-	[Parameter(Mandatory = $true)]
-	[String]$CompressedFileName,
-	[Parameter(Mandatory = $true)]
-	[String]$FileToCompress,
-	[Parameter(Mandatory = $true)]
-	[String]$EntryName,
-	[Parameter(Mandatory = $true)]
-	[ValidateSet('Create', 'Read', 'Update')]
-	[String]$ArchiveMode
+		[Parameter(Mandatory = $true)]
+		[String]
+		$CompressedFileName,
+		[Parameter(Mandatory = $true)]
+		[String]
+		$FileToCompress,
+		[String]
+		$EntryName,
+		[Parameter(Mandatory = $true)]
+		[ValidateSet('Create', 'Read', 'Update')]
+		[String]
+		$ArchiveMode
 	)
 
 	begin
@@ -42,7 +45,18 @@ function Invoke-CreateZipFile
 			"Update" { $objCompressedFile = [System.IO.Compression.ZipFile]::Open($CompressedFileName, [System.IO.Compression.ZipArchiveMode]::Update) }
 		}
 
-		$archiveEntry = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($objCompressedFile, $FileToCompress, $EntryName, $compressionLevel)
+		if ($PSCmdlet.ShouldProcess($CompressedFileName))
+		{
+			try
+			{
+				[System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($objCompressedFile, $FileToCompress, $EntryName, $compressionLevel)
+			}
+			catch
+			{
+				$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+				Write-Error $errorMessage -ErrorAction Continue
+			}
+		}
 	}
 	end
 	{

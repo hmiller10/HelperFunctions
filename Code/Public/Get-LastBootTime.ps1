@@ -27,12 +27,12 @@
 
 	begin
 	{
-		
-		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 		{
 		    $ComputerName = $ComputerName -split (",")
 		}
-		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 		{
 			$ComputerName = $PSBoundParameters["ComputerName"]
 		}

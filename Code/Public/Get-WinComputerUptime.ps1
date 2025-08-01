@@ -2,13 +2,12 @@
 {
 <#
 	.EXTERNALHELP HelperFunctions.psm1-Help.xml
-		
 #>
-	
+
 	[CmdletBinding(DefaultParameterSetName = 'ComputerParamSet',
 	               SupportsShouldProcess = $true)]
-	[OutputType([pscustomobject], ParameterSetName='ComputerParamSet')]
-	[OutputType([pscustomobject], ParameterSetName='CimParamSet')]
+	[OutputType([System.Object[]], ParameterSetName='ComputerParamSet')]
+	[OutputType([System.Object[]], ParameterSetName='CimParamSet')]
 	param
 	(
 		[Parameter(ParameterSetName = 'ComputerParamSet',
@@ -35,18 +34,18 @@
 		[Microsoft.Management.Infrastructure.CimSession[]]
 		$Session
 	)
-	
+
 	begin
 	{
-		
+
 		[String]$dtmFormatString = "yyyy-MM-dd HH:mm:ss"
 		$ns = 'root\CIMv2'
-		
+
 		$params = @{
 			NameSpace    = $ns
 			ErrorAction  = 'Stop'
 		}
-		
+
 		$results = @()
 	}
 	process
@@ -54,12 +53,12 @@
 		switch ($PSCmdlet.ParameterSetName)
 		{
 			"ComputerParamSet" {
-				
-				if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+
+				if ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 				{
 					$ComputerName = $ComputerName -split (",")
 				}
-				elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+				elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 				{
 					$ComputerName = $PSBoundParameters["ComputerName"]
 				}
@@ -78,7 +77,7 @@
 						try
 						{
 							$objOS = Get-CimInstance -Query $Query @params
-							
+
 							if ($null -ne $objOS)
 							{
 								$uptimeTimespan = New-TimeSpan -Start $objOS.LastBootUpTime.ToUniversalTime() -End $objOS.LocalDateTime.ToUniversalTime()
@@ -89,48 +88,37 @@
 						}
 						catch
 						{
-							if (($PSBoundParameters.ContainsKey('Credential') -eq $true) -and ($null -ne $PSBoundParameters['Credential']))
-							{
-								$params.Add('Credential', $Credential)
-							}
-							
-							$objOS = Get-WmiObject -Query $Query @params
-							if ($null -ne $objOS)
-							{
-								$uptimeTimespan = New-TimeSpan -Start ($objOS.ConvertToDateTime($objOS.LastBootUpTime)).ToUniversalTime() -End ($objOS.ConvertToDateTime($objOS.LocalDateTime)).ToUniversalTime()
-								$uptime = New-Object System.TimeSpan($uptimeTimespan.Days, $uptimeTimespan.Hours, $uptimeTimespan.Minutes, $uptimeTimespan.Seconds)
-								$lastBootupTime = ($objOS.ConvertToDateTime($objOS.LastBootUpTime)).ToString($dtmFormatString)
-								$lastBootupTimeUTC = (($objOS.ConvertToDateTime($objOS.LastBootUpTime)).ToUniversalTime()).ToString($dtmFormatString)
-							}
+							$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+							Write-Error $errorMessage -ErrorAction Continue
 						}
 					}
-					
+
 					$result = [PSCustomObject]@{
 						Computer	        = $Computer
 						Uptime		   = $uptime
 						LastBootTimeUTC   = $lastBootupTimeUTC
 						LastBootTimeLocal = $lastBootupTime
 					}
-					
+
 					$results += $result
-					
+
 					$params.Remove('ComputerName')
 				}
 			}
 			"CimParamSet" {
-				
+
 				for ($i = 0; $i -lt $Session.Count; $i++)
 				{
 					Write-Output ("Session Name is: {0}" -f $Session[$i].Name)
 					$params.Add('CimSession', $Session[$i])
 					$Query = "Select * from CIM_OperatingSystem"
-				
+
 					if ($PSCmdlet.ShouldProcess($Session[$i]))
 					{
 						try
 						{
 							$objOS = Get-CimInstance -Query $Query @params
-							
+
 							if ($null -ne $objOS)
 							{
 								$uptimeTimespan = New-TimeSpan -Start $objOS.LastBootUpTime.ToUniversalTime() -End $objOS.LocalDateTime.ToUniversalTime()
@@ -144,19 +132,19 @@
 							$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 							Write-Error -Message $errorMessage -ErrorAction Continue
 						}
-						
+
 						$result = [PSCustomObject]@{
 							Computer	        = $Session[$i].ComputerName
 							Uptime		   = $uptime
 							LastBootTimeUTC   = $lastBootupTimeUTC
 							LastBootTimeLocal = $lastBootupTime
 						}
-						
+
 						$results += $result
 					}
 					$params.Remove('CimSession')
 				}
-				
+
 			}
 		} #end Switch
 	}

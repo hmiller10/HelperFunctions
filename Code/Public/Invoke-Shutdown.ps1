@@ -4,7 +4,7 @@ function Invoke-Shutdown
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding(SupportsShouldProcess = $true)]
 	[OutputType([int])]
 	param
@@ -27,7 +27,7 @@ function Invoke-Shutdown
 				}
 			})]
 		[ValidateNotNullOrEmpty()]
-		[string[]]$ComputerName = $env:COMPUTERNAME,
+		[string[]]$ComputerName,
 		[Parameter(Mandatory = $true,
 				 HelpMessage = 'Select the Shutdown Type.')]
 		[ValidateSet('Logoff', 'Shutdown', 'Reboot', 'PowerOff')]
@@ -55,20 +55,20 @@ function Invoke-Shutdown
 				 HelpMessage = 'Specify administrator credentials for the computer.')]
 		[System.Management.Automation.PsCredential]$Credential
 	)
-	
+
 	begin
 	{
 		$ns = 'root\CIMv2'
-		
-		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 		{
 			$ComputerName = $ComputerName -split (",")
 		}
-		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 		{
 			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
-		
+
 		if ($PSBoundParameters.ContainsKey('Force'))
 		{
 			$Flags = ([ShutDownType]$ShutdownType).value__ + 4
@@ -77,7 +77,7 @@ function Invoke-Shutdown
 		{
 			$Flags = ([ShutDownType]$ShutdownType).value__
 		}
-		
+
 		$PlannedReasonCode = (0x80000000) * -1
 		if ($PSBoundParameters.ContainsKey('Unplanned'))
 		{
@@ -87,13 +87,13 @@ function Invoke-Shutdown
 		{
 			$ReasonCode = $MajorReasonCode.value__ + $MinorReasonCode.value__ + $PlannedReasonCode
 		}
-		
+
 		$params = @{
 			Flags	 = $Flags
 			Comment    = $Comment
 			ReasonCode = $ReasonCode
 		}
-		
+
 		if ($PSBoundParameters.ContainsKey("Wait"))
 		{
 			$params.Add("Timeout", $Wait)
@@ -102,7 +102,7 @@ function Invoke-Shutdown
 		{
 			$params.Add("Timeout", [uint32]30)
 		}
-		
+
 	}
 	process
 	{
@@ -111,66 +111,64 @@ function Invoke-Shutdown
 			try
 			{
 				Write-Verbose ("Testing Connection to {0}..." -f $computer)
-				
+
 				$tcParams = @{
 					ComputerName = $computer
 					Count	   = 1
 					Quiet	   = $true
 				}
-				
+
 				if (($PSBoundParameters.ContainsKey("Credential")) -and ($null -ne $PSBoundParameters["Credential"])) { $tcParams.Add("Credential", $Credential) }
 				if ((Test-Connection @tcParams) -eq $true)
 				{
-					
+
 					if ($computer -eq ([System.Net.Dns]::GetHostByName("LocalHost").HostName))
 					{
 						try
 						{
-							try
+							$OS = Get-CimInstance -ClassName Win32_OperatingSystem -Namespace $ns -ErrorAction Stop
+
+							if ($PSCmdlet.ShouldProcess($computer, "Execute shutdown method on $($computer)"))
 							{
-								$osParams = @{
-									Class		     = "Win32_OperatingSystem"
-									Namespace		     = $ns
-									EnableAllPrivileges = $true
-									ErrorAction	     = 'Stop'
-								}
-								
-								if (($PSBoundParameters.ContainsKey("Credential")) -and ($null -ne $PSBoundParameters["Credential"])) { $osParams.Add("Credential", $Credential) }
-								$OS = Get-WmiObject $osParams
-								if ($PSCmdlet.ShouldProcess($computer, "Execute shutdown/reboot process on $($computer)"))
+								if ($PSBoundParameters.ContainsKey('Force'))
 								{
-									$result = $OS.Win32ShutdownTracker($Timeout, $Comment, $ReasonCode, $Flags)
+									try
+									{
+										$result = Invoke-CimMethod -CimInstance $OS -MethodName Win32ShutdownTracker -Arguments $params -ErrorAction Stop
+										if ($? -eq $true)
+										{
+											$result = "0"
+											if ($result -eq 0)
+											{
+												[PSCustomObject]@{
+													ComputerName = $computer
+													ShutdownType = $ShutdownType
+													ReasonCode   = "$($MajorReasonCode): $MinorReasonCode"
+													CommandSuccessful = $true
+												}
+											}
+										}
+									}
+									catch
+									{
+										$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+										Write-Error $errorMessage -ErrorAction Continue
+									}
 								}
-								
-							}
-							catch
-							{
-								$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
-								Write-Error $errorMessage -ErrorAction Continue
-							}
-							
-							if ($PSBoundParameters.ContainsKey('Verbose'))
-							{
-								switch ($result.ReturnValue)
+								else
 								{
-									
-									0 {
-										Write-Verbose "$($MyInvocation.InvocationName) on $computer processed successfully."
+									$result = (Invoke-CimMethod -CimInstance $OS -MethodName Win32ShutdownTracker -Arguments $params -CimSession $session).ReturnValue
+									if ($result -eq 0)
+									{
+										[PSCustomObject]@{
+											ComputerName = $computer
+											ShutdownType = $ShutdownType
+											ReasonCode   = "$($MajorReasonCode): $MinorReasonCode"
+											CommandSuccessful = $true
+										}
 									}
-									1190 {
-										Write-Verbose "$($MyInvocation.InvocationName) on $computer returned error code 1190. A system shutdown has already been scheduled."
-									}
-									1191 {
-										Write-Verbose "$($MyInvocation.InvocationName) on $computer returned error code 1191.  A user is still logged into the system.  Use the -Force parameter if necessary."
-									}
-									default {
-										Write-Verbose "$($MyInvocation.InvocationName) on $computer returned error code $result.  System Error Codes can be found here:  https://learn.microsoft.com/en-us/windows/win32/debug/system-error-codes"
-									}
-									
 								}
 							}
-							
-							return $result.ReturnValue
 						}
 						catch
 						{
@@ -190,7 +188,7 @@ function Invoke-Shutdown
 							{
 								$session = New-CimSession -ComputerName $computer -SkipTestConnection -ErrorAction Stop
 							}
-							
+
 						}
 						catch
 						{
@@ -212,13 +210,13 @@ function Invoke-Shutdown
 								Write-Error -Message $errorMessage -ErrorAction Continue
 							}
 						}
-						
+
 						if ($null -ne $session.Name)
 						{
 							try
 							{
 								$OS = Get-CimInstance -ClassName Win32_OperatingSystem -Namespace $ns -CimSession $session -ErrorAction Stop
-								
+
 								if ($PSCmdlet.ShouldProcess($computer, "Execute shutdown method on $($computer)"))
 								{
 									if ($PSBoundParameters.ContainsKey('Force'))
@@ -252,46 +250,36 @@ function Invoke-Shutdown
 										}
 									}
 								}
-								
 							}
 							catch
 							{
 								$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 								Write-Error $errorMessage -ErrorAction Continue
 							}
-							
+
 							Remove-CimSession -CimSession $session
 						}
-						
 					}
-					
 				}
 				else
 				{
 					Write-Error ("{0} is not currently available.  No shutdown request processed" -f $computer) -Category ConnectionError -ErrorVariable +connectionErrors
 					return -1
 				}
-				
 			}
 			catch [System.Management.Automation.MethodInvocationException]
 			{
-				
 				Write-Verbose "Generic Failure may be caused if 'ShutdownType' of 'Logoff' was used and no users were logged in at the time."
 				Write-Error $_
 				return -2
-				
 			}
 			catch
 			{
-				
 				Write-Verbose "Error Type is $($_.Exception.GetType().FullName)"
 				Write-Error $_
 				return -256
-				
 			}
-			
 		}
-		
 	}
 	end
 	{

@@ -24,7 +24,7 @@
 		[Switch]
 		$Force
 	)
-	
+
 	begin
 	{
 		$VerbosePreference = 'Continue';
@@ -54,7 +54,7 @@
 							{
 								New-Item -Path $Path -ItemType File -Force -WhatIf -ErrorAction Stop
 							}
-							
+
 						}
 						catch
 						{
@@ -80,9 +80,9 @@
 						{
 							$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 							Write-Error $errorMessage -ErrorAction Continue
-						}	
+						}
 					}
-					
+
 				}
 			}
 			Folder
@@ -106,7 +106,7 @@
 							{
 								New-Item -Path $Path -ItemType Directory -WhatIf -ErrorAction Stop
 							}
-							
+
 						}
 						catch
 						{

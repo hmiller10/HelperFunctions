@@ -50,7 +50,7 @@
 	{
 		#Available characters
 		$CharsToSkip = [char]"i", [char]"l", [char]"o", [char]"1", [char]"0", [char]"I"
-		$AvailableCharsForPassword = $null;
+		#$null = $AvailableCharsForPassword;
 		$uppercaseChars = $null
 		For ($a = 65; $a -le 90; $a++) { If ($noSimilarCharacters -eq $false -or [char][byte]$a -notin $CharsToSkip) { $uppercaseChars += ,[char][byte]$a } }
 		$lowercaseChars = $null
@@ -66,7 +66,6 @@
 		If ($includeNumbers) { $TemplateLetters += "N" }
 		If ($includeSpecialChar) { $TemplateLetters += "S" }
 
-		$PasswordTemplate = @()
 		# Set password template, to ensure that required chars are included
 		Do
 		{

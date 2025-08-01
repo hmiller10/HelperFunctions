@@ -24,7 +24,7 @@
 		[LogLevel]
 		$LogLevel
 	)
-	
+
 	begin
 	{
 		$dtmFileFormatString = "yyyy-MM-dd_HH-mm-ss"
@@ -42,7 +42,7 @@
 			'Failure' { $type = "[FAILURE]" }
 			'Success' { $type = "[SUCCESS]" }
 		}
-		
+
 		Write-Verbose -Message $LogEntry
 	}
 	end

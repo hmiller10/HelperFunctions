@@ -2,9 +2,8 @@
 {
 <#
 	.EXTERNALHELP HelperFunctions.psm1-Help.xml
-		
 #>
-	
+
 	[CmdletBinding(SupportsShouldProcess = $true)]
 	param
 	(
@@ -21,7 +20,7 @@
 	[ValidateSet('Fast', '1', 'Normal', '2', 'Optimal', '0')]
 	[String]$ArchiveMode
 	)
-	
+
 	begin
 	{
 		try
@@ -33,7 +32,7 @@
 			$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
 			Write-Error $errorMessage -ErrorAction Stop
 		}
-		
+
 		switch ($ArchiveMode)
 		{
 			"Fast"{ $compressionLevel = [System.IO.Compression.CompressionLevel]::Fastest; break }
@@ -50,6 +49,5 @@
 	}
 	end
 	{
-		
 	}
 }#end function Invoke-ZipDirectory

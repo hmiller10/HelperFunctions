@@ -3,91 +3,83 @@ function New-RemotePSSession
 <#
 	.EXTERNALHELP HelperFunctions.psm1-Help.xml
 #>
-	
-	[CmdletBinding()]
+
+	[CmdletBinding(SupportsShouldProcess = $true)]
 	[OutputType([System.Management.Automation.Runspaces.PSSession])]
 	param
 	(
 		[Parameter(Mandatory = $true,
-				 ValueFromPipeline = $true,
-				 ValueFromPipelineByPropertyName = $true,
-				 HelpMessage = 'Provide the FQDN of the computer you wish to create a remoting session with')]
+		           ValueFromPipeline = $true,
+		           ValueFromPipelineByPropertyName = $true,
+		           HelpMessage = 'Provide the FQDN of the computer you wish to create a remoting session with')]
+	[Alias ('CN', 'Computer', 'ServerName', 'Server', 'IP')]
 		[ValidateNotNullOrEmpty()]
-		[ValidateScript({
-				$ComputerName | ForEach-Object {
-					if ((Test-NetConnection -ComputerName $_ -CommonTCPPort WINRM -ErrorAction SilentlyContinue).TcpTestSucceeded -eq $true)
-					{
-						return $true
-					}
-					else
-					{
-						Write-Error "Cannot connect to $_."
-					}
-				}
-			})]
-		[Alias ('CN', 'Computer', 'ServerName', 'Server', 'IP')]
-		[string[]]$ComputerName = $env:COMPUTERNAME,
+		[string[]]
+		$ComputerName,
 		[Parameter(Mandatory = $false,
-				 ValueFromPipeline = $false,
-				 HelpMessage = 'Enter username. You will be prompted for Password')]
+		           ValueFromPipeline = $false,
+		           HelpMessage = 'Enter username. You will be prompted for Password')]
 		[ValidateNotNull()]
-		[System.Management.Automation.PSCredential]$Credential = [System.Management.Automation.PSCredential]::Empty,
+		[System.Management.Automation.PSCredential]
+		$Credential = [System.Management.Automation.PSCredential]::Empty,
 		[Parameter(Mandatory = $false,
-				 ValueFromPipeline = $false,
-				 HelpMessage = 'Session requires proxy access is true.')]
-		[Switch]$EnableNetworkAccess,
-		[Switch]$RequiresProxy
+		           ValueFromPipeline = $false,
+		           HelpMessage = 'Session requires proxy access is true.')]
+		[Switch]
+		$EnableNetworkAccess,
+		[Switch]
+		$RequiresProxy
 	)
-	
+
 	begin
 	{
-		
-		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 		{
 			$ComputerName = $ComputerName -split (",")
 		}
-		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 		{
 			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
-		
+
 	}
 	process
 	{
 		foreach ($Computer in $ComputerName)
 		{
-			$Dot = $index.IndexOf('.')
+			$Dot = $Computer.IndexOf('.')
 			$Object = [pscustomobject]@{
 				Hostname = $Computer.Substring(0, $Dot)
 				FQDN     = $Computer
 				Domain   = $Computer.Substring($Dot + 1)
 			}
-			
+
 			$params = @{
 				ComputerName = $Computer
 				Name	        = $Object.HostName
 				ErrorAction  = 'Stop'
 			}
-			
+
 			if ($PSBoundParameters.ContainsKey('Credential'))
 			{
 				$params.Add('Credential', $Credential)
 			}
-			
+
 			if ($PSBoundParameters.ContainsKey('RequiresProxy'))
 			{
 				$option = New-PSSessionOption -ProxyAccessType NoProxyServer
 				$params.Add('SessionOption', $Option)
 			}
-			
+
 			if ($PSBoundParameters.ContainsKey('EnableNetworkAccess'))
 			{
 				$params.Add('EnableNetworkAccess', $true)
 			}
-			
+
 			if ($PSCmdlet.ShouldProcess($Computer, "Creating new PS Session to $Computer"))
 			{
-				
+
 				try
 				{
 					$s = New-PSSession @params
@@ -108,7 +100,7 @@ function New-RemotePSSession
 					}
 					$s = $ErrorMessage
 				}
-				
+
 				return $s
 			}
 		}
