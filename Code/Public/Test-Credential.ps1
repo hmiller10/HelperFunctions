@@ -3,7 +3,7 @@
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding(DefaultParameterSetName = 'LocalUserParamSet',
 	               SupportsShouldProcess = $true)]
 	[OutputType([Boolean], ParameterSetName='LocalUserParamSet')]
@@ -32,7 +32,7 @@
 		[Alias ('CN', 'Computer', 'ServerName', 'Server', 'IP')]
 		[ValidateNotNullOrEmpty()]
 		[string[]]
-		$ComputerName = $env:COMPUTERNAME,
+		$ComputerName,
 		[Parameter(ParameterSetName = 'LocalUserParamSet',
 		           Mandatory = $true,
 		           Position = 1,
@@ -57,19 +57,19 @@
 		[String]
 		$DomainFQDN
 	)
-	
+
 	begin
 	{
 		Add-Type -AssemblyName System.DirectoryServices.AccountManagement
-		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 		{
 		    $ComputerName = $ComputerName -split (",")
 		}
-		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 		{
 			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
-		
+
 		$colResults = @()
 	}
 	process

@@ -3,7 +3,7 @@
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding(SupportsShouldProcess = $true)]
 	param
 	(
@@ -13,7 +13,7 @@
 		[ValidateNotNullOrEmpty()]
 		[securestring]$SecureString
 	)
-	
+
 	begin {}
 	process {
 		if ($pscmdlet.ShouldProcess($SecureString, "Reverse secure string"))
@@ -26,5 +26,5 @@
 	end {
 		return $result
 	}
-	
+
 }#end Convert-SecureStringtoPlainText

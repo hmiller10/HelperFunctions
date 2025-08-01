@@ -27,11 +27,11 @@
 	switch ($PSCmdlet.ParameterSetName)
 	{
 		"ComputerParameterSet" {
-			if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+			if ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 			{
 				$ComputerName = $ComputerName -split (",")
 			}
-			elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+			elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 			{
 				$ComputerName = $PSBoundParameters["ComputerName"]
 			}
@@ -39,51 +39,50 @@
 			{
 				$ComputerName = [System.Net.Dns]::GetHostByName("LocalHost").HostName
 			}
-			
+
 			foreach ($Computer in $ComputerName)
 			{
-				if ($pscmdlet.ShouldProcess($ComputerName))
+				if ($pscmdlet.ShouldProcess($Computer))
 				{
-					$userinit = Invoke-Command -ComputerName $ComputerName -Credential $Credential -ScriptBlock { param ($ComputerName); ((quser /server $ComputerName) -replace '\s{2,}', ',' | ConvertFrom-Csv) } -ArgumentList $ComputerName
+					$userinit = Invoke-Command -ComputerName $Computer -Credential $Credential -ScriptBlock { ((quser /server $using:Computer) -replace '\s{2,}', ',' | ConvertFrom-Csv) }
 					$loggedonusers = @()
 					foreach ($session in $userinit)
 					{
 						$loggedonusers += $Session.UserName
+						$ID = $session.ID
 						if ($loggedonusers.Count -ge 1)
 						{
 							$loggedonusers.foreach({
-													$user = $_
-													Invoke-Command -ComputerName $using:ComputerName -Credential $using:Credential -ScriptBlock {
-														param ($session,
-																			$ComputerName); logoff.exe $session.ID /server $using:ComputerName $user /V
-													} -ArgumentList $session, $ComputerName
-												})
+								$user = $_
+								Invoke-Command -ComputerName $Computer -Credential $Credential -ScriptBlock {
+									logoff.exe $using:ID /server $using:Computer $using:user /V
+								}
+							})
 						}
-						
 					}
 				}
 			}
-			
 		}
 		"SessionParameterSet" {
-			if ($pscmdlet.ShouldProcess($RemoteSession.ComputerName))
+			if ($pscmdlet.ShouldProcess($RemoteSession))
 			{
-				$userinit = Invoke-Command -Session $RemoteSession -ScriptBlock { param ($ComputerName); ((quser /server $ComputerName) -replace '\s{2,}', ',' | ConvertFrom-Csv) } -ArgumentList $RemoteSession.ComputerName
+				$Server = $RemoteSession.ComputerName
+				$userinit = Invoke-Command -Session $RemoteSession -ScriptBlock {((quser /server $using:Server) -replace '\s{2,}', ',' | ConvertFrom-Csv) }
+
 				$loggedonusers = @()
 				foreach ($session in $userinit)
 				{
 					$loggedonusers += $Session.UserName
+					$ID = $session.ID
 					if ($loggedonusers.Count -ge 1)
 					{
 						$loggedonusers.foreach({
 								$user = $_
 								Invoke-Command -Session $RemoteSession -ScriptBlock {
-									param ($session,
-										$ComputerName); logoff.exe $session.ID /server $ComputerName $user /V
-								} -ArgumentList $session, $ComputerName
+									logoff.exe $using:ID /server $using:Server $using:user /V
+								}
 							})
 					}
-
 				}
 			}
 		}

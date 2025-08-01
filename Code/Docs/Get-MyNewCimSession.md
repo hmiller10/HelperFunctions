@@ -11,7 +11,7 @@ Get-MyNewCimSession [-ComputerName] <String[]> [-Credential] <PSCredential> [<Co
 ```
 
 ## DESCRIPTION
-This functions creates a new Microsoft Common Information Model remote session to the specified computer. It will default to using WSMan. If that fails an attempt to establish a session using DCOM will be tried.
+This functions creates a new Microsoft Common Information Model remote session to the specified computer. It will default to WSMan. If that fails an attempt to establish a session using DCOM will be tried.
 
 ## EXAMPLES
 

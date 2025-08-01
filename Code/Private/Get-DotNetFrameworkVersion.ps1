@@ -15,7 +15,6 @@
 	Begin
 	{
 		$dotNetRegistry = 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP'
-		$dotNet4Registry = 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full'
 		[PSObject[]]$objVersions = @()
 
 	}

@@ -25,39 +25,39 @@ function Get-MyNewCimSession
 				 HelpMessage = 'Switch statement to enable SkipTestConnection Parameter when starting new CimSession.')]
 		[switch]$SkipICMPCheck
 	)
-	
+
 	begin
 	{
-		
-		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 		{
 			$ComputerName = $ComputerName -split (",")
 		}
-		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 		{
 			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
-		
+
 		$so = New-CimSessionOption -Protocol Dcom
-		
+
 		<#
 			NOTE: Reasons to use 'Negotiate' instead of Kerberos authentication:
 			Peer-to-Peer Network: maybe you are not working in a network domain and want to test-drive remote access in a lab, or at home in your private network. Kerberos requires a network domain.
 			Cross-Domain: maybe the target computer belongs to a different domain, and there are no trust relationships. Kerberos requires trust relationships.
 			IP Address: or maybe you must use IP addresses. Kerberos requires computer names.
 		#>
-		
+
 		$Params = @{
 			Authentication = 'Negotiate'
 			ErrorAction    = 'Stop'
 			ErrorVariable  = 'CimSessionError'
 		}
-		
+
 		if (($PSBoundParameters.ContainsKey('Credential')) -and ($null -ne ($PSBoundParameters["Credential"])))
 		{
 			$Params.Add('Credential', $Credential)
 		}
-		
+
 		if ($PSBoundParameters.ContainsKey('SkipICMPCheck'))
 		{
 			$Params.Add('SkipTestConnection', $True)
@@ -88,7 +88,7 @@ function Get-MyNewCimSession
 			else
 			{
 				$Params.Add('SessionOption', $so)
-				
+
 				try
 				{
 					Write-Verbose -Message ("Attempting connection to {0} using DCOM." -f $Server)
@@ -101,7 +101,7 @@ function Get-MyNewCimSession
 				}
 				$Params.Remove('SessionOption')
 			}
-			
+
 			$Params.Remove('ComputerName')
 		}
 	}

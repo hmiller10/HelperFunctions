@@ -3,7 +3,7 @@
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding(DefaultParameterSetName = 'LocalComputerParamSet')]
 	[OutputType([boolean], ParameterSetName = 'LocalComputerParamSet')]
 	[OutputType([boolean], ParameterSetName = 'RemoteComputerParamSet')]
@@ -34,7 +34,7 @@
 				 Position = 3)]
 		[pscredential]$Credential
 	)
-	
+
 	begin
 	{
 		$objGroup = [ADSI]"WinNT://$ComputerName/$GroupName,group"
@@ -43,7 +43,7 @@
 			$objGroup.Psbase.UserName = $Credential.UserName
 			$objGroup.Psbase.Password = $Credential.GetNetworkCredential().Password
 		}
-		
+
 		$objMembers = @($objGroup.Psbase.Invoke("Members"))
 	}
 	process

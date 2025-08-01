@@ -3,7 +3,7 @@
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	[OutputType([string])]
 	[Alias('Get-DNfromFQDN')]
@@ -14,7 +14,7 @@
 		[ValidateNotNullOrEmpty()]
 		[string]$FQDN
 	)
-	
+
 	begin
 	{
 		$DomainFQDNArray = $FQDN -Split ("\.")
@@ -22,7 +22,7 @@
 	process
 	{
 		[int]$FQDNCount = 0
-		
+
 		foreach ($Item in $DomainFQDNArray)
 		{
 			if ($FQDNCount -eq 0)

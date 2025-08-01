@@ -3,7 +3,7 @@
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	[OutputType([string])]
 	param
@@ -16,7 +16,7 @@
 
 
 	begin
-	{	
+	{
 		[array]$ObjectDNArray = $DistinguishedName -Split(“,DC=”)
 	     [int]$DomainNameCount = 0
 	}

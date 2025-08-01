@@ -12,7 +12,7 @@ Export-PSCredential [-OutputFile] <String> [-Credential] <PSCredential> [-WhatIf
 
 ## DESCRIPTION
 This function will create a CliXML file containing the credentials from a PSCredential object.
-				It is based on Tobias Weltner's example.
+It is based on Tobias Weltner's example.
 
 ## EXAMPLES
 

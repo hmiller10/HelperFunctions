@@ -1,9 +1,9 @@
 ﻿function Get-IPByComputerName
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml		
+		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -24,15 +24,15 @@
 				 Position = 2)]
 		[Switch]$IPV4only
 	)
-	
+
 	begin
 	{
 		Write-Verbose "`n Checking IP Address . . .`n"
-		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 		{
 			$ComputerName = $ComputerName -split (",")
 		}
-		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 		{
 			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
@@ -41,7 +41,7 @@
 	{
 		$ComputerName | ForEach-Object {
 			$HostName = $_
-			
+
 			try
 			{
 				$AddressList = @(([net.dns]::GetHostEntry($HostName)).AddressList)
@@ -50,7 +50,7 @@
 			{
 				"Cannot determine the IP Address on $HostName"
 			}
-			
+
 			if ($AddressList.Count -ne 0)
 			{
 				$AddressList | ForEach-Object {

@@ -2,9 +2,9 @@
 {
 <#
 	.EXTERNALHELP HelperFunctions.psm1-Help.xml
-		
+
 #>
-	
+
 	[CmdletBinding()]
 	[Alias('fnTest-NetConnection')]
 	param
@@ -14,24 +14,24 @@
 				 ValueFromPipelineByPropertyName = $true,
 				 Position = 0)]
 		[Alias ('CN', 'Computer', 'ServerName', 'Server', 'IP')]
-		[String[]]$ComputerName = $env:COMPUTERNAME,
+		[String[]]$ComputerName,
 		[Parameter(Mandatory = $true,
 				 Position = 1)]
 		[int32]$Port
 	)
-	
+
 	begin
 	{
-		
-		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
+
+		if ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -gt 1))
 		{
 			$ComputerName = $ComputerName -split (",")
 		}
-		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($PSBoundParameters["ComputerName"] -ne $null) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
+		elseif ($PSBoundParameters.ContainsKey('ComputerName') -and ($null -ne $PSBoundParameters["ComputerName"]) -and ($PSBoundParameters["ComputerName"].Count -eq 1))
 		{
 			$ComputerName = $PSBoundParameters["ComputerName"]
 		}
-		
+
 	}
 	process
 	{
@@ -47,8 +47,8 @@
 				Write-Error $errorMessage -ErrorAction Continue
 			}
 		}
-		
-		
+
+
 	}
 	end
 	{ }

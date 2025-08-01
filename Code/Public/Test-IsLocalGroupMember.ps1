@@ -3,7 +3,7 @@
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	[OutputType([boolean])]
 	param
@@ -24,14 +24,14 @@
 				 HelpMessage = 'Enter the computer name or FQDN.')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('CN', 'Computer', 'ServerName', 'Server', 'IP')]
-		[String]$ComputerName = $env:COMPUTERNAME,
+		[String]$ComputerName,
 		[Parameter(Position = 3,
 				 HelpMessage = 'Enter PS credential to connecct to AD forest with.')]
 		[ValidateNotNull()]
 		[System.Management.Automation.PsCredential][System.Management.Automation.Credential()]
 		$Credential = [System.Management.Automation.PSCredential]::Empty
 	)
-	
+
 	begin
 	{
 		if ($PSBoundParameters["ComputerName"])

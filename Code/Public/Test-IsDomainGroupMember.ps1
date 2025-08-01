@@ -3,7 +3,7 @@
 	<#
 		.EXTERNALHELP HelperFunctions.psm1-Help.xml
 	#>
-		
+
 	[CmdletBinding()]
 	[Alias('Test-IsGroupMember')]
 	param
@@ -21,7 +21,7 @@
 	[Alias('Grp','Group')]
 	[String]$GroupName
 	)
-	
+
 	begin
 	{
 		$strFilter = "(&(objectClass=Group)(name=" + $GroupName + "))"
@@ -34,9 +34,9 @@
 		$objSearcher.PageSize = 1000
 		$objSearcher.Filter = $strFilter
 		$objSearcher.SearchScope = "Subtree"
-		
+
 		$colResults = $objSearcher.FindOne()
-		
+
 		$objItem = $colResults.Properties
 	}
 	end
