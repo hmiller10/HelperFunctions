@@ -25,14 +25,14 @@ jobs:
       - name: Install and cache PowerShell modules
         uses: potatoqualitee/psmodulecache@v6.2.1
         with:
-          modules-to-cache: PSFramework,Pester,HelperFunctions
+          modules-to-cache: PSFramework,Pester::,HelperFunctions
           updatable: true
           shell: powershell
 
       - name: Show that the Action works
         shell: powershell
         run: |
-              Get-Module -Name PSFramework, Pester::, HelperFunctions -ListAvailable | Select Path
+              Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
               Import-Module -Name HelperFunctions -Force
       - name: Get working directory
         run: |
@@ -41,6 +41,11 @@ jobs:
 
       - name: Test module
         run: |
+         # Replace with your build and test commands
+         #$config = [PesterConfiguration]::Default
+         #$config.TestResult.Enabled = $true
+         #$config.Run.Exit = $true
+         #$config.CodeCoverage.Enabled = $true
          Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
         shell: powershell
 
