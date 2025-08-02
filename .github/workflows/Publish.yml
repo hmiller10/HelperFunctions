@@ -14,10 +14,11 @@ jobs:
 
     steps:
       - name: Install and cache PowerShell modules
-        uses: potatoqualitee/psmodulecache@v6.0
+        uses: potatoqualitee/psmodulecache@v6.2.1
         with:
-          modules-to-cache: PSFramework,Pester::, HelperFunctions
-        updatable: true
+          modules-to-cache: PSFramework,Pester::,HelperFunctions
+          updatable: true
+          shell: powershell
 
       - name: Test module
         run: |
