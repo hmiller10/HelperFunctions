@@ -49,5 +49,5 @@ jobs:
           NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
 
         run: |
-          Publish-Module -Path "${{ github.workspace }}\main\Code" -NuGetApiKey $env:NUGET_KEY -Verbose
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:NUGET_KEY -Verbose
         shell: powershell
