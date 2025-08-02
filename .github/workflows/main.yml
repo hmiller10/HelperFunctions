@@ -32,7 +32,7 @@ jobs:
       - name: Show that the Action works
         shell: powershell
         run: |
-              Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
+              Get-Module -Name PSFramework, Pester, HelperFunctions:: -ListAvailable | Select Path
               Import-Module -Name HelperFunctions -Force
       - name: Get working directory
         run: |
