@@ -1,0 +1,33 @@
+name: Pull Request Create
+
+on:
+    pull_request: 
+        types:
+            - opened
+            - synchronize
+
+jobs:    
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Test-ModuleManifest
+        run: |
+          Test-ModuleManifest -Path .\HelperFunctions.psd1
+        shell: pwsh
+
+      - name: Invoke-ScriptAnalyzer
+        run: |
+          $result = Invoke-ScriptAnalyzer -Path . -Severity Error
+          if ($result.Count -ne 0) { Write-Output $result; exit 1}
+        shell: pwsh
+      
+      - name: Test publish to PowerShell Gallery
+        run: |
+          env:
+          NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          Publish-Module -Path . -Repository PSGallery -NuGetApiKey $env:NUGET_KEY -WhatIf -Verbose
+        shell: pwsh

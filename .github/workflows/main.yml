@@ -5,8 +5,7 @@ name: Publish_HelperFunctions_Module
 on:
   push:
     branches:
-	- main
-	- master
+	[main]
 
   pull_request:
     types:
