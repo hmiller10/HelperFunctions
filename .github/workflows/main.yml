@@ -4,13 +4,10 @@ name: Publish_HelperFunctions_Module
 # Controls when the workflow will run
 on:
   push:
-    branches:
-	[main]
+    branches: [main]
 
   pull_request:
-    types:
-	- opened
-	- synchronize
+    branches: [main]
 
   workflow_dispatch:
 
@@ -29,6 +26,7 @@ jobs:
         uses: potatoqualitee/psmodulecache@v6.2.1
         with:
           modules-to-cache: PSFramework,Pester,HelperFunctions
+          updatable: true
           shell: powershell
 
       - name: Show that the Action works
@@ -43,11 +41,6 @@ jobs:
 
       - name: Test module
         run: |
-         # Replace with your build and test commands
-         #$config = [PesterConfiguration]::Default
-         #$config.TestResult.Enabled = $true
-         #$config.Run.Exit = $true
-         #$config.CodeCoverage.Enabled = $true
          Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
         shell: powershell
 
@@ -57,6 +50,5 @@ jobs:
           #BUILDVER: '2.8.6'
           
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\HelperFunctions.psd1") -NuGetApiKey $env:NUGET_KEY -Verbose
-          #Publish-PSResource -Path (Join-Path ${{ github.workspace }} "main\HelperFunctions.psd1") -Repository PSGallery -ApiKey $env:NUGET_KEY -Confirm:$false -Verbose
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code\HelperFunctions.psd1") -NuGetApiKey $env:NUGET_KEY -Verbose
         shell: powershell  
