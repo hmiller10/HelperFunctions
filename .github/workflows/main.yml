@@ -6,6 +6,9 @@ on:
   push:
     branches: [main]
 
+  pull_request:
+    branches: [main]
+
   workflow_dispatch:
 
 jobs:
@@ -31,6 +34,8 @@ jobs:
         run: |
               Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
               Import-Module -Name HelperFunctions -Force
+        shell powershell
+        
       - name: Get working directory
         run: |
           Get-ChildItem -Path ${{ github.workspace }} -Recurse
