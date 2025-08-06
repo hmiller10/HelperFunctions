@@ -15,11 +15,13 @@ This function leverage CIM sessions, pre-defined ENUMs and credentials to shutdo
 
 ## EXAMPLES
 
-### Invoke-Shutdown -ComputerName computer1.domain.com -ShutdownType Reboot -Force -MajorReasonCode APPLICATION -MinorReasonCode HOTFIX -Comment 'Application patch install'
+### EXAMPLE 1
 
 ```powershell
-Invoke-Shutdown -ComputerName computer1.domain.com -ShutdownType Reboot -Force -MajorReasonCode APPLICATION -MinorReasonCode HOTFIX -Comment 'Application patch install'
+PS C:\> Invoke-Shutdown -ComputerName computer1.example.com -ShutdownType Reboot -Force -MajorReasonCode APPLICATION -MinorReasonCode HOTFIX -Comment 'Application patch install'
 ```
+
+This example initiates a reboot of the specified computer and adds the Major and Minor reasons for the reboot to the event log entry.
 
 ## PARAMETERS
 
@@ -38,7 +40,7 @@ Pipeline Input: True (ByPropertyName, ByValue)
 ```
 
 ### ShutdownType
-'Logoff', 'Shutdown', 'Reboot', 'PowerOff'
+One of the four allowed shutdown types.
 
 ```yaml
 Type: string
@@ -48,6 +50,7 @@ Aliases:
 Required: false
 Position: named
 Default Value: 
+Accepted Values: 'Logoff', 'Shutdown', 'Reboot', 'PowerOff'
 Pipeline Input: False
 ```
 
@@ -142,7 +145,12 @@ Pipeline Input: False
 ## NOTES
 
 ### Disclaimer
-THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
+THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND.
+THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
+
+Author:  Heather Miller
+Github (hmiller10)
+Last Updated:  12/11/2022
 
 ## RELATED LINKS
 

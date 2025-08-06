@@ -15,11 +15,13 @@ This function uses [ADSI] to test group membership for a specified user in one o
 
 ## EXAMPLES
 
-### EXAMPLE
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Test-IsLocalGroupMember -User $env:USERNAME -GroupName 'Administrators'
+PS C:\> Test-IsLocalGroupMember -User $env:USERNAME -GroupName 'Administrators'
 ```
+
+This example outputs a Boolean True or False if the user 'TestUser' is a member of the local group 'Administrators' .
 
 ## PARAMETERS
 
@@ -55,9 +57,6 @@ Pipeline Input: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
-### None
-
 
 ## OUTPUTS
 

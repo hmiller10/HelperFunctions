@@ -15,23 +15,29 @@ This function uses .NET to resolve a host name to its IP address
 
 ## EXAMPLES
 
-### PS C:\\\>Get-IPByComputerName -ComputerName myComputer -IPv4Only
-PS C:\\\>Get-IPByComputerName -ComputerName myComputer -IPv4Only
+### EXAMPLE 1
+
 ```powershell
-PS C:\>Get-IPByComputerName -ComputerName myComputer -IPv4Only
+PS C:\> Get-IPByComputerName -ComputerName myComputer -IPv4Only
 ```
 
-### PS C:\\\>Get-IPByComputerName -ComputerName myComputer -IPv6Only
-PS C:\\\>Get-IPByComputerName -ComputerName myComputer -IPv6Only
+This example outputs the IPv4 address of the computer named myComputer to the console screen.
+
+### EXAMPLE 2
+
 ```powershell
-PS C:\>Get-IPByComputerName -ComputerName myComputer -IPv6Only
+PS C:\> Get-IPByComputerName -ComputerName myComputer -IPv6Only
 ```
 
-### PS C:\\\> Get-IPByComputerName -ComputerName myComputer
-PS C:\\\> Get-IPByComputerName -ComputerName myComputer
+This example outputs the IPv6 address of the computer named myComputer to the console screen.
+
+### EXAMPLE 3
+
 ```powershell
 PS C:\> Get-IPByComputerName -ComputerName myComputer
 ```
+
+This example outputs the IPv4 and IPv6 addresses of the computer named myComputer to the console screen.
 
 ## PARAMETERS
 

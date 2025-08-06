@@ -16,18 +16,17 @@ This function allows the caller to make one call to get the results of $MyInvoca
 
 ## EXAMPLES
 
-### PS C:\\\> Get-MyInvocation
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Get-MyInvocation
+PS C:\> $myInv = Get-MyInvocation
 ```
+
+This example saves the output of the function call to $MyInvocation to the variable $myInv.
 
 ## PARAMETERS
 
 ## INPUTS
-
-### None
-
 
 ## OUTPUTS
 

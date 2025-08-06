@@ -15,6 +15,14 @@ This function uses [ADSI] to test group membership for a specified user in one o
 
 ## EXAMPLES
 
+### EXAMPLE 1
+
+```powershell
+PS C:\> Test-IsRemoteGroupMember -User TestUser -GroupName 'Admininistrators' -ComputerName computer1.example.com -Credential (Get-Credential)
+```
+
+This example outputs a Boolean True or False if the user 'TestUser' is a member of the local group 'Administrators' on computer1.example.com.
+
 ## PARAMETERS
 
 ### User

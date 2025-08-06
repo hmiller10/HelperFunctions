@@ -15,11 +15,13 @@ This function is designed to .zip an entire directory to an archive from a speci
 
 ## EXAMPLES
 
-### PS C:\\\> Invoke-ZipDirectory -ZipFileName 'C:\\myZip.zip -SourceDir 'C:\\MyPersonalFiles'
+### EXAMPLE 1
 
 ```powershell
-PS C:\> Invoke-ZipDirectory -ZipFileName 'C:\myZip.zip -SourceDirectory 'C:\MyPersonalFiles'
+PS C:\> Invoke-ZipDirectory -ZipFileName 'C:\myZip.zip -SourceDir 'C:\MyPersonalFiles'
 ```
+
+This example creates a compressed zip file with the entire contents of the 'C:\\MyPersonalFiles' in the root of the C:\\ drive
 
 ## PARAMETERS
 

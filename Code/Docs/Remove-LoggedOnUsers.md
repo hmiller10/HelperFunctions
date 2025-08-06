@@ -20,17 +20,21 @@ This function calls quser.exe to get a list of logged on users with stale or act
 
 ## EXAMPLES
 
-### PS C:\\\> Remove-LoggedOnUsers -ComputerName server1.example.com -Credential $Credential
-PS C:\\\>
+### EXAMPLE 1
+
 ```powershell
-Remove-LoggedOnUsers -ComputerName server1.example.com -Credential $Credential
+PS C:\> Remove-LoggedOnUsers -ComputerName server1.example.com -Credential $Credential
 ```
 
-### PS C:\\\> Remove-LoggedOnUsers -Session $session
+This example removes all logged on users from computer server1.example.com
+
+### EXAMPLE 2
 PS C:\\\>
 ```powershell
-Remove-LoggedOnUsers -Session $session
+PS C:\> Remove-LoggedOnUsers -Session $session
 ```
+
+This example removes all logged on users from computer server1.example.com using a remote CimSession
 
 ## PARAMETERS
 

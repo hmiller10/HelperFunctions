@@ -15,11 +15,13 @@ This function uses .NET to unzip a zip file to the specified location.
 
 ## EXAMPLES
 
-### PS C:\\\>Invoke-ExpandZipArchive -ZipFileName my.zip -DestinationDirectory 'C:\\Temp'
+### EXAMPLE 1
 
 ```powershell
-PS C:\>Invoke-ExpandZipArchive -ZipFileName my.zip -DestinationDirectory 'C:\Temp'
+PS C:\>Invoke-ExpandZipArchive -ZipFileName myZip.zip -DestinationDirectory 'C:\Temp'
 ```
+
+This example expands the contents of the compressed zip file myZip.zip to: 'C:\\Temp'
 
 ## PARAMETERS
 

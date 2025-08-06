@@ -15,11 +15,13 @@ Returns true if a user is an administrator, false if the user is not an administ
 
 ## EXAMPLES
 
-### PS C:\\\>Test-IsAdmin
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Test-IsAdmin
+PS C:\> $isAdmin = Test-IsAdmin
 ```
+
+This example outputs a Boolean True or False to the variable $isAdmin for the user connected to the current session. This variable can then be used to throw errors if an admin session is required.
 
 ## PARAMETERS
 

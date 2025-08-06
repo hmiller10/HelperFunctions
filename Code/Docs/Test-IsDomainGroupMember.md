@@ -15,11 +15,13 @@ This function uses the .NET DirectorySearcher to search for, locate a group in t
 
 ## EXAMPLES
 
-### PS C:\\\> Test-IsDomainGroupMember -User TestUser -Group 'Remote Desktop Users'
+### EXAMPLE 1
 
 ```powershell
 PS C:\> Test-IsDomainGroupMember -User TestUser -GroupName 'Remote Desktop Users'
 ```
+
+This example outputs a Boolean True or False if the user 'TestUser' is a member of the AD domain group 'Remote Desktop Users'
 
 ## PARAMETERS
 
@@ -55,9 +57,6 @@ Pipeline Input: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
-### None
-
 
 ## OUTPUTS
 

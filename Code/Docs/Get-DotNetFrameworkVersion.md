@@ -15,17 +15,21 @@ This function queries the machine registry to determine the versions of the .NET
 
 ## EXAMPLES
 
-### PS C:\\\>Get-DotNetFrameworkVersion -ComputerName myComputer.example.com
+### EXAMPLE 1
 
 ```powershell
 PS C:\>Get-DotNetFrameworkVersion -ComputerName myComputer.example.com
 ```
 
-### PS C:\\\>$Versions = Get-DotNetFrameworkVersion
+This example outputs the versions of Microsoft .NET installed on myComputer.example.com to the console screen.
+
+### EXAMPLE 2
 
 ```powershell
-PS C:\>$Versions = Get-DotNetFrameworkVersion
+PS C:\> $Versions = Get-DotNetFrameworkVersion
 ```
+
+This example outputs the versions of Microsoft .NET installed on the local computer to the variable $Versions.
 
 ## PARAMETERS
 

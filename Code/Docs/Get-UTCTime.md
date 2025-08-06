@@ -15,11 +15,13 @@ Gets current date and time in UTC format
 
 ## EXAMPLES
 
-### PS C:\\\> $utcTime = Get-UtcTime
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Get-UTCTime
+PS C:\> $utcTime = Get-UtcTime
 ```
+
+This example saves a formatted date/time string to the variable $utcTime
 
 ## PARAMETERS
 

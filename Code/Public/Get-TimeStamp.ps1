@@ -1,8 +1,9 @@
 ﻿function Get-TimeStamp
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml
-		#>
+	<#
+		.EXTERNALHELP HelperFunctions-Help.xml
+	#>
+	
 	[CmdletBinding()]
 	[Alias('Get-FileDate')]
 	param ()

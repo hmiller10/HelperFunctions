@@ -15,11 +15,13 @@ This function uses the IPAddress class to verify the specified IP address is val
 
 ## EXAMPLES
 
-### PS C:\\\> Test-IsValidIPAddress -IP 10.255.1.1
+### EXAMPLE 1
 
 ```powershell
 PS C:\> Test-IsValidIPAddress -IP 10.255.1.1
 ```
+
+This example outputs a Boolean True or False if the specified IP address is valid.
 
 ## PARAMETERS
 
@@ -42,7 +44,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.Net.IPAddress
+### System.String
 
 
 ## OUTPUTS

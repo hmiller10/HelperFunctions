@@ -1,8 +1,8 @@
 ﻿function Invoke-ZipDirectory
 {
-<#
-	.EXTERNALHELP HelperFunctions.psm1-Help.xml
-#>
+	<#
+		.EXTERNALHELP HelperFunctions-Help.xml
+	#>
 
 	[CmdletBinding(SupportsShouldProcess = $true)]
 	param

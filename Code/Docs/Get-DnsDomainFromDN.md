@@ -15,11 +15,13 @@ This function splits and translates the domain name portion of an AD object dist
 
 ## EXAMPLES
 
-### PS C:\\\> $domDN = Get-DnsDomainfromFQDN -DistinguishedName “CN=admin-hmiller,OU=ADAdmin,OU=AdminUserss,DC=my,DC=domain,DC=com”
-PS C:\\\>
+### EXAMPLE 1
+
 ```powershell
-Get-DomainFromDN -DistinguishedName 'CN=TestUser,DC=Example,DC=com'
+PS C:\> $domDN = Get-DnsDomainfromFQDN -DistinguishedName “CN=admin-hmiller,OU=ADAdmin,OU=AdminUserss,DC=my,DC=domain,DC=com”
 ```
+
+This example calls the function to convert a domain DN to a DNS FQDN for the user account domain.
 
 ## PARAMETERS
 

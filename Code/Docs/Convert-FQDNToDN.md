@@ -15,11 +15,13 @@ This function builds a string array distinguishedName string from the FQDN of a 
 
 ## EXAMPLES
 
-### Convert-FQDNToDN -FQDN "my.domain.com"
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Convert-FQDNToDN
+PS C:\> $dn = Convert-FQDNToDN -FQDN "my.domain.com"
 ```
+
+This example does a string substitution of a DNS FQDN to a distinguished name.
 
 ## PARAMETERS
 

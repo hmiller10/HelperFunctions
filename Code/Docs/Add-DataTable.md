@@ -15,11 +15,41 @@ This function creates a [System.Data.DataTable] to store script output for repor
 
 ## EXAMPLES
 
-### Add-DataTable -TableName TableName -ColumnArray DataColumnDefinitions
-C:\\PS\> Add-DataTable -TableName TableName -ColumnArray DataColumnDefinitions
+### EXAMPLE 1
+
 ```powershell
-C:\PS> Add-DataTable -TableName TableName -ColumnArray DataColumnDefinitions
+$tblName = "TestDataTable"
+
+$dtPPHeadersCsv =
+@"
+ColumnName,DataType
+"Domain Name",string
+"Complexity Enabled",string
+"Lockout Duration",string
+"Lockout Window",string
+"Lockout Threshold",string
+"Max Password Age",string
+"Min Password Age",string
+"Min Password Length",string
+"Password History Count",string
+"Reversible Encryption Enabled",string
+"@
+
+
+$dtPPHeaders = ConvertFrom-Csv -InputObject $dtPPHeadersCsv
+
+try
+{
+	$domPPTable = Add-DataTable -TableName $domPPTblName -ColumnArray $dtPPHeaders -ErrorAction Stop
+}
+catch
+{
+	$errorMessage = "{0}: {1}" -f $Error[0], $Error[0].InvocationInfo.PositionMessage
+	Write-Error $errorMessage -ErrorAction Stop
+}
 ```
+
+This example uses a CSV splat to create a CSV object and a predefined table name string to create a data table object.
 
 ## PARAMETERS
 

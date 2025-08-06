@@ -1,7 +1,7 @@
 ﻿function Test-RegistryValue
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+		.EXTERNALHELP HelperFunctions-Help.xml
 	#>
 
 	[CmdletBinding()]
@@ -20,9 +20,6 @@
 		[String]$Value,
 		[Parameter(Mandatory = $false,
 				 Position = 2)]
-		[Switch]$PassThru,
-		[Parameter(Mandatory = $false,
-				 Position = 3)]
 		[System.Management.Automation.PSCredential]$Credential
 	)
 

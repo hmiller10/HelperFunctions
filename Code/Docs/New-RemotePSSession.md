@@ -15,11 +15,21 @@ This function will establish a new PowerShell WinRM session to the specified com
 
 ## EXAMPLES
 
-### $s = New-RemoteSession -ComputerName myserver.mydomain.com -Credential $myCreds -PassThru
-Remote PS Sesssion syntax for this function is shown below.
+### EXAMPLE 1
+
 ```powershell
-$s = New-RemoteSession -ComputerName myserver.mydomain.com -Credential $myCreds -PassThru
+$s = New-RemoteSession -ComputerName myserver.example.com -Credential $myCreds -EnableNetworkAccess
 ```
+
+This example creates a remote PowerShell session to the computer myserver.example.com authenticated with the credential $myCreds and enables a loopback token to let you get data from other computers
+
+### EXAMPLE 2
+
+```powershell
+$s = New-RemoteSession -ComputerName myserver.example.com -Credential $myCreds -EnableNetworkAccess -RequiresProxy
+```
+
+This example creates a remote PowerShell session to the computer myserver.example.com authenticated with the credential $myCreds and enables a loopback token to let you get data from other computers and specifies no proxy server is needed.
 
 ## PARAMETERS
 

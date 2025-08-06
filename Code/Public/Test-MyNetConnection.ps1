@@ -1,9 +1,8 @@
 ﻿function Test-MyNetConnection
 {
-<#
-	.EXTERNALHELP HelperFunctions.psm1-Help.xml
-
-#>
+	<#
+		.EXTERNALHELP HelperFunctions-Help.xml
+	#>
 
 	[CmdletBinding()]
 	[Alias('fnTest-NetConnection')]

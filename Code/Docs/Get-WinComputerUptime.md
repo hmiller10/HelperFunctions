@@ -20,17 +20,22 @@ This functions uses Windows CIM or WMI, depending upon response to query, to get
 
 ## EXAMPLES
 
-### PS C:\\\> Get-WinComputerUptime -Session $CimS
-PS C:\\\>
+### EXAMPLE 1
+
 ```powershell
 PS C:\> Get-WinComputerUptime -Session $CimS
 ```
 
-### PS C:\\\> Get-WinComputerUptime -ComputerName $ComputerName -Credential (Get-Credential)
-PS C:\\\>
+This example outputs the computer up time, since the last boot up,  for the computer you have connected to with the remote CimSession.
+
+### EXAMPLE 2
+
 ```powershell
-Get-WinComputerUptime -ComputerName $ComputerName -Credential (Get-Credential)
+PS C:\> $ComputerName = "mycomputer.example.com"
+PS C:\> Get-WinComputerUptime -ComputerName $ComputerName -Credential (Get-Credential)
 ```
+
+This example connects to the computer defined in the variable $ComputerName and prompts the user to enter their credential to make a remote connection.
 
 ## PARAMETERS
 
@@ -83,7 +88,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object[]
+### System.Management.Automation.PSObject
 
 
 ## NOTES

@@ -15,16 +15,18 @@ This functions creates a new Microsoft Common Information Model remote session t
 
 ## EXAMPLES
 
-### PS C:\\\> .\\Get-MyNewCimSession.ps1 -ServerName user.example.com -SkipICMPCheck
-Example bypassing ICMP ping before establishing remote CIMSession but not requiring credential
+### EXAMPLE 1
+
 ```powershell
-PS C:\> .\Get-MyNewCimSession.ps1 -ServerName user.example.com -SkipICMPCheck
+PS C:\> $s = Get-MyNewCimSession -ComputerName user.example.com -SkipICMPCheck
 ```
 
-### PS C:\\\> .\\Get-MyNewCimSession.ps1 -ServerName user.example.com -Credential (Get-Credential) -SkipICMPCheck
+Example bypassing ICMP ping before establishing remote CIMSession but not requiring credential
+
+### EXAMPLE 2
 Example bypassing ICMP ping before establishing remote CIMSession
 ```powershell
-PS C:\> .\Get-MyNewCimSession.ps1 -ServerName user.example.com -Credential (Get-Credential) -SkipICMPCheck
+PS C:\> $s = Get-MyNewCimSession -ComputerName user.example.com -Credential (Get-Credential) -SkipICMPCheck
 ```
 
 ## PARAMETERS

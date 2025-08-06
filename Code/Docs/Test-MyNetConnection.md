@@ -15,11 +15,13 @@ This function is a wrapper for the Test-NetConnection cmdlet. It allows the user
 
 ## EXAMPLES
 
-### PS C:\\\> Test-MyNetConnection -Server server.example.com -Port 53
+### EXAMPLE 1
 
 ```powershell
-PS C:\> Test-MyNetConnection -Server server.example.com -Port 53
+PS C:\> Test-MyNetConnection -ComputerName server1.example.com -Port 53
 ```
+
+This example confines the use of the Test-NetConnection cmdlet to a specified computer(s) and port number
 
 ## PARAMETERS
 

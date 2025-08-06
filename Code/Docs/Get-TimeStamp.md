@@ -16,11 +16,13 @@ Using (Get-Date) -Format, this functions returns a date string that is useful wh
 
 ## EXAMPLES
 
-### C:\\PS\> Get-TimeStamp
-C:\\PS\> Get-TimeStamp
+### EXAMPLE 1
+
 ```powershell
-C:\PS> Get-TimeStamp
+C:\PS> $filestamp = Get-TimeStamp
 ```
+
+This example saves a formatted date/time string to the variable $filestamp
 
 ## PARAMETERS
 

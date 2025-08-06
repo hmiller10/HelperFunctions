@@ -1,7 +1,7 @@
 ﻿function Test-IsAdmin
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+		.EXTERNALHELP HelperFunctions-Help.xml
 	#>
 
 	BEGIN

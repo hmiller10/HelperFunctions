@@ -15,11 +15,13 @@ This function will search for event ID 1074 on the specified computer and will r
 
 ## EXAMPLES
 
-### PS C:\\\> Get-LastBootTime -ComputerName computer1.domain.com -DaysPast 7 -Credential $Credential -Confirm:$false
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Get-LastBootTime
+PS C:\> Get-LastBootTime -ComputerName computer1.example.com -DaysPast 7 -Credential $Credential -Confirm:$false
 ```
+
+This example parses the event logs on computer1.example.com for the last number of specified days to determine if the computer was restarted and if so, when.
 
 ## PARAMETERS
 

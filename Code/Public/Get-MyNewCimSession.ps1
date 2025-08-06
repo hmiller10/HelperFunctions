@@ -15,7 +15,7 @@ function Get-MyNewCimSession
 				 HelpMessage = 'Enter the name of the computer to establish the CimSession to.')]
 		[Alias ('CN', 'Computer', 'ServerName', 'Server', 'IP')]
 		[ValidateNotNullOrEmpty()]
-		[String[]]$ComputerName = $env:COMPUTERNAME,
+		[String[]]$ComputerName,
 		[Parameter(Mandatory = $false,
 				 Position = 1,
 				 HelpMessage = 'Enter the name of the PS credential object.')]

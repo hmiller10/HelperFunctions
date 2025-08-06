@@ -15,12 +15,13 @@ This function will devolve an AD object DistinguishedName
 
 ## EXAMPLES
 
-### Convert-ADObjectDNToFQDN -DistinguishedName $ADObjectDN = “CN=admin-hmiller,OU=ADAdmin,OU=AdminUsers,DC=my,DC=domain,DC=com”
+### EXAMPLE 1
 
 ```powershell
-C:\PS> $ADObjectDN = “CN=admin-hmiller,OU=ADAdmin,OU=AdminUsers,DC=my,DC=domain,DC=com”
-					C:\PS> Convert-ADObjectDNToFQDN -DistinguishedName $ADObjectDN
+PS C:\> $ADObjectFQDN = Convert-ADObjectDNToFQDN -DistinguishedName “CN=admin-hmiller,OU=ADAdmin,OU=AdminUsers,DC=my,DC=domain,DC=com”
 ```
+
+This example stores the DNS domain FQDN for the specified AD object to the variable $ADObjectFQDN.
 
 ## PARAMETERS
 

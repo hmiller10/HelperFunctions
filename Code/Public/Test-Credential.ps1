@@ -1,7 +1,7 @@
 ﻿function Test-Credential
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+		.EXTERNALHELP HelperFunctions-Help.xml
 	#>
 
 	[CmdletBinding(DefaultParameterSetName = 'LocalUserParamSet',

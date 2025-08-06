@@ -16,17 +16,21 @@ This function creates a PSCredential object that had been previously exported to
 
 ## EXAMPLES
 
-### PS C:\\\> Import-PSCredential -Path C:\\Credential.xml -WhatIf
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Import-PSCredential
+PS C:\> $Credential = Import-PSCredential -Path C:\Credential.xml -WhatIf
 ```
 
-### PS C:\\\> Import-PSCredential -Path C:\\Credential.xml -Confirm:$false
+This example tests whether the function is able to successfully import the DPAPI encrypted credential stored in: C:\\Credential.xml
+
+### EXAMPLE 2
 
 ```powershell
-C:\PS> Import-PSCredential
+PS C:\> $Credential = Import-PSCredential -Path C:\Credential.xml -Confirm:$false
 ```
+
+This example imports the DPAPI encrypted credential stored in: C:\\Credential.xml to the PS credential $Credential
 
 ## PARAMETERS
 

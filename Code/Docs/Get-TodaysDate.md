@@ -15,11 +15,13 @@ function to get date using the Get-Date cmdlet in the format MM-dd-yyyy
 
 ## EXAMPLES
 
-### PS C:\\\> $todaysDate = Get-TodaysDate
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Get-TodaysDate
+C:\PS> $today = Get-TodaysDate
 ```
+
+This example saves a formatted date/time string to the variable $today
 
 ## PARAMETERS
 

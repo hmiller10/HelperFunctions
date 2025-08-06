@@ -1,8 +1,8 @@
 ﻿function Write-Logfile
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml
-		#>
+	<#
+		.EXTERNALHELP HelperFunctions-Help.xml
+	#>
 
 	[CmdletBinding()]
 	[OutputType([System.IO.Stream])]

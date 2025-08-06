@@ -15,17 +15,21 @@ This function requires .Net 4.5.2 or later and will use native .Net technologies
 
 ## EXAMPLES
 
-### PS C:\\\> Invoke-CreateZipFile -CompressedFileName myZip.zip -FileToCompress 'Test1.ps1 -EntryName Test1 -ArchiveMode Create
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Invoke-CreateZipFile
+PS C:\> Invoke-CreateZipFile -CompressedFileName myZip.zip -FileToCompress 'Test1.ps1 -EntryName Test1 -ArchiveMode Create
 ```
 
-### PS C:\\\> Invoke-CreateZipFile -CompressedFileName myZip.zip -FileToCompress 'Test2.ps1 -EntryName Test2 -ArchiveMode Update
+This example creates a compressed .zip file called myZip.zip from the PS script file 'Test1.ps1'
+
+### EXAMPLE 2
 
 ```powershell
-C:\PS> Invoke-CreateZipFile
+PS C:\> Invoke-CreateZipFile -CompressedFileName myZip.zip -FileToCompress 'Test2.ps1 -EntryName Test2 -ArchiveMode Update
 ```
+
+This example updates the compressed .zip file called myZip.zip with the PS script file 'Test2.ps1'
 
 ## PARAMETERS
 

@@ -15,11 +15,13 @@ This function translates an object SID to it's NTAccount value
 
 ## EXAMPLES
 
-### PS C:\\\> Get-UserFromSID -ObjectSID '12AB34CD56EF'
-PS C:\\\>
+### EXAMPLE 1
+
 ```powershell
-Get-UserFromSID -ObjectSID '12AB34CD56EF'
+PS C:\> $user = Get-UserFromSID -ObjectSID '12AB34CD56EF'
 ```
+
+This example outputs the AD user object name for the user with objectSID value: '12AB34CD56EF'
 
 ## PARAMETERS
 

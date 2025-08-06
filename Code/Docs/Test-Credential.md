@@ -7,7 +7,7 @@ Test validity of AD or local credential
 
 ### LocalUserParamSet
 ```
-Test-Credential [-Computer [<String>]] [<CommonParameters>]
+Test-Credential [-ComputerName [<String>]] [<CommonParameters>]
 ```
 
 ### DomainUserParamSet
@@ -20,17 +20,21 @@ This function will validate whether or not the credential object information pas
 
 ## EXAMPLES
 
-### PS C:\\\> Test-Credential -Credential (Get-Credential) -LocalUser -Confirm:$false
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Test-Credential
+PS C:\> Test-Credential -ComputerName computer1.example.com -Credential (Get-Credential) -Confirm:$false
 ```
 
-### PS C:\\\> Test-Credential -Credential (Get-Credential) -DomainFQDN 'my.domain.com' -Confirm:$false
+This example tests the validity of the specified credential for the local computer.
+
+### EXAMPLE 2
 
 ```powershell
-C:\PS> Test-Credential
+PS C:\> Test-Credential -Credential (Get-Credential) -DomainFQDN 'my.domain.com' -Confirm:$false
 ```
+
+This example verifies the specified credential for the specified domain.
 
 ## PARAMETERS
 
@@ -48,13 +52,13 @@ Default Value:
 Pipeline Input: False
 ```
 
-### Computer
+### ComputerName
 Parameter to tell function which remote computer to test credentials on.
 
 ```yaml
 Type: String
 Parameter Sets: LocalUserParamSet
-Aliases: ComputerName
+Aliases: 'CN', 'Computer', 'Server',  'ServerName', 'IP'
 
 Required: false
 Position: named

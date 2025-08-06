@@ -15,11 +15,13 @@ This function will decrypt the secure string passed in the function parameter to
 
 ## EXAMPLES
 
-### EXAMPLE
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Convert-SecureStringToPlainText -SecureString $password
+PS C:\> Convert-SecureStringToPlainText -SecureString $password
 ```
+
+This example decrypts/reverses the secure string stored in the variable $password.
 
 ## PARAMETERS
 

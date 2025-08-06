@@ -16,11 +16,14 @@ It is based on Tobias Weltner's example.
 
 ## EXAMPLES
 
-### PS C:\\\> Export-PSCredential -$OutputFile Credential.clixml -$Credential PSCredential
+### EXAMPLE 1
 
 ```powershell
-C:\PS> EPS C:\> Export-PSCredential -$OutputFile Credential.clixml -$Credential PSCredential
+$Credential = Get-Credential
+PS C:\> Export-PSCredential -OutputFile .\Credential.xml -Credential $Credential
 ```
+
+This example exports a PS credential object to a DPAPI encrypted .xml file
 
 ## PARAMETERS
 

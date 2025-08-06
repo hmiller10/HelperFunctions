@@ -15,11 +15,13 @@ This function will export the specified registry key to a PSCustomobject and wri
 
 ## EXAMPLES
 
-### PS C:\\\> Export-Registry -Path 'HKLM:\\SOFTWARE\\Microsoft\\Policies' -Outfile 'C:\\Temp\\policiesHive.csv'
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Export-Registry
+PS C:\> Export-Registry -Path 'HKLM:\SOFTWARE\Microsoft\Policies' -Outfile 'C:\Temp\policiesHive.csv'
 ```
+
+This example exports the specified registry key to the file specified by the -Outfile parameter.
 
 ## PARAMETERS
 

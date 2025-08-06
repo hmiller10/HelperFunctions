@@ -1,7 +1,7 @@
 ﻿function Export-Registry
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+		.EXTERNALHELP HelperFunctions-Help.xml
 	#>
 
 	[CmdletBinding()]

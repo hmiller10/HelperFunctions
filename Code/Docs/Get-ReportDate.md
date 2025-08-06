@@ -15,11 +15,13 @@ function to get date using the Get-Date cmdlet in the format yyyy-MM-dd
 
 ## EXAMPLES
 
-### PS C:\\\> $rptDate = Get-ReportDate
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Get-ReportDate
+PS C:\> $rptDate = Get-ReportDate
 ```
+
+This example saves a formatted date/time string to the variable $rptDate
 
 ## PARAMETERS
 

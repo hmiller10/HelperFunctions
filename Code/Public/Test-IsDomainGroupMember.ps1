@@ -1,7 +1,7 @@
 ﻿function Test-IsDomainGroupMember
 {
 	<#
-		.EXTERNALHELP HelperFunctions.psm1-Help.xml
+		.EXTERNALHELP HelperFunctions-Help.xml
 	#>
 
 	[CmdletBinding()]

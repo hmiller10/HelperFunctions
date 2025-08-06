@@ -16,20 +16,24 @@ This function will connect to the local machine certificate store on either the 
 ## EXAMPLES
 
 ### EXAMPLE 1
-PS C:\\\> Get-IISWebCertificates
+
 ```powershell
 PS C:\> Get-IISWebCertificates
 ```
 
+This example enumerates any certificates bound to the IIS interfaces on the local web server.
+
 ### EXAMPLE 2
-PS C:\\\> Get-IISWebCertificates -WebServers server1.domain.com, server2.domain.com -Credential (Get-Credential)
+
 ```powershell
-PS C:\> Get-IISWebCertificates -WebServers server1.domain.com, server2.domain.com -Credential (Get-Credential)
+PS C:\> Get-IISWebCertificates -ComputerName server1.domain.com, server2.domain.com -Credential (Get-Credential)
 ```
+
+This example enumerates any bound PKI certificates to any website on the specified computers web server sites and can authenticate with an alternate credential if needed.
 
 ## PARAMETERS
 
-### WebServers
+### ComputerName
 List of web servers to query certificate store on
 
 ```yaml

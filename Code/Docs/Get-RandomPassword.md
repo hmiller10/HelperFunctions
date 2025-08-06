@@ -15,11 +15,13 @@ This function takes the input parameters, using Switch statements it will genera
 
 ## EXAMPLES
 
-### PS C:\\\> $pw = Get-RandomPassword -Length 25 -IncludeLCase $true -IncludeUCase $true -IncludeNumbers $true -IncludeSpecialChar $true  -NoSimilarCharacters $true
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Get-RandomPassword
+PS C:\> $pw = Get-RandomPassword -Length 25 -IncludeLCase $true -IncludeUCase $true -IncludeNumbers $true -IncludeSpecialChar $true  -NoSimilarCharacters $true
 ```
+
+This example creates a complex password and outputs the password string, in plain text, to the variable $pw
 
 ## PARAMETERS
 

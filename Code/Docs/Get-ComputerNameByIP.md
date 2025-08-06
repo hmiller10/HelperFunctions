@@ -15,11 +15,13 @@ This function uses .Net to resolve a computer name to it's IP address similar to
 
 ## EXAMPLES
 
-### PS C:\\\>Get-ComputerNameByIP -IPAddress 10.1.1.1
+### EXAMPLE 1
 
 ```powershell
-PS C:\>Get-ComputerNameByIP -IPAddress 10.1.1.1
+PS C:\> Get-ComputerNameByIP -IPAddress 10.1.1.1
 ```
+
+This example will output the computer object name for the computer with the specified IP to the console screen.
 
 ## PARAMETERS
 

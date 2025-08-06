@@ -15,11 +15,21 @@ Function to add log entries to an existing log file, associate a severity rating
 
 ## EXAMPLES
 
-### PS C:\\\>Write-LogFile -LogEntry "Test Entry" -LogFile 'C:\\Windows\\Logs\\MyLogfile.txt' -LogLevel Info
+### EXAMPLE 1
 
 ```powershell
-PS C:\>Write-LogFile -LogEntry "Test Entry" -LogFile 'C:\Logs\MyLogfile.txt' -LogLevel 3
+PS C:\>Write-LogFile -LogEntry "Test Entry" -LogFile 'C:\Windows\Logs\MyLogfile.txt' -LogLevel Info
 ```
+
+This example adds a log entry to the log file MyLogfile.txt with an 'Info' tag.
+
+### EXAMPLE 2
+
+```powershell
+PS C:\>Write-LogFile -LogEntry "Test Entry2" -LogFile 'C:\Windows\Logs\MyLogfile.txt' -LogLevel Success
+```
+
+This example adds a log entry to the log file MyLogfile.txt with an 'Success' tag.
 
 ## PARAMETERS
 

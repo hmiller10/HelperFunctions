@@ -15,11 +15,13 @@ This function retrieves a domain user object SID using the Domain\\sAMAccountNam
 
 ## EXAMPLES
 
-### PS C:\\\>Get-SIDforDomainUser -Domain example.com -UserName myUser
+### EXAMPLE 1
 Domain user to sid translation
 ```powershell
-PS C:\>Get-SIDFromUser -SamAccountName myAccount -DomainName example.com
+PS C:\> Get-SIDforDomainUser -Domain example.com -UserName myUser
 ```
+
+This example outputs the user objectSID value for the user myUser in AD domain, example.com
 
 ## PARAMETERS
 

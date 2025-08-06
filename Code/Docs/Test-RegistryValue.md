@@ -7,7 +7,7 @@ Check registry value
 
 ### Default
 ```
-Test-RegistryValue [-Path [<String>]] [-Value [<String>]] [-PassThru] [-Credential [<PSCredential>]] [<CommonParameters>]
+Test-RegistryValue [-Path [<String>]] [-Value [<String>]] [-Credential [<PSCredential>]] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -15,11 +15,13 @@ This function will determine if the specified path and value are valid.
 
 ## EXAMPLES
 
-### PS C:\\\> Test-RegistryValue -Path "HKLM:\\SOFTWARE\\Microsoft\\.NETFramework\\v4.0.30319" -Name "SchUseStrongCrypto" -PassThru -Credential $Credential
+### EXAMPLE 1
 
 ```powershell
-C:\PS> Test-RegistryValue
+PS C:\> Test-RegistryValue -Path "HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319" -Name "SchUseStrongCrypto" -Credential $Credential
 ```
+
+This example checks the specified registry key/value pair to attest whether or not the expected value is present at the specified registry key.
 
 ## PARAMETERS
 
@@ -44,20 +46,6 @@ The registry key value to test for.
 Type: String
 Parameter Sets: Default
 Aliases: Name
-
-Required: false
-Position: named
-Default Value: 
-Pipeline Input: False
-```
-
-### PassThru
-Returns key/value result to caller.
-
-```yaml
-Type: Switch
-Parameter Sets: Default
-Aliases: 
 
 Required: false
 Position: named

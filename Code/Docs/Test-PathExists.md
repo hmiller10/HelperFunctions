@@ -15,17 +15,21 @@ This function uses .NET System.IO.File and System.IO.Directory to check if a pat
 
 ## EXAMPLES
 
-### PS C:\\\>Test-PathExists -Path "C:\\temp\\testfiles\\SomeFile.txt" -PathType File
+### EXAMPLE 1
 
 ```powershell
-PS C:\>Test-PathExists -Path "C:\temp\mytestfiles\SomeFile.txt" -PathType File
+PS C:\>Test-PathExists -Path "C:\temp\testfiles\SomeFile.txt" -PathType File
 ```
 
-### PS C:\\\>Test-PathExists -Path "C:\\temp\\test" -PathFype Folder -Force -Confirm:$false
+This example tests whether or not the specified file exists and if not it creates a text file at the specified path.
+
+### EXAMPLE 2
 
 ```powershell
-PS C:\>Test-PathExists -Path "C:\temp\test" -PathFype Folder
+PS C:\> Test-PathExists -Path "C:\temp\test" -PathFype Folder -Force -Confirm:$false
 ```
+
+This example tests whether or not the specified directory exists and if not it creates a directory at the specified path, regardless of whether the parent folder exists or not.
 
 ## PARAMETERS
 

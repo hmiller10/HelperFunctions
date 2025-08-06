@@ -17,11 +17,13 @@ This function converts an Active Directory distinguished name to a fully qualifi
 
 ## EXAMPLES
 
-### PS C:\\\> Get-FQDNfromDN -DistinguishedName <ADDistinguisedName\>
+### EXAMPLE 1
 
 ```powershell
 PS C:\> Get-FQDNfromDN -DistinguishedName <ADDistinguisedName>
 ```
+
+This example calls the function and processes the AD DN then outputs the results to console screen.
 
 ## PARAMETERS
 
@@ -45,9 +47,6 @@ Pipeline Input: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
-### None
-
 
 ## OUTPUTS
 
