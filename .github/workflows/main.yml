@@ -25,14 +25,14 @@ jobs:
       - name: Install and cache PowerShell modules
         uses: potatoqualitee/psmodulecache@v6.2.1
         with:
-          modules-to-cache: PSFramework,Pester::,HelperFunctions
+          modules-to-cache: PSFramework,Pester,HelperFunctions
           updatable: true
           shell: powershell
 
       - name: Show that the Action works
         shell: powershell
         run: |
-              Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
+              Get-Module -Name PSFramework, Pester::, HelperFunctions -ListAvailable | Select Path
               Import-Module -Name HelperFunctions -Force
 
       - name: Get working directory
@@ -42,13 +42,14 @@ jobs:
 
       - name: Test module
         run: |
-         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
+         Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue' #-CI -Configuration $config
         shell: powershell
 
       - name: Publish to PowerShell Gallery
         env:
           NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
+          #BUILDVER: '2.8.6'
 
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\Code") -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
-        shell: powershell
+          Publish-Module -Path . -NuGetApiKey $env:NUGET_KEY -Verbose
+        shell: powershell  
