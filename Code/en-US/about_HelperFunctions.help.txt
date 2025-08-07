@@ -6,7 +6,7 @@ SHORT DESCRIPTION
 	
 	
 LONG DESCRIPTION
-	This English-based module help file provides advanced function help for all functions included the module..
+	This English-based module help file provides advanced function help for all funcitons included the module..
 	
 	
 NOTE
