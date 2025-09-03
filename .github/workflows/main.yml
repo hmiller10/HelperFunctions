@@ -1,4 +1,4 @@
-# This is a basic workflow to help you get started with Actions
+
 name: Publish_HelperFunctions_Module
 
 # Controls when the workflow will run
@@ -6,11 +6,14 @@ on:
   push:
     branches: [main]
 
+  pull_request:
+    branches: [main]
+
   workflow_dispatch:
 
 jobs:
   publish-to-gallery:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -24,10 +27,10 @@ jobs:
         with:
           modules-to-cache: PSFramework,Pester::,HelperFunctions
           updatable: true
-          shell: pwsh
+          shell: powershell
 
       - name: Show that the Action works
-        shell: pwsh
+        shell: powershell
         run: |
               Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
               Import-Module -Name HelperFunctions -Force
@@ -35,17 +38,17 @@ jobs:
       - name: Get working directory
         run: |
           Get-ChildItem -Path ${{ github.workspace }} -Recurse
-        shell: pwsh
+        shell: powershell
 
       - name: Test module
         run: |
          Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
-        shell: pwsh
+        shell: powershell
 
       - name: Publish to PowerShell Gallery
         env:
           NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
 
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main") -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
-        shell: pwsh
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main\HelperFunctions") -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
+        shell: powershell
