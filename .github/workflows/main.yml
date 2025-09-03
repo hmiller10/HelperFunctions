@@ -47,5 +47,5 @@ jobs:
           NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
 
         run: |
-          Publish-Module -Path D:\a\HelperFunctions\main\HelperFunctions -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
+          Publish-Module -Path D:\a\HelperFunctions\main\HelperFunctions\Code -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
         shell: powershell
