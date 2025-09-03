@@ -10,7 +10,7 @@ on:
 
 jobs:
   publish-to-gallery:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -24,10 +24,10 @@ jobs:
         with:
           modules-to-cache: PSFramework,Pester::,HelperFunctions
           updatable: true
-          shell: powershell
+          shell: pwsh
 
       - name: Show that the Action works
-        shell: powershell
+        shell: pwsh
         run: |
               Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
               Import-Module -Name HelperFunctions -Force
@@ -35,17 +35,17 @@ jobs:
       - name: Get working directory
         run: |
           Get-ChildItem -Path ${{ github.workspace }} -Recurse
-        shell: powershell
+        shell: pwsh
 
       - name: Test module
         run: |
          Invoke-Pester -Path (Join-Path ${{ github.workspace }} "main\Tests") -Output Detailed -ErrorAction 'Continue'
-        shell: powershell
+        shell: pwsh
 
       - name: Publish to PowerShell Gallery
         env:
           NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
 
         run: |
-          Publish-Module -Path (Join-Path ${{ github.workspace }} "main/HelperFunctions") -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
-        shell: powershell
+          Publish-Module -Path (Join-Path ${{ github.workspace }} "main") -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
+        shell: pwsh
