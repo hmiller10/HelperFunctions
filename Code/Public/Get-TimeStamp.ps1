@@ -3,7 +3,7 @@
 	<#
 		.EXTERNALHELP HelperFunctions-Help.xml
 	#>
-	
+
 	[CmdletBinding()]
 	[Alias('Get-FileDate')]
 	param ()

@@ -1,4 +1,4 @@
-﻿function Get-IISWebCertificates
+﻿function Get-IISWebCertificate
 {
 	<#
 		.EXTERNALHELP HelperFunctions-Help.xml

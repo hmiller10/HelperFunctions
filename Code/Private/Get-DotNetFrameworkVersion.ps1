@@ -1,8 +1,9 @@
 ﻿function Get-DotNetFrameworkVersion
 {
-		<#
-			.EXTERNALHELP HelperFunctions.psm1-Help.xml
-		#>
+	<#
+		.EXTERNALHELP HelperFunctions-Help.xml
+	#>
+
 	[CmdletBinding()]
 	[OutputType([pscustomobject])]
 	param
