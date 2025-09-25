@@ -1,6 +1,8 @@
 
 name: Publish_HelperFunctions_Module
 
+permissions:
+  contents: read
 # Controls when the workflow will run
 on:
   push:
