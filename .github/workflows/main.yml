@@ -27,14 +27,14 @@ jobs:
       - name: Install and cache PowerShell modules
         uses: potatoqualitee/psmodulecache@v6.2.1
         with:
-          modules-to-cache: PSFramework,Pester::,HelperFunctions
+          modules-to-cache: PSFramework,Pester::,HelperFunctions, Microsoft.PowerShell.PSResourceGet
           updatable: true
           shell: powershell
 
       - name: Show that the Action works
         shell: powershell
         run: |
-          Get-Module -Name PSFramework, Pester, HelperFunctions -ListAvailable | Select Path
+          Get-Module -Name PSFramework, Pester, HelperFunctions,Microsoft.PowerShell.PSResourceGet -ListAvailable | Select-Object -ExpandProperty Path
           Import-Module -Name HelperFunctions -Force
 
       - name: Get working directory
