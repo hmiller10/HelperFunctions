@@ -54,5 +54,5 @@ jobs:
         run: |
           $modulePath = Join-Path ${{ github.workspace }} "\Main"
           Set-Location -Path $modulePath
-          Publish-Module -Path .  -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
+          Publish-Module -Path ${{ github.workspace }} -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
         shell: powershell
