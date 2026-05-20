@@ -5,8 +5,8 @@ This module contains a collection of PowerShell functions I have found I use/reu
 ## Getting Started
 
 # STEP 1
-### Setup PowerShell to use TLS 1.2
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+### Setup PowerShell to use TLS 1.2 and TLS 1.3
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12 -bor [System.Net.SecurityProtocolType]::Tls13
 
 # STEP 2
 ### Prerequisites
