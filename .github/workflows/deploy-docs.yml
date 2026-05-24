@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Point this to the folder containing your .md help files
-          path: './docs' 
+          path: './Docs' 
 
       - name: Deploy to GitHub Pages
         id: deployment
