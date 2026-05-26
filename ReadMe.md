@@ -105,7 +105,7 @@ At present, I have not yet created Pester tests for all functions. I have run ea
 Install-Module 'HelpFunctions' -Repository 'Insert PS Repository Name' -Credential $creds -Force -AllowClobber
 
 # To use PSResourceGet
-Install-Module -Name Microsoft.PowerShell.PSResourceGet -Repository PSGallery -Scope AllUsers -TrustRepository -AcceptLicense -SkipDependencyCheck -PassThru -Confirm:$false
+Install-Module -Name Microsoft.PowerShell.PSResourceGet -Repository PSGallery -Scope AllUsers
 Install-PSResource =Name HelperFunctions -Repository -ScopeAllUsers -TrustRepository -AcceptLicense -SkipDependencyCheck -PassThru -Confirm:$false
 
 ### Update Module
