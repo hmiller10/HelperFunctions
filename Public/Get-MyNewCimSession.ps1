@@ -49,6 +49,7 @@ function Get-MyNewCimSession
 
 		$Params = @{
 			Authentication = 'Negotiate'
+			OperationsTimeoutSec = 15
 			ErrorAction    = 'Stop'
 			ErrorVariable  = 'CimSessionError'
 		}
