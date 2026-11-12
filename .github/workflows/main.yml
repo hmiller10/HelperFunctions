@@ -24,7 +24,7 @@ jobs:
           path: main
 
       - name: Install and cache PowerShell modules
-        uses: potatoqualitee/psmodulecache@v6.0
+        uses: potatoqualitee/psmodulecache@v6.2.1
         with:
           modules-to-cache: PSFramework,Pester::,HelperFunctions, Microsoft.PowerShell.PSResourceGet
           updatable: true
