@@ -48,7 +48,7 @@ jobs:
 
       - name: Publish to PowerShell Gallery
         env:
-          NUGET_KEY: ${{ secrets.POWERSHELLGALLERY }}
+          NUGET_KEY: ${{ secrets.HMILLER10_PSGALLERY_APIKEY }}
           #GITHUB_WORKSPACE: ${{ github.workspace }}
 
         uses: natescherer/publish-powershell-action@v1
