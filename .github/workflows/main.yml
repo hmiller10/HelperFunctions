@@ -51,7 +51,7 @@ jobs:
           NUGET_KEY: ${{ secrets.POWERSHELLGALLERY }}
 
         run: |
-          $modulePath = Join-Path ${{ github.workspace }} "\Main"
+          $modulePath = ${{ github.workspace }}
           Set-Location -Path $modulePath
           Publish-Module -Path $modulePath -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
         shell: powershell
