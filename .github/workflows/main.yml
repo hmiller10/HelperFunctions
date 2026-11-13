@@ -55,4 +55,4 @@ jobs:
         with:
           token: $env:NUGET_KEY
           target: gallery
-          path: src
+          path: ${{ github.workspace }}
