@@ -52,7 +52,7 @@ jobs:
           NUGET_KEY: ${{ secrets.POWERSHELLGALLERY }}
         run: |
             $params = @{
-              Path = "$env:GITHUB_WORKSPACE/HelperFunctions"
+              Path = "$env:GITHUB_WORKSPACE"
               NugetApiKey = $env:NUGET_KEY
               Repository = 'PSGallery'
             }
