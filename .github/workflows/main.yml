@@ -30,11 +30,11 @@ jobs:
           updatable: true
           shell: powershell
 
-      #- name: Show that the Action works
-      #  shell: powershell
-      #  run: |
-      #   Get-Module -Name PSFramework, Pester, HelperFunctions, Microsoft.PowerShell.PSResourceGet -ListAvailable | Select-Object -ExpandProperty Path
-      #    Import-Module -Name HelperFunctions -Force
+      - name: Show that the Action works
+        shell: powershell
+        run: |
+         Get-Module -Name PSFramework, Pester, HelperFunctions, Microsoft.PowerShell.PSResourceGet -ListAvailable | Select-Object -ExpandProperty Path
+         Import-Module -Name HelperFunctions -Force
 
       - name: Get working directory
         run: |
@@ -51,7 +51,7 @@ jobs:
           NUGET_KEY: ${{ secrets.POWERSHELLGALLERY }}
 
         run: |
-          $modulePath = ${{ github.workspace }}
-          Set-Location -Path $modulePath
-          Publish-Module -Path $modulePath -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
+         # $modulePath = ${{ github.workspace }}
+         # Set-Location -Path $modulePath
+          Publish-Module -Path ${{ github.workspace }} -NuGetApiKey $env:NUGET_KEY -Repository PSGallery -Verbose
         shell: powershell
