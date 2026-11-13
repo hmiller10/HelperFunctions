@@ -47,12 +47,14 @@ jobs:
         shell: powershell
 
       - name: Publish to PowerShell Gallery
+        shell: powershell
         env:
           NUGET_KEY: ${{ secrets.POWERSHELLGALLERY }}
-          #GITHUB_WORKSPACE: ${{ github.workspace }}
+        run: |
+            $params = @{
+              Path = "$env:GITHUB_WORKSPACE/HelperFunctions"
+              NugetApiKey = $env:NUGET_KEY
+              Repository = 'PSGallery'
+            }
 
-        uses: natescherer/publish-powershell-action@v1
-        with:
-          token: $env:NUGET_KEY
-          target: gallery
-          path: main
+            Publish-Module @params
