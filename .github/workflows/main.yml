@@ -30,11 +30,11 @@ jobs:
           updatable: true
           shell: powershell
 
-      - name: Show that the Action works
-        shell: powershell
-        run: |
-          Get-Module -Name PSFramework, Pester, HelperFunctions, Microsoft.PowerShell.PSResourceGet -ListAvailable | Select-Object -ExpandProperty Path
-          Import-Module -Name HelperFunctions -Force
+      #- name: Show that the Action works
+      #  shell: powershell
+      #  run: |
+      #   Get-Module -Name PSFramework, Pester, HelperFunctions, Microsoft.PowerShell.PSResourceGet -ListAvailable | Select-Object -ExpandProperty Path
+      #    Import-Module -Name HelperFunctions -Force
 
       - name: Get working directory
         run: |
