@@ -48,7 +48,7 @@ jobs:
 
       - name: Publish to PowerShell Gallery
         env:
-          NUGET_KEY: ${{ secrets.HMILLER10_FULL_PAT }}
+          NUGET_KEY: ${{ secrets.POWERSHELLGALLERY }}
 
         run: |
           $modulePath = Join-Path ${{ github.workspace }} "\Main"
